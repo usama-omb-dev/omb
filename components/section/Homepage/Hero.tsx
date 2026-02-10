@@ -79,7 +79,7 @@ const Hero = () => {
             <div className="bg-white p-2.5 rounded-[0.3125rem] flex items-center gap-6 max-w-fit">
               <div className="flex flex-col justify-between gap-12">
                 <h4 className="text-lg font-medium leading-7 max-w-46.5">
-                  68% increase in conversion rates with the new design.
+                  {`68% increase in conversion rates with the new design.`}
                 </h4>
                 <Image
                   alt="Mockup"
