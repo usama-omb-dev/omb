@@ -1,4 +1,5 @@
 "use client";
+import { Button } from "@/components/ui/button";
 import AnimatedButton from "@/components/ui/button/AnimatedButton";
 import { ArrowRight } from "@/components/ui/icons";
 import Pill from "@/components/ui/pill";
@@ -18,7 +19,7 @@ const Hero = () => {
     () => {
       if (imgRef.current == null || mainRef.current == null) return;
       gsap.to(imgRef.current, {
-        y: 100,
+        y: 200,
         scrollTrigger: {
           trigger: mainRef.current,
           start: "top top",
@@ -88,13 +89,18 @@ const Hero = () => {
                   src={"/stobe-logo.png"}
                 />
               </div>
-              <div>
+              <div className="relative group">
                 <Image
                   alt="Mockup"
                   width={196}
                   height={206}
                   src={"/hero_laptop-mockup.png"}
                 />
+                <Button className=" max-w-10 w-10 h-10 rounded-[0.3125rem] absolute bottom-2.5 right-2.5 p-5">
+                  <span className="-rotate-45 group-hover:rotate-0 transition-transform">
+                    <ArrowRight color="#000" />
+                  </span>
+                </Button>
               </div>
             </div>
           </div>

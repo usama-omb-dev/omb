@@ -59,7 +59,7 @@
 :root {
   --radius: 0.625rem;
   --background: #f7f7f7;
-  --foreground: oklch(0.145 0 0);
+  --foreground: #000;
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
@@ -154,4 +154,14 @@
 .animate-rays {
   animation: raysPulse 6s ease-in-out infinite;
   will-change: transform;
+}
+
+.mySwiper .swiper-slide {
+  @apply opacity-0 translate-y-15 pointer-events-none transition-all duration-500;
+}
+
+.mySwiper .swiper-slide-prev,
+.mySwiper .swiper-slide-active,
+.mySwiper .swiper-slide-next {
+  @apply opacity-100 translate-y-0 pointer-events-auto;
 }
