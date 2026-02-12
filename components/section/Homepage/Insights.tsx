@@ -16,14 +16,12 @@ const Insights = () => {
   const nextRef = useRef<HTMLButtonElement | null>(null);
 
   return (
-    <section className="py-50 overflow-hidden">
+    <section className="pt-50 overflow-hidden">
       <div className="container flex flex-col gap-20">
         <div className="flex justify-between gap-34">
-          <h3 className="text-2xl font-medium max-w-152.25">
-            <span className="text-primary leading-none">
-              68 percent increase
-            </span>{" "}
-            in conversion rates with the new design.
+          <h3 className="text-2xl font-medium leading-none max-w-152.25">
+            <span className="text-primary">68 percent increase</span> in
+            conversion rates with the new design.
           </h3>
           <div className="max-w-79 flex flex-col items-start gap-7.5">
             <p className="text-body">

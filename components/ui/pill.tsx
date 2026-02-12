@@ -11,7 +11,9 @@ const Pill = ({
   iconColor?: string;
 }) => {
   return (
-    <div className={`flex items-center gap-2.5 w-fit ${className}`}>
+    <div
+      className={`flex items-center gap-2.5 w-fit font-medium text-body ${className}`}
+    >
       <BulletPoint color={iconColor ? iconColor : "#fff"} />
       <span>{children}</span>
     </div>
