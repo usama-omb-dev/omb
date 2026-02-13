@@ -13,6 +13,7 @@ gsap.registerPlugin(ScrollTrigger);
 const OurTeam = () => {
   const cardsRef = useRef<HTMLDivElement[]>([]);
   const containerRef = useRef<null | HTMLDivElement>(null);
+  const titleRef = useRef<null | HTMLDivElement>(null);
 
   const cards = [
     { title: "Design" },
@@ -52,13 +53,23 @@ const OurTeam = () => {
           },
         });
       });
-      console.log("cardsRef", cardsRef);
+
+      gsap.to(titleRef.current, {
+        x: "15%",
+        ease: "back.out(1.7)",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top bottom",
+          end: "200% top",
+          scrub: 1,
+        },
+      });
     },
     { scope: containerRef },
   );
 
   return (
-    <section className="py-37.5">
+    <section className="py-37.5 overflow-hidden">
       <div className="flex flex-col gap-38">
         <div className="container">
           <div className="flex items-center gap-27.5">
@@ -116,7 +127,22 @@ const OurTeam = () => {
               })}
             </div>
           </div>
-          <div className="grid grid-cols-1 grid-rows-1 col-start-1 row-start-1 place-items-center group w-fit">
+          <div className="grid grid-cols-1 grid-rows-1 col-start-1 row-start-1 place-items-center group w-fit relative isolate">
+            <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 -z-10 opacity-10 flex justify-center items-center pointer-events-none">
+              <div
+                ref={titleRef}
+                className="flex justify-center items-center gap-8 flex-nowrap text-nowrap"
+              >
+                {[...Array(15)].map((_item, index) => (
+                  <h3
+                    key={index + 1}
+                    className="font-nexa font-bold text-[8.375rem]"
+                  >
+                    online marketing bakery
+                  </h3>
+                ))}
+              </div>
+            </div>
             <Image
               alt="Jasmin"
               width={395}

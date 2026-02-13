@@ -1,5 +1,6 @@
 import AnimatedButton from "@/components/ui/button/AnimatedButton";
 import { ArrowRight } from "@/components/ui/icons";
+import TextReveal from "@/components/ui/TextReveal";
 import Image from "next/image";
 
 const Qualities = () => {
@@ -22,7 +23,9 @@ const Qualities = () => {
           <div className="flex-1 flex flex-col gap-7.5">
             <div className="py-15.75 pl-15 pr-40.75 bg-white rounded-[0.625rem] flex flex-col gap-10">
               <h3 className="text-2xl font-medium max-w-[65%]">
-                This is how we turn your story into results
+                <TextReveal>
+                  This is how we turn your story into results
+                </TextReveal>
               </h3>
               <div className="flex flex-col gap-3.75 max-w-154">
                 <h5 className="font-bold text-lg leading-none">
@@ -82,7 +85,7 @@ const Qualities = () => {
             </div>
             <div className="py-15.75 pl-15 pr-40.75 bg-white rounded-[0.625rem] flex flex-col gap-10">
               <h3 className="text-2xl font-medium max-w-[65%]">
-                Our recipe for profitable marketing
+                <TextReveal>Our recipe for profitable marketing</TextReveal>
               </h3>
               <div className="flex flex-col gap-3.75 max-w-154">
                 <h5 className="font-bold text-lg leading-none">
