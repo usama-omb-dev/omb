@@ -33,10 +33,10 @@ const Hero = () => {
   return (
     <section
       ref={mainRef}
-      className="relative isolate h-screen flex flex-col justify-end pb-16 overflow-hidden"
+      className="relative isolate min-h-screen flex flex-col justify-end pb-16 pt-34 overflow-hidden"
     >
       <div
-        className="absolute -top-1/6 -left-1/7 w-1/2 h-[120%] bg-cover bg-no-repeat -z-10 animate-rays"
+        className="absolute -top-1/6 -left-1/7 w-1/2 2xl:blur-none blur-xl h-[120%] bg-cover bg-no-repeat -z-10 animate-rays"
         style={{ backgroundImage: "url(/hero-rays.png)" }}
       />
       <Image
@@ -48,15 +48,15 @@ const Hero = () => {
         className="w-screen h-full absolute top-0 left-0 object-cover -z-20 pointer-events-none"
       />
       <div className="container">
-        <div className="grid grid-cols-5 items-end">
-          <div className=" col-span-3 pr-40 flex flex-col gap-7.5 items-start">
+        <div className="grid lg:grid-cols-5 items-end lg:gap-0 gap-8">
+          <div className=" sm:col-span-3 xl:pr-40 sm:pr-20 flex flex-col xl:gap-7.5 gap-3 items-start">
             <Pill className="text-white">B2B Marketing Agency</Pill>
-            <h1 className="text-4xl text-white">
+            <h1 className="xl:text-4xl sm:text-3xl text-2xl text-white leading-none">
               <TextReveal>
                 We build brands people keep coming back for.
               </TextReveal>
             </h1>
-            <p className="text-body text-white">
+            <p className="sm:text-body text-xsm text-white">
               {`Together we bake campaigns that make your audience hungry. We help
               you take a position customers choose and competitors lose sleep
               over.`}
@@ -76,10 +76,10 @@ const Hero = () => {
               Dat smaakt naar meer
             </AnimatedButton>
           </div>
-          <div className=" col-span-2">
-            <div className="bg-white p-2.5 rounded-[0.3125rem] flex items-center gap-6 max-w-fit">
-              <div className="flex flex-col justify-between gap-12">
-                <h4 className="text-lg font-medium leading-7 max-w-46.5">
+          <div className=" sm:col-span-2">
+            <div className="bg-white p-2.5 rounded-[0.3125rem] flex items-center xl:gap-6 gap-3 max-w-fit">
+              <div className="flex flex-col justify-between sm:gap-12 gap-4">
+                <h4 className="sm:text-lg text-body font-medium sm:leading-7 leading-none max-w-46.5">
                   {`68% increase in conversion rates with the new design.`}
                 </h4>
                 <Image

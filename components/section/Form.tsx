@@ -76,7 +76,7 @@ export function ContactForm() {
   return (
     <form
       onSubmit={form.handleSubmit(onSubmit)}
-      className="flex flex-col gap-6"
+      className="flex flex-col xl:gap-6 gap-4"
     >
       <Controller
         name="userName"
@@ -98,7 +98,7 @@ export function ContactForm() {
           </Field>
         )}
       />
-      <div className="flex gap-7.5">
+      <div className="flex xl:flex-row flex-col xl:gap-7.5 gap-4">
         <Controller
           name="userPhone"
           control={form.control}
@@ -178,7 +178,7 @@ export function ContactForm() {
           </Field>
         )}
       />
-      <div className="flex flex-col gap-6 pt-14.75">
+      <div className="flex flex-col gap-6 xl:pt-14.75 pt-4">
         <Controller
           name="contactAgreement"
           control={form.control}
@@ -194,7 +194,7 @@ export function ContactForm() {
                 />
                 <FieldLabel
                   htmlFor="agreement-check"
-                  className="text-body! text-white font-normal!"
+                  className="xl:text-body! text-white font-normal!"
                 >
                   By contacting us, you agree to our{" "}
                   <Link

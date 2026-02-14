@@ -38,18 +38,18 @@ const Services = () => {
     },
   ];
   return (
-    <section className="py-37.5">
-      <div className="container flex flex-col gap-28">
-        <div className="flex items-start justify-between">
+    <section className="lg:py-37.5 sm:py-20 py-10">
+      <div className="container flex flex-col lg:gap-28 gap-8">
+        <div className="flex lg:flex-row flex-col gap-6 items-start justify-between">
           <Pill iconColor="#3838F9" className="text-primary">
             We understand your frustration
           </Pill>
-          <div className="max-w-132 flex flex-col gap-5">
-            <h3 className="text-2xl font-medium leading-none">
+          <div className="lg:max-w-132 flex flex-col gap-5">
+            <h3 className="sm:text-2xl text-xl font-medium leading-none">
               Your marketing is not working, and{" "}
               <span className="text-primary">you don’t know why.</span>
             </h3>
-            <p className="text-body">
+            <p className="sm:text-body text-sm">
               Your competitor is growing while you stay stuck. You know
               something has to change. But what? And how?
             </p>
@@ -68,8 +68,8 @@ const Services = () => {
             Explore all services
           </AnimatedButton>
         </div>
-        <div className="grid grid-cols-3 gap-3.5 auto-rows-[1fr]">
-          <div className="row-span-3">
+        <div className="grid md:grid-cols-3 grid-cols-2 sm:gap-3.5 gap-2 sm:auto-rows-[1fr]">
+          <div className="lg:row-span-3 sm:row-span-2 sm:col-span-1 col-span-2 lg:col-span-1">
             <Image
               alt="Hero Image"
               width={1440}

@@ -4,14 +4,14 @@ import { ArrowRight } from "../ui/icons";
 
 const BakeResult = () => {
   return (
-    <section className="pt-37.5">
+    <section className="lg:pt-37.5 pt-10">
       <div className="bg-[#00001D] pt-25 pb-35 rounded-tl-[3.75rem] rounded-tr-[3.75rem] relative isolate overflow-hidden">
         <div
-          className="absolute top-0 left-0 w-full h-full bg-cover bg-no-repeat -z-10 animate-footer-rays"
+          className="absolute top-0 lg:left-0 w-full h-full bg-cover bg-center bg-no-repeat -z-10 animate-footer-rays"
           style={{ backgroundImage: "url(/footer-rays.png)" }}
         />
         <div className="container flex flex-col gap-11">
-          <h3 className="text-4xl text-white leading-none font-medium text-center">
+          <h3 className="lg:text-4xl text-2xl text-white leading-none font-medium text-center">
             We bake results that{" "}
             <span className="block italic">taste like more</span>
           </h3>

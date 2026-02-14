@@ -45,7 +45,7 @@ const Counter = ({
   );
 
   return (
-    <div className={`text-xl font-bold leading-none ${className}`}>
+    <div className={`lg:text-xl text-md font-bold leading-none ${className}`}>
       {prefix}
       <span ref={counterRef}>0</span>
       {suffix}

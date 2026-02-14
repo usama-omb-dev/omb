@@ -6,13 +6,13 @@ const Reviews = () => {
   return (
     <section>
       <div className="container">
-        <div className="flex justify-between gap-34">
+        <div className="flex lg:flex-row flex-col justify-between xl:gap-34 lg:gap-20 gap-6">
           <div>
             <Pill iconColor="#3838F9" className="text-primary">
               Results
             </Pill>
           </div>
-          <h3 className="text-2xl font-medium leading-none max-w-106.5">
+          <h3 className="sm:text-2xl text-xl font-medium leading-none lg:max-w-106.5">
             Gedreven door een prestatiegerichte{" "}
             <span className="text-primary">mentaliteit</span>
           </h3>

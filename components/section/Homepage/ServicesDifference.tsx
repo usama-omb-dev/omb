@@ -43,7 +43,7 @@ const ServicesDifference = () => {
   return (
     <section>
       <div className="container">
-        <div className="py-[3.5938rem] px-11.25 bg-white rounded-4xl flex flex-col justify-center items-center gap-5 ">
+        <div className="lg:py-[3.5938rem] lg:px-11.25 p-4 bg-white lg:rounded-4xl rounded-[3.5rem] flex flex-col justify-center items-center gap-5 ">
           <div className="max-w-134 flex justify-center items-center flex-col gap-5 mx-auto">
             <Pill iconColor="#3838F9" className="text-primary">
               Services
@@ -61,45 +61,45 @@ const ServicesDifference = () => {
             className="w-full justify-center items-center gap-7.5"
             defaultValue="effect"
           >
-            <TabsList className="bg-secondary py-2.5 px-3.75 h-auto! rounded-full flex [anchor-name:--tabs] isolate">
+            <TabsList className="bg-secondary lg:py-2.5 lg:px-3.75 p-2.5 h-auto! lg:rounded-full rounded-[3.5rem] flex [anchor-name:--tabs] isolate">
               <TabsTrigger
-                className="text-[#0E0F0C] text-body! font-medium! data-[state=active]:text-white! cursor-pointer rounded-full data-[state=active]:bg-primary relative py-4.5 px-7 [anchor-name:--tab] data-[state=active]:[anchor-name:--active-tab]"
+                className="text-[#0E0F0C] text-body! font-medium! data-[state=active]:text-white! cursor-pointer rounded-full data-[state=active]:bg-primary relative lg:py-4.5 py-3 lg:px-7 px-2.5 [anchor-name:--tab] data-[state=active]:[anchor-name:--active-tab]"
                 value="traditional"
               >
                 Traditional
               </TabsTrigger>
               <TabsTrigger
-                className="text-[#0E0F0C] text-body! font-medium! data-[state=active]:text-white! cursor-pointer rounded-full data-[state=active]:bg-primary relative py-4.5 px-7 [anchor-name:--tab] data-[state=active]:[anchor-name:--active-tab]"
+                className="text-[#0E0F0C] text-body! font-medium! data-[state=active]:text-white! cursor-pointer rounded-full data-[state=active]:bg-primary relative lg:py-4.5 py-3 lg:px-7 px-2.5 [anchor-name:--tab] data-[state=active]:[anchor-name:--active-tab]"
                 value="effect"
               >
                 OMB Effect
               </TabsTrigger>
             </TabsList>
             <TabsContent
-              className="bg-secondary w-full rounded-[2.5rem] p-6"
+              className="bg-secondary w-full rounded-[2.5rem] lg:p-6 p-4"
               value="traditional"
             >
               Traditional
             </TabsContent>
             <TabsContent
-              className="bg-secondary w-full rounded-[2.5rem] p-6"
+              className="bg-secondary w-full rounded-[2.5rem] lg:p-6 p-4"
               value="effect"
             >
-              <div className="grid grid-cols-3 gap-3.5">
+              <div className="grid lg:grid-cols-3 grid-cols-2 gap-3.5">
                 {data.map((item, index) => {
                   if (index === 4) {
                     return (
                       <div
                         key="bottom-row"
-                        className="col-span-3 grid grid-cols-2 gap-3.5"
+                        className="lg:col-span-3 col-span-2 grid grid-cols-2 gap-3.5"
                       >
                         {data.slice(4).map((bottomItem, innerIndex) => (
                           <div
                             key={index + innerIndex + 1}
-                            className="relative overflow-hidden group isolate rounded-2xl bg-white p-10 flex flex-col justify-between min-h-65"
+                            className="relative overflow-hidden group isolate rounded-2xl bg-white xl:p-10 p-5 flex flex-col justify-between xl:min-h-65 lg:min-h-48 min-h-44"
                           >
                             <img
-                              className="absolute transition-opacity w-full h-full top-0 left-0 object-cover -z-10 opacity-0 group-hover:opacity-20"
+                              className="absolute transition-opacity w-full h-full top-0 left-0 object-cover z-10 opacity-0 group-hover:opacity-100"
                               src={bottomItem.gif}
                               alt=""
                             />
@@ -124,10 +124,10 @@ const ServicesDifference = () => {
                   return (
                     <div
                       key={index + 1}
-                      className={`relative overflow-hidden group isolate rounded-2xl bg-white p-10 flex flex-col justify-between min-h-59.25 ${item.span ?? ""}`}
+                      className={`relative overflow-hidden group isolate rounded-2xl bg-white xl:p-10 p-5 flex flex-col justify-between xl:min-h-59.25 min-h-44 lg:${item.span ?? ""}`}
                     >
                       <img
-                        className="absolute transition-opacity w-full h-full top-0 left-0 object-cover -z-10 opacity-0 group-hover:opacity-20"
+                        className="absolute transition-opacity w-full h-full top-0 left-0 object-cover z-10 opacity-0 group-hover:opacity-100"
                         src={item.gif}
                         alt=""
                       />

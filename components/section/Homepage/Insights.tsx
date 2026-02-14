@@ -15,16 +15,118 @@ const Insights = () => {
   const prevRef = useRef<HTMLButtonElement | null>(null);
   const nextRef = useRef<HTMLButtonElement | null>(null);
 
+  const slidesData = [
+    {
+      logo: "/stobe-logo.png",
+      description:
+        "Custom Shopify store, SEO strategy and Meta ads framework. The result? 300 percent growth in traffic and 20 percent higher conversion. This is how you turn a store into a sales machine.",
+      stats: [
+        { label: "Site Traffic", value: 300, suffix: "%" },
+        { label: "Conversion Rate", value: 20, suffix: "%" },
+      ],
+    },
+    {
+      logo: "/stobe-logo.png",
+      description:
+        "Custom Shopify store, SEO strategy and Meta ads framework. The result? 300 percent growth in traffic and 20 percent higher conversion. This is how you turn a store into a sales machine.",
+      stats: [
+        { label: "Site Traffic", value: 300, suffix: "%" },
+        { label: "Conversion Rate", value: 20, suffix: "%" },
+      ],
+    },
+    {
+      logo: "/stobe-logo.png",
+      description:
+        "Custom Shopify store, SEO strategy and Meta ads framework. The result? 300 percent growth in traffic and 20 percent higher conversion. This is how you turn a store into a sales machine.",
+      stats: [
+        { label: "Site Traffic", value: 300, suffix: "%" },
+        { label: "Conversion Rate", value: 20, suffix: "%" },
+      ],
+    },
+    {
+      logo: "/stobe-logo.png",
+      description:
+        "Custom Shopify store, SEO strategy and Meta ads framework. The result? 300 percent growth in traffic and 20 percent higher conversion. This is how you turn a store into a sales machine.",
+      stats: [
+        { label: "Site Traffic", value: 300, suffix: "%" },
+        { label: "Conversion Rate", value: 20, suffix: "%" },
+      ],
+    },
+    {
+      logo: "/stobe-logo.png",
+      description:
+        "Custom Shopify store, SEO strategy and Meta ads framework. The result? 300 percent growth in traffic and 20 percent higher conversion. This is how you turn a store into a sales machine.",
+      stats: [
+        { label: "Site Traffic", value: 300, suffix: "%" },
+        { label: "Conversion Rate", value: 20, suffix: "%" },
+      ],
+    },
+    {
+      logo: "/stobe-logo.png",
+      description:
+        "Custom Shopify store, SEO strategy and Meta ads framework. The result? 300 percent growth in traffic and 20 percent higher conversion. This is how you turn a store into a sales machine.",
+      stats: [
+        { label: "Site Traffic", value: 300, suffix: "%" },
+        { label: "Conversion Rate", value: 20, suffix: "%" },
+      ],
+    },
+    {
+      logo: "/stobe-logo.png",
+      description:
+        "Custom Shopify store, SEO strategy and Meta ads framework. The result? 300 percent growth in traffic and 20 percent higher conversion. This is how you turn a store into a sales machine.",
+      stats: [
+        { label: "Site Traffic", value: 300, suffix: "%" },
+        { label: "Conversion Rate", value: 20, suffix: "%" },
+      ],
+    },
+    {
+      logo: "/stobe-logo.png",
+      description:
+        "Custom Shopify store, SEO strategy and Meta ads framework. The result? 300 percent growth in traffic and 20 percent higher conversion. This is how you turn a store into a sales machine.",
+      stats: [
+        { label: "Site Traffic", value: 300, suffix: "%" },
+        { label: "Conversion Rate", value: 20, suffix: "%" },
+      ],
+    },
+    {
+      logo: "/stobe-logo.png",
+      description:
+        "Custom Shopify store, SEO strategy and Meta ads framework. The result? 300 percent growth in traffic and 20 percent higher conversion. This is how you turn a store into a sales machine.",
+      stats: [
+        { label: "Site Traffic", value: 300, suffix: "%" },
+        { label: "Conversion Rate", value: 20, suffix: "%" },
+      ],
+    },
+    {
+      logo: "/stobe-logo.png",
+      description:
+        "Custom Shopify store, SEO strategy and Meta ads framework. The result? 300 percent growth in traffic and 20 percent higher conversion. This is how you turn a store into a sales machine.",
+      stats: [
+        { label: "Site Traffic", value: 300, suffix: "%" },
+        { label: "Conversion Rate", value: 20, suffix: "%" },
+      ],
+    },
+    {
+      logo: "/stobe-logo.png",
+      description:
+        "Custom Shopify store, SEO strategy and Meta ads framework. The result? 300 percent growth in traffic and 20 percent higher conversion. This is how you turn a store into a sales machine.",
+      stats: [
+        { label: "Site Traffic", value: 300, suffix: "%" },
+        { label: "Conversion Rate", value: 20, suffix: "%" },
+      ],
+    },
+  ];
+
   return (
-    <section className="pt-50 overflow-hidden">
-      <div className="container flex flex-col gap-20">
-        <div className="flex justify-between gap-34">
-          <h3 className="text-2xl font-medium leading-none max-w-152.25">
+    <section className="xl:pt-50 sm:pt-20 pt-10 overflow-hidden">
+      <div className="container flex flex-col lg:gap-20 gap-10">
+        <div className="flex lg:flex-row flex-col justify-between xl:gap-34 sm:gap-10 gap-5">
+          <h3 className="sm:text-2xl text-lg font-medium leading-none lg:max-w-152.25">
             <span className="text-primary">68 percent increase</span> in
             conversion rates with the new design.
           </h3>
-          <div className="max-w-79 flex flex-col items-start gap-7.5">
-            <p className="text-body">
+          <div className="lg:max-w-79 flex flex-col items-start sm:gap-7.5 gap-4">
+            <p className="sm:text-body text-sm">
               If everything was going great, you would not be here right now.
               Our clients understand that. They hire us for expertise and accept
               the discussion that comes with it. Because politely continuing
@@ -61,7 +163,7 @@ const Insights = () => {
         </div>
         <div className="[&>.mySwiper]:overflow-visible!">
           <Swiper
-            slidesPerView={3}
+            slidesPerView={1}
             spaceBetween={14}
             centeredSlides={true}
             loop={true}
@@ -85,268 +187,43 @@ const Insights = () => {
               nextEl: nextRef.current,
             }}
             className="mySwiper"
+            breakpoints={{
+              640: {
+                slidesPerView: 1,
+                spaceBetween: 14,
+              },
+              768: {
+                slidesPerView: 3,
+                spaceBetween: 14,
+              },
+            }}
           >
-            <SwiperSlide className="">
-              <div className="bg-white p-7.5 pb-5 rounded-[0.3125rem] min-h-115.75 flex flex-col justify-between items-start">
-                <Image
-                  alt={"Stobe Logo"}
-                  width={138}
-                  height={34}
-                  src={"/stobe-logo.png"}
-                />
-                <p className="text-body">
-                  Custom Shopify store, SEO strategy and Meta ads framework. The
-                  result? 300 percent growth in traffic and 20 percent higher
-                  conversion. This is how you turn a store into a sales machine.
-                </p>
-                <div className="w-full flex justify-between items-center gap-3.5">
-                  <div className="flex-1 p-2.5 bg-secondary rounded-[0.3125rem] flex flex-col items-start gap-5">
-                    <h6 className="text-xsm leading-none">Site Traffic</h6>
-                    <Counter prefix="" suffix="%" className="">
-                      300
-                    </Counter>
-                  </div>
-                  <div className="flex-1 p-2.5 bg-secondary rounded-[0.3125rem] flex flex-col items-start gap-5">
-                    <h6 className="text-xsm leading-none">Site Traffic</h6>
-                    <Counter prefix="" suffix="%" className="">
-                      300
-                    </Counter>
+            {slidesData.map((slide, index) => (
+              <SwiperSlide key={index}>
+                <div className="bg-white lg:p-7.5 p-4 lg:pb-5 rounded-[0.3125rem] xl:min-h-115.75 lg:gap-8 gap-4 flex flex-col justify-between items-start">
+                  <Image
+                    alt="Stobe Logo"
+                    width={138}
+                    height={34}
+                    src={slide.logo}
+                  />
+
+                  <p className="lg:text-body text-sm">{slide.description}</p>
+
+                  <div className="w-full flex lg:flex-row flex-col justify-between lg:items-center items-stretch gap-3.5">
+                    {slide.stats.map((stat, statIndex) => (
+                      <div
+                        key={statIndex}
+                        className="flex-1 p-2.5 bg-secondary rounded-[0.3125rem] flex flex-col items-start lg:gap-5 gap-2"
+                      >
+                        <h6 className="text-xsm leading-none">{stat.label}</h6>
+                        <Counter suffix={stat.suffix}>{stat.value}</Counter>
+                      </div>
+                    ))}
                   </div>
                 </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="bg-white p-7.5 pb-5 rounded-[0.3125rem] min-h-115.75 flex flex-col justify-between items-start">
-                <Image
-                  alt={"Stobe Logo"}
-                  width={138}
-                  height={34}
-                  src={"/stobe-logo.png"}
-                />
-                <p className="text-body">
-                  Custom Shopify store, SEO strategy and Meta ads framework. The
-                  result? 300 percent growth in traffic and 20 percent higher
-                  conversion. This is how you turn a store into a sales machine.
-                </p>
-                <div className="w-full flex justify-between items-center gap-3.5">
-                  <div className="flex-1 p-2.5 bg-secondary rounded-[0.3125rem] flex flex-col items-start gap-5">
-                    <h6 className="text-xsm leading-none">Site Traffic</h6>
-                    <Counter prefix="" suffix="%" className="">
-                      300
-                    </Counter>
-                  </div>
-                  <div className="flex-1 p-2.5 bg-secondary rounded-[0.3125rem] flex flex-col items-start gap-5">
-                    <h6 className="text-xsm leading-none">Site Traffic</h6>
-                    <Counter prefix="" suffix="%" className="">
-                      300
-                    </Counter>
-                  </div>
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="bg-white p-7.5 pb-5 rounded-[0.3125rem] min-h-115.75 flex flex-col justify-between items-start">
-                <Image
-                  alt={"Stobe Logo"}
-                  width={138}
-                  height={34}
-                  src={"/stobe-logo.png"}
-                />
-                <p className="text-body">
-                  Custom Shopify store, SEO strategy and Meta ads framework. The
-                  result? 300 percent growth in traffic and 20 percent higher
-                  conversion. This is how you turn a store into a sales machine.
-                </p>
-                <div className="w-full flex justify-between items-center gap-3.5">
-                  <div className="flex-1 p-2.5 bg-secondary rounded-[0.3125rem] flex flex-col items-start gap-5">
-                    <h6 className="text-xsm leading-none">Site Traffic</h6>
-                    <Counter prefix="" suffix="%" className="">
-                      300
-                    </Counter>
-                  </div>
-                  <div className="flex-1 p-2.5 bg-secondary rounded-[0.3125rem] flex flex-col items-start gap-5">
-                    <h6 className="text-xsm leading-none">Site Traffic</h6>
-                    <Counter prefix="" suffix="%" className="">
-                      300
-                    </Counter>
-                  </div>
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="bg-white p-7.5 pb-5 rounded-[0.3125rem] min-h-115.75 flex flex-col justify-between items-start">
-                <Image
-                  alt={"Stobe Logo"}
-                  width={138}
-                  height={34}
-                  src={"/stobe-logo.png"}
-                />
-                <p className="text-body">
-                  Custom Shopify store, SEO strategy and Meta ads framework. The
-                  result? 300 percent growth in traffic and 20 percent higher
-                  conversion. This is how you turn a store into a sales machine.
-                </p>
-                <div className="w-full flex justify-between items-center gap-3.5">
-                  <div className="flex-1 p-2.5 bg-secondary rounded-[0.3125rem] flex flex-col items-start gap-5">
-                    <h6 className="text-xsm leading-none">Site Traffic</h6>
-                    <Counter prefix="" suffix="%" className="">
-                      300
-                    </Counter>
-                  </div>
-                  <div className="flex-1 p-2.5 bg-secondary rounded-[0.3125rem] flex flex-col items-start gap-5">
-                    <h6 className="text-xsm leading-none">Site Traffic</h6>
-                    <Counter prefix="" suffix="%" className="">
-                      300
-                    </Counter>
-                  </div>
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="bg-white p-7.5 pb-5 rounded-[0.3125rem] min-h-115.75 flex flex-col justify-between items-start">
-                <Image
-                  alt={"Stobe Logo"}
-                  width={138}
-                  height={34}
-                  src={"/stobe-logo.png"}
-                />
-                <p className="text-body">
-                  Custom Shopify store, SEO strategy and Meta ads framework. The
-                  result? 300 percent growth in traffic and 20 percent higher
-                  conversion. This is how you turn a store into a sales machine.
-                </p>
-                <div className="w-full flex justify-between items-center gap-3.5">
-                  <div className="flex-1 p-2.5 bg-secondary rounded-[0.3125rem] flex flex-col items-start gap-5">
-                    <h6 className="text-xsm leading-none">Site Traffic</h6>
-                    <Counter prefix="" suffix="%" className="">
-                      300
-                    </Counter>
-                  </div>
-                  <div className="flex-1 p-2.5 bg-secondary rounded-[0.3125rem] flex flex-col items-start gap-5">
-                    <h6 className="text-xsm leading-none">Site Traffic</h6>
-                    <Counter prefix="" suffix="%" className="">
-                      300
-                    </Counter>
-                  </div>
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="bg-white p-7.5 pb-5 rounded-[0.3125rem] min-h-115.75 flex flex-col justify-between items-start">
-                <Image
-                  alt={"Stobe Logo"}
-                  width={138}
-                  height={34}
-                  src={"/stobe-logo.png"}
-                />
-                <p className="text-body">
-                  Custom Shopify store, SEO strategy and Meta ads framework. The
-                  result? 300 percent growth in traffic and 20 percent higher
-                  conversion. This is how you turn a store into a sales machine.
-                </p>
-                <div className="w-full flex justify-between items-center gap-3.5">
-                  <div className="flex-1 p-2.5 bg-secondary rounded-[0.3125rem] flex flex-col items-start gap-5">
-                    <h6 className="text-xsm leading-none">Site Traffic</h6>
-                    <Counter prefix="" suffix="%" className="">
-                      300
-                    </Counter>
-                  </div>
-                  <div className="flex-1 p-2.5 bg-secondary rounded-[0.3125rem] flex flex-col items-start gap-5">
-                    <h6 className="text-xsm leading-none">Site Traffic</h6>
-                    <Counter prefix="" suffix="%" className="">
-                      300
-                    </Counter>
-                  </div>
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="bg-white p-7.5 pb-5 rounded-[0.3125rem] min-h-115.75 flex flex-col justify-between items-start">
-                <Image
-                  alt={"Stobe Logo"}
-                  width={138}
-                  height={34}
-                  src={"/stobe-logo.png"}
-                />
-                <p className="text-body">
-                  Custom Shopify store, SEO strategy and Meta ads framework. The
-                  result? 300 percent growth in traffic and 20 percent higher
-                  conversion. This is how you turn a store into a sales machine.
-                </p>
-                <div className="w-full flex justify-between items-center gap-3.5">
-                  <div className="flex-1 p-2.5 bg-secondary rounded-[0.3125rem] flex flex-col items-start gap-5">
-                    <h6 className="text-xsm leading-none">Site Traffic</h6>
-                    <Counter prefix="" suffix="%" className="">
-                      300
-                    </Counter>
-                  </div>
-                  <div className="flex-1 p-2.5 bg-secondary rounded-[0.3125rem] flex flex-col items-start gap-5">
-                    <h6 className="text-xsm leading-none">Site Traffic</h6>
-                    <Counter prefix="" suffix="%" className="">
-                      300
-                    </Counter>
-                  </div>
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="bg-white p-7.5 pb-5 rounded-[0.3125rem] min-h-115.75 flex flex-col justify-between items-start">
-                <Image
-                  alt={"Stobe Logo"}
-                  width={138}
-                  height={34}
-                  src={"/stobe-logo.png"}
-                />
-                <p className="text-body">
-                  Custom Shopify store, SEO strategy and Meta ads framework. The
-                  result? 300 percent growth in traffic and 20 percent higher
-                  conversion. This is how you turn a store into a sales machine.
-                </p>
-                <div className="w-full flex justify-between items-center gap-3.5">
-                  <div className="flex-1 p-2.5 bg-secondary rounded-[0.3125rem] flex flex-col items-start gap-5">
-                    <h6 className="text-xsm leading-none">Site Traffic</h6>
-                    <Counter prefix="" suffix="%" className="">
-                      300
-                    </Counter>
-                  </div>
-                  <div className="flex-1 p-2.5 bg-secondary rounded-[0.3125rem] flex flex-col items-start gap-5">
-                    <h6 className="text-xsm leading-none">Site Traffic</h6>
-                    <Counter prefix="" suffix="%" className="">
-                      300
-                    </Counter>
-                  </div>
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="bg-white p-7.5 pb-5 rounded-[0.3125rem] min-h-115.75 flex flex-col justify-between items-start">
-                <Image
-                  alt={"Stobe Logo"}
-                  width={138}
-                  height={34}
-                  src={"/stobe-logo.png"}
-                />
-                <p className="text-body">
-                  Custom Shopify store, SEO strategy and Meta ads framework. The
-                  result? 300 percent growth in traffic and 20 percent higher
-                  conversion. This is how you turn a store into a sales machine.
-                </p>
-                <div className="w-full flex justify-between items-center gap-3.5">
-                  <div className="flex-1 p-2.5 bg-secondary rounded-[0.3125rem] flex flex-col items-start gap-5">
-                    <h6 className="text-xsm leading-none">Site Traffic</h6>
-                    <Counter prefix="" suffix="%" className="">
-                      300
-                    </Counter>
-                  </div>
-                  <div className="flex-1 p-2.5 bg-secondary rounded-[0.3125rem] flex flex-col items-start gap-5">
-                    <h6 className="text-xsm leading-none">Site Traffic</h6>
-                    <Counter prefix="" suffix="%" className="">
-                      300
-                    </Counter>
-                  </div>
-                </div>
-              </div>
-            </SwiperSlide>
+              </SwiperSlide>
+            ))}
           </Swiper>
         </div>
       </div>

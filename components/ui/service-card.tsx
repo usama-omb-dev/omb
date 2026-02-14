@@ -78,20 +78,22 @@ const ServiceCard = ({ cardDetails }: { cardDetails: CardDetails }) => {
       onMouseEnter={() => mouseEnterHandler()}
       onMouseLeave={() => mouseLeaveHandler()}
       onMouseMove={(e) => mouseMoveHandler(e)}
-      className="bg-white h-full p-7.5 rounded-[0.625rem] flex flex-col justify-between relative isolate perspective-[1000]"
+      className="bg-white h-full xl:p-7.5 sm:p-5 p-3 rounded-[0.625rem] flex flex-col gap-4 sm:gap-0 justify-between relative isolate perspective-[1000]"
     >
-      <h6 className="text-md font-medium max-w-52.5 leading-none">{title}</h6>
+      <h6 className="sm:text-md text-body font-medium sm:max-w-52.5 leading-none">
+        {title}
+      </h6>
       <Image
         ref={image}
         alt="Hero Image"
         width={140}
         height={160}
         src={imgUrl}
-        className="drop-shadow-xl absolute top-0 right-1/5 -z-40 pointer-events-none"
+        className="drop-shadow-xl absolute top-0 right-1/5 -z-40 pointer-events-none lg:inline-block hidden"
       />
       <Link
         href={href}
-        className="rounded-[0.3125rem] max-w-10 w-10 h-10 bg-primary self-end [&>svg]:-rotate-45 flex justify-center items-center"
+        className="rounded-[0.3125rem] max-w-10 sm:w-10 w-8 sm:h-10 h-8 bg-primary self-end [&>svg]:-rotate-45 flex justify-center items-center"
       >
         <ArrowRight color="white" />
       </Link>

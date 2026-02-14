@@ -12,7 +12,7 @@ const Pill = ({
 }) => {
   return (
     <div
-      className={`flex items-center gap-2.5 w-fit font-medium text-body ${className}`}
+      className={`flex items-center gap-2.5 w-fit font-medium sm:text-body text-xsm ${className}`}
     >
       <BulletPoint color={iconColor ? iconColor : "#fff"} />
       <span>{children}</span>

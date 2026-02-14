@@ -45,7 +45,7 @@ const Footer = () => {
     >
       <div className="fixed bottom-0 xsm:h-[350px] h-[550px] w-full  xsm:top-[calc(100vh-350px)] top-[calc(100vh-550px)]">
         <div className="container flex flex-col justify-between h-full pt-14.75">
-          <div className="flex items-start gap-42.5">
+          <div className="flex items-start xl:gap-42.5 gap-20">
             <div className="max-w-106.25 flex flex-col gap-12.5">
               <div className="flex flex-col gap-7.5">
                 <Image
@@ -81,7 +81,7 @@ const Footer = () => {
                 />
               </div>
             </div>
-            <div className="grid grid-cols-3 gap-[7.8438rem]">
+            <div className="grid grid-cols-3 2xl:gap-[7.8438rem] gap-17.5">
               <div>
                 <h5 className="text-white text-md font-medium">
                   Our solutions
