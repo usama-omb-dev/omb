@@ -1,5 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import AnimatedArrowIcon from "@/components/ui/button/AnimatedArrowIcon";
 import AnimatedButton from "@/components/ui/button/AnimatedButton";
 import { ArrowRight } from "@/components/ui/icons";
 import Pill from "@/components/ui/pill";
@@ -64,14 +65,7 @@ const Hero = () => {
 
             <AnimatedButton
               size={"icon"}
-              trailingContent={
-                <span className="bg-primary size-12.75 overflow-hidden flex items-center rounded-[0.3125rem]">
-                  <div className="flex justify-around min-w-25.5 -translate-x-1/2 transition-all group-hover:translate-x-0">
-                    <ArrowRight color="white" />
-                    <ArrowRight color="white" />
-                  </div>
-                </span>
-              }
+              trailingContent={<AnimatedArrowIcon />}
             >
               Dat smaakt naar meer
             </AnimatedButton>

@@ -1,17 +1,10 @@
-"use client";
+import AnimatedArrowIcon from "@/components/ui/button/AnimatedArrowIcon";
 import AnimatedButton from "@/components/ui/button/AnimatedButton";
-import AnimatedSplit from "@/components/ui/button/AnimatedSplit";
-import { AnimatedSplitHandle } from "@/components/ui/button/AnimatedSplit";
-
-import { ArrowRight } from "@/components/ui/icons";
 import TextReveal from "@/components/ui/TextReveal";
 import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
 
 const Qualities = () => {
-  const titleRefs = useRef<AnimatedSplitHandle[]>([]);
-  titleRefs.current = [];
   const services = [
     {
       title: "SEO & GEO",
@@ -78,12 +71,6 @@ const Qualities = () => {
     },
   ];
 
-  const setTitleRef = (el: AnimatedSplitHandle | null) => {
-    if (el && !titleRefs.current.includes(el)) {
-      titleRefs.current.push(el);
-    }
-  };
-
   return (
     <section className=" relative">
       <div className="container">
@@ -101,7 +88,7 @@ const Qualities = () => {
             </div>
           </div>
           <div className="flex-1 flex flex-col gap-7.5">
-            <div className="xl:py-15.75 xl:pl-15 sm:p-10 sm:pr-40.75 p-4 bg-white rounded-[0.625rem] flex flex-col gap-10">
+            <div className="xl:py-15.75 xl:pl-15 sm:p-10 sm:pr-40.75 p-4 bg-white rounded-[0.625rem] flex flex-col sm:gap-10 gap-4">
               <h3 className="sm:text-2xl text-xl leading-none font-medium 2xl:max-w-[65%]">
                 <TextReveal>
                   This is how we turn your story into results
@@ -112,11 +99,11 @@ const Qualities = () => {
                   key={step.id}
                   className="flex flex-col gap-3.75 sm:max-w-154"
                 >
-                  <h5 className="font-bold text-lg leading-none">
+                  <h5 className="font-bold sm:text-lg text-md leading-none">
                     <span className="text-primary">Step {step.id}:</span>{" "}
                     {step.title}
                   </h5>
-                  <p className="text-body">{step.description}</p>
+                  <p className="sm:text-body text-xsm">{step.description}</p>
                 </div>
               ))}
 
@@ -124,46 +111,33 @@ const Qualities = () => {
                 size={"icon"}
                 variant={"secondary"}
                 className="lg:mt-17"
-                trailingContent={
-                  <span className="bg-primary size-12.75 overflow-hidden flex items-center rounded-[0.3125rem]">
-                    <div className="flex justify-around min-w-25.5 -translate-x-1/2 transition-all group-hover:translate-x-0">
-                      <ArrowRight color="white" />
-                      <ArrowRight color="white" />
-                    </div>
-                  </span>
-                }
+                trailingContent={<AnimatedArrowIcon />}
               >
                 Start the fire!
               </AnimatedButton>
             </div>
-            <div className="xl:py-15.75 xl:pl-15 sm:p-10 sm:pr-40.75 p-4 bg-white rounded-[0.625rem] flex flex-col gap-10">
+            <div className="xl:py-15.75 xl:pl-15 sm:p-10 sm:pr-40.75 p-4 bg-white rounded-[0.625rem] flex flex-col sm:gap-10 gap-4">
               <h3 className="sm:text-2xl text-xl leading-none font-medium 2xl:max-w-[65%]">
                 <TextReveal>Our recipe for profitable marketing</TextReveal>
               </h3>
               {services.map((service, index) => (
-                <div key={index} className="flex flex-col gap-3.75 max-w-154">
-                  <h5 className="font-bold text-lg leading-none">
+                <div
+                  key={index}
+                  className="flex flex-col sm:gap-3.75 gap-2 max-w-154"
+                >
+                  <h5 className="font-bold sm:text-lg text-md leading-none">
                     <Link href={service.link} className="text-primary">
-                      <AnimatedSplit ref={setTitleRef}>
-                        {service.title}
-                      </AnimatedSplit>
+                      {service.title}
                     </Link>
                   </h5>
-                  <p className="text-body">{service.description}</p>
+                  <p className="sm:text-body text-xsm">{service.description}</p>
                 </div>
               ))}
 
               <AnimatedButton
                 size={"icon"}
                 variant={"secondary"}
-                trailingContent={
-                  <span className="bg-primary size-12.75 overflow-hidden flex items-center rounded-[0.3125rem]">
-                    <div className="flex justify-around min-w-25.5 -translate-x-1/2 transition-all group-hover:translate-x-0">
-                      <ArrowRight color="white" />
-                      <ArrowRight color="white" />
-                    </div>
-                  </span>
-                }
+                trailingContent={<AnimatedArrowIcon />}
               >
                 Curious how we work?
               </AnimatedButton>

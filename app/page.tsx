@@ -1,5 +1,4 @@
-import BakeResult from "@/components/section/BakeResult";
-import Contact from "@/components/section/Homepage/Contact";
+import Contact from "@/components/section/Contact";
 import Hero from "@/components/section/Homepage/Hero";
 import Insights from "@/components/section/Homepage/Insights";
 import OurTeam from "@/components/section/Homepage/Our-Team";
@@ -19,7 +18,6 @@ export default function Home() {
       <Reviews />
       <Contact />
       <ServicesDifference />
-      <BakeResult />
     </>
   );
 }

@@ -1,12 +1,12 @@
 "use client";
+import AnimatedArrowIcon from "@/components/ui/button/AnimatedArrowIcon";
 import AnimatedButton from "@/components/ui/button/AnimatedButton";
-import { ArrowRight } from "@/components/ui/icons";
 import Pill from "@/components/ui/pill";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import Image from "next/image";
-import { useLayoutEffect, useRef, useState } from "react";
+import { useRef } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -103,7 +103,7 @@ const OurTeam = () => {
   );
 
   return (
-    <section className="lg:py-37.5 py-20 overflow-hidden">
+    <section className="lg:py-37.5 sm:py-20 py-10 overflow-hidden">
       <div className="flex flex-col lg:gap-38 gap-10">
         <div className="container">
           <div className="flex lg:items-center items-stretch lg:flex-row flex-col xl:gap-27.5 lg:gap-20 gap-6">
@@ -111,12 +111,12 @@ const OurTeam = () => {
               <Pill iconColor="#3838F9" className="text-primary">
                 Meet the team
               </Pill>
-              <h3 className="text-2xl font-medium leading-none">
+              <h3 className="sm:text-2xl text-xl font-medium leading-none">
                 Your own team of world class B2B{" "}
                 <span className="text-primary">marketing experts.</span>
               </h3>
             </div>
-            <p className="text-body md:max-w-134">
+            <p className="sm:text-body text-sm md:max-w-134">
               Quality has no postcode. We build teams with the best specialists,
               no matter where they are. Remote work allows us to use top talent,
               with Rubin, owner of OMB, as your dedicated project manager.
@@ -129,7 +129,7 @@ const OurTeam = () => {
                   key={index}
                   className="bg-primary flex justify-center items-center rounded-4xl py-2 px-5 pt-3"
                 >
-                  <h6 className="xl:text-md text-body leading-none text-white font-semibold font-nexa">
+                  <h6 className="xl:text-md sm:text-body text-xsm leading-none text-white font-semibold font-nexa">
                     {card.title}
                   </h6>
                 </div>
@@ -215,14 +215,7 @@ const OurTeam = () => {
             <AnimatedButton
               size={"icon"}
               className="xl:opacity-0 xl:group-hover:opacity-100 xl:group-hover:translate-y-1/2 xl:translate-y-0 translate-y-1/2 duration-700 col-start-1 row-start-1 self-end"
-              trailingContent={
-                <span className="bg-primary size-12.75 overflow-hidden flex items-center rounded-[0.3125rem]">
-                  <div className="flex justify-around min-w-25.5 -translate-x-1/2 transition-all group-hover:translate-x-0">
-                    <ArrowRight color="white" />
-                    <ArrowRight color="white" />
-                  </div>
-                </span>
-              }
+              trailingContent={<AnimatedArrowIcon />}
             >
               Meet the team!
             </AnimatedButton>

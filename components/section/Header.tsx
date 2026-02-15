@@ -20,11 +20,13 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
+import { usePathname } from "next/navigation";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const tl = useRef<GSAPTimeline | null>(null);
+  const pathName = usePathname();
 
   const menuItems = [
     { title: "Home", href: "/" },
@@ -82,7 +84,7 @@ const Header = () => {
         <div className="flex justify-between items-center relative">
           <Link href="/">
             <Image
-              className="brightness-0 invert-100"
+              className={`${pathName.split("/")[1].length === 0 ? "brightness-0 invert-100" : ""} sm:max-w-full max-w-4/5`}
               src="/logo.svg"
               alt="Logo"
               width={111}
@@ -93,7 +95,7 @@ const Header = () => {
           <div className="md:relative z-50 flex items-center gap-2.5">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="cursor-pointer flex items-center justify-between leading-none py-3.75 px-5 rounded-[0.625rem] bg-white/10 backdrop-blur-3xl text-white text-body relative lg:min-w-126.5 md:min-w-96"
+              className={`cursor-pointer flex items-center justify-between leading-none sm:py-3.75 py-2 sm:px-5 px-4 rounded-[0.625rem] backdrop-blur-3xl ${pathName.split("/")[1].length === 0 ? "bg-white/10 text-white" : "bg-black/10 text-black"} text-body relative lg:min-w-126.5 md:min-w-96`}
             >
               <span className="md:inline-block hidden">
                 {isOpen ? "Close" : "Menu"}
@@ -101,12 +103,15 @@ const Header = () => {
               {isOpen ? <X size={24} /> : <MenuIcon size={24} />}
             </button>
             <Dialog>
-              <DialogTrigger className="cursor-pointer flex items-center justify-between py-4.5 px-5 rounded-[0.625rem] bg-white/10 backdrop-blur-3xl text-white text-body relative">
+              <DialogTrigger
+                className={`cursor-pointer flex items-center justify-between sm:py-4.5 py-2.75 px-5 rounded-[0.625rem] backdrop-blur-3xl ${pathName.split("/")[1].length === 0 ? "bg-white/10 text-white" : "bg-black/10 text-black"} text-body relative`}
+              >
                 <Image
                   src={"/play-btn.svg"}
                   alt="Play Button"
                   width={18}
                   height={18}
+                  className={`${pathName.split("/")[1].length === 0 ? "" : "brightness-0"}`}
                 />
               </DialogTrigger>
               <DialogContent>
@@ -122,11 +127,13 @@ const Header = () => {
                 paddingTop: 0,
                 paddingBottom: 0,
               }}
-              className="absolute top-[calc(100%+10px)] left-0 right-0 bg-white/10 rounded-[0.625rem] px-5 backdrop-blur-3xl flex flex-col"
+              className={`absolute top-[calc(100%+10px)] left-0 right-0 ${pathName.split("/")[1].length === 0 ? "bg-white/10" : "bg-black/10"} rounded-[0.625rem] px-5 backdrop-blur-3xl flex flex-col`}
             >
               <div className="flex flex-col gap-7.5 py-5.5">
                 <div className=" flex flex-col gap-5">
-                  <h6 className="text-body text-white/20 leading-none pb-5 border-b border-white/10">
+                  <h6
+                    className={`text-body border-b ${pathName.split("/")[1].length === 0 ? "text-white/20 border-white/10" : "text-black/50 border-black/10"} leading-none pb-5  `}
+                  >
                     Company
                   </h6>
                   <ul className="flex flex-col gap-2.5">
@@ -136,7 +143,9 @@ const Header = () => {
                           <NavigationMenu>
                             <NavigationMenuList>
                               <NavigationMenuItem>
-                                <NavigationMenuTrigger className="text-lg text-white font-normal! leading-none hover:text-white/50! p-0! rounded-none! bg-transparent! hover:bg-transparent!">
+                                <NavigationMenuTrigger
+                                  className={`text-lg ${pathName.split("/")[1].length === 0 ? "text-white hover:text-white/50" : "text-black hover:text-black/50"} font-normal! leading-none p-0! rounded-none! bg-transparent! hover:bg-transparent!`}
+                                >
                                   {item.title}
                                 </NavigationMenuTrigger>
                                 <NavigationMenuContent>
@@ -152,7 +161,7 @@ const Header = () => {
                         ) : (
                           <Link
                             href={item.href}
-                            className="text-lg font-normal text-white leading-none hover:text-white/50"
+                            className={`text-lg font-normal ${pathName.split("/")[1].length === 0 ? "text-white hover:text-white/50" : "text-black hover:text-black/50"}  leading-none `}
                             onClick={() => setIsOpen(false)}
                           >
                             {item.title}
@@ -163,7 +172,9 @@ const Header = () => {
                   </ul>
                 </div>
                 <div className=" flex flex-col gap-5">
-                  <h6 className="text-body text-white/20 leading-none pb-5 border-b border-white/10">
+                  <h6
+                    className={`text-body border-b ${pathName.split("/")[1].length === 0 ? "text-white/20 border-white/10" : "text-black/50 border-black/10"} leading-none pb-5  `}
+                  >
                     Featured Projects
                   </h6>
                   <ul className="flex flex-col gap-2.5">
@@ -171,7 +182,7 @@ const Header = () => {
                       <li key={i}>
                         <Link
                           href={item.href}
-                          className="text-lg font-normal text-white leading-none hover:text-white/50"
+                          className={`text-lg font-normal ${pathName.split("/")[1].length === 0 ? "text-white hover:text-white/50" : "text-black hover:text-black/50"}  leading-none `}
                           onClick={() => setIsOpen(false)}
                         >
                           {item.title}
@@ -185,7 +196,7 @@ const Header = () => {
           </div>
 
           <Link
-            className="text-white underline underline-offset-4 text-body md:flex hidden "
+            className={`${pathName.split("/")[1].length === 0 ? "text-white hover:text-white/50" : "text-black hover:text-black/50"} underline underline-offset-4 transition-all text-body md:flex hidden`}
             href="#"
           >
             Get in touch

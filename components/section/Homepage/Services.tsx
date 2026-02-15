@@ -1,5 +1,5 @@
+import AnimatedArrowIcon from "@/components/ui/button/AnimatedArrowIcon";
 import AnimatedButton from "@/components/ui/button/AnimatedButton";
-import { ArrowRight } from "@/components/ui/icons";
 import Pill from "@/components/ui/pill";
 import ServiceCard from "@/components/ui/service-card";
 import Image from "next/image";
@@ -54,17 +54,7 @@ const Services = () => {
               something has to change. But what? And how?
             </p>
           </div>
-          <AnimatedButton
-            size={"icon"}
-            trailingContent={
-              <span className="bg-primary size-12.75 overflow-hidden flex items-center rounded-[0.3125rem]">
-                <div className="flex justify-around min-w-25.5 -translate-x-1/2 transition-all group-hover:translate-x-0">
-                  <ArrowRight color="white" />
-                  <ArrowRight color="white" />
-                </div>
-              </span>
-            }
-          >
+          <AnimatedButton size={"icon"} trailingContent={<AnimatedArrowIcon />}>
             Explore all services
           </AnimatedButton>
         </div>

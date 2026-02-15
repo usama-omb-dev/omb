@@ -22,6 +22,7 @@ import AnimatedButton from "../ui/button/AnimatedButton";
 import { ArrowRight } from "../ui/icons";
 import { Checkbox } from "../ui/checkbox";
 import Link from "next/link";
+import AnimatedArrowIcon from "../ui/button/AnimatedArrowIcon";
 
 const formSchema = z.object({
   userName: z
@@ -76,14 +77,17 @@ export function ContactForm() {
   return (
     <form
       onSubmit={form.handleSubmit(onSubmit)}
-      className="flex flex-col xl:gap-6 gap-4"
+      className="flex flex-col xl:gap-6 sm:gap-4 gap-2"
     >
       <Controller
         name="userName"
         control={form.control}
         render={({ field, fieldState }) => (
           <Field data-invalid={fieldState.invalid}>
-            <FieldLabel className="text-white text-body!" htmlFor="user-name">
+            <FieldLabel
+              className="text-white sm:text-body! text-xsm!"
+              htmlFor="user-name"
+            >
               Full Name
             </FieldLabel>
             <Input
@@ -92,20 +96,20 @@ export function ContactForm() {
               aria-invalid={fieldState.invalid}
               placeholder="Your Full Name"
               autoComplete="on"
-              className="border-0! bg-white/10 rounded-[8px] ring-0! shadow-none! placeholder:text-[#AAACA6]! text-body! text-white min-h-15.25"
+              className="border-0! bg-white/10 sm:rounded-[8px] rounded-[6px] ring-0! shadow-none! placeholder:text-[#AAACA6]! sm:text-body! text-xsm! text-white sm:min-h-15.25 min-h-10"
             />
             {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
           </Field>
         )}
       />
-      <div className="flex xl:flex-row flex-col xl:gap-7.5 gap-4">
+      <div className="flex xl:flex-row flex-col xl:gap-7.5 sm:gap-4 gap-2">
         <Controller
           name="userPhone"
           control={form.control}
           render={({ field, fieldState }) => (
             <Field data-invalid={fieldState.invalid}>
               <FieldLabel
-                className="text-white text-body!"
+                className="text-white sm:text-body! text-xsm!"
                 htmlFor="user-number"
               >
                 Phone Number
@@ -117,7 +121,7 @@ export function ContactForm() {
                 aria-invalid={fieldState.invalid}
                 placeholder="Your Phone Number"
                 autoComplete="on"
-                className="border-0! bg-white/10 rounded-[8px] ring-0! shadow-none! placeholder:text-[#AAACA6]! text-body! text-white min-h-15.25"
+                className="border-0! bg-white/10 sm:rounded-[8px] rounded-[6px] ring-0! shadow-none! placeholder:text-[#AAACA6]! sm:text-body! text-xsm! text-white sm:min-h-15.25 min-h-10"
               />
               {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>
@@ -129,7 +133,7 @@ export function ContactForm() {
           render={({ field, fieldState }) => (
             <Field data-invalid={fieldState.invalid}>
               <FieldLabel
-                className="text-white text-body!"
+                className="text-white sm:text-body! text-xsm!"
                 htmlFor="user-email"
               >
                 Email Address
@@ -141,7 +145,7 @@ export function ContactForm() {
                 aria-invalid={fieldState.invalid}
                 placeholder="Your Email Address"
                 autoComplete="on"
-                className="border-0! bg-white/10 rounded-[8px] ring-0! shadow-none! placeholder:text-[#AAACA6]! text-body! text-white min-h-15.25"
+                className="border-0! bg-white/10 sm:rounded-[8px] rounded-[6px] ring-0! shadow-none! placeholder:text-[#AAACA6]! sm:text-body! text-xsm! text-white sm:min-h-15.25 min-h-10"
               />
               {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>
@@ -154,22 +158,22 @@ export function ContactForm() {
         render={({ field, fieldState }) => (
           <Field data-invalid={fieldState.invalid}>
             <FieldLabel
-              className="text-white text-body!"
+              className="text-white sm:text-body! text-xsm!"
               htmlFor="user-message"
             >
               Message
             </FieldLabel>
-            <InputGroup className="border-0! bg-white/10 rounded-xl ring-0! shadow-none!">
+            <InputGroup className="border-0! bg-white/10 sm:rounded-xl ring-0! shadow-none!">
               <InputGroupTextarea
                 {...field}
                 id="user-message"
                 placeholder="Tell us about your project"
                 rows={6}
-                className="min-h-24 resize-none placeholder:text-[#AAACA6]! text-body! text-white "
+                className="min-h-24 resize-none placeholder:text-[#AAACA6]! sm:text-body! text-xsm! text-white "
                 aria-invalid={fieldState.invalid}
               />
               <InputGroupAddon align="block-end">
-                <InputGroupText className="tabular-nums text-white/50">
+                <InputGroupText className="tabular-nums text-white/50 sm:text-xsm text-[12px]">
                   {field.value.length}/100 characters
                 </InputGroupText>
               </InputGroupAddon>
@@ -194,7 +198,7 @@ export function ContactForm() {
                 />
                 <FieldLabel
                   htmlFor="agreement-check"
-                  className="xl:text-body! text-white font-normal!"
+                  className="xl:text-body! text-[0.75rem]! text-white font-normal! sm:flex! inline!"
                 >
                   By contacting us, you agree to our{" "}
                   <Link
@@ -210,17 +214,7 @@ export function ContactForm() {
           )}
         />
 
-        <AnimatedButton
-          size={"icon"}
-          trailingContent={
-            <span className="bg-primary size-12.75 overflow-hidden flex items-center rounded-[0.3125rem]">
-              <div className="flex justify-around min-w-25.5 -translate-x-1/2 transition-all group-hover:translate-x-0">
-                <ArrowRight color="white" />
-                <ArrowRight color="white" />
-              </div>
-            </span>
-          }
-        >
+        <AnimatedButton size={"icon"} trailingContent={<AnimatedArrowIcon />}>
           Request a Free quote
         </AnimatedButton>
       </div>

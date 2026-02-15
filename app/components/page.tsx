@@ -15,17 +15,17 @@ export default function page() {
 
   return (
     <>
-      <div className="container bg-white">
-        <h1 className="text-5xl">Hello World 1</h1>
-        <h2 className="text-4xl italic">Hello World 2</h2>
-        <h3 className="text-3xl">Hello World 3</h3>
-        <h4 className="text-2xl">Hello World 4</h4>
-        <h5 className="text-xl">Hello World 5</h5>
-        <h6 className="text-lg">Hello World 6</h6>
-        <h6 className="text-md">Supporting Heading</h6>
-        <h6 className="text-sm">Supporting Heading 2</h6>
-        <h6 className="text-xsm">Supporting Heading 3</h6>
-        <p className="text-body">Paragraph</p>
+      <div className="container bg-white h-screen flex justify-center items-start flex-col">
+        <h1 className="text-5xl">text-5xl - 84px</h1>
+        <h2 className="text-4xl italic">text-4xl - 74px</h2>
+        <h3 className="text-3xl">text-3xl - 64px</h3>
+        <h4 className="text-2xl">text-2xl - 44px</h4>
+        <h5 className="text-xl">text-xl - 32px</h5>
+        <h6 className="text-lg">text-lg - 28px</h6>
+        <h6 className="text-md">text-md - 24px</h6>
+        <h6 className="text-sm">text-sm - 16px</h6>
+        <h6 className="text-xsm">text-xsm - 14px</h6>
+        <p className="text-body">text-body - 18px</p>
         <div className="bg-primary p-8">
           <p className="text-body text-muted">Paragraph</p>
         </div>

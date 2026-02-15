@@ -1,17 +1,17 @@
 import Image from "next/image";
 import AnimatedButton from "../ui/button/AnimatedButton";
-import { ArrowRight } from "../ui/icons";
+import AnimatedArrowIcon from "../ui/button/AnimatedArrowIcon";
 
 const BakeResult = () => {
   return (
     <section className="lg:pt-37.5 pt-10">
-      <div className="bg-[#00001D] pt-25 pb-35 rounded-tl-[3.75rem] rounded-tr-[3.75rem] relative isolate overflow-hidden">
+      <div className="bg-[#00001D] sm:pt-25 pt-12 sm:pb-35 pb-20 sm:rounded-tl-[3.75rem] rounded-tl-[1.875rem] sm:rounded-tr-[3.75rem] rounded-tr-[1.875rem] relative isolate overflow-hidden">
         <div
           className="absolute top-0 lg:left-0 w-full h-full bg-cover bg-center bg-no-repeat -z-10 animate-footer-rays"
           style={{ backgroundImage: "url(/footer-rays.png)" }}
         />
         <div className="container flex flex-col gap-11">
-          <h3 className="lg:text-4xl text-2xl text-white leading-none font-medium text-center">
+          <h3 className="lg:text-4xl sm:text-2xl text-lg text-white leading-none font-medium text-center">
             We bake results that{" "}
             <span className="block italic">taste like more</span>
           </h3>
@@ -33,14 +33,7 @@ const BakeResult = () => {
             <AnimatedButton
               size={"icon"}
               className=" translate-y-1/2 duration-700 col-start-1 row-start-1 self-end"
-              trailingContent={
-                <span className="bg-primary size-12.75 overflow-hidden flex items-center rounded-[0.3125rem]">
-                  <div className="flex justify-around min-w-25.5 -translate-x-1/2 transition-all group-hover:translate-x-0">
-                    <ArrowRight color="white" />
-                    <ArrowRight color="white" />
-                  </div>
-                </span>
-              }
+              trailingContent={<AnimatedArrowIcon />}
             >
               Let’s talk!
             </AnimatedButton>

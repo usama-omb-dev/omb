@@ -5,11 +5,12 @@ import { ArrowRight } from "@/components/ui/icons";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
+import { Autoplay, Navigation } from "swiper/modules";
 
 import { useRef } from "react";
-import { Autoplay, Navigation } from "swiper/modules";
 import Image from "next/image";
 import Counter from "@/components/ui/counter";
+import AnimatedArrowIcon from "@/components/ui/button/AnimatedArrowIcon";
 
 const Insights = () => {
   const prevRef = useRef<HTMLButtonElement | null>(null);
@@ -134,14 +135,7 @@ const Insights = () => {
             </p>
             <AnimatedButton
               size={"icon"}
-              trailingContent={
-                <span className="bg-primary size-12.75 overflow-hidden flex items-center rounded-[0.3125rem]">
-                  <div className="flex justify-around min-w-25.5 -translate-x-1/2 transition-all group-hover:translate-x-0">
-                    <ArrowRight color="white" />
-                    <ArrowRight color="white" />
-                  </div>
-                </span>
-              }
+              trailingContent={<AnimatedArrowIcon />}
             >
               View our results
             </AnimatedButton>
@@ -178,15 +172,15 @@ const Insights = () => {
               // @ts-ignore
               swiper.params.navigation.nextEl = nextRef.current;
             }}
-            onSlideChange={(swiper) => {
-              prevRef.current!.disabled = swiper.isBeginning;
-              nextRef.current!.disabled = swiper.isEnd;
-            }}
+            // onSlideChange={(swiper) => {
+            //   prevRef.current!.disabled = swiper.isBeginning;
+            //   nextRef.current!.disabled = swiper.isEnd;
+            // }}
             navigation={{
               prevEl: prevRef.current,
               nextEl: nextRef.current,
             }}
-            className="mySwiper"
+            className="mySwiper resultSwiper"
             breakpoints={{
               640: {
                 slidesPerView: 1,

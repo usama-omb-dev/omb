@@ -173,12 +173,12 @@
   will-change: transform;
 }
 
-.mySwiper .swiper-slide {
+.mySwiper.resultSwiper .swiper-slide {
   @apply opacity-0 translate-y-15 pointer-events-none transition-all duration-500;
 }
 
-.mySwiper .swiper-slide-prev,
-.mySwiper .swiper-slide-active,
-.mySwiper .swiper-slide-next {
+.mySwiper.resultSwiper .swiper-slide-prev,
+.mySwiper.resultSwiper .swiper-slide-active,
+.mySwiper.resultSwiper .swiper-slide-next {
   @apply opacity-100 translate-y-0 pointer-events-auto;
 }
