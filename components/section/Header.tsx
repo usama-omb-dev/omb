@@ -21,12 +21,18 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { usePathname } from "next/navigation";
+import { ServiceData } from "@/app/ServicesData";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
   const tl = useRef<GSAPTimeline | null>(null);
   const pathName = usePathname();
+
+  const servicesSubMenu = ServiceData.map((item) => {
+    return { title: item.heroData.pillTitle, href: `/services/${item.url}` };
+  });
 
   const menuItems = [
     { title: "Home", href: "/" },
@@ -34,11 +40,7 @@ const Header = () => {
     {
       title: "Services",
       href: "/services",
-      submenu: [
-        { title: "SEO & GEO", href: "/services/seo-geo" },
-        { title: "SEA", href: "/services/sea" },
-        { title: "Web Design", href: "/services/web-design" },
-      ],
+      submenu: servicesSubMenu,
     },
     { title: "Blog", href: "/blog" },
     { title: "Contact", href: "/contact" },
@@ -71,12 +73,29 @@ const Header = () => {
       paddingBottom: 0,
     });
   }, []);
+
   useEffect(() => {
     if (!tl.current) return;
 
     if (isOpen) tl.current.play();
     else tl.current.reverse();
   }, [isOpen]);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (!wrapperRef.current) return;
+
+      if (!wrapperRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <header className="absolute sm:top-10 top-6 left-0 z-50 w-full">
@@ -92,7 +111,10 @@ const Header = () => {
             />
           </Link>
 
-          <div className="md:relative z-50 flex items-center gap-2.5">
+          <div
+            ref={wrapperRef}
+            className="md:relative z-50 flex items-center gap-2.5"
+          >
             <button
               onClick={() => setIsOpen(!isOpen)}
               className={`cursor-pointer flex items-center justify-between leading-none sm:py-3.75 py-2 sm:px-5 px-4 rounded-[0.625rem] backdrop-blur-3xl ${pathName.split("/")[1].length === 0 ? "bg-white/10 text-white" : "bg-black/10 text-black"} text-body relative lg:min-w-126.5 md:min-w-96`}
@@ -140,18 +162,28 @@ const Header = () => {
                     {menuItems.map((item, i) => (
                       <li key={i}>
                         {item.submenu ? (
-                          <NavigationMenu>
-                            <NavigationMenuList>
-                              <NavigationMenuItem>
+                          <NavigationMenu className="bg-transparent!">
+                            <NavigationMenuList className="bg-transparent!">
+                              <NavigationMenuItem className="bg-transparent!">
                                 <NavigationMenuTrigger
-                                  className={`text-lg ${pathName.split("/")[1].length === 0 ? "text-white hover:text-white/50" : "text-black hover:text-black/50"} font-normal! leading-none p-0! rounded-none! bg-transparent! hover:bg-transparent!`}
+                                  className={`cursor-pointer text-lg ${pathName.split("/")[1].length === 0 ? "text-white hover:text-white/50" : "text-black hover:text-black/50"} font-normal! leading-none p-0! rounded-none! bg-transparent! hover:bg-transparent!`}
                                 >
                                   {item.title}
                                 </NavigationMenuTrigger>
-                                <NavigationMenuContent>
+                                <NavigationMenuContent className="bg-transparent!">
                                   {item.submenu.map((sub, j) => (
-                                    <NavigationMenuLink key={sub + String(j)}>
-                                      Link
+                                    <NavigationMenuLink
+                                      className="bg-transparent!"
+                                      asChild
+                                      key={sub + String(j)}
+                                    >
+                                      <Link
+                                        onClick={() => setIsOpen(false)}
+                                        className="bg-transparent! text-nowrap"
+                                        href={sub.href}
+                                      >
+                                        {sub.title}
+                                      </Link>
                                     </NavigationMenuLink>
                                   ))}
                                 </NavigationMenuContent>

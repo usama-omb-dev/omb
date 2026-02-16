@@ -1,3 +1,4 @@
+import { ServiceData } from "@/app/ServicesData";
 import AnimatedArrowIcon from "@/components/ui/button/AnimatedArrowIcon";
 import AnimatedButton from "@/components/ui/button/AnimatedButton";
 import Pill from "@/components/ui/pill";
@@ -5,38 +6,14 @@ import ServiceCard from "@/components/ui/service-card";
 import Image from "next/image";
 
 const Services = () => {
-  const servicesList = [
-    {
-      title: "Profitable Websites",
-      imgUrl: "/profitable-websites.png",
-      href: "#",
-    },
-    {
-      title: "Digital Footprint (SEO & GEO)",
-      imgUrl: "/profitable-websites.png",
-      href: "#",
-    },
-    {
-      title: "Marketing strategy",
-      imgUrl: "/profitable-websites.png",
-      href: "#",
-    },
-    {
-      title: "Content marketing",
-      imgUrl: "/profitable-websites.png",
-      href: "#",
-    },
-    {
-      title: "Lead generation",
-      imgUrl: "/profitable-websites.png",
-      href: "#",
-    },
-    {
-      title: "Personal branding",
-      imgUrl: "/profitable-websites.png",
-      href: "#",
-    },
-  ];
+  const servicesList = ServiceData.map((item) => {
+    return {
+      title: item.heroData.pillTitle,
+      href: `/services/${item.url}`,
+      imgUrl: item.featuredImage,
+    };
+  });
+
   return (
     <section className="lg:py-37.5 sm:py-20 py-10">
       <div className="container flex flex-col lg:gap-28 gap-8">
