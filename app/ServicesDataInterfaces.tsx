@@ -55,7 +55,7 @@ export interface OurWorkSection {
   ourWorkTitle: string;
   workBookingButton: Button;
   workSlider?: WorkSlider;
-  featuredCaseStudy?: FeaturedCaseStudySection;
+  featuredCaseStudy?: CaseStudiesSection[];
 }
 export interface WorkSlider {
   workSlider1?: string[];
@@ -64,7 +64,6 @@ export interface WorkSlider {
   workSlider4?: string[];
 }
 export interface CaseStudiesSection {
-  // showSection: boolean;
   featuredImage: string;
   companyLogo: string;
   caseStudySummary: string;
@@ -74,7 +73,4 @@ export interface CaseStudiesSection {
 export interface Button {
   btnLabel: string;
   btnUrl: string;
-}
-export interface FeaturedCaseStudySection extends CaseStudiesSection {
-  showSection: boolean;
 }

@@ -1,10 +1,17 @@
+"use client";
 import Image from "next/image";
 import AnimatedButton from "../ui/button/AnimatedButton";
 import AnimatedArrowIcon from "../ui/button/AnimatedArrowIcon";
+import { usePathname } from "next/navigation";
 
 const BakeResult = () => {
+  const pathName = usePathname();
+  const currentPath = pathName.split("/")[1];
+  if (currentPath === "contact") return;
   return (
-    <section className="lg:pt-37.5 pt-10">
+    <section
+      className={`lg:pt-37.5 pt-10 ${currentPath === "blogs" ? "" : ""}`}
+    >
       <div className="bg-[#00001D] sm:pt-25 pt-12 sm:pb-35 pb-20 sm:rounded-tl-[3.75rem] rounded-tl-[1.875rem] sm:rounded-tr-[3.75rem] rounded-tr-[1.875rem] relative isolate overflow-hidden">
         <div
           className="absolute top-0 lg:left-0 w-full h-full bg-cover bg-center bg-no-repeat -z-10 animate-footer-rays"

@@ -14,13 +14,13 @@ const TextReveal = ({ children }: { children: ReactNode }) => {
       if (textRef.current == null) return;
       let split = SplitText.create(textRef.current, { type: "words, chars" });
       gsap.from(split.chars, {
-        duration: 0.75,
-        y: 100,
-        rotateZ: 20,
-        stagger: 0.05,
+        duration: 0.5,
+        y: -100,
+        rotateZ: -20,
+        stagger: 0.025,
         scrollTrigger: {
           trigger: textRef.current,
-          start: "top 70%",
+          start: "top 80%",
         },
       });
 

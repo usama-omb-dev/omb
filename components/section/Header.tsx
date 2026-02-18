@@ -21,18 +21,29 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { usePathname } from "next/navigation";
-import { ServiceData } from "@/app/ServicesData";
+import { useServices } from "@/hooks/useServices";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+
+interface ServiceNavMenu {
+  navLabel: string;
+  navLink: string;
+}
 
 const Header = () => {
+  const [isWhiteNav, setIsWhiteNav] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const tl = useRef<GSAPTimeline | null>(null);
   const pathName = usePathname();
 
-  const servicesSubMenu = ServiceData.map((item) => {
-    return { title: item.heroData.pillTitle, href: `/services/${item.url}` };
-  });
+  const { data: services, isLoading } = useServices();
+
+  const servicesNavigationData = isLoading
+    ? []
+    : services.map((item: any) => {
+        return { navLabel: item.title.rendered, navLink: item.slug };
+      });
 
   const menuItems = [
     { title: "Home", href: "/" },
@@ -40,9 +51,9 @@ const Header = () => {
     {
       title: "Services",
       href: "/services",
-      submenu: servicesSubMenu,
+      submenu: servicesNavigationData,
     },
-    { title: "Blog", href: "/blog" },
+    { title: "Blogs", href: "/blogs" },
     { title: "Contact", href: "/contact" },
   ];
 
@@ -55,6 +66,18 @@ const Header = () => {
     },
     { title: "Locquet Power", href: "/" },
   ];
+
+  useEffect(() => {
+    if (
+      pathName.split("/")[1].length === 0 ||
+      pathName.split("/")[1] === "contact" ||
+      pathName.split("/")[1] === "blogs"
+    ) {
+      setIsWhiteNav(true);
+    } else {
+      setIsWhiteNav(false);
+    }
+  }, [pathName]);
 
   useEffect(() => {
     if (!menuRef.current) return;
@@ -103,7 +126,7 @@ const Header = () => {
         <div className="flex justify-between items-center relative">
           <Link href="/">
             <Image
-              className={`${pathName.split("/")[1].length === 0 ? "brightness-0 invert-100" : ""} sm:max-w-full max-w-4/5`}
+              className={`${isWhiteNav ? "brightness-0 invert-100" : ""} sm:max-w-full max-w-4/5`}
               src="/logo.svg"
               alt="Logo"
               width={111}
@@ -117,7 +140,7 @@ const Header = () => {
           >
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className={`cursor-pointer flex items-center justify-between leading-none sm:py-3.75 py-2 sm:px-5 px-4 rounded-[0.625rem] backdrop-blur-3xl ${pathName.split("/")[1].length === 0 ? "bg-white/10 text-white" : "bg-black/10 text-black"} text-body relative lg:min-w-126.5 md:min-w-96`}
+              className={`cursor-pointer flex items-center justify-between leading-none sm:py-3.75 py-2 sm:px-5 px-4 rounded-[0.625rem] backdrop-blur-3xl ${isWhiteNav ? "bg-white/10 text-white" : "bg-black/10 text-black"} text-body relative lg:min-w-126.5 md:min-w-96`}
             >
               <span className="md:inline-block hidden">
                 {isOpen ? "Close" : "Menu"}
@@ -126,14 +149,14 @@ const Header = () => {
             </button>
             <Dialog>
               <DialogTrigger
-                className={`cursor-pointer flex items-center justify-between sm:py-4.5 py-2.75 px-5 rounded-[0.625rem] backdrop-blur-3xl ${pathName.split("/")[1].length === 0 ? "bg-white/10 text-white" : "bg-black/10 text-black"} text-body relative`}
+                className={`cursor-pointer flex items-center justify-between sm:py-4.5 py-2.75 px-5 rounded-[0.625rem] backdrop-blur-3xl ${isWhiteNav ? "bg-white/10 text-white" : "bg-black/10 text-black"} text-body relative`}
               >
                 <Image
                   src={"/play-btn.svg"}
                   alt="Play Button"
                   width={18}
                   height={18}
-                  className={`${pathName.split("/")[1].length === 0 ? "" : "brightness-0"}`}
+                  className={`${isWhiteNav ? "" : "brightness-0"}`}
                 />
               </DialogTrigger>
               <DialogContent>
@@ -149,12 +172,12 @@ const Header = () => {
                 paddingTop: 0,
                 paddingBottom: 0,
               }}
-              className={`absolute top-[calc(100%+10px)] left-0 right-0 ${pathName.split("/")[1].length === 0 ? "bg-white/10" : "bg-black/10"} rounded-[0.625rem] px-5 backdrop-blur-3xl flex flex-col`}
+              className={`absolute top-[calc(100%+10px)] left-0 right-0 ${isWhiteNav ? "bg-white/10" : "bg-black/10"} rounded-[0.625rem] px-5 backdrop-blur-3xl flex flex-col`}
             >
               <div className="flex flex-col gap-7.5 py-5.5">
                 <div className=" flex flex-col gap-5">
                   <h6
-                    className={`text-body border-b ${pathName.split("/")[1].length === 0 ? "text-white/20 border-white/10" : "text-black/50 border-black/10"} leading-none pb-5  `}
+                    className={`text-body border-b ${isWhiteNav ? "text-white/20 border-white/10" : "text-black/50 border-black/10"} leading-none pb-5  `}
                   >
                     Company
                   </h6>
@@ -166,26 +189,34 @@ const Header = () => {
                             <NavigationMenuList className="bg-transparent!">
                               <NavigationMenuItem className="bg-transparent!">
                                 <NavigationMenuTrigger
-                                  className={`cursor-pointer text-lg ${pathName.split("/")[1].length === 0 ? "text-white hover:text-white/50" : "text-black hover:text-black/50"} font-normal! leading-none p-0! rounded-none! bg-transparent! hover:bg-transparent!`}
+                                  className={`cursor-pointer text-lg ${isWhiteNav ? "text-white hover:text-white/50" : "text-black hover:text-black/50"} font-normal! leading-none p-0! rounded-none! bg-transparent! hover:bg-transparent!`}
                                 >
                                   {item.title}
                                 </NavigationMenuTrigger>
                                 <NavigationMenuContent className="bg-transparent!">
-                                  {item.submenu.map((sub, j) => (
-                                    <NavigationMenuLink
-                                      className="bg-transparent!"
-                                      asChild
-                                      key={sub + String(j)}
-                                    >
-                                      <Link
-                                        onClick={() => setIsOpen(false)}
-                                        className="bg-transparent! text-nowrap"
-                                        href={sub.href}
-                                      >
-                                        {sub.title}
-                                      </Link>
-                                    </NavigationMenuLink>
-                                  ))}
+                                  {isLoading ? (
+                                    <span className=" [&_svg]:animate-spin text-black bg-white flex justify-center items-center h-20  w-16 rounded-[8px]">
+                                      <AiOutlineLoading3Quarters />
+                                    </span>
+                                  ) : (
+                                    item?.submenu?.map(
+                                      (sub: any, j: number) => (
+                                        <NavigationMenuLink
+                                          className="bg-transparent!"
+                                          asChild
+                                          key={sub + String(j)}
+                                        >
+                                          <Link
+                                            onClick={() => setIsOpen(false)}
+                                            className="bg-transparent! text-nowrap"
+                                            href={`/services/${sub.navLink}`}
+                                          >
+                                            {sub.navLabel}
+                                          </Link>
+                                        </NavigationMenuLink>
+                                      ),
+                                    )
+                                  )}
                                 </NavigationMenuContent>
                               </NavigationMenuItem>
                             </NavigationMenuList>
@@ -193,7 +224,7 @@ const Header = () => {
                         ) : (
                           <Link
                             href={item.href}
-                            className={`text-lg font-normal ${pathName.split("/")[1].length === 0 ? "text-white hover:text-white/50" : "text-black hover:text-black/50"}  leading-none `}
+                            className={`text-lg font-normal ${isWhiteNav ? "text-white hover:text-white/50" : "text-black hover:text-black/50"}  leading-none `}
                             onClick={() => setIsOpen(false)}
                           >
                             {item.title}
@@ -205,7 +236,7 @@ const Header = () => {
                 </div>
                 <div className=" flex flex-col gap-5">
                   <h6
-                    className={`text-body border-b ${pathName.split("/")[1].length === 0 ? "text-white/20 border-white/10" : "text-black/50 border-black/10"} leading-none pb-5  `}
+                    className={`text-body border-b ${isWhiteNav ? "text-white/20 border-white/10" : "text-black/50 border-black/10"} leading-none pb-5  `}
                   >
                     Featured Projects
                   </h6>
@@ -214,7 +245,7 @@ const Header = () => {
                       <li key={i}>
                         <Link
                           href={item.href}
-                          className={`text-lg font-normal ${pathName.split("/")[1].length === 0 ? "text-white hover:text-white/50" : "text-black hover:text-black/50"}  leading-none `}
+                          className={`text-lg font-normal ${isWhiteNav ? "text-white hover:text-white/50" : "text-black hover:text-black/50"}  leading-none `}
                           onClick={() => setIsOpen(false)}
                         >
                           {item.title}
@@ -228,7 +259,7 @@ const Header = () => {
           </div>
 
           <Link
-            className={`${pathName.split("/")[1].length === 0 ? "text-white hover:text-white/50" : "text-black hover:text-black/50"} underline underline-offset-4 transition-all text-body md:flex hidden`}
+            className={`${isWhiteNav ? "text-white hover:text-white/50" : "text-black hover:text-black/50"} underline underline-offset-4 transition-all text-body md:flex hidden`}
             href="#"
           >
             Get in touch

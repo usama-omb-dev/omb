@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import localFont from "next/font/local";
+import ReactQueryProvider from "@/providers/ReactQueryProvider";
 
 const aeonik = localFont({
   src: [
@@ -53,7 +54,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={` ${aeonik.className} ${nexa.variable} antialiased`}>
-        {children}
+        <ReactQueryProvider>{children}</ReactQueryProvider>
       </body>
     </html>
   );

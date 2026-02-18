@@ -7,7 +7,7 @@ import Reviews from "@/components/section/Homepage/Reviews";
 import Services from "@/components/section/Homepage/Services";
 import ServicesDifference from "@/components/section/Homepage/ServicesDifference";
 
-export default function Home() {
+export default async function Home() {
   return (
     <>
       <Hero />

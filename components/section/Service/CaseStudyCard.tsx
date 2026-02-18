@@ -15,7 +15,7 @@ const CaseStudyCard = ({ data }: { data: CaseStudiesSection }) => {
     <div className="sm:p-6.25 p-4 bg-white rounded-[0.3125rem] flex lg:flex-row flex-col items-stretch gap-5 ">
       <Image
         src={featuredImage}
-        alt={featuredImage.split(".")[0]}
+        alt={""}
         width={400}
         height={413}
         className="w-full max-w-100"

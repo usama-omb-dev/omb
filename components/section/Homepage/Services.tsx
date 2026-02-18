@@ -1,18 +1,29 @@
-import { ServiceData } from "@/app/ServicesData";
+"use client";
 import AnimatedArrowIcon from "@/components/ui/button/AnimatedArrowIcon";
 import AnimatedButton from "@/components/ui/button/AnimatedButton";
 import Pill from "@/components/ui/pill";
 import ServiceCard from "@/components/ui/service-card";
+import { useServices } from "@/hooks/useServices";
 import Image from "next/image";
 
+interface ServiceCard {
+  title: string;
+  href: string;
+  imgUrl: string;
+}
+
 const Services = () => {
-  const servicesList = ServiceData.map((item) => {
-    return {
-      title: item.heroData.pillTitle,
-      href: `/services/${item.url}`,
-      imgUrl: item.featuredImage,
-    };
-  });
+  const { data: service, isLoading } = useServices();
+
+  const servicesList = isLoading
+    ? []
+    : service.map((item: any) => {
+        return {
+          title: item.title.rendered,
+          href: `/services/${item.slug}`,
+          imgUrl: item["_embedded"]["wp:featuredmedia"][0].source_url,
+        };
+      });
 
   return (
     <section className="lg:py-37.5 sm:py-20 py-10">
@@ -45,7 +56,7 @@ const Services = () => {
               className=""
             />
           </div>
-          {servicesList.map((item, index) => (
+          {servicesList.map((item: ServiceCard, index: number) => (
             <ServiceCard key={index + 1} cardDetails={item} />
           ))}
         </div>
