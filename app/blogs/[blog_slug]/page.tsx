@@ -1,3 +1,4 @@
+import LatestBlogs from "@/components/section/Blogs/Latest-Blogs";
 import { ScheduleCallForm } from "@/components/ui/schedule-call-form";
 import Image from "next/image";
 import Link from "next/link";
@@ -56,7 +57,7 @@ const page = async ({ params }: { params: Promise<{ blog_slug: string }> }) => {
       <section className="sm:pt-52.5 pt-28">
         <div className="container">
           <div className="flex lg:flex-row flex-col-reverse justify-between items-start border-b border-black/20 sm:mb-15 mb-7 sm:pb-15 pb-7">
-            <h1 className="xl:text-5xl sm:text-3xl text-xl font-medium leading-none">
+            <h1 className="xl:text-5xl sm:text-3xl text-xl font-normal leading-none">
               {transformPostToBlogSummary.title}
             </h1>
             <p className="max-w-82.5 w-full sm:text-body text-xsm mb-2 sm:mb-0 font-medium leading-none text-left">
@@ -65,7 +66,7 @@ const page = async ({ params }: { params: Promise<{ blog_slug: string }> }) => {
           </div>
         </div>
       </section>
-      <section>
+      <section className="lg:pb-37.5 pb-10">
         <div className="container">
           <div className="flex xl:flex-row flex-col-reverse xl:gap-32.5 gap-8 relative">
             <div className={`flex flex-col gap-4 ${textStyling}`}>
@@ -120,6 +121,7 @@ const page = async ({ params }: { params: Promise<{ blog_slug: string }> }) => {
           </div>
         </div>
       </section>
+      <LatestBlogs />
     </>
   );
 };

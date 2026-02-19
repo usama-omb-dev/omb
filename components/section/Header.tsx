@@ -68,10 +68,11 @@ const Header = () => {
   ];
 
   useEffect(() => {
+    console.log("pathName", pathName.split("/"));
     if (
       pathName.split("/")[1].length === 0 ||
       pathName.split("/")[1] === "contact" ||
-      pathName.split("/")[1] === "blogs"
+      pathName.split("/")[pathName.split("/").length - 1] === "blogs"
     ) {
       setIsWhiteNav(true);
     } else {
