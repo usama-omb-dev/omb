@@ -44,7 +44,7 @@ const LatestBlogs = () => {
 
   return (
     <section className="bg-white sm:rounded-tl-[3.75rem] rounded-tl-[1.875rem] sm:rounded-tr-[3.75rem] rounded-tr-[1.875rem] lg:pt-20 pt-10">
-      <div className="container flex flex-col sm:gap-15 gap-8">
+      <div className="container flex flex-col sm:gap-15 gap-4">
         <h3 className="text-center sm:text-2xl text-xl font-medium">
           Latest <span className="text-primary">blogs</span>
         </h3>
