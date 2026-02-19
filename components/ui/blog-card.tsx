@@ -46,7 +46,7 @@ const BlogCard = ({ blogData }: { blogData: BlogSummaryData }) => {
               <AnimatedArrowIcon bgColor="bg-transparent" />
             </span>
           }
-          href={`/blog/${blogUrl}`}
+          href={`/blogs/${blogUrl}`}
         >
           <div className="flex flex-col items-start gap-1.25">
             <span className="text-xsm text-black/20 font-normal">
