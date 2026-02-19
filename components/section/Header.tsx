@@ -68,7 +68,6 @@ const Header = () => {
   ];
 
   useEffect(() => {
-    console.log("pathName", pathName.split("/"));
     if (
       pathName.split("/")[1].length === 0 ||
       pathName.split("/")[1] === "contact" ||
