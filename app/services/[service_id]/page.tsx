@@ -204,7 +204,7 @@ export default async function Page({
 
       caseStudyButton: {
         btnLabel: "View Case Study",
-        btnUrl: `/case-study/${item.id}` || "",
+        btnUrl: `/case-study/${item.slug}` || "",
       },
     }));
 

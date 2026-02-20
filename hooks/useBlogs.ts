@@ -8,7 +8,7 @@ export function useBlogs() {
   });
 }
 
-export function useServiceBySlug(slug: string) {
+export function useBlogBySlug(slug: string) {
   return useQuery({
     queryKey: ["blog", slug],
     queryFn: async () => {

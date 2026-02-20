@@ -4,7 +4,7 @@ import { fetchAPI } from "@/lib/api";
 export function useServices() {
   return useQuery({
     queryKey: ["services"],
-    queryFn: () => fetchAPI("/services?_embed"),
+    queryFn: () => fetchAPI("/services?_embed&lang=en"),
   });
 }
 

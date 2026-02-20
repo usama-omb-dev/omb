@@ -6,7 +6,6 @@ import AnimatedSplit, {
 } from "@/components/ui/button/AnimatedSplit";
 import { useRef } from "react";
 import AnimatedButton from "@/components/ui/button/AnimatedButton";
-// import AnimatedButton from "@/components/ui/AnimatedButton";
 
 export default function page() {
   const textRef = useRef<AnimatedSplitHandle>(null);
