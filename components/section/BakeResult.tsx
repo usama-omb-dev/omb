@@ -9,10 +9,6 @@ const BakeResult = () => {
   const pathName = usePathname();
   const currentPath = pathName.split("/")[1];
 
-  useEffect(() => {
-    console.log(currentPath === "blogs" && pathName.split("/").length >= 2);
-  }, [pathName]);
-
   if (currentPath === "contact") return;
   return (
     <section
