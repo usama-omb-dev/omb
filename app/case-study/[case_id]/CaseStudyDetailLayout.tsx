@@ -3,9 +3,12 @@ import AnimatedButton from "@/components/ui/button/AnimatedButton";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "@/components/ui/icons";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { Draggable } from "gsap/all";
+import { FaChevronRight } from "react-icons/fa6";
+import { FaChevronLeft } from "react-icons/fa6";
+import { useGSAP } from "@gsap/react";
 
 const INDEX_LINKS = [
   { label: "Problem statement", href: "#problem-statement" },
@@ -48,12 +51,10 @@ interface CaseStudyStructured {
   keyMatrics: {
     heading: string | null;
     details: string | null;
-    keys:
-      | {
-          label: string | null;
-          value: string | null;
-        }[]
-      | null;
+    keys: {
+      label: string | null;
+      value: string | null;
+    }[];
   } | null;
 
   clientReviews: {
@@ -79,41 +80,93 @@ export default function CaseStudyDetailLayout({
     clientReviews,
   } = caseStudyData;
 
+  const [indexing, setIndexing] = useState<string[]>([]);
+  const [processedContent, setProcessedContent] = useState("");
+  const contentContainerRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const beforeRef = useRef<HTMLDivElement>(null);
   const handleRef = useRef<HTMLDivElement>(null);
 
+  useGSAP(
+    () => {
+      const container = containerRef.current;
+      const before = beforeRef.current;
+      const handle = handleRef.current;
+
+      if (!container || !before || !handle) return;
+      const containerWidth = container.offsetWidth;
+      const startX = containerWidth / 2;
+
+      gsap.set(handle, { x: startX });
+      gsap.set(before, {
+        clipPath: `inset(0 ${containerWidth - startX}px 0 0)`,
+      });
+
+      Draggable.create(handle, {
+        type: "x",
+        bounds: { minX: 0, maxX: containerWidth },
+        onDrag: function () {
+          const x = this.x;
+
+          gsap.set(before, {
+            clipPath: `inset(0 ${containerWidth - x}px 0 0)`,
+          });
+        },
+      });
+    },
+    { scope: containerRef },
+  );
+
+  const generateSlug = (text: string) => {
+    return text
+      .toLowerCase()
+      .trim()
+      .replace(/\s+/g, "-")
+      .replace(/[^\w-]/g, "");
+  };
+
+  const processHeadings = (root: ParentNode): { texts: string[] } => {
+    const headings = root.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+    const texts: string[] = [];
+
+    headings.forEach((heading) => {
+      const text = heading.textContent?.trim() || "";
+      if (!text) return;
+
+      if (!heading.id) {
+        heading.id = generateSlug(text);
+      }
+
+      texts.push(text);
+    });
+
+    return { texts };
+  };
+
   useEffect(() => {
-    const container = containerRef.current;
-    const before = beforeRef.current;
-    const handle = handleRef.current;
+    if (!content) return;
 
-    if (!container || !before || !handle) return;
-    const containerWidth = container.offsetWidth;
-    const startX = containerWidth / 2;
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(content, "text/html");
 
-    gsap.set(handle, { x: startX });
-    gsap.set(before, {
-      clipPath: `inset(0 ${containerWidth - startX}px 0 0)`,
-    });
+    processHeadings(doc);
 
-    Draggable.create(handle, {
-      type: "x",
-      bounds: { minX: 0, maxX: containerWidth },
-      onDrag: function () {
-        const x = this.x;
+    setProcessedContent(doc.body.innerHTML);
+  }, [content]);
 
-        gsap.set(before, {
-          clipPath: `inset(0 ${containerWidth - x}px 0 0)`,
-        });
-      },
-    });
-  }, []);
+  useEffect(() => {
+    if (!contentContainerRef.current) return;
+
+    const { texts } = processHeadings(contentContainerRef.current);
+
+    setIndexing(texts);
+  }, [processedContent]);
 
   const textStyling =
-    "xl:[&_h1]:text-5xl [&_h1]:text-2xl xl:[&_h2]:text-3xl [&_h2]:text-xl xl:[&_h3]:text-2xl [&_h3]:text-xl xl:[&_h4]:text-xl [&_h4]:text-lg xl:[&_h5]:text-lg [&_h5]:text-md xl:[&_h6]:text-md [&_h6]:text-sm xl:[&_li]:text-sm [&_li]:text-xsm xl:[&_p]:text-body [&_p]:text-xsm [&_h1]:font-medium [&_h2]:font-medium [&_h3]:font-medium **:leading-none [&_p]:leading-tight lg:[&_p]:mb-4 [&_p]:mb-2 [&_p]:mt-2";
+    "xl:[&_h1]:text-5xl [&_h1]:text-2xl xl:[&_h2]:text-3xl [&_h2]:text-xl xl:[&_h3]:text-2xl [&_h3]:text-xl xl:[&_h4]:text-xl [&_h4]:text-lg xl:[&_h5]:text-lg [&_h5]:text-md xl:[&_h6]:text-md [&_h6]:text-sm xl:[&_li]:text-sm [&_li]:text-xsm xl:[&_p]:text-body [&_p]:text-xsm [&_h1]:font-medium [&_h2]:font-medium [&_h3]:font-medium [&_h4]:font-medium [&_h5]:font-medium [&_h6]:font-medium **:leading-none [&_p]:leading-tight lg:[&_p]:mb-4 [&_p]:mb-2 [&_p]:mt-2";
   return (
-    <article className="min-h-screen pt-60 bg-background">
+    <article className="min-h-screen pt-60 bg-background scroll-smooth">
       <div className="container">
         <div className="border-b pb-15 mb-15">
           <div className="mb-4 flex flex-wrap items-center gap-5 py-3.75 px-5 bg-white rounded-[0.625rem] w-fit">
@@ -124,6 +177,7 @@ export default function CaseStudyDetailLayout({
                 alt={
                   companyLogo.imageAlt ? companyLogo.imageAlt : "Company Logo"
                 }
+                unoptimized
                 width={241}
                 height={50}
                 className="h-auto w-auto max-h-12 object-contain"
@@ -161,13 +215,13 @@ export default function CaseStudyDetailLayout({
                   Index
                 </h2>
                 <ul className="space-y-5">
-                  {INDEX_LINKS.map((item) => (
-                    <li key={item.href}>
+                  {indexing.map((item, index) => (
+                    <li key={index + 1}>
                       <Link
-                        href={item.href}
+                        href={`#${item.split(" ").join("-").toLowerCase()}`}
                         className="text-body text-black/60 hover:text-primary hover:px-5 hover:py-3.75 hover:border-l-8 border-primary transition-all"
                       >
-                        {item.label}
+                        {item}
                       </Link>
                     </li>
                   ))}
@@ -194,15 +248,18 @@ export default function CaseStudyDetailLayout({
               </div>
             </aside>
 
-            <div>
+            <div ref={contentContainerRef}>
               <div
-                className={`${textStyling}}`}
-                dangerouslySetInnerHTML={{
-                  __html: content ?? "",
-                }}
+                className={`${textStyling}`}
+                // dangerouslySetInnerHTML={{
+                //   __html: content ?? "",
+                // }}
+                dangerouslySetInnerHTML={{ __html: processedContent }}
               />
               {beforeAfterImages?.afterImage &&
-                beforeAfterImages?.beforeImage && (
+                Object.entries(beforeAfterImages?.afterImage).length > 0 &&
+                beforeAfterImages?.beforeImage &&
+                Object.entries(beforeAfterImages?.beforeImage).length > 0 && (
                   <div className="relative isolate">
                     <Image
                       src={"/laptop-mockup.png"}
@@ -233,11 +290,47 @@ export default function CaseStudyDetailLayout({
                       </div>
                       <div
                         ref={handleRef}
-                        className="absolute top-0 h-full w-[4px] bg-white cursor-ew-resize z-10"
-                      />
+                        className="absolute top-0 h-full w-3.5 bg-primary/20 backdrop-blur-sm rounded-[1.25rem] -translate-x-1/2 cursor-ew-resize z-10"
+                      >
+                        <div className="flex justify-center items-center text-sm text-white bg-primary w-9.5 h-9.5 absolute rounded-full left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2">
+                          <FaChevronLeft />
+                          <FaChevronRight />
+                        </div>
+                      </div>
                     </div>
                   </div>
                 )}
+              {(keyMatrics?.heading ||
+                keyMatrics?.details ||
+                (keyMatrics?.keys && keyMatrics?.keys.length > 0)) && (
+                <div className="bg-white p-7.5 rounded-[0.3125rem] flex flex-col gap-7.5">
+                  {keyMatrics?.heading && (
+                    <h6 className="text-md font-medium">
+                      {keyMatrics?.heading}
+                    </h6>
+                  )}
+                  {keyMatrics?.details && (
+                    <p className="text-body">{keyMatrics?.details}</p>
+                  )}
+                  <div className="flex flex-wrap mt-7.5 gap-3.5">
+                    {keyMatrics?.keys &&
+                      keyMatrics?.keys?.length > 0 &&
+                      keyMatrics?.keys?.map((item, index) => (
+                        <div
+                          key={index + 1}
+                          className="bg-secondary p-2.5 rounded-[0.3125rem] flex flex-col gap-5 min-w-44"
+                        >
+                          <span className="text-xsm leading-none">
+                            {item.label}
+                          </span>
+                          <p className="text-xl font-bold leading-none">
+                            {item.value}
+                          </p>
+                        </div>
+                      ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

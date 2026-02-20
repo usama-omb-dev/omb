@@ -59,12 +59,10 @@ export default async function CaseStudyPage({
     keyMatrics: {
       heading: string | null;
       details: string | null;
-      keys:
-        | {
-            label: string | null;
-            value: string | null;
-          }[]
-        | null;
+      keys: {
+        label: string | null;
+        value: string | null;
+      }[];
     } | null;
 
     clientReviews: {
