@@ -318,7 +318,7 @@ export default function CaseStudyDetailLayout({
                     />
                     <div
                       ref={containerRef}
-                      className="absolute sm:top-5 top-2 2xl:right-[191px] lg:right-[80px] md:right-[85px] sm:right-[70px] sm:left-unset left-[35px] 2xl:w-[660px] xl:w-[535px] lg:w-[470px] md:w-[565px] sm:w-[465px] w-[212px] 2xl:h-[430px] xl:h-[340px] lg:h-[300px] md:h-[360px] sm:h-[295px] h-[135px] overflow-hidden"
+                      className="absolute sm:top-5 top-2 2xl:right-[191px] lg:right-[80px] md:right-[85px] sm:right-[70px] sm:left-[unset]! left-[35px] 2xl:w-[660px] xl:w-[535px] lg:w-[470px] md:w-[565px] sm:w-[465px] w-[212px] 2xl:h-[430px] xl:h-[340px] lg:h-[300px] md:h-[360px] sm:h-[295px] h-[135px] overflow-hidden"
                     >
                       <Image
                         src={beforeAfterImages.afterImage.imageUrl ?? ""}
