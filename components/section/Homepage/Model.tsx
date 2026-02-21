@@ -27,13 +27,11 @@ export default function Model({ mainContainer }: ModelProps) {
       start: "top center",
       end: "bottom center",
       scrub: true,
-      markers: true,
       onUpdate: (self) => {
         group.current!.rotation.y = self.progress * Math.PI * 2;
       },
     });
 
-    // Double RAF ensures layout is final
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         ScrollTrigger.refresh();
