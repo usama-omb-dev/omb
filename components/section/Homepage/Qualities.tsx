@@ -1,10 +1,17 @@
+"use client";
 import AnimatedArrowIcon from "@/components/ui/button/AnimatedArrowIcon";
 import AnimatedButton from "@/components/ui/button/AnimatedButton";
 import TextReveal from "@/components/ui/TextReveal";
-import Image from "next/image";
 import Link from "next/link";
+import { Canvas } from "@react-three/fiber";
+import Model from "./Model";
+import { OrbitControls } from "@react-three/drei";
+import { useRef } from "react";
+import { useIsDesktop } from "@/hooks/isDesktop";
 
 const Qualities = () => {
+  const mainContainerRef = useRef<HTMLDivElement>(null);
+  const isDesktop = useIsDesktop();
   const services = [
     {
       title: "SEO & GEO",
@@ -72,19 +79,25 @@ const Qualities = () => {
   ];
 
   return (
-    <section className=" relative">
+    <section ref={mainContainerRef} className=" relative">
       <div className="container">
-        <div className="flex gap-9.25">
-          <div className="xl:max-w-95 max-w-60 w-full lg:block hidden">
-            <div className="sticky top-10 left-0">
-              <div className="bg-primary absolute -z-10 xl:w-95 w-60 xl:h-95 h-60 rounded-full left-0 top-2/8" />
-              <Image
+        <div className="flex gap-9.25 lg:flex-row flex-col">
+          <div className="xl:max-w-95 lg:max-w-60 w-full">
+            <div className="lg:sticky mx-auto xl:h-[550px] h-[400px] top-10 left-0">
+              {/* <div className="bg-primary absolute -z-10 xl:w-95 w-60 xl:h-95 h-60 rounded-full left-0 top-2/8" /> */}
+              {/* <Image
                 alt="Mockup"
                 width={327}
                 height={673}
                 src={"/iphone-mockup.png"}
                 className="max-w-[80%] mx-auto"
-              />
+              /> */}
+              <Canvas camera={{ position: [1.5, 0, 1], fov: 70 }}>
+                <ambientLight intensity={1} />
+                <directionalLight position={[2, 2, 5]} />
+                <Model mainContainer={mainContainerRef} />
+                {isDesktop && <OrbitControls enableZoom={false} />}
+              </Canvas>
             </div>
           </div>
           <div className="flex-1 flex flex-col gap-7.5">

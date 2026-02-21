@@ -182,3 +182,46 @@
 .mySwiper.resultSwiper .swiper-slide-next {
   @apply opacity-100 translate-y-0 pointer-events-auto;
 }
+.custom-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 8px;
+  background: transparent;
+  cursor: pointer;
+}
+.custom-slider::-webkit-slider-runnable-track {
+  height: 8px;
+  border-radius: 9999px;
+  background: linear-gradient(
+    to right,
+    var(--primary) var(--progress, 100%),
+    white var(--progress, 100%)
+  );
+}
+.custom-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: var(--primary);
+  margin-top: -4px;
+  border: none;
+}
+.custom-slider::-moz-range-track {
+  height: 8px;
+  border-radius: 9999px;
+  background: white;
+}
+.custom-slider::-moz-range-progress {
+  height: 8px;
+  border-radius: 9999px;
+  background: var(--primary);
+}
+.custom-slider::-moz-range-thumb {
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: var(--primary);
+  border: none;
+}

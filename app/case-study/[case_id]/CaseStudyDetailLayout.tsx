@@ -5,21 +5,12 @@ import Link from "next/link";
 import { ArrowRight } from "@/components/ui/icons";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import { Draggable } from "gsap/all";
+import { Draggable, ScrollTrigger } from "gsap/all";
 import { FaChevronRight } from "react-icons/fa6";
 import { FaChevronLeft } from "react-icons/fa6";
 import { useGSAP } from "@gsap/react";
-
-const INDEX_LINKS = [
-  { label: "Problem statement", href: "#problem-statement" },
-  { label: "Proposed Solution", href: "#proposed-solution" },
-  { label: "Key metrics", href: "#key-metrics" },
-  { label: "Website Redesign", href: "#website-redesign" },
-  { label: "Development", href: "#development" },
-  { label: "Reporting & Monitoring", href: "#reporting" },
-  { label: "Results", href: "#results" },
-  { label: "Client review", href: "#client-review" },
-];
+import { FaPlay } from "react-icons/fa";
+import { FaPause } from "react-icons/fa6";
 
 interface CaseStudyStructured {
   companyLogo: {
@@ -68,7 +59,7 @@ export default function CaseStudyDetailLayout({
 }: {
   caseStudyData: CaseStudyStructured;
 }) {
-  gsap.registerPlugin(Draggable);
+  gsap.registerPlugin(Draggable, ScrollTrigger);
 
   const {
     companyLogo,
@@ -82,10 +73,13 @@ export default function CaseStudyDetailLayout({
 
   const [indexing, setIndexing] = useState<string[]>([]);
   const [processedContent, setProcessedContent] = useState("");
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [activeId, setActiveId] = useState<string | null>(null);
   const contentContainerRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const beforeRef = useRef<HTMLDivElement>(null);
   const handleRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useGSAP(
     () => {
@@ -163,14 +157,64 @@ export default function CaseStudyDetailLayout({
     setIndexing(texts);
   }, [processedContent]);
 
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const handlePlay = () => setIsPlaying(true);
+    const handlePause = () => setIsPlaying(false);
+
+    video.addEventListener("play", handlePlay);
+    video.addEventListener("pause", handlePause);
+
+    return () => {
+      video.removeEventListener("play", handlePlay);
+      video.removeEventListener("pause", handlePause);
+    };
+  }, []);
+
+  const handlePlayClick = () => {
+    videoRef.current?.play();
+  };
+
+  const handlePauseClick = () => {
+    videoRef.current?.pause();
+  };
+
+  useGSAP(() => {
+    if (!processedContent || !contentContainerRef.current) return;
+
+    const headings = contentContainerRef.current.querySelectorAll(
+      "h1, h2, h3, h4, h5, h6",
+    );
+
+    console.log("headings", headings);
+
+    headings.forEach((heading) => {
+      const id = heading.id;
+
+      ScrollTrigger.create({
+        trigger: heading,
+        start: "top 50px",
+        end: "bottom 50px",
+        onEnter: () => setActiveId(id),
+        onEnterBack: () => setActiveId(id),
+      });
+    });
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, [processedContent]);
+
   const textStyling =
-    "xl:[&_h1]:text-5xl [&_h1]:text-2xl xl:[&_h2]:text-3xl [&_h2]:text-xl xl:[&_h3]:text-2xl [&_h3]:text-xl xl:[&_h4]:text-xl [&_h4]:text-lg xl:[&_h5]:text-lg [&_h5]:text-md xl:[&_h6]:text-md [&_h6]:text-sm xl:[&_li]:text-sm [&_li]:text-xsm xl:[&_p]:text-body [&_p]:text-xsm [&_h1]:font-medium [&_h2]:font-medium [&_h3]:font-medium [&_h4]:font-medium [&_h5]:font-medium [&_h6]:font-medium **:leading-none [&_p]:leading-tight lg:[&_p]:mb-4 [&_p]:mb-2 [&_p]:mt-2";
+    "xl:[&_h1]:text-5xl [&_h1]:text-2xl xl:[&_h2]:text-3xl [&_h2]:text-xl xl:[&_h3]:text-2xl [&_h3]:text-xl xl:[&_h4]:text-xl [&_h4]:text-lg xl:[&_h5]:text-lg [&_h5]:text-md xl:[&_h6]:text-md [&_h6]:text-sm xl:[&_li]:text-sm [&_li]:text-xsm xl:[&_p]:text-body [&_p]:text-xsm [&_h1]:font-medium [&_h2]:font-medium [&_h3]:font-medium [&_h4]:font-medium [&_h5]:font-medium [&_h6]:font-medium **:leading-none sm:[&_h1]:mb-10 sm:[&_h2]:mb-10 sm:[&_h3]:mb-10 sm:[&_h4]:mb-10 sm:[&_h5]:mb-10 sm:[&_h6]:mb-10 [&_h1]:mb-5 [&_h2]:mb-5 [&_h3]:mb-5 [&_h4]:mb-5 [&_h5]:mb-5 [&_h6]:mb-5 [&_h1]:scroll-mt-10 [&_h2]:scroll-mt-10 [&_h3]:scroll-mt-10 [&_h4]:scroll-mt-10 [&_h5]:scroll-mt-10 [&_h6]:scroll-mt-10 [&_li>h5]:my-5 [&_p]:leading-tight lg:[&_p]:mb-4 [&_p]:mb-2 [&_p]:mt-2";
   return (
-    <article className="min-h-screen pt-60 bg-background scroll-smooth">
+    <article className="min-h-screen sm:pt-60 pt-32 bg-background scroll-smooth">
       <div className="container">
-        <div className="border-b pb-15 mb-15">
-          <div className="mb-4 flex flex-wrap items-center gap-5 py-3.75 px-5 bg-white rounded-[0.625rem] w-fit">
-            <span className="text-md font-medium">Case Study:</span>
+        <div className="border-b xl:pb-15 pb-8 xl:mb-15 mb-8">
+          <div className="xl:mb-4 mb-2 flex flex-wrap items-center sm:gap-5 gap-3 xl:py-3.75 py-2 px-5 bg-white rounded-[0.625rem] w-fit">
+            <span className="sm:text-md text-sm font-medium">Case Study:</span>
             {companyLogo?.imageUrl ? (
               <Image
                 src={companyLogo?.imageUrl}
@@ -180,11 +224,11 @@ export default function CaseStudyDetailLayout({
                 unoptimized
                 width={241}
                 height={50}
-                className="h-auto w-auto max-h-12 object-contain"
+                className="h-auto w-auto object-contain"
               />
             ) : null}
           </div>
-          <h1 className="max-w-271.5 text-5xl leading-none text-black">
+          <h1 className="max-w-271.5 lg:text-5xl sm:text-3xl text-2xl leading-none text-black">
             {title}
           </h1>
         </div>
@@ -206,10 +250,10 @@ export default function CaseStudyDetailLayout({
           </div>
         ) : null}
       </div>
-      <section className="pt-37.5">
+      <section className="lg:pt-37.5 sm:pt-20 pt-5">
         <div className="container">
-          <div className="flex gap-31">
-            <aside className="sticky top-20 left-0 flex flex-col gap-22.5 h-fit bg-white w-fit min-w-106.5 p-7.5 pb-5 self-start">
+          <div className="flex lg:flex-row flex-col xl:gap-31 gap-10">
+            <aside className="lg:sticky top-20 left-0 flex flex-col xl:gap-22.5 gap-10 h-fit bg-white lg:w-fit w-full xl:min-w-106.5 lg:min-w-80 sm:p-7.5 p-5 pb-5 self-start">
               <div className="flex flex-col gap-5.25">
                 <h2 className="text-md font-medium leading-none text-black pb-5.5 border-b">
                   Index
@@ -219,7 +263,11 @@ export default function CaseStudyDetailLayout({
                     <li key={index + 1}>
                       <Link
                         href={`#${item.split(" ").join("-").toLowerCase()}`}
-                        className="text-body text-black/60 hover:text-primary hover:px-5 hover:py-3.75 hover:border-l-8 border-primary transition-all"
+                        className={`text-body transition-all border-l-8 ${
+                          activeId === item.split(" ").join("-").toLowerCase()
+                            ? "text-primary px-5 py-3.75 border-primary"
+                            : "text-black/60 border-transparent hover:text-primary hover:px-5 hover:py-3.75 hover:border-primary"
+                        }`}
                       >
                         {item}
                       </Link>
@@ -248,28 +296,29 @@ export default function CaseStudyDetailLayout({
               </div>
             </aside>
 
-            <div ref={contentContainerRef}>
+            <div
+              className="  [&_li]:relative [&_li]:pl-7 [&_li]:flex [&_li]:items-center [&_li]:gap-2.5 [&_li]:before:content-[''] [&_li]:before:absolute [&_li]:before:left-0 [&_li]:before:top-1/2 [&_li]:before:-translate-y-1/2 [&_li]:before:w-4.5 [&_li]:before:h-5.25 [&_li]:before:bg-[url('/li-dot.svg')] [&_li]:before:bg-no-repeat [&_li]:before:bg-contain"
+              ref={contentContainerRef}
+            >
               <div
-                className={`${textStyling}`}
-                // dangerouslySetInnerHTML={{
-                //   __html: content ?? "",
-                // }}
+                className={`${textStyling} [&_img]:inline-block`}
                 dangerouslySetInnerHTML={{ __html: processedContent }}
               />
               {beforeAfterImages?.afterImage &&
                 Object.entries(beforeAfterImages?.afterImage).length > 0 &&
                 beforeAfterImages?.beforeImage &&
                 Object.entries(beforeAfterImages?.beforeImage).length > 0 && (
-                  <div className="relative isolate">
+                  <div className="relative isolate sm:my-20 my-5">
                     <Image
                       src={"/laptop-mockup.png"}
                       alt={""}
                       width={866}
                       height={508}
+                      className="max-w-[280px] sm:max-w-full"
                     />
                     <div
                       ref={containerRef}
-                      className="absolute top-5 right-[191px] w-[660px] h-[430px] overflow-hidden"
+                      className="absolute sm:top-5 top-2 2xl:right-[191px] lg:right-[80px] md:right-[85px] sm:right-[70px] sm:left-unset left-[35px] 2xl:w-[660px] xl:w-[535px] lg:w-[470px] md:w-[565px] sm:w-[465px] w-[212px] 2xl:h-[430px] xl:h-[340px] lg:h-[300px] md:h-[360px] sm:h-[295px] h-[135px] overflow-hidden"
                     >
                       <Image
                         src={beforeAfterImages.afterImage.imageUrl ?? ""}
@@ -290,9 +339,9 @@ export default function CaseStudyDetailLayout({
                       </div>
                       <div
                         ref={handleRef}
-                        className="absolute top-0 h-full w-3.5 bg-primary/20 backdrop-blur-sm rounded-[1.25rem] -translate-x-1/2 cursor-ew-resize z-10"
+                        className="absolute top-0 h-full sm:w-3.5 w-2 bg-primary/20 backdrop-blur-sm rounded-[1.25rem] -translate-x-1/2 cursor-ew-resize z-10"
                       >
-                        <div className="flex justify-center items-center text-sm text-white bg-primary w-9.5 h-9.5 absolute rounded-full left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2">
+                        <div className="flex justify-center items-center sm:text-sm text-[12px] text-white bg-primary sm:w-9.5 w-7 sm:h-9.5 h-7 absolute rounded-full left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2">
                           <FaChevronLeft />
                           <FaChevronRight />
                         </div>
@@ -303,14 +352,16 @@ export default function CaseStudyDetailLayout({
               {(keyMatrics?.heading ||
                 keyMatrics?.details ||
                 (keyMatrics?.keys && keyMatrics?.keys.length > 0)) && (
-                <div className="bg-white p-7.5 rounded-[0.3125rem] flex flex-col gap-7.5">
+                <div className="bg-white sm:p-7.5 p-5 rounded-[0.3125rem] flex flex-col sm:gap-7.5 gap-3">
                   {keyMatrics?.heading && (
-                    <h6 className="text-md font-medium">
+                    <h6 className="text-md font-medium scroll-mt-10">
                       {keyMatrics?.heading}
                     </h6>
                   )}
                   {keyMatrics?.details && (
-                    <p className="text-body">{keyMatrics?.details}</p>
+                    <p className="sm:text-body text-sm">
+                      {keyMatrics?.details}
+                    </p>
                   )}
                   <div className="flex flex-wrap mt-7.5 gap-3.5">
                     {keyMatrics?.keys &&
@@ -331,6 +382,74 @@ export default function CaseStudyDetailLayout({
                   </div>
                 </div>
               )}
+              {clientReviews &&
+                (clientReviews.review || clientReviews.video) && (
+                  <div>
+                    <ul>
+                      <li>
+                        <h4 className="text-md font-medium sm:my-10 my-5 scroll-mt-10">
+                          Client review
+                        </h4>
+                      </li>
+                    </ul>
+                    <blockquote className="text-body mb-10">
+                      {clientReviews.review}
+                    </blockquote>
+                    {clientReviews.video && (
+                      <div className="relative isolate group">
+                        {!isPlaying && (
+                          <button
+                            onClick={handlePlayClick}
+                            className="cursor-pointer text-white z-10 sm:text-xl text-md sm:w-27.5 w-20 sm:h-27.5 h-20 absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 bg-primary/10 backdrop-blur-md rounded-full flex justify-center items-center"
+                          >
+                            <FaPlay />
+                          </button>
+                        )}
+
+                        <video
+                          ref={videoRef}
+                          className="rounded-[0.625rem] w-full -z-10"
+                          loop
+                          src={clientReviews.video}
+                          controls={false}
+                        />
+                        <div className="flex items-center gap-4 mt-4">
+                          {isPlaying && (
+                            <button
+                              onClick={handlePauseClick}
+                              className="transition-all cursor-pointer opacity-0 group-hover:opacity-100 text-white z-10 text-xl w-27.5 h-27.5 absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 bg-primary/10 backdrop-blur-md rounded-full flex justify-center items-center"
+                            >
+                              <FaPause />
+                            </button>
+                          )}
+                          {isPlaying && (
+                            <input
+                              type="range"
+                              min="0"
+                              max="1"
+                              step="0.01"
+                              defaultValue="1"
+                              className="custom-slider sm:w-40! w-[calc(100%-20px)] absolute sm:bottom-10 bottom-0 sm:right-10 right-2.5"
+                              onChange={(e) => {
+                                const value = Number(e.target.value);
+
+                                if (videoRef.current) {
+                                  videoRef.current.volume = value;
+                                }
+
+                                const percent = value * 100;
+                                e.target.style.setProperty(
+                                  "--progress",
+                                  `${percent}%`,
+                                );
+                              }}
+                            />
+                          )}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
             </div>
           </div>
         </div>
