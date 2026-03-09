@@ -5,12 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import * as z from "zod";
-import {
-  Field,
-  FieldError,
-  FieldGroup,
-  FieldLabel,
-} from "@/components/ui/field";
+import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import {
   InputGroup,
@@ -19,7 +14,6 @@ import {
   InputGroupTextarea,
 } from "@/components/ui/input-group";
 import AnimatedButton from "../ui/button/AnimatedButton";
-import { ArrowRight } from "../ui/icons";
 import { Checkbox } from "../ui/checkbox";
 import Link from "next/link";
 import AnimatedArrowIcon from "../ui/button/AnimatedArrowIcon";
@@ -43,7 +37,7 @@ const formSchema = z.object({
   }),
 });
 
-export function ContactForm() {
+export function ContactForm({ darkForm = false }: { darkForm?: boolean }) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -84,7 +78,7 @@ export function ContactForm() {
         render={({ field, fieldState }) => (
           <Field data-invalid={fieldState.invalid}>
             <FieldLabel
-              className="text-white sm:text-body! text-xsm!"
+              className={`${darkForm ? "text-black" : "text-white"} sm:text-body! text-xsm!`}
               htmlFor="user-name"
             >
               Full Name
@@ -95,20 +89,22 @@ export function ContactForm() {
               aria-invalid={fieldState.invalid}
               placeholder="Your Full Name"
               autoComplete="on"
-              className="border-0! bg-white/10 sm:rounded-[8px] rounded-[6px] ring-0! shadow-none! placeholder:text-[#AAACA6]! sm:text-body! text-xsm! text-white sm:min-h-15.25 min-h-10"
+              className={`border-0! ${darkForm ? "bg-black/10 text-black" : "bg-white/10 text-white"} sm:rounded-[8px] rounded-[6px] ring-0! shadow-none! placeholder:text-[#AAACA6]! sm:text-body! text-xsm!  sm:min-h-15.25 min-h-10`}
             />
             {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
           </Field>
         )}
       />
-      <div className="flex xl:flex-row flex-col xl:gap-7.5 sm:gap-4 gap-2">
+      <div
+        className={`flex  ${darkForm ? "flex-col" : "xl:flex-row flex-col"} xl:gap-7.5 sm:gap-4 gap-2`}
+      >
         <Controller
           name="userPhone"
           control={form.control}
           render={({ field, fieldState }) => (
             <Field data-invalid={fieldState.invalid}>
               <FieldLabel
-                className="text-white sm:text-body! text-xsm!"
+                className={`${darkForm ? "text-black" : "text-white"} sm:text-body! text-xsm!`}
                 htmlFor="user-number"
               >
                 Phone Number
@@ -120,7 +116,7 @@ export function ContactForm() {
                 aria-invalid={fieldState.invalid}
                 placeholder="Your Phone Number"
                 autoComplete="on"
-                className="border-0! bg-white/10 sm:rounded-[8px] rounded-[6px] ring-0! shadow-none! placeholder:text-[#AAACA6]! sm:text-body! text-xsm! text-white sm:min-h-15.25 min-h-10"
+                className={`border-0! ${darkForm ? "bg-black/10 text-black" : "bg-white/10 text-white"} sm:rounded-[8px] rounded-[6px] ring-0! shadow-none! placeholder:text-[#AAACA6]! sm:text-body! text-xsm! sm:min-h-15.25 min-h-10`}
               />
               {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>
@@ -132,7 +128,7 @@ export function ContactForm() {
           render={({ field, fieldState }) => (
             <Field data-invalid={fieldState.invalid}>
               <FieldLabel
-                className="text-white sm:text-body! text-xsm!"
+                className={`${darkForm ? "text-black" : "text-white"} sm:text-body! text-xsm!`}
                 htmlFor="user-email"
               >
                 Email Address
@@ -144,7 +140,7 @@ export function ContactForm() {
                 aria-invalid={fieldState.invalid}
                 placeholder="Your Email Address"
                 autoComplete="on"
-                className="border-0! bg-white/10 sm:rounded-[8px] rounded-[6px] ring-0! shadow-none! placeholder:text-[#AAACA6]! sm:text-body! text-xsm! text-white sm:min-h-15.25 min-h-10"
+                className={`border-0! ${darkForm ? "bg-black/10 text-black" : "bg-white/10 text-white"} sm:rounded-[8px] rounded-[6px] ring-0! shadow-none! placeholder:text-[#AAACA6]! sm:text-body! text-xsm! sm:min-h-15.25 min-h-10`}
               />
               {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>
@@ -157,22 +153,26 @@ export function ContactForm() {
         render={({ field, fieldState }) => (
           <Field data-invalid={fieldState.invalid}>
             <FieldLabel
-              className="text-white sm:text-body! text-xsm!"
+              className={`${darkForm ? "text-black" : "text-white"} sm:text-body! text-xsm!`}
               htmlFor="user-message"
             >
               Message
             </FieldLabel>
-            <InputGroup className="border-0! bg-white/10 sm:rounded-xl ring-0! shadow-none!">
+            <InputGroup
+              className={`border-0! ${darkForm ? "bg-black/10 text-black" : "bg-white/10 text-white"} sm:rounded-xl ring-0! shadow-none!`}
+            >
               <InputGroupTextarea
                 {...field}
                 id="user-message"
                 placeholder="Tell us about your project"
                 rows={6}
-                className="min-h-24 resize-none placeholder:text-[#AAACA6]! sm:text-body! text-xsm! text-white "
+                className={`min-h-24 resize-none placeholder:text-[#AAACA6]! sm:text-body! text-xsm! ${darkForm ? "text-black" : "text-white"} `}
                 aria-invalid={fieldState.invalid}
               />
               <InputGroupAddon align="block-end">
-                <InputGroupText className="tabular-nums text-white/50 sm:text-xsm text-[12px]">
+                <InputGroupText
+                  className={`tabular-nums  ${darkForm ? "text-black/50" : "text-white/50"} sm:text-xsm text-[12px]`}
+                >
                   {field.value.length}/100 characters
                 </InputGroupText>
               </InputGroupAddon>
@@ -189,7 +189,7 @@ export function ContactForm() {
             <>
               <Field data-invalid={fieldState.invalid} orientation="horizontal">
                 <Checkbox
-                  className="bg-white/20 border border-white/20"
+                  className={`border  ${darkForm ? "border-black/20 bg-black/20" : "border-white/20 bg-white/20"} `}
                   checked={field.value}
                   onCheckedChange={field.onChange}
                   id="agreement-check"
@@ -197,7 +197,7 @@ export function ContactForm() {
                 />
                 <FieldLabel
                   htmlFor="agreement-check"
-                  className="xl:text-body! text-[0.75rem]! text-white font-normal! sm:flex! inline!"
+                  className={`xl:text-body! text-[0.75rem]!  ${darkForm ? "text-black" : "text-white"} font-normal! sm:flex! inline!`}
                 >
                   By contacting us, you agree to our{" "}
                   <Link
@@ -213,7 +213,11 @@ export function ContactForm() {
           )}
         />
 
-        <AnimatedButton size={"icon"} trailingContent={<AnimatedArrowIcon />}>
+        <AnimatedButton
+          variant={darkForm ? "secondary" : "default"}
+          size={"icon"}
+          trailingContent={<AnimatedArrowIcon />}
+        >
           Request a Free quote
         </AnimatedButton>
       </div>
