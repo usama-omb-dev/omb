@@ -40,13 +40,13 @@ const Footer = () => {
   const pathName = usePathname().split("/")[1];
   return (
     <footer
-      className="relative xsm:h-[350px] h-[550px] bg-primary"
+      className="relative xl:h-137.5 lg:h-162.5 "
       style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
     >
-      <div className="fixed bottom-0 xsm:h-[350px] h-[550px] w-full  xsm:top-[calc(100vh-350px)] top-[calc(100vh-550px)]">
+      <div className="lg:fixed bottom-0 h-[inherit] w-full  xsm:top-[calc(100vh-350px)] xl:top-[calc(100vh-550px)] top-[calc(100vh-650px)] bg-linear-to-t from-[#212193] to-[#3838F9]">
         <div className="container flex flex-col justify-between h-full pt-14.75">
-          <div className="flex items-start xl:gap-42.5 gap-20">
-            <div className="max-w-106.25 flex flex-col gap-12.5">
+          <div className="flex items-start lg:flex-row flex-col xl:gap-42.5 lg:gap-10 gap-5">
+            <div className="max-w-106.25 flex flex-col lg:gap-12.5 gap-5">
               <div className="flex flex-col gap-7.5">
                 <Image
                   className=" brightness-0 invert-100"
@@ -55,7 +55,7 @@ const Footer = () => {
                   width="111"
                   height="45"
                 />
-                <p className="text-white text-[21px]">
+                <p className="text-white sm:text-[21px] text-sm">
                   {`Creative solutions. Strategic growth. Real results. Let's take your brand to the next level.`}
                 </p>
               </div>
@@ -81,12 +81,12 @@ const Footer = () => {
                 />
               </div>
             </div>
-            <div className="grid grid-cols-3 2xl:gap-[7.8438rem] gap-17.5">
+            <div className="grid sm:grid-cols-3 2xl:gap-[7.8438rem] xl:gap-17.5 lg:gap-10 gap-5">
               <div>
                 <h5 className="text-white text-md font-medium">
                   Our solutions
                 </h5>
-                <ul className="text-white flex flex-col gap-5 mt-8 text-sm">
+                <ul className="text-white flex flex-col gap-5 md:mt-8 mt-4 text-sm">
                   {mainNavLinks.map((item, index) => (
                     <li key={index + 1}>
                       <Link href={item.href}>{item.label}</Link>
@@ -98,7 +98,7 @@ const Footer = () => {
                 <h5 className="text-white text-md font-medium">
                   Contact details
                 </h5>
-                <ul className="text-white flex flex-col gap-5 mt-8 text-sm">
+                <ul className="text-white flex flex-col gap-5 md:mt-8 mt-4 text-sm">
                   {contactNavLinks.map((item, index) => (
                     <li key={index + 1}>
                       <h6 className="font-bold">{item.label}</h6>
@@ -111,7 +111,7 @@ const Footer = () => {
               </div>
               <div>
                 <h5 className="text-white text-md font-medium">Help</h5>
-                <ul className="text-white flex flex-col gap-5 mt-8">
+                <ul className="text-white flex flex-col gap-5 md:mt-8 mt-4">
                   {helpNavLinks.map((item, index) => (
                     <li key={index + 1}>
                       <Link className="opacity-70" href={item.href}>
