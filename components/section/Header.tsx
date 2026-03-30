@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { Menu as MenuIcon, X } from "lucide-react";
+import { ArrowRight } from "@/components/ui/icons";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -23,6 +24,8 @@ import {
 import { usePathname } from "next/navigation";
 import { useServices } from "@/hooks/useServices";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import AnimatedButton from "../ui/button/AnimatedButton";
+import AnimatedArrowIcon from "../ui/button/AnimatedArrowIcon";
 
 interface ServiceNavMenu {
   navLabel: string;
@@ -31,10 +34,10 @@ interface ServiceNavMenu {
 
 const Header = () => {
   const [isWhiteNav, setIsWhiteNav] = useState(true);
-  const [isOpen, setIsOpen] = useState(false);
-  const menuRef = useRef<HTMLDivElement>(null);
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const tl = useRef<GSAPTimeline | null>(null);
+  // const [isOpen, setIsOpen] = useState(false);
+  // const menuRef = useRef<HTMLDivElement>(null);
+  // const wrapperRef = useRef<HTMLDivElement>(null);
+  // const tl = useRef<GSAPTimeline | null>(null);
   const pathName = usePathname();
 
   const { data: services, isLoading } = useServices();
@@ -54,18 +57,18 @@ const Header = () => {
       submenu: servicesNavigationData,
     },
     { title: "Blogs", href: "/blogs" },
-    { title: "Contact", href: "/contact" },
+    { title: "Career", href: "/career" },
   ];
 
-  const featuredItems = [
-    { title: "Stobe", href: "/" },
-    { title: "Jebra", href: "/" },
-    {
-      title: "RayWorks",
-      href: "/",
-    },
-    { title: "Locquet Power", href: "/" },
-  ];
+  // const featuredItems = [
+  //   { title: "Stobe", href: "/" },
+  //   { title: "Jebra", href: "/" },
+  //   {
+  //     title: "RayWorks",
+  //     href: "/",
+  //   },
+  //   { title: "Locquet Power", href: "/" },
+  // ];
 
   useEffect(() => {
     if (
@@ -79,50 +82,50 @@ const Header = () => {
     }
   }, [pathName]);
 
-  useEffect(() => {
-    if (!menuRef.current) return;
-    const fullHeight = menuRef.current.scrollHeight;
-    tl.current = gsap.timeline({ paused: true });
-    tl.current.to(menuRef.current, {
-      height: fullHeight,
-      duration: 0.5,
-      ease: "power3.out",
-      overflow: "hidden",
-    });
-    gsap.set(menuRef.current, {
-      height: 0,
-      overflow: "hidden",
-      paddingTop: 0,
-      paddingBottom: 0,
-    });
-  }, []);
+  // useEffect(() => {
+  //   if (!menuRef.current) return;
+  //   const fullHeight = menuRef.current.scrollHeight;
+  //   tl.current = gsap.timeline({ paused: true });
+  //   tl.current.to(menuRef.current, {
+  //     height: fullHeight,
+  //     duration: 0.5,
+  //     ease: "power3.out",
+  //     overflow: "hidden",
+  //   });
+  //   gsap.set(menuRef.current, {
+  //     height: 0,
+  //     overflow: "hidden",
+  //     paddingTop: 0,
+  //     paddingBottom: 0,
+  //   });
+  // }, []);
 
-  useEffect(() => {
-    if (!tl.current) return;
+  // useEffect(() => {
+  //   if (!tl.current) return;
 
-    if (isOpen) tl.current.play();
-    else tl.current.reverse();
-  }, [isOpen]);
+  //   if (isOpen) tl.current.play();
+  //   else tl.current.reverse();
+  // }, [isOpen]);
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (!wrapperRef.current) return;
+  // useEffect(() => {
+  //   const handleClickOutside = (event: MouseEvent) => {
+  //     if (!wrapperRef.current) return;
 
-      if (!wrapperRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-    };
+  //     if (!wrapperRef.current.contains(event.target as Node)) {
+  //       setIsOpen(false);
+  //     }
+  //   };
 
-    document.addEventListener("mousedown", handleClickOutside);
+  //   document.addEventListener("mousedown", handleClickOutside);
 
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+  //   return () => {
+  //     document.removeEventListener("mousedown", handleClickOutside);
+  //   };
+  // }, []);
 
   return (
     <header className="absolute sm:top-10 top-6 left-0 z-50 w-full">
-      <div className="container">
+      {/* <div className="container">
         <div className="flex justify-between items-center relative">
           <Link href="/">
             <Image
@@ -264,6 +267,53 @@ const Header = () => {
           >
             Get in touch
           </Link>
+        </div>
+      </div> */}
+      <div className="container border border-white/22 rounded-[5px] p-1">
+        <div className="flex justify-between items-center bg-white rounded-[5px] p-2 pl-4">
+          <Link href="/">
+            <Image
+              className={`${isWhiteNav ? "" : ""} sm:max-w-full max-w-4/5`}
+              src="/logo.svg"
+              alt="Logo"
+              width={71.26}
+              height={29}
+            />
+          </Link>
+          <div className="flex items-center">
+            <ul className="flex items-center gap-12">
+              {menuItems.map((item, i) => (
+                <li key={i + 1}>
+                  <Link
+                    className={`text-black hover:text-black/50 transition-all text-base`}
+                    href={item.href}
+                  >
+                    {item.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <AnimatedButton
+            size={"icon"}
+            variant={"secondary"}
+            className="md:!p-[6px] md:!pl-4"
+            href="/contact"
+            trailingContent={
+              <>
+                <span
+                  className={`bg-primary sm:size-10 size-10 overflow-hidden flex items-center rounded-[0.3125rem]`}
+                >
+                  <div className="flex justify-around sm:min-w-20 min-w-20 -translate-x-1/2 transition-all group-hover:translate-x-0">
+                    <ArrowRight color="white" />
+                    <ArrowRight color="white" />
+                  </div>
+                </span>
+              </>
+            }
+          >
+            Contact us
+          </AnimatedButton>
         </div>
       </div>
     </header>
