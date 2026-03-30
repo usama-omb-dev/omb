@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { Menu as MenuIcon, X } from "lucide-react";
-import { ArrowRight } from "@/components/ui/icons";
+import { ArrowRight, HamburgerIcon } from "@/components/ui/icons";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -26,6 +26,16 @@ import { useServices } from "@/hooks/useServices";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import AnimatedButton from "../ui/button/AnimatedButton";
 import AnimatedArrowIcon from "../ui/button/AnimatedArrowIcon";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
 
 interface ServiceNavMenu {
   navLabel: string;
@@ -124,7 +134,7 @@ const Header = () => {
   // }, []);
 
   return (
-    <header className="absolute sm:top-10 top-6 left-0 z-50 w-full">
+    <header className="absolute sm:top-10 top-6 left-0 z-50 w-full px-5">
       {/* <div className="container">
         <div className="flex justify-between items-center relative">
           <Link href="/">
@@ -281,7 +291,7 @@ const Header = () => {
             />
           </Link>
           <div className="flex items-center">
-            <ul className="flex items-center gap-12">
+            <ul className="items-center gap-12 lg:!flex !hidden">
               {menuItems.map((item, i) => (
                 <li key={i + 1}>
                   <Link
@@ -293,20 +303,61 @@ const Header = () => {
                 </li>
               ))}
             </ul>
-          </div>
-          <AnimatedButton
+            <Sheet >
+  <SheetTrigger className="lg:!hidden !flex border border-primary rounded-[0.3125rem] p-2"><HamburgerIcon/></SheetTrigger>
+  <SheetContent side="left">
+    <SheetHeader className="!hidden">
+      <SheetTitle></SheetTitle>
+      <SheetDescription></SheetDescription>
+    </SheetHeader>
+    <ul className="flex flex-col items-start px-6 gap-4 mt-8">
+              {menuItems.map((item, i) => (
+                <li key={i + 1}>
+                  <Link
+                    className={`text-black hover:text-black/50 transition-all text-2xl font-medium`}
+                    href={item.href}
+                  >
+                    {item.title}
+                  </Link>
+                </li>
+              ))}
+                        <AnimatedButton
             size={"icon"}
             variant={"secondary"}
-            className="md:!p-[6px] md:!pl-4"
+            className="md:!p-[6.5px] md:!pl-2.5 bg-primary hover:bg-primary text-base! text-white w-full! justify-between"
             href="/contact"
             trailingContent={
               <>
                 <span
-                  className={`bg-primary sm:size-10 size-10 overflow-hidden flex items-center rounded-[0.3125rem]`}
+                  className={`bg-white size-7 overflow-hidden flex items-center rounded-[0.3125rem]`}
                 >
-                  <div className="flex justify-around sm:min-w-20 min-w-20 -translate-x-1/2 transition-all group-hover:translate-x-0">
-                    <ArrowRight color="white" />
-                    <ArrowRight color="white" />
+                  <div className="flex justify-around [&_svg]:w-3! min-w-14 -translate-x-1/2 transition-all group-hover:translate-x-0">
+                    <ArrowRight color="#3838F9" />
+                    <ArrowRight color="#3838F9" />
+                  </div>
+                </span>
+              </>
+            }
+          >
+            Contact us
+          </AnimatedButton>
+            </ul>
+  </SheetContent>
+</Sheet>
+          </div>
+          <AnimatedButton
+            size={"icon"}
+            variant={"secondary"}
+            className="md:!p-[6.5px] md:!pl-2.5 lg:!flex !hidden bg-primary hover:bg-primary text-base! text-white"
+            href="/contact"
+            trailingContent={
+              <>
+                <span
+                  className={`bg-white size-7 overflow-hidden flex items-center rounded-[0.3125rem]`}
+                >
+                  <div className="flex justify-around [&_svg]:w-3! min-w-14 -translate-x-1/2 transition-all group-hover:translate-x-0">
+                    <ArrowRight color="#3838F9" />
+                    <ArrowRight color="#3838F9" />
                   </div>
                 </span>
               </>

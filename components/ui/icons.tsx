@@ -28,6 +28,18 @@ export const BulletPoint = ({ color }: { color?: string }) => (
   </svg>
 );
 
+export const HamburgerIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="18"
+    height="16"
+    fill="none"
+    viewBox="0 0 18 16"
+  >
+    <path fill="#3838F9" d="M0 0h18v2H0zm6 7h12v2H6zm-6 7h18v2H0z"></path>
+  </svg>
+);
+
 // export const ArrowRight = ({ color }: { color?: string }) => (
 //   <svg
 //     xmlns="http://www.w3.org/2000/svg"

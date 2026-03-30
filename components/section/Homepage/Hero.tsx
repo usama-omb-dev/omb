@@ -113,7 +113,7 @@ const Hero = () => {
               <Pill iconColor="#3838F9" className="text-primary">
                 B2B Marketing Agency
               </Pill>
-              <h1 className="xl:text-4xl sm:text-[3.25rem] text-2xl font-medium text-black leading-none">
+              <h1 className="xl:text-4xl sm:text-[3.25rem] text-2xl font-medium text-black">
                 <TextReveal>
                   We build Brands People keep Coming Back For.
                 </TextReveal>

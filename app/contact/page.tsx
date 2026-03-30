@@ -6,7 +6,7 @@ import { FaLinkedin } from "react-icons/fa6";
 
 const page = () => {
   return (
-    <section className="bg-[#3838F9] min-h-screen relative isolate pt-60.5 pb-10">
+    <section className="bg-[#3838F9] min-h-screen relative isolate pt-60.5 pb-10 overflow-hidden">
       <div
         className="absolute -top-1/6 -left-1/7 w-1/2 blur-xl h-[120%] bg-cover bg-no-repeat -z-10 animate-rays"
         style={{ backgroundImage: "url(/hero-rays.png)" }}
