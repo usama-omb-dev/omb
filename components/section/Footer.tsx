@@ -37,7 +37,7 @@ const Footer = () => {
   return (
     <footer
       style={{ backgroundImage: "url(/footer-bg.png)" }}
-      className="bg-cover bg-center bg-no-repeat sm:py-14 py-4 xl:py-20 relative isolate"
+      className="bg-cover bg-center bg-no-repeat sm:py-14 py-8 xl:py-20 relative isolate"
     >
       <div className="container ">
         <div className="grid lg:gap-8 gap-6 border-b border-white/20 lg:grid-cols-2 xl:gap-0">
@@ -52,7 +52,7 @@ const Footer = () => {
                   <li key={index}>
                     <Link
                       href={item.href}
-                      className="flex lg:size-[54px] sm:size-12 size-10 items-center justify-center rounded-[10px] border border-primary bg-primary sm:text-lg text-md text-white transition-all hover:bg-transparent"
+                      className="flex lg:size-[54px] sm:size-12 size-10 items-center justify-center sm:rounded-[10px] rounded-[6px] border border-primary bg-primary sm:text-lg text-md text-white transition-all hover:bg-transparent"
                       aria-label={item.label}
                     >
                       {item.icon}
@@ -126,7 +126,7 @@ const Footer = () => {
         </div>
 
         <div className="flex flex-col items-start justify-between xl:gap-8 gap-4 pt-2.5 pb-4.25 xl:flex-row md:items-center border-b border-white/20">
-          <div className="flex flex-wrap items-center gap-4">
+          <div className="flex flex-wrap items-center sm:gap-4 gap-2">
             <Image
               src="/logo-icon.svg"
               alt="Omb"
@@ -134,40 +134,40 @@ const Footer = () => {
               height={66.09}
               className="brightness-0 invert"
             />
-            <p className="text-xsm text-white/80 md:text-sm">
+            <p className="sm:text-xsm text-[12px] text-white/80 md:text-sm">
               © Copyright {year}, Omb all rights reserved
             </p>
           </div>
           <div className="flex w-full flex-col gap-3 md:flex-row md:items-center sm:gap-x-6 sm:gap-y-2 md:w-auto md:justify-between xl:min-w-[55%] ">
             <div className="flex flex-col">
-              <span className="text-white/58 text-base">
+              <span className="text-white/58 sm:text-base text-xsm">
               Phone
               </span>
               <a
                 href={`tel:${footerContact.phone.replace(/\s/g, "")}`}
-                className="text-white"
+                className="text-white sm:text-base text-xsm"
               >
                 {footerContact.phone}
               </a>
             </div>
             <div className="flex flex-col">
-              <span className="text-white/58 text-base">
+              <span className="text-white/58 sm:text-base text-xsm">
               Email
               </span>
               <a
                 href={`tel:${footerContact.phone.replace(/\s/g, "")}`}
-                className="text-white"
+                className="text-white sm:text-base text-xsm"
               >
                 {footerContact.email}
               </a>
             </div>
             <div className="flex flex-col">
-              <span className="text-white/58 text-base">
+              <span className="text-white/58 sm:text-base text-xsm">
               Address
               </span>
               <a
                 href={`tel:${footerContact.phone.replace(/\s/g, "")}`}
-                className="text-white"
+                className="text-white sm:text-base text-xsm"
               >
                 {footerContact.address}
               </a>
