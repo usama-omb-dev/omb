@@ -107,7 +107,7 @@ const Hero = () => {
         className="bg-cover bg-no-repeat bg-center"
       >
         <div className="container md:pt-[166px] pt-[100px] pb-[70px]">
-          <div className="flex lg:flex-row flex-col 2xl:gap-42 md:gap-3 gap-5 ">
+          <div className="flex lg:flex-row flex-col 2xl:gap-42 lg:gap-3 gap-5 ">
             <div className=" flex flex-col xl:gap-5 gap-3 items-start">
               <Pill iconColor="#3838F9" className="text-primary">
                 B2B Marketing Agency
@@ -200,14 +200,15 @@ const Hero = () => {
                 </div>
               </div>
             </div>
-            <div className="max-w-[521px] w-full relative isolate">
+            <div className="max-w-[521px] w-full relative isolate ">
               <Image
                 src="/hero-image.png"
                 alt="Hero Image"
                 width={1440}
                 height={1024}
+                className="md:min-h-auto min-h-[450px] w-full object-cover rounded-[10px] overflow-hidden"
               />
-              <div className="bg-white rounded-[5px] p-6 flex flex-col xl:gap-8 gap-4 md:max-w-[368px] absolute md:bottom-[70px] md:left-unset left-5 md:right-unset right-5 bottom-5 xl:-translate-x-1/2 lg:-translate-x-1/3 md:translate-x-[98%]">
+              <div className="bg-white rounded-[5px] sm:p-6 p-4 flex flex-col xl:gap-8 gap-4 md:max-w-[368px] absolute md:bottom-[70px] md:left-unset left-5 md:right-unset right-5 bottom-5 xl:-translate-x-1/2 lg:-translate-x-1/3 md:translate-x-[98%]">
                 <p className="text-xsm text-black">
                   Rubin and his team are all top performers in their field. We
                   have been working together for two years now and are still
