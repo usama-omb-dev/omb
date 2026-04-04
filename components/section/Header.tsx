@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { Menu as MenuIcon, X } from "lucide-react";
 import { ArrowRight, HamburgerIcon } from "@/components/ui/icons";
@@ -35,11 +35,32 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet"
+} from "@/components/ui/sheet";
+import { cn } from "@/lib/utils";
+import { ServiceData } from "@/app/ServicesData";
 
 interface ServiceNavMenu {
   navLabel: string;
   navLink: string;
+  imageUrl: string;
+}
+
+function resolveServiceMenuImage(item: {
+  slug: string;
+  _embedded?: { "wp:featuredmedia"?: Array<{ source_url?: string }> };
+}): string {
+  const fromWp = item._embedded?.["wp:featuredmedia"]?.[0]?.source_url;
+  if (fromWp) return fromWp;
+  const slug = item.slug;
+  const entry = ServiceData.find(
+    (s) => s.url === slug || s.url === slug.replace(/-/g, "_"),
+  );
+  if (entry?.heroData?.heroImage) return entry.heroData.heroImage;
+  return "/service-hero_img.png";
+}
+
+function isHoverCapablePointer(e: React.PointerEvent) {
+  return e.pointerType === "mouse" || e.pointerType === "pen";
 }
 
 const Header = () => {
@@ -52,18 +73,60 @@ const Header = () => {
 
   const { data: services, isLoading } = useServices();
 
-  const servicesNavigationData = isLoading
+  const servicesNavigationData: ServiceNavMenu[] = isLoading
     ? []
-    : services.map((item: any) => {
-        return { navLabel: item.title.rendered, navLink: item.slug };
-      });
+    : services.map((item: any) => ({
+        navLabel: item.title.rendered,
+        navLink: item.slug,
+        imageUrl: resolveServiceMenuImage(item),
+      }));
+
+  const [activeServiceMenuIndex, setActiveServiceMenuIndex] = useState(0);
+  /** Mouse/pen only: true while inside Services <li> (touch pointer enter/leave is ignored). */
+  const [servicesMegaPointerInside, setServicesMegaPointerInside] =
+    useState(false);
+  /** Tap-to-toggle when real hover is unavailable (tablets, etc.). */
+  const [servicesMegaTouchExpanded, setServicesMegaTouchExpanded] =
+    useState(false);
+  const [supportsRealHover, setSupportsRealHover] = useState(true);
+  const servicesMegaRef = useRef<HTMLLIElement>(null);
+
+  useLayoutEffect(() => {
+    const mq = window.matchMedia("(hover: hover) and (pointer: fine)");
+    const sync = () => setSupportsRealHover(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
+  const servicesMegaOpen =
+    servicesMegaPointerInside || servicesMegaTouchExpanded;
+
+  useEffect(() => {
+    setActiveServiceMenuIndex(0);
+  }, [servicesNavigationData.length]);
+
+  useEffect(() => {
+    setServicesMegaTouchExpanded(false);
+  }, [pathName]);
+
+  useEffect(() => {
+    if (!servicesMegaTouchExpanded) return;
+    const onPointerDown = (e: PointerEvent) => {
+      if (!servicesMegaRef.current?.contains(e.target as Node)) {
+        setServicesMegaTouchExpanded(false);
+      }
+    };
+    document.addEventListener("pointerdown", onPointerDown, true);
+    return () => document.removeEventListener("pointerdown", onPointerDown, true);
+  }, [servicesMegaTouchExpanded]);
 
   const menuItems = [
     { title: "Home", href: "/" },
     { title: "About", href: "/about" },
     {
       title: "Services",
-      href: "/services",
+      href: "",
       submenu: servicesNavigationData,
     },
     { title: "Blogs", href: "/blogs" },
@@ -293,57 +356,186 @@ const Header = () => {
           <div className="flex items-center">
             <ul className="items-center gap-12 lg:!flex !hidden">
               {menuItems.map((item, i) => (
-                <li key={i + 1}>
-                  <Link
-                    className={`text-black hover:text-black/50 transition-all text-base`}
-                    href={item.href}
-                  >
-                    {item.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            <Sheet >
-  <SheetTrigger className="lg:!hidden !flex border border-primary rounded-[0.3125rem] p-2"><HamburgerIcon/></SheetTrigger>
-  <SheetContent side="left">
-    <SheetHeader className="!hidden">
-      <SheetTitle></SheetTitle>
-      <SheetDescription></SheetDescription>
-    </SheetHeader>
-    <ul className="flex flex-col items-start px-6 gap-4 mt-8">
-              {menuItems.map((item, i) => (
-                <li key={i + 1}>
-                  <Link
-                    className={`text-black hover:text-black/50 transition-all text-2xl font-medium`}
-                    href={item.href}
-                  >
-                    {item.title}
-                  </Link>
-                </li>
-              ))}
-                        <AnimatedButton
-            size={"icon"}
-            variant={"secondary"}
-            className="md:!p-[6.5px] md:!pl-2.5 bg-primary hover:bg-primary text-base! text-white w-full! justify-between"
-            href="/contact"
-            trailingContent={
-              <>
-                <span
-                  className={`bg-white size-7 overflow-hidden flex items-center rounded-[0.3125rem]`}
+                <li
+                  key={i + 1}
+                  ref={item.submenu !== undefined ? servicesMegaRef : undefined}
+                  className={item.submenu !== undefined ? "relative" : ""}
+                  onPointerEnter={
+                    item.submenu !== undefined
+                      ? (e) => {
+                          if (!supportsRealHover || !isHoverCapablePointer(e))
+                            return;
+                          setServicesMegaPointerInside(true);
+                        }
+                      : undefined
+                  }
+                  onPointerLeave={
+                    item.submenu !== undefined
+                      ? (e) => {
+                          if (!supportsRealHover || !isHoverCapablePointer(e))
+                            return;
+                          setServicesMegaPointerInside(false);
+                        }
+                      : undefined
+                  }
                 >
-                  <div className="flex justify-around [&_svg]:w-3! min-w-14 -translate-x-1/2 transition-all group-hover:translate-x-0">
-                    <ArrowRight color="#3838F9" />
-                    <ArrowRight color="#3838F9" />
-                  </div>
-                </span>
-              </>
-            }
-          >
-            Contact us
-          </AnimatedButton>
+                  {item.submenu !== undefined ? (
+                    <>
+                      <button
+                        type="button"
+                        className="text-black hover:text-black/50 transition-all text-base cursor-pointer inline-block py-1 bg-transparent border-0 p-0 font-inherit text-left"
+                        aria-expanded={servicesMegaOpen}
+                        aria-haspopup="true"
+                        onClick={() => {
+                          if (servicesMegaPointerInside) return;
+                          setServicesMegaTouchExpanded((v) => !v);
+                        }}
+                      >
+                        {item.title}
+                      </button>
+                      <div
+                        className={cn(
+                          "absolute left-1/2 -translate-x-1/2 top-full pt-3 z-60 w-[min(90vw,867px)] transition-opacity duration-200",
+                          servicesMegaOpen
+                            ? "opacity-100 pointer-events-auto"
+                            : "opacity-0 pointer-events-none",
+                        )}
+                        role="presentation"
+                      >
+                        <div className="rounded-[10px] bg-white p-7 shadow-[0_16px_48px_rgba(0,0,0,0.12)] border border-black/5 flex gap-6.75">
+                          <div className=" max-w-[245px] w-full shrink-0 flex flex-col gap-2">
+                            {isLoading ? (
+                              <span className="flex justify-center items-center h-40 text-black/40">
+                                <AiOutlineLoading3Quarters className="animate-spin size-6" />
+                              </span>
+                            ) : (
+                              item.submenu.map((sub, idx) => (
+                                <AnimatedButton
+                                size={"icon"}
+                                variant={"secondary"}
+                                className="md:!p-[6.5px] md:!pl-2.5 lg:!flex !hidden bg-primary hover:bg-primary text-base! text-white w-full justify-between"
+                                key={sub.navLink}
+                                href={`/services/${sub.navLink}`}
+                                onMouseEnter={() =>
+                                  setActiveServiceMenuIndex(idx)
+                                }
+                                trailingContent={
+                                  <>
+                                    <span
+                                      className={`bg-white size-9 overflow-hidden flex items-center rounded-[0.3125rem]`}
+                                    >
+                                      <div className="flex justify-around [&_svg]:w-3! min-w-[72px] -translate-x-1/2 transition-all group-hover:translate-x-0">
+                                        <ArrowRight color="#3838F9" />
+                                        <ArrowRight color="#3838F9" />
+                                      </div>
+                                    </span>
+                                  </>
+                                }
+                              >
+                                {sub.navLabel}
+                              </AnimatedButton>
+                              ))
+                            )}
+                          </div>
+                          <div className="flex-1 min-h-[220px] min-w-0 rounded-[5px] bg-zinc-800 overflow-hidden relative max-w-[539px] w-full">
+                            {!isLoading &&
+                            item.submenu[activeServiceMenuIndex] ? (
+                              <Image
+                                key={
+                                  item.submenu[activeServiceMenuIndex].navLink
+                                }
+                                src={
+                                  item.submenu[activeServiceMenuIndex].imageUrl
+                                }
+                                alt=""
+                                fill
+                                className="object-cover transition-opacity duration-300"
+                              />
+                            ) : null}
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <Link
+                      className={`text-black hover:text-black/50 transition-all text-base`}
+                      href={item.href}
+                    >
+                      {item.title}
+                    </Link>
+                  )}
+                </li>
+              ))}
             </ul>
-  </SheetContent>
-</Sheet>
+            <Sheet>
+              <SheetTrigger className="lg:!hidden !flex border border-primary rounded-[0.3125rem] p-2">
+                <HamburgerIcon />
+              </SheetTrigger>
+              <SheetContent side="left">
+                <SheetHeader className="!hidden">
+                  <SheetTitle></SheetTitle>
+                  <SheetDescription></SheetDescription>
+                </SheetHeader>
+                <ul className="flex flex-col items-start px-6 gap-4 mt-8">
+                  {menuItems.map((item, i) => (
+                    <li key={i + 1} className="w-full">
+                      {item.submenu !== undefined ? (
+                        <div className="flex flex-col gap-2">
+                          <span className="text-black text-2xl font-medium">
+                            {item.title}
+                          </span>
+                          {isLoading ? (
+                            <span className="flex py-2 text-black/40">
+                              <AiOutlineLoading3Quarters className="animate-spin size-5" />
+                            </span>
+                          ) : (
+                            <ul className="flex flex-col gap-2 pl-1 border-l border-black/10">
+                              {item.submenu.map((sub) => (
+                                <li key={sub.navLink}>
+                                  <Link
+                                    className="text-black/80 hover:text-primary transition-colors text-base font-medium block py-0.5"
+                                    href={`/services/${sub.navLink}`}
+                                  >
+                                    {sub.navLabel}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                        </div>
+                      ) : (
+                        <Link
+                          className={`text-black hover:text-black/50 transition-all text-2xl font-medium`}
+                          href={item.href}
+                        >
+                          {item.title}
+                        </Link>
+                      )}
+                    </li>
+                  ))}
+                  <AnimatedButton
+                    size={"icon"}
+                    variant={"secondary"}
+                    className="md:!p-[6.5px] md:!pl-2.5 bg-primary hover:bg-primary text-base! text-white w-full! justify-between"
+                    href="/contact"
+                    trailingContent={
+                      <>
+                        <span
+                          className={`bg-white size-7 overflow-hidden flex items-center rounded-[0.3125rem]`}
+                        >
+                          <div className="flex justify-around [&_svg]:w-3! min-w-14 -translate-x-1/2 transition-all group-hover:translate-x-0">
+                            <ArrowRight color="#3838F9" />
+                            <ArrowRight color="#3838F9" />
+                          </div>
+                        </span>
+                      </>
+                    }
+                  >
+                    Contact us
+                  </AnimatedButton>
+                </ul>
+              </SheetContent>
+            </Sheet>
           </div>
           <AnimatedButton
             size={"icon"}
