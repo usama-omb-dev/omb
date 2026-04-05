@@ -13,10 +13,10 @@ export interface ServicePageSection {
   };
 }
 export interface HeroDataSection {
-  pillTitle: string;
-  mainTitle: ReactNode;
-  heroImage: string;
-  details: string;
+  pillTitle?: string;
+  mainTitle?: ReactNode;
+  heroImage?: string;
+  details?: string;
   leftSmallImage?: string;
   rightSmallImage?: string;
 }

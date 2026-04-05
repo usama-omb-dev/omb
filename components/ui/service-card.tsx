@@ -8,7 +8,7 @@ import Link from "next/link";
 
 interface CardDetails {
   title: string;
-  imgUrl: string;
+  imgUrl?: string;
   href: string;
 }
 
@@ -83,6 +83,7 @@ const ServiceCard = ({ cardDetails }: { cardDetails: CardDetails }) => {
       <h6 className="sm:text-md text-body font-medium sm:max-w-52.5 leading-none">
         {title}
       </h6>
+      {!!imgUrl && (
       <Image
         ref={image}
         alt="Hero Image"
@@ -91,6 +92,7 @@ const ServiceCard = ({ cardDetails }: { cardDetails: CardDetails }) => {
         src={imgUrl}
         className="drop-shadow-xl absolute top-0 right-1/5 -z-40 pointer-events-none lg:inline-block hidden"
       />
+      )}
       <Link
         href={href}
         className="rounded-[0.3125rem] max-w-10 sm:w-10 w-8 sm:h-10 h-8 bg-primary self-end [&>svg]:-rotate-45 flex justify-center items-center"

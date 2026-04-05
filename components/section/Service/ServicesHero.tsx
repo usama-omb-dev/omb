@@ -8,7 +8,7 @@ import Pill from "@/components/ui/pill";
 
 interface HeroData {
   pillTitle?: string;
-  mainTitle?: React.ReactNode;
+  mainTitle?: React.ReactNode | string;
   heroImage?: string;
   details?: string;
   leftSmallImage?: string;

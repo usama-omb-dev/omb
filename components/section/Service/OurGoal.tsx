@@ -19,7 +19,7 @@ interface Milestone {
   rotate?: `${number}deg`;
 }
 
-const OurGoal = () => {
+const OurGoal = ({showMilestones = true}: {showMilestones?: boolean}) => {
   const swiperWrapperRef = useRef<HTMLDivElement>(null);
   const cursorRef = useRef<HTMLDivElement>(null);
 
@@ -192,6 +192,8 @@ const OurGoal = () => {
             </div>
           </div>
         </div>
+        {showMilestones && (
+          <>
         <div className="flex md:flex-row flex-col items-start md:gap-5 gap-3">
           <div className="lg:max-w-50 max-w-40 w-full">
             <Pill iconColor="#3838F9">Our milestones</Pill>
@@ -283,6 +285,8 @@ const OurGoal = () => {
             ))}
           </Swiper>
         </div>
+          </>
+        )}
       </div>
       <Image
         src={"/omb-favicon.png"}
