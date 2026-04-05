@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import AnimatedButton from "@/components/ui/button/AnimatedButton";
 import { ArrowRight } from "@/components/ui/icons";
 import { Swiper, SwiperSlide } from "swiper/react";
+import type { Swiper as SwiperType } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Autoplay, Navigation } from "swiper/modules";
@@ -12,110 +13,122 @@ import Image from "next/image";
 import Counter from "@/components/ui/counter";
 import AnimatedArrowIcon from "@/components/ui/button/AnimatedArrowIcon";
 
+export type InsightStat = {
+  label: string;
+  value: number;
+  suffix: string;
+};
+
+export type InsightSlide = {
+  logo: string;
+  description: string;
+  stats?: InsightStat[];
+};
+
 const Insights = () => {
   const prevRef = useRef<HTMLButtonElement | null>(null);
   const nextRef = useRef<HTMLButtonElement | null>(null);
 
-  const slidesData = [
+  const slidesData: InsightSlide[] = [
     {
-      logo: "/stobe-logo.png",
+      logo: "/salonora.png",
       description:
-        "Custom Shopify store, SEO strategy and Meta ads framework. The result? 300 percent growth in traffic and 20 percent higher conversion. This is how you turn a store into a sales machine.",
-      stats: [
-        { label: "Site Traffic", value: 300, suffix: "%" },
-        { label: "Conversion Rate", value: 20, suffix: "%" },
-      ],
+        "created a scalable booking software for the beauty industry with a professional website included",
+      // stats: [
+      //   { label: "Site Traffic", value: 300, suffix: "%" },
+      //   { label: "Conversion Rate", value: 20, suffix: "%" },
+      // ],
+    },
+    {
+      logo: "/beeldster.png",
+      description:
+        "LinkedIn leadgeneration campaigns with an ROI of more than 400% (!)",
+      // stats: [
+      //   { label: "Site Traffic", value: 300, suffix: "%" },
+      //   { label: "ROI", value: 400, suffix: "%" },
+      // ],
     },
     {
       logo: "/stobe-logo.png",
       description:
-        "Custom Shopify store, SEO strategy and Meta ads framework. The result? 300 percent growth in traffic and 20 percent higher conversion. This is how you turn a store into a sales machine.",
-      stats: [
-        { label: "Site Traffic", value: 300, suffix: "%" },
-        { label: "Conversion Rate", value: 20, suffix: "%" },
-      ],
+        "new on-brand design and B2B targeting landing pages. Result: 68 percent increase in conversion",
+      // stats: [
+      //   { label: "Site Traffic", value: 300, suffix: "%" },
+      //   { label: "Conversion Rate", value: 20, suffix: "%" },
+      // ],
     },
     {
-      logo: "/stobe-logo.png",
+      logo: "/slimkiezen.png",
       description:
-        "Custom Shopify store, SEO strategy and Meta ads framework. The result? 300 percent growth in traffic and 20 percent higher conversion. This is how you turn a store into a sales machine.",
-      stats: [
-        { label: "Site Traffic", value: 300, suffix: "%" },
-        { label: "Conversion Rate", value: 20, suffix: "%" },
-      ],
+        "created a leadgeneration platform for the Belgium consumer market which resulted in a ton of leads in the first month",
+      // stats: [
+      //   { label: "Site Traffic", value: 300, suffix: "%" },
+      //   { label: "Conversion Rate", value: 20, suffix: "%" },
+      // ],
     },
     {
-      logo: "/stobe-logo.png",
+      logo: "/karakterfaculteit.png",
       description:
-        "Custom Shopify store, SEO strategy and Meta ads framework. The result? 300 percent growth in traffic and 20 percent higher conversion. This is how you turn a store into a sales machine.",
-      stats: [
-        { label: "Site Traffic", value: 300, suffix: "%" },
-        { label: "Conversion Rate", value: 20, suffix: "%" },
-      ],
+        "created a content and leadgeneration strategy which resulted in results from the very first beginning",
+      // stats: [
+      //   { label: "Site Traffic", value: 300, suffix: "%" },
+      //   { label: "Conversion Rate", value: 20, suffix: "%" },
+      // ],
     },
-    {
-      logo: "/stobe-logo.png",
-      description:
-        "Custom Shopify store, SEO strategy and Meta ads framework. The result? 300 percent growth in traffic and 20 percent higher conversion. This is how you turn a store into a sales machine.",
-      stats: [
-        { label: "Site Traffic", value: 300, suffix: "%" },
-        { label: "Conversion Rate", value: 20, suffix: "%" },
-      ],
-    },
-    {
-      logo: "/stobe-logo.png",
-      description:
-        "Custom Shopify store, SEO strategy and Meta ads framework. The result? 300 percent growth in traffic and 20 percent higher conversion. This is how you turn a store into a sales machine.",
-      stats: [
-        { label: "Site Traffic", value: 300, suffix: "%" },
-        { label: "Conversion Rate", value: 20, suffix: "%" },
-      ],
-    },
-    {
-      logo: "/stobe-logo.png",
-      description:
-        "Custom Shopify store, SEO strategy and Meta ads framework. The result? 300 percent growth in traffic and 20 percent higher conversion. This is how you turn a store into a sales machine.",
-      stats: [
-        { label: "Site Traffic", value: 300, suffix: "%" },
-        { label: "Conversion Rate", value: 20, suffix: "%" },
-      ],
-    },
-    {
-      logo: "/stobe-logo.png",
-      description:
-        "Custom Shopify store, SEO strategy and Meta ads framework. The result? 300 percent growth in traffic and 20 percent higher conversion. This is how you turn a store into a sales machine.",
-      stats: [
-        { label: "Site Traffic", value: 300, suffix: "%" },
-        { label: "Conversion Rate", value: 20, suffix: "%" },
-      ],
-    },
-    {
-      logo: "/stobe-logo.png",
-      description:
-        "Custom Shopify store, SEO strategy and Meta ads framework. The result? 300 percent growth in traffic and 20 percent higher conversion. This is how you turn a store into a sales machine.",
-      stats: [
-        { label: "Site Traffic", value: 300, suffix: "%" },
-        { label: "Conversion Rate", value: 20, suffix: "%" },
-      ],
-    },
-    {
-      logo: "/stobe-logo.png",
-      description:
-        "Custom Shopify store, SEO strategy and Meta ads framework. The result? 300 percent growth in traffic and 20 percent higher conversion. This is how you turn a store into a sales machine.",
-      stats: [
-        { label: "Site Traffic", value: 300, suffix: "%" },
-        { label: "Conversion Rate", value: 20, suffix: "%" },
-      ],
-    },
-    {
-      logo: "/stobe-logo.png",
-      description:
-        "Custom Shopify store, SEO strategy and Meta ads framework. The result? 300 percent growth in traffic and 20 percent higher conversion. This is how you turn a store into a sales machine.",
-      stats: [
-        { label: "Site Traffic", value: 300, suffix: "%" },
-        { label: "Conversion Rate", value: 20, suffix: "%" },
-      ],
-    },
+    // {
+    //   logo: "/stobe-logo.png",
+    //   description:
+    //     "Custom Shopify store, SEO strategy and Meta ads framework. The result? 300 percent growth in traffic and 20 percent higher conversion. This is how you turn a store into a sales machine.",
+    //   stats: [
+    //     { label: "Site Traffic", value: 300, suffix: "%" },
+    //     { label: "Conversion Rate", value: 20, suffix: "%" },
+    //   ],
+    // },
+    // {
+    //   logo: "/stobe-logo.png",
+    //   description:
+    //     "Custom Shopify store, SEO strategy and Meta ads framework. The result? 300 percent growth in traffic and 20 percent higher conversion. This is how you turn a store into a sales machine.",
+    //   stats: [
+    //     { label: "Site Traffic", value: 300, suffix: "%" },
+    //     { label: "Conversion Rate", value: 20, suffix: "%" },
+    //   ],
+    // },
+    // {
+    //   logo: "/stobe-logo.png",
+    //   description:
+    //     "Custom Shopify store, SEO strategy and Meta ads framework. The result? 300 percent growth in traffic and 20 percent higher conversion. This is how you turn a store into a sales machine.",
+    //   stats: [
+    //     { label: "Site Traffic", value: 300, suffix: "%" },
+    //     { label: "Conversion Rate", value: 20, suffix: "%" },
+    //   ],
+    // },
+    // {
+    //   logo: "/stobe-logo.png",
+    //   description:
+    //     "Custom Shopify store, SEO strategy and Meta ads framework. The result? 300 percent growth in traffic and 20 percent higher conversion. This is how you turn a store into a sales machine.",
+    //   stats: [
+    //     { label: "Site Traffic", value: 300, suffix: "%" },
+    //     { label: "Conversion Rate", value: 20, suffix: "%" },
+    //   ],
+    // },
+    // {
+    //   logo: "/stobe-logo.png",
+    //   description:
+    //     "Custom Shopify store, SEO strategy and Meta ads framework. The result? 300 percent growth in traffic and 20 percent higher conversion. This is how you turn a store into a sales machine.",
+    //   stats: [
+    //     { label: "Site Traffic", value: 300, suffix: "%" },
+    //     { label: "Conversion Rate", value: 20, suffix: "%" },
+    //   ],
+    // },
+    // {
+    //   logo: "/stobe-logo.png",
+    //   description:
+    //     "Custom Shopify store, SEO strategy and Meta ads framework. The result? 300 percent growth in traffic and 20 percent higher conversion. This is how you turn a store into a sales machine.",
+    //   // stats: [
+    //   //   { label: "Site Traffic", value: 300, suffix: "%" },
+    //   //   { label: "Conversion Rate", value: 20, suffix: "%" },
+    //   // ],
+    // },
   ];
 
   return (
@@ -166,11 +179,11 @@ const Insights = () => {
               disableOnInteraction: false,
             }}
             modules={[Navigation, Autoplay]}
-            onBeforeInit={(swiper) => {
-              // @ts-ignore
-              swiper.params.navigation.prevEl = prevRef.current;
-              // @ts-ignore
-              swiper.params.navigation.nextEl = nextRef.current;
+            onBeforeInit={(swiper: SwiperType) => {
+              const nav = swiper.params.navigation;
+              if (!nav || typeof nav === "boolean") return;
+              nav.prevEl = prevRef.current;
+              nav.nextEl = nextRef.current;
             }}
             // onSlideChange={(swiper) => {
             //   prevRef.current!.disabled = swiper.isBeginning;
@@ -193,8 +206,9 @@ const Insights = () => {
             }}
           >
             {slidesData.map((slide, index) => (
-              <SwiperSlide key={index}>
-                <div className="bg-white lg:p-7.5 p-4 lg:pb-5 rounded-[0.3125rem] xl:min-h-115.75 lg:gap-8 gap-4 flex flex-col justify-between items-start">
+              <SwiperSlide className="h-auto!" key={index}>
+                <div className="bg-white lg:p-7.5 p-4 lg:pb-5 rounded-[0.3125rem] h-full lg:gap-8 gap-4 flex flex-col justify-between items-start">
+                {/* <div className="bg-white lg:p-7.5 p-4 lg:pb-5 rounded-[0.3125rem] xl:min-h-115.75 lg:gap-8 gap-4 flex flex-col justify-between items-start"> */}
                   <Image
                     alt="Stobe Logo"
                     width={138}
@@ -203,18 +217,21 @@ const Insights = () => {
                   />
 
                   <p className="lg:text-body text-sm">{slide.description}</p>
-
-                  <div className="w-full flex lg:flex-row flex-col justify-between lg:items-center items-stretch gap-3.5">
-                    {slide.stats.map((stat, statIndex) => (
-                      <div
-                        key={statIndex}
-                        className="flex-1 p-2.5 bg-secondary rounded-[0.3125rem] flex flex-col items-start lg:gap-5 gap-2"
-                      >
-                        <h6 className="text-xsm leading-none">{stat.label}</h6>
-                        <Counter suffix={stat.suffix}>{stat.value}</Counter>
-                      </div>
-                    ))}
-                  </div>
+                  {slide.stats != null && slide.stats.length > 0 ? (
+                    <div className="w-full flex lg:flex-row flex-col justify-between lg:items-center items-stretch gap-3.5">
+                      {slide.stats.map((stat, statIndex) => (
+                        <div
+                          key={statIndex}
+                          className="flex-1 p-2.5 bg-secondary rounded-[0.3125rem] flex flex-col items-start lg:gap-5 gap-2"
+                        >
+                          <h6 className="text-xsm leading-none">
+                            {stat.label}
+                          </h6>
+                          <Counter suffix={stat.suffix}>{stat.value}</Counter>
+                        </div>
+                      ))}
+                    </div>
+                  ) : null}
                 </div>
               </SwiperSlide>
             ))}

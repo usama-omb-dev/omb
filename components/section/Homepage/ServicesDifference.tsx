@@ -3,8 +3,26 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import TextReveal from "@/components/ui/TextReveal";
 import Image from "next/image";
 
+export type ServicesDifferenceEffectItem = {
+  icon: string;
+  text: string;
+  gif: string;
+  span?: string;
+};
+
+export type ServicesDifferenceTraditionalItem = {
+  icon: string;
+  text: string;
+  span?: string;
+  /** Hover GIF; omitted for “Traditional” cards when not used */
+  gif?: string;
+};
+
+const TAB_EFFECT = "effect" as const;
+const TAB_TRADITIONAL = "traditional" as const;
+
 const ServicesDifference = () => {
-  const data = [
+  const data: ServicesDifferenceEffectItem[] = [
     {
       icon: "/white-globe-icon.svg",
       text: "Online in 4 to 8 weeks Working together should feel like a celebration",
@@ -40,6 +58,42 @@ const ServicesDifference = () => {
     },
   ];
 
+  const oldData: ServicesDifferenceTraditionalItem[] = [
+    {
+      icon: "/white-globe-icon.svg",
+      text: "Online in 6 months. Endless meetings, no progress.",
+      span: "lg:row-span-2",
+      // gif: "/gif-1.gif",
+    },
+    {
+      icon: "/breifing-icon.svg",
+      text: "We execute your briefing. No questions asked.",
+      // gif: "/gif-2.gif",
+    },
+    {
+      icon: "/stock-icon.svg",
+      text: "A website with a lot of text. Nobody reads it.",
+      span: "lg:row-span-2",
+      // gif: "/gif-3.gif",
+    },
+    {
+      icon: "/bolt-icon.svg",
+      text: "A brand that looks nice. Safe, forgettable, grey.",
+      // gif: "/gif-4.gif",
+    },
+    {
+      icon: "/github-icon.svg",
+      text: "We post 3x a week. Engagement? Not our problem.",
+      span: "lg:row-span-2",
+      // gif: "/gif-5.gif",
+    },
+    {
+      icon: "/slack-icon.svg",
+      text: "A nice report. With KPIs nobody cares about.",
+      // gif: "/gif-6.gif",
+    },
+  ];
+
   return (
     <section>
       <div className="container">
@@ -59,31 +113,95 @@ const ServicesDifference = () => {
           </div>
           <Tabs
             className="w-full justify-center items-center gap-7.5"
-            defaultValue="effect"
+            defaultValue={TAB_EFFECT}
           >
             <TabsList className="bg-secondary lg:py-2.5 lg:px-3.75 p-2.5 h-auto! lg:rounded-full rounded-[3.5rem] flex [anchor-name:--tabs] isolate">
               <TabsTrigger
                 className="text-[#0E0F0C] sm:text-body! text-xsm font-medium! data-[state=active]:text-white! cursor-pointer rounded-full data-[state=active]:bg-primary relative lg:py-4.5 py-3 lg:px-7 px-2.5 [anchor-name:--tab] data-[state=active]:[anchor-name:--active-tab]"
-                value="traditional"
+                value={TAB_TRADITIONAL}
               >
                 Traditional
               </TabsTrigger>
               <TabsTrigger
                 className="text-[#0E0F0C] sm:text-body! text-xsm font-medium! data-[state=active]:text-white! cursor-pointer rounded-full data-[state=active]:bg-primary relative lg:py-4.5 py-3 lg:px-7 px-2.5 [anchor-name:--tab] data-[state=active]:[anchor-name:--active-tab]"
-                value="effect"
+                value={TAB_EFFECT}
               >
                 OMB Effect
               </TabsTrigger>
             </TabsList>
             <TabsContent
               className="bg-secondary w-full rounded-[2.5rem] lg:p-6 p-4"
-              value="traditional"
+              value={TAB_TRADITIONAL}
             >
-              Traditional
+              <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-3.5">
+                {oldData.map((item, index) => {
+                  if (index === 4) {
+                    return (
+                      <div
+                        key="bottom-row"
+                        className="lg:col-span-3 sm:col-span-2 grid sm:grid-cols-2 gap-3.5"
+                      >
+                        {oldData.slice(4).map((bottomItem, innerIndex) => (
+                          <div
+                            key={`${bottomItem.icon}-${innerIndex}`}
+                            className="relative overflow-hidden group isolate sm:rounded-2xl rounded-4xl bg-white xl:p-10 p-5 flex flex-col justify-between xl:min-h-65 lg:min-h-48 min-h-44"
+                          >
+                            {bottomItem.gif != null ? (
+                              <img
+                                className="absolute transition-opacity w-full h-full top-0 left-0 object-cover z-10 opacity-0 group-hover:opacity-100"
+                                src={bottomItem.gif}
+                                alt=""
+                              />
+                            ) : null}
+                            <div className="sm:min-w-16 max-w-10 sm:w-16 w-10 sm:min-h-16 min-h-10 p-2.5 rounded-full bg-primary flex items-center justify-center">
+                              <Image
+                                alt="Icon"
+                                width={30}
+                                height={30}
+                                src={bottomItem.icon}
+                              />
+                            </div>
+                            <p className="mt-6 sm:text-body text-sm font-medium">
+                              {bottomItem.text}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    );
+                  }
+
+                  if (index > 4) return null;
+                  return (
+                    <div
+                      key={item.icon}
+                      className={`relative overflow-hidden group isolate sm:rounded-2xl rounded-4xl bg-white xl:p-10 p-5 flex flex-col justify-between xl:min-h-59.25 min-h-44 ${item.span ?? ""}`}
+                    >
+                      {item.gif != null ? (
+                        <img
+                          className="absolute transition-opacity w-full h-full top-0 left-0 object-cover z-10 opacity-0 group-hover:opacity-100"
+                          src={item.gif}
+                          alt=""
+                        />
+                      ) : null}
+                      <div className="sm:min-w-16 max-w-10 sm:w-16 w-10 sm:min-h-16 min-h-10 p-2.5 rounded-full bg-primary flex items-center justify-center">
+                        <Image
+                          alt="Icon"
+                          width={30}
+                          height={30}
+                          src={item.icon}
+                        />
+                      </div>
+                      <p className="mt-6 sm:text-body text-sm font-medium">
+                        {item.text}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
             </TabsContent>
             <TabsContent
               className="bg-secondary w-full rounded-[2.5rem] lg:p-6 p-4"
-              value="effect"
+              value={TAB_EFFECT}
             >
               <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-3.5">
                 {data.map((item, index) => {
@@ -95,7 +213,7 @@ const ServicesDifference = () => {
                       >
                         {data.slice(4).map((bottomItem, innerIndex) => (
                           <div
-                            key={index + innerIndex + 1}
+                            key={`${bottomItem.icon}-${innerIndex}`}
                             className="relative overflow-hidden group isolate sm:rounded-2xl rounded-4xl bg-white xl:p-10 p-5 flex flex-col justify-between xl:min-h-65 lg:min-h-48 min-h-44"
                           >
                             <img
@@ -123,7 +241,7 @@ const ServicesDifference = () => {
                   if (index > 4) return null;
                   return (
                     <div
-                      key={index + 1}
+                      key={item.icon}
                       className={`relative overflow-hidden group isolate sm:rounded-2xl rounded-4xl bg-white xl:p-10 p-5 flex flex-col justify-between xl:min-h-59.25 min-h-44 ${item.span ?? ""}`}
                     >
                       <img

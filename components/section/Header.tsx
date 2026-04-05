@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
-import { Menu as MenuIcon, X } from "lucide-react";
+import { ChevronDown, ChevronUp, Menu as MenuIcon, X } from "lucide-react";
 import { ArrowRight, HamburgerIcon } from "@/components/ui/icons";
 import Link from "next/link";
 import Image from "next/image";
@@ -383,7 +383,7 @@ const Header = () => {
                     <>
                       <button
                         type="button"
-                        className="text-black hover:text-black/50 transition-all text-base cursor-pointer inline-block py-1 bg-transparent border-0 p-0 font-inherit text-left"
+                        className="text-black hover:text-black/50 transition-all text-base cursor-pointer flex justify-center items-center gap-1 py-1 bg-transparent border-0 p-0 font-inherit text-left"
                         aria-expanded={servicesMegaOpen}
                         aria-haspopup="true"
                         onClick={() => {
@@ -392,6 +392,10 @@ const Header = () => {
                         }}
                       >
                         {item.title}
+                        {/* {servicesMegaOpen ? <ChevronUp /> : <ChevronDown />} */}
+                        <span className={`${servicesMegaOpen ? "rotate-180" : ""} transition-all duration-300  bg-secondary rounded-full text-primray  size-4.5 flex justify-center items-center`}>
+                        <ChevronDown color="#3838F9" />
+                        </span>
                       </button>
                       <div
                         className={cn(
