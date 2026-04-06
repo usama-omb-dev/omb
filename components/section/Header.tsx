@@ -545,7 +545,7 @@ const Header = () => {
                         <div className="flex flex-col gap-2">
                           <span
                             className={cn(
-                              "text-2xl font-medium",
+                              "text-xl leading-none font-medium",
                               servicesActive
                                 ? "text-primary"
                                 : "text-black",
@@ -586,7 +586,7 @@ const Header = () => {
                       ) : (
                         <Link
                           className={cn(
-                            "transition-all text-2xl font-medium",
+                            "transition-all text-xl leading-none font-medium",
                             topLinkActive
                               ? "text-primary"
                               : "text-black hover:text-black/50",
