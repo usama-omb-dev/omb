@@ -52,8 +52,8 @@ const ServicesHero = ({ data }: { data: HeroData }) => {
 
   return (
     <section
-      ref={mainSection}
-      className="min-h-screen overflow-hidden sm:py-50 pt-30 pb-7 relative"
+      // ref={mainSection}
+      className="sm:min-h-screen overflow-hidden sm:pt-50 pt-30 pb-7 relative"
     >
       <div className="max-w-260 mx-auto lg:px-0 px-4 flex flex-col justify-center items-center xl:gap-[444px] sm:gap-15 gap-6">
         <div className="flex flex-col justify-center items-center sm:gap-5 gap-2">
@@ -64,7 +64,7 @@ const ServicesHero = ({ data }: { data: HeroData }) => {
         </div>
         {!!heroImage && (
           <Image
-            ref={heroImgRef}
+            // ref={heroImgRef}
             unoptimized
             src={heroImage}
             alt=""
@@ -73,7 +73,7 @@ const ServicesHero = ({ data }: { data: HeroData }) => {
             className="rounded-[0.625rem] object-cover origin-center xl:absolute top-[475px]"
           />
         )}
-        <div className="relative sm:flex-row flex-col w-full isolate -z-50 flex justify-center items-center">
+        <div className={`${!!details && !!leftSmallImage && !!rightSmallImage ? "relative sm:flex-row flex-col w-full isolate -z-50 flex justify-center items-center" : ""}`}>
           <p className="text-center sm:text-body text-xsm max-w-161.5">
             {details}
           </p>
@@ -83,7 +83,7 @@ const ServicesHero = ({ data }: { data: HeroData }) => {
               alt=""
               width={155}
               height={155}
-              className="rounded-[0.625rem] object-cover origin-center sm:absolute lg:bottom-10 -bottom-44 w-38.75 h-38.75 2xl:left-0 left-4 2xl:-translate-x-1/2 sm:-rotate-12 sm:mt-0 mt-4"
+              className="rounded-[0.625rem] object-cover origin-center sm:absolute lg:bottom-10  lg:block sm:hidden inline-block -bottom-44 w-38.75 h-38.75 2xl:left-0 left-4 2xl:-translate-x-1/2 sm:-rotate-12 sm:mt-0 mt-4"
             />
           )}
           {!!rightSmallImage && (
@@ -92,7 +92,7 @@ const ServicesHero = ({ data }: { data: HeroData }) => {
               alt=""
               width={155}
               height={155}
-              className="rounded-[0.625rem] object-cover origin-center sm:absolute lg:bottom-10 -bottom-44 w-38.75 h-38.75 2xl:right-0 right-4 2xl:translate-x-1/2 sm:rotate-12 sm:mt-0 mt-4"
+              className="rounded-[0.625rem] object-cover origin-center sm:absolute lg:bottom-10 lg:block sm:hidden inline-block -bottom-44 w-38.75 h-38.75 2xl:right-0 right-4 2xl:translate-x-1/2 sm:rotate-12 sm:mt-0 mt-4"
             />
           )}
         </div>

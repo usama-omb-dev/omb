@@ -6,6 +6,7 @@ import {
   WhatWeDoSection,
 } from "@/app/ServicesDataInterfaces";
 import Contact from "@/components/section/Contact";
+import { mainPageContactSectionContent } from "@/content/main-page-contact-section";
 import Difference from "@/components/section/Service/Difference";
 import OurWork from "@/components/section/Service/OurWork";
 import ServicesHero from "@/components/section/Service/ServicesHero";
@@ -222,7 +223,7 @@ export default async function Page({
           pageName={data.title?.rendered}
         />
       )}
-      <Contact />
+      <Contact {...mainPageContactSectionContent} />
     </>
   );
 }

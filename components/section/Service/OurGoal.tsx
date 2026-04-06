@@ -289,7 +289,7 @@ const OurGoal = ({showMilestones = true}: {showMilestones?: boolean}) => {
         )}
       </div>
       <Image
-        src={"/omb-favicon.png"}
+        src={"/omb-favicon.svg"}
         alt="omb-favicon"
         width={360}
         height={509}

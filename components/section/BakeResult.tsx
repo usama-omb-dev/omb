@@ -68,7 +68,7 @@ const BakeResult = () => {
               Let’s talk!
             </AnimatedButton>
           </div>
-          <Image src={"/footer-top.png"} alt="OMB Family" width={1040} height={590} />
+          <Image unoptimized src={"/footer-top.png"} alt="OMB Family" width={1040} height={590} />
         </div>
       </div>
     </section>

@@ -105,7 +105,7 @@ const Hero = () => {
     <section className="p-3">
       <div
         style={{ backgroundImage: "url(/gradient-bg-hero.png)" }}
-        className="bg-cover bg-no-repeat bg-center flex flex-col gap-16.75"
+        className="bg-cover bg-no-repeat bg-center flex flex-col md:gap-16.75 gap-10"
       >
         <div className="container md:pt-[166px] pt-[100px]">
           <div className="flex lg:flex-row flex-col 2xl:gap-42 lg:gap-3 gap-5 ">
@@ -209,7 +209,7 @@ const Hero = () => {
                 height={1024}
                 className="md:min-h-auto min-h-[450px] w-full object-cover rounded-[10px] overflow-hidden"
               />
-              <div className="bg-white rounded-[5px] sm:p-6 p-4 flex flex-col xl:gap-8 gap-4 md:max-w-[368px] absolute md:bottom-[70px] md:left-unset left-5 md:right-unset right-5 bottom-5 xl:-translate-x-1/2 lg:-translate-x-1/3 md:translate-x-[98%]">
+              <div className="bg-white rounded-[5px] sm:p-6 p-4 flex flex-col xl:gap-8 gap-4 md:max-w-[368px] absolute md:bottom-[30px] md:left-unset left-5 md:right-unset right-5 bottom-5 xl:-translate-x-1/2 lg:-translate-x-1/3 md:translate-x-[98%]">
                 <p className="text-xsm text-black">
                   Rubin and his team are all top performers in their field. We
                   have been working together for two years now and are still

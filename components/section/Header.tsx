@@ -63,6 +63,30 @@ function isHoverCapablePointer(e: React.PointerEvent) {
   return e.pointerType === "mouse" || e.pointerType === "pen";
 }
 
+function normalizePathname(path: string) {
+  if (!path) return "/";
+  return path.length > 1 && path.endsWith("/") ? path.slice(0, -1) : path;
+}
+
+/** Top-level route: exact match, or nested under that segment (not home). */
+function isHrefActive(pathName: string, href: string): boolean {
+  const p = normalizePathname(pathName);
+  const h = normalizePathname(href);
+  if (h === "/") return p === "/";
+  return p === h || p.startsWith(`${h}/`);
+}
+
+function isServicesNavActive(pathName: string): boolean {
+  const p = normalizePathname(pathName);
+  return p === "/services" || p.startsWith("/services/");
+}
+
+function isServiceSubLinkActive(pathName: string, serviceSlug: string): boolean {
+  const p = normalizePathname(pathName);
+  const target = normalizePathname(`/services/${serviceSlug}`);
+  return p === target || p.startsWith(`${target}/`);
+}
+
 const Header = () => {
   const [isWhiteNav, setIsWhiteNav] = useState(true);
   // const [isOpen, setIsOpen] = useState(false);
@@ -82,10 +106,8 @@ const Header = () => {
       }));
 
   const [activeServiceMenuIndex, setActiveServiceMenuIndex] = useState(0);
-  /** Mouse/pen only: true while inside Services <li> (touch pointer enter/leave is ignored). */
   const [servicesMegaPointerInside, setServicesMegaPointerInside] =
     useState(false);
-  /** Tap-to-toggle when real hover is unavailable (tablets, etc.). */
   const [servicesMegaTouchExpanded, setServicesMegaTouchExpanded] =
     useState(false);
   const [supportsRealHover, setSupportsRealHover] = useState(true);
@@ -130,7 +152,7 @@ const Header = () => {
       submenu: servicesNavigationData,
     },
     { title: "Blogs", href: "/blogs" },
-    { title: "Career", href: "/career" },
+    { title: "Career", href: "/careers" },
   ];
 
   // const featuredItems = [
@@ -347,7 +369,7 @@ const Header = () => {
           <Link href="/">
             <Image
               className={`${isWhiteNav ? "" : ""} sm:max-w-full max-w-4/5`}
-              src="/logo.svg"
+              src="/omb-new-logo.svg"
               alt="Logo"
               width={71.26}
               height={29}
@@ -355,7 +377,16 @@ const Header = () => {
           </Link>
           <div className="flex items-center">
             <ul className="items-center gap-12 lg:!flex !hidden">
-              {menuItems.map((item, i) => (
+              {menuItems.map((item, i) => {
+                const servicesActive =
+                  item.submenu !== undefined &&
+                  isServicesNavActive(pathName);
+                const topLinkActive =
+                  item.submenu === undefined &&
+                  item.href !== "" &&
+                  isHrefActive(pathName, item.href);
+
+                return (
                 <li
                   key={i + 1}
                   ref={item.submenu !== undefined ? servicesMegaRef : undefined}
@@ -383,7 +414,12 @@ const Header = () => {
                     <>
                       <button
                         type="button"
-                        className="text-black hover:text-black/50 transition-all text-base cursor-pointer flex justify-center items-center gap-1 py-1 bg-transparent border-0 p-0 font-inherit text-left"
+                        className={cn(
+                          "transition-all text-base cursor-pointer flex justify-center items-center gap-1 py-1 bg-transparent border-0 p-0 font-inherit text-left",
+                          servicesActive
+                            ? "text-primary"
+                            : "text-black hover:text-black/50",
+                        )}
                         aria-expanded={servicesMegaOpen}
                         aria-haspopup="true"
                         onClick={() => {
@@ -413,11 +449,17 @@ const Header = () => {
                                 <AiOutlineLoading3Quarters className="animate-spin size-6" />
                               </span>
                             ) : (
-                              item.submenu.map((sub, idx) => (
+                              item.submenu.map((sub, idx) => {
+                                const subActive = isServiceSubLinkActive(
+                                  pathName,
+                                  sub.navLink,
+                                );
+                                return (
                                 <AnimatedButton
                                 size={"icon"}
                                 variant={"secondary"}
-                                className="md:!p-[6.5px] md:!pl-2.5 lg:!flex !hidden bg-primary hover:bg-primary text-base! text-white w-full justify-between"
+                                className={cn(
+                                  "md:!p-[6.5px] md:!pl-2.5 lg:!flex !hidden text-base! w-full justify-between bg-primary hover:bg-primary text-white",)}
                                 key={sub.navLink}
                                 href={`/services/${sub.navLink}`}
                                 onMouseEnter={() =>
@@ -438,7 +480,8 @@ const Header = () => {
                               >
                                 {sub.navLabel}
                               </AnimatedButton>
-                              ))
+                                );
+                              })
                             )}
                           </div>
                           <div className="flex-1 min-h-[220px] min-w-0 rounded-[5px] bg-zinc-800 overflow-hidden relative max-w-[539px] w-full">
@@ -462,14 +505,20 @@ const Header = () => {
                     </>
                   ) : (
                     <Link
-                      className={`text-black hover:text-black/50 transition-all text-base`}
+                      className={cn(
+                        "transition-all text-base",
+                        topLinkActive
+                          ? "text-primary"
+                          : "text-black hover:text-black/50",
+                      )}
                       href={item.href}
                     >
                       {item.title}
                     </Link>
                   )}
                 </li>
-              ))}
+                );
+              })}
             </ul>
             <Sheet>
               <SheetTrigger className="lg:!hidden !flex border border-primary rounded-[0.3125rem] p-2">
@@ -481,11 +530,27 @@ const Header = () => {
                   <SheetDescription></SheetDescription>
                 </SheetHeader>
                 <ul className="flex flex-col items-start px-6 gap-4 mt-8">
-                  {menuItems.map((item, i) => (
+                  {menuItems.map((item, i) => {
+                    const servicesActive =
+                      item.submenu !== undefined &&
+                      isServicesNavActive(pathName);
+                    const topLinkActive =
+                      item.submenu === undefined &&
+                      item.href !== "" &&
+                      isHrefActive(pathName, item.href);
+
+                    return (
                     <li key={i + 1} className="w-full">
                       {item.submenu !== undefined ? (
                         <div className="flex flex-col gap-2">
-                          <span className="text-black text-2xl font-medium">
+                          <span
+                            className={cn(
+                              "text-2xl font-medium",
+                              servicesActive
+                                ? "text-primary"
+                                : "text-black",
+                            )}
+                          >
                             {item.title}
                           </span>
                           {isLoading ? (
@@ -494,29 +559,46 @@ const Header = () => {
                             </span>
                           ) : (
                             <ul className="flex flex-col gap-2 pl-1 border-l border-black/10">
-                              {item.submenu.map((sub) => (
+                              {item.submenu.map((sub) => {
+                                const subActive = isServiceSubLinkActive(
+                                  pathName,
+                                  sub.navLink,
+                                );
+                                return (
                                 <li key={sub.navLink}>
                                   <Link
-                                    className="text-black/80 hover:text-primary transition-colors text-base font-medium block py-0.5"
+                                    className={cn(
+                                      "transition-colors text-base font-medium block py-0.5",
+                                      subActive
+                                        ? "text-primary"
+                                        : "text-black/80 hover:text-primary",
+                                    )}
                                     href={`/services/${sub.navLink}`}
                                   >
                                     {sub.navLabel}
                                   </Link>
                                 </li>
-                              ))}
+                                );
+                              })}
                             </ul>
                           )}
                         </div>
                       ) : (
                         <Link
-                          className={`text-black hover:text-black/50 transition-all text-2xl font-medium`}
+                          className={cn(
+                            "transition-all text-2xl font-medium",
+                            topLinkActive
+                              ? "text-primary"
+                              : "text-black hover:text-black/50",
+                          )}
                           href={item.href}
                         >
                           {item.title}
                         </Link>
                       )}
                     </li>
-                  ))}
+                    );
+                  })}
                   <AnimatedButton
                     size={"icon"}
                     variant={"secondary"}

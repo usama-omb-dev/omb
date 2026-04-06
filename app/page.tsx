@@ -1,4 +1,5 @@
 import Contact from "@/components/section/Contact";
+import { mainPageContactSectionContent } from "@/content/main-page-contact-section";
 import Hero from "@/components/section/Homepage/Hero";
 import Insights from "@/components/section/Homepage/Insights";
 import OurTeam from "@/components/section/Homepage/Our-Team";
@@ -16,7 +17,7 @@ export default async function Home() {
       <Qualities />
       <OurTeam />
       <Reviews />
-      <Contact />
+      <Contact {...mainPageContactSectionContent} />
       <ServicesDifference />
     </>
   );

@@ -52,20 +52,20 @@ const WhyOmb = () => {
           santium doloremque.
           </p>
         </div>
-        <div className="grid md:grid-cols-3 grid-cols-2 sm:gap-3.5 gap-2 sm:auto-rows-[1fr]">
-          <div className="sm:row-span-2 sm:col-span-1 col-span-2 lg:col-span-1">
+        <div className="grid md:grid-cols-3 sm:grid-cols-2 sm:gap-3.5 gap-2 sm:auto-rows-[1fr]">
+          <div className="sm:row-span-2 sm:col-span-1 lg:col-span-1">
             <Image
               alt="Why OMB"
               width={1440}
               height={613}
               src={"/why-omb.png"}
-              className=""
+              className="w-full h-full object-cover rounded-[10px] overflow-hidden"
             />
           </div>
           {whyOmbList.map((item) => (
             <div
               key={item.title}
-              className="bg-white h-full xl:p-7.5 sm:p-5 p-3 rounded-[0.625rem] flex flex-col gap-4 sm:gap-0 justify-between relative isolate perspective-[1000]"
+              className="bg-white h-full xl:p-7.5 sm:p-5 p-3 rounded-[0.625rem] flex flex-col gap-4 justify-between relative isolate perspective-[1000]"
             >
               <span className="rounded-[0.3125rem] max-w-10 sm:w-10 w-8 sm:h-10 h-8 bg-primary self-start flex justify-center items-center">
                 {item.icon}
@@ -74,7 +74,7 @@ const WhyOmb = () => {
                 <h6 className="sm:text-md text-body font-medium leading-none">
                   {item.title}
                 </h6>
-                <p className="sm:text-body text-sm">{item.description}</p>
+                <p className="xl:text-body text-sm">{item.description}</p>
               </div>
             </div>
           ))}
