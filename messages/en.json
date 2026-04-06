@@ -1,0 +1,341 @@
+{
+  "Metadata": {
+    "title": "OMB — Online Marketing Bakery",
+    "description": "Online Marketing Bakery — creative B2B marketing with character."
+  },
+  "Nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "blogs": "Blogs",
+    "career": "Career"
+  },
+  "Header": {
+    "contactUs": "Contact us",
+    "localeEn": "EN",
+    "localeNl": "NL",
+    "localeLabel": "Language"
+  },
+  "Footer": {
+    "taglineLine1": "Creative solutions. Strategic growth. Real results.",
+    "taglineLine2": "Let's take your brand to the next level.",
+    "solutionsTitle": "Our Solutions",
+    "helpTitle": "Help",
+    "kvkLabel": "KvK number",
+    "btwLabel": "VAT number",
+    "copyright": "© Copyright {year}, Omb all rights reserved",
+    "phone": "Phone",
+    "email": "Email",
+    "address": "Address",
+    "socialFacebook": "Facebook",
+    "socialInstagram": "Instagram",
+    "socialLinkedIn": "LinkedIn",
+    "leadinfoAlt": "Leadinfo Certified Partner",
+    "navHome": "Home",
+    "navAbout": "About us",
+    "navOutsource": "Outsource link building",
+    "navSeoCopy": "SEO copywriter",
+    "navAgency": "Online marketing agency Roermond",
+    "navFaqs": "FAQs",
+    "navHelpCenter": "Help Center",
+    "navSupport": "Support"
+  },
+  "ContactSection": {
+    "eyebrow": "Elevate your brand",
+    "headline": "We deliver the results you want.",
+    "paragraph1": "Not everyone is ready for our approach. We don't just bake dozens of products.",
+    "paragraph2": "– we create marketing with character for brands that dare.",
+    "bullet1": "The guts to take a stand",
+    "bullet2": "Ready to say goodbye to mediocrity",
+    "bullet3": "Understand that doing what everyone else does won’t work",
+    "bullet4": "Want a recipe that works, not just sounds good"
+  },
+  "Careers": {
+    "contactHeadline": "Your Next Opportunity Starts Here",
+    "heroPill": "Personal Brand",
+    "heroTitleLine1": "Join the Bakery",
+    "heroTitleLine2": "That Bakes Brands"
+  },
+  "Hero": {
+    "pill": "B2B Marketing Agency",
+    "title": "We build Brands People keep Coming Back For.",
+    "description": "Together we bake campaigns that make your audience hungry. We help you take a position customers choose and competitors lose sleep over.",
+    "cta": "Leave you hungry for more",
+    "trusted": "Trusted 1000+ Businesses",
+    "testimonial": "Rubin and his team are all top performers in their field. We have been working together for two years now and are still amazed by their daily flexibility, speed and quality.",
+    "testimonialName": "Vincent De Geyndt",
+    "testimonialCompany": "SalesUp",
+    "statProjects": "Success Project",
+    "statYears": "Years Experience",
+    "statProducts": "Product Launched",
+    "statStartup": "Startup Raised"
+  },
+  "Insights": {
+    "headlineAccent": "68 percent increase",
+    "headlineRest": "in conversion rates with the new design.",
+    "body": "If everything was going great, you would not be here right now. Our clients understand that. They hire us for expertise and accept the discussion that comes with it. Because politely continuing what does not work will cost you dearly.",
+    "cta": "View our results",
+    "slideSalonora": "created a scalable booking software for the beauty industry with a professional website included",
+    "slideBeeldster": "LinkedIn leadgeneration campaigns with an ROI of more than 400% (!)",
+    "slideStobe": "new on-brand design and B2B targeting landing pages. Result: 68 percent increase in conversion",
+    "slideSlimkiezen": "created a leadgeneration platform for the Belgium consumer market which resulted in a ton of leads in the first month",
+    "slideKarakter": "created a content and leadgeneration strategy which resulted in results from the very first beginning",
+    "logoAlt": "Client logo"
+  },
+  "HomeServices": {
+    "pill": "We understand your frustration",
+    "title": "Your marketing is not working, and",
+    "titleAccent": "you don’t know why.",
+    "description": "Your competitor is growing while you stay stuck. You know something has to change. But what? And how?",
+    "cta": "Explore all services",
+    "heroImageAlt": "Services hero image"
+  },
+  "Qualities": {
+    "storyTitle": "This is how we turn your story into results",
+    "stepPrefix": "Step",
+    "step1Title": "We find the blockage",
+    "step1Body": "You are stuck somewhere. We find out where. We dive into your market and ask the hard questions. That is where growth lives.",
+    "step2Title": "We make choices",
+    "step2Body": "Marketing for everyone is marketing for no one. We help you choose who you want and who you do not want. That is scary but necessary.",
+    "step3Title": "We make it scalable",
+    "step3Body": "Content, campaigns, social media, websites. Everything revolves around your story. Websites that convert. Campaigns that perform.",
+    "step4Title": "We push harder",
+    "step4Body": "What works, we do more often. What does not work, we cut. We keep testing and adjusting until it hits.",
+    "ctaFire": "Start the fire!",
+    "recipeTitle": "Our recipe for profitable marketing",
+    "ctaCurious": "Curious how we work?",
+    "svcSeoTitle": "SEO & GEO",
+    "svcSeoDesc": "We make you visible where customers search. Google, ChatGPT and all the places that matter.",
+    "svcSeaTitle": "SEA",
+    "svcSeaDesc": "We run and manage campaigns on Google and Meta with a focus on return and measurability.",
+    "svcSocialTitle": "Social Media Advertisement",
+    "svcSocialDesc": "We set up targeted campaigns on Meta and other platforms. Audience, message and budget aligned.",
+    "svcContentTitle": "Content Marketing",
+    "svcContentDesc": "We interview you and translate it into blogs, posts and pages. Your expertise, our words.",
+    "svcWebTitle": "Web Design",
+    "svcWebDesc": "We design and build websites that convert. From strategy to delivery in 4 to 8 weeks.",
+    "svcStrategyTitle": "Strategy",
+    "svcStrategyDesc": "Every project starts with a marketing strategy. Where are you going and how do you get there?"
+  },
+  "OurTeam": {
+    "pill": "Meet the team",
+    "title": "Your own team of world class B2B",
+    "titleAccent": "marketing experts.",
+    "description": "Quality has no postcode. We build teams with the best specialists, no matter where they are. Remote work allows us to use top talent, with Rubin, owner of OMB, as your dedicated project manager.",
+    "cardDesign": "Design",
+    "cardDevelopment": "Development",
+    "cardBranding": "Branding",
+    "cardMarketing": "Marketing",
+    "cardUiUx": "UI/UX",
+    "cardSeo": "SEO",
+    "cardContent": "Content",
+    "cardStrategy": "Strategy",
+    "marquee": "online marketing bakery",
+    "imageJasminAlt": "Jasmin",
+    "imageJohnAlt": "John",
+    "imageRubinAlt": "Rubin",
+    "cta": "Meet the team!"
+  },
+  "Reviews": {
+    "pill": "Results",
+    "title": "Driven by a performance-focused",
+    "titleAccent": "mindset",
+    "cta": "All success stories"
+  },
+  "ServicesDifference": {
+    "pill": "Services",
+    "title": "Traditional vs OMB Effect",
+    "description": "Traditional agencies work the way you are used to. Polite, predictable, safe. And without results. We choose a different approach. One that creates friction but also shine.",
+    "tabTraditional": "Traditional",
+    "tabEffect": "OMB Effect",
+    "effect1": "Online in 4 to 8 weeks Working together should feel like a celebration",
+    "effect2": "We challenge your briefing, debate up front, celebration at the end.",
+    "effect3": "Your story baked in a way that keeps customers hungry.",
+    "effect4": "A brand with an opinion that keeps you up at night.",
+    "effect5": "Too much noise online. Boring is not our thing.",
+    "effect6": "Results that leave you wanting more.",
+    "traditional1": "Online in 6 months. Endless meetings, no progress.",
+    "traditional2": "We execute your briefing. No questions asked.",
+    "traditional3": "A website with a lot of text. Nobody reads it.",
+    "traditional4": "A brand that looks nice. Safe, forgettable, grey.",
+    "traditional5": "We post 3x a week. Engagement? Not our problem.",
+    "traditional6": "A nice report. With KPIs nobody cares about.",
+    "iconAlt": "Icon"
+  },
+  "BakeResult": {
+    "title": "We bake results that",
+    "titleItalic": "taste like more",
+    "cta": "Let’s talk!",
+    "footerImageAlt": "OMB Family"
+  },
+  "BlogHero": {
+    "pill": "Meet the expert",
+    "title": "Hi, I am Rubin Koot.",
+    "intro": "A motivated and detail-oriented professional with a strong focus on growth, quality, and innovation. I am passionate about developing effective solutions and continuously expanding my knowledge across technical and creative disciplines.",
+    "statExperience": "Years of Experience",
+    "statArticles": "Total Articles",
+    "followLabel": "Follow me on",
+    "heroImageAlt": "Rubin Koot"
+  },
+  "BlogsList": {
+    "pill": "List of the most recent write-up from Rubin",
+    "title": "Latest blogs from the",
+    "titleAccent": "online marketing baker!",
+    "loadMore": "Load more"
+  },
+  "LatestBlogs": {
+    "title": "Latest",
+    "titleAccent": "blogs"
+  },
+  "BlogCard": {
+    "authorName": "Rubin Koot"
+  },
+  "ContactPage": {
+    "pill": "Contact us",
+    "intro": "Marketing does not get better by waiting. If you are ready to challenge what is not working and want an honest conversation about growth, you are in the right place.",
+    "heading": "Let’s talk",
+    "subheading": "New business or a concrete question?",
+    "avatarAlt": "Rubin's avatar"
+  },
+  "AboutPage": {
+    "heroPill": "About",
+    "heroTitleBefore": "Revolutionizing",
+    "heroTitleAccent": "B2B",
+    "heroTitleAfter": "Marketing since 2018",
+    "heroDetails": "Marketing does not need more noise. It needs direction. Since 2018, we have been helping B2B brands escape guesswork and turn marketing into something that actually delivers. No vague promises, no safe play. Just clear choices and measurable results."
+  },
+  "OurEmployees": {
+    "title": "Hear From Our Employees",
+    "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatemaccu",
+    "video1Title": "Employee testimonial — first video",
+    "video1Description": "Video of an employee speaking about working at the company.",
+    "video1PlayLabel": "Play first employee video",
+    "video2Title": "Employee testimonial — second video",
+    "video2Description": "Video of an employee speaking about working at the company.",
+    "video2PlayLabel": "Play second employee video"
+  },
+  "WhyOmb": {
+    "title": "Why Join OMB!",
+    "intro": "Sed ut perspiciatis unde omnis iste natus error sit voluptatemaccu santium doloremque.",
+    "imageAlt": "Why OMB",
+    "card1Title": "Why OMB",
+    "card1Body": "Sed ut perspiciatis unde omnis iste natus error sit voluptatemaccusantium doloremque.",
+    "card2Title": "Learning & Development",
+    "card2Body": "Sed ut perspiciatis unde omnis iste natus error sit voluptatemaccusantium doloremque.",
+    "card3Title": "Growth Opportunities",
+    "card3Body": "Sed ut perspiciatis unde omnis iste natus error sit voluptatemaccusantium doloremque.",
+    "card4Title": "Remote / Flexible Work",
+    "card4Body": "Sed ut perspiciatis unde omnis iste natus error sit voluptatemaccusantium doloremque."
+  },
+  "HiringProcess": {
+    "title": "How we Hire",
+    "intro": "Sed ut perspiciatis unde omnis iste natus error sit voluptatemaccu",
+    "stepLabel": "Step {n}",
+    "step1Title": "Apply",
+    "step2Title": "Interview",
+    "step3Title": "Test Task",
+    "step4Title": "Final Offer",
+    "stepBody": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque."
+  },
+  "LifeAtOmb": {
+    "title": "Life at Online Marketing Bakery",
+    "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatemaccusantium doloremque.",
+    "galleryImageAlt": "Life at OMB gallery {n}",
+    "cta": "Browse Opportunities"
+  },
+  "OurGoal": {
+    "pillWho": "Who we are",
+    "missionLead": "A B2B marketing agency",
+    "missionMid": "built for companies that are done playing it safe.",
+    "missionSince": "Since 2018,",
+    "missionRest": "we have been helping brands turn marketing from a cost into a growth engine. Not by following trends or copying competitors, but by",
+    "missionBold": "making clear choices and standing behind them.",
+    "ctaWork": "Work at OMB!",
+    "smallFamAlt": "OMB team",
+    "pillMilestones": "Our milestones",
+    "milestonesTitle": "On a mission to become the world’s #1 B2B",
+    "milestonesAccent": "marketing agency",
+    "milestonesBody": "We did not get here by following the crowd. From day one, OMB was built around one belief: marketing should perform, or it should change. Every milestone marks a decision to raise the bar, challenge the obvious, and keep pushing forward.",
+    "dragLabel": "Sleuren",
+    "gridLinesAlt": "Grid lines",
+    "faviconAlt": "OMB favicon",
+    "milestone2018a": "Rubin started the Onine Marketing Bakery in Roermond.",
+    "milestone2019a": "Grew the OMB team to 4 members.",
+    "milestone2019b": "Moved to our first big office with the team!",
+    "milestone2019c": "Word started getting around"
+  },
+  "MarketingTeam": {
+    "pill": "The OMB Team",
+    "titleBefore": "Our global",
+    "titleItalic": "A-team",
+    "titleMid": "of B2B Marketing",
+    "titleAccent": "Experts",
+    "roles": {
+      "owner": "Owner",
+      "digitalMarketer": "Digital Marketer",
+      "uiUxDesigner": "UI/UX Designer",
+      "copywriter": "Copywriter",
+      "purrtner": "Purrtner"
+    },
+    "ctaTitle": "You think you",
+    "ctaTitleItalic": "fit",
+    "ctaTitleAfter": "in?",
+    "ctaBody": "Check our recent openings, and fill our application to be a part of this awesome team!",
+    "ctaButton": "Careers"
+  },
+  "Form": {
+    "labelFullName": "Full Name",
+    "placeholderFullName": "Your Full Name",
+    "labelPhone": "Phone Number",
+    "placeholderPhone": "Your Phone Number",
+    "labelEmail": "Email Address",
+    "placeholderEmail": "Your Email Address",
+    "labelMessage": "Message",
+    "placeholderMessage": "Tell us about your project",
+    "charCount": "{count}/100 characters",
+    "agreementBefore": "By contacting us, you agree to our",
+    "privacyLink": "privacy policy.",
+    "submit": "Request a Free quote",
+    "submitSuccess": "Message sent",
+    "submitError": "Something went wrong. Please try again.",
+    "submitErrorConfig": "Contact form is not configured.",
+    "submitErrorFormId": "This form is not allowed or misconfigured.",
+    "toastTitle": "You submitted the following values:",
+    "validation": {
+      "nameMin": "Name must be at least 5 characters.",
+      "nameMax": "Name must be at most 32 characters.",
+      "phoneRequired": "Phone number is required",
+      "phoneInvalid": "Enter a valid phone number",
+      "messageMin": "Message must be at least 20 characters.",
+      "messageMax": "Message must be at most 100 characters.",
+      "emailInvalid": "Enter a valid email address",
+      "privacyRequired": "You must accept the privacy policy"
+    }
+  },
+  "ScheduleCallForm": {
+    "title": "Schedule a call",
+    "placeholderName": "Name",
+    "placeholderEmail": "Email",
+    "placeholderPhone": "Phone number",
+    "interestPlaceholder": "I am interested in...",
+    "interestSelected": "{count} selected",
+    "searchPlaceholder": "Search interest...",
+    "searchEmpty": "No interest found.",
+    "submit": "Let’s talk!",
+    "toastTitle": "Form submitted successfully!",
+    "validation": {
+      "nameMin": "Name must be at least 3 characters",
+      "nameMax": "Name must be at most 50 characters",
+      "emailInvalid": "Enter a valid email address",
+      "phoneRequired": "Phone number is required",
+      "phoneInvalid": "Enter a valid phone number",
+      "interestMin": "Please select at least one option"
+    }
+  },
+  "ServicePage": {
+    "viewCaseStudy": "View Case Study"
+  },
+  "BlogPostPage": {
+    "avatarAlt": "Rubin's avatar"
+  }
+}

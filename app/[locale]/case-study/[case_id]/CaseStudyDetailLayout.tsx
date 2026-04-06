@@ -1,7 +1,7 @@
 "use client";
 import AnimatedButton from "@/components/ui/button/AnimatedButton";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { ArrowRight } from "@/components/ui/icons";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";

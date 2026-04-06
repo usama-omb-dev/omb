@@ -15,30 +15,49 @@ import {
 } from "@/components/ui/input-group";
 import AnimatedButton from "../ui/button/AnimatedButton";
 import { Checkbox } from "../ui/checkbox";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import AnimatedArrowIcon from "../ui/button/AnimatedArrowIcon";
+import { useLocale, useTranslations } from "next-intl";
 
-const formSchema = z.object({
-  userName: z
-    .string()
-    .min(5, "Name must be at least 3 characters.")
-    .max(32, "Name must be at most 32 characters."),
-  userPhone: z
-    .string()
-    .min(1, "Phone number is required")
-    .regex(/^[0-9]{7,15}$/, "Enter a valid phone number"),
-  userMessage: z
-    .string()
-    .min(20, "Message must be at least 20 characters.")
-    .max(100, "Message must be at most 100 characters."),
-  userEmail: z.email(),
-  contactAgreement: z.boolean().refine((val) => val === true, {
-    message: "You must accept the privacy policy",
-  }),
-});
+export function ContactForm({
+  darkForm = false,
+  /** Numeric WordPress CF7 post ID; must be listed in `CONTACT_FORM_7_ALLOWED_IDS`. */
+  cf7FormId,
+}: {
+  darkForm?: boolean;
+  cf7FormId?: string;
+}) {
+  const t = useTranslations("Form");
+  const tVal = useTranslations("Form.validation");
+  const locale = useLocale();
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
 
-export function ContactForm({ darkForm = false }: { darkForm?: boolean }) {
-  const form = useForm<z.infer<typeof formSchema>>({
+  const formSchema = React.useMemo(
+    () =>
+      z.object({
+        userName: z
+          .string()
+          .min(5, tVal("nameMin"))
+          .max(32, tVal("nameMax")),
+        userPhone: z
+          .string()
+          .min(1, tVal("phoneRequired"))
+          .regex(/^[0-9]{7,15}$/, tVal("phoneInvalid")),
+        userMessage: z
+          .string()
+          .min(20, tVal("messageMin"))
+          .max(100, tVal("messageMax")),
+        userEmail: z.string().email(tVal("emailInvalid")),
+        contactAgreement: z.boolean().refine((val) => val === true, {
+          message: tVal("privacyRequired"),
+        }),
+      }),
+    [tVal],
+  );
+
+  type FormValues = z.infer<typeof formSchema>;
+
+  const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       userName: "",
@@ -49,22 +68,61 @@ export function ContactForm({ darkForm = false }: { darkForm?: boolean }) {
     },
   });
 
-  function onSubmit(data: z.infer<typeof formSchema>) {
-    toast("You submitted the following values:", {
-      description: (
-        <pre className="bg-code text-code-foreground mt-2 w-[320px] overflow-x-auto rounded-md p-4">
-          <code>{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-      position: "bottom-right",
-      classNames: {
-        content: "flex flex-col gap-2",
-      },
-      style: {
-        "--border-radius": "calc(var(--radius)  + 4px)",
-      } as React.CSSProperties,
-    });
-    form.reset();
+  const contactAgreement = form.watch("contactAgreement");
+
+  async function onSubmit(data: FormValues) {
+    setIsSubmitting(true);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...data,
+          locale: locale === "nl" ? "nl" : "en",
+          ...(cf7FormId && /^\d+$/.test(cf7FormId) ? { formId: cf7FormId } : {}),
+        }),
+      });
+
+      const payload = (await res.json()) as {
+        ok?: boolean;
+        message?: string;
+        error?: string;
+      };
+
+      if (res.status === 503 && payload.error === "contact_not_configured") {
+        toast.error(t("submitErrorConfig"));
+        return;
+      }
+
+      if (res.status === 400 && payload.error === "invalid_form_id") {
+        toast.error(t("submitErrorFormId"));
+        return;
+      }
+
+      if (res.ok && payload.ok) {
+        toast.success(t("submitSuccess"), {
+          description: payload.message || undefined,
+          position: "bottom-right",
+        });
+        form.reset({
+          userName: "",
+          userPhone: "",
+          userMessage: "",
+          userEmail: "",
+          contactAgreement: false,
+        });
+        return;
+      }
+
+      toast.error(t("submitError"), {
+        description: payload.message || undefined,
+        position: "bottom-right",
+      });
+    } catch {
+      toast.error(t("submitError"), { position: "bottom-right" });
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -81,13 +139,13 @@ export function ContactForm({ darkForm = false }: { darkForm?: boolean }) {
               className={`${darkForm ? "text-black" : "text-white"} sm:text-body! text-xsm!`}
               htmlFor="user-name"
             >
-              Full Name
+              {t("labelFullName")}
             </FieldLabel>
             <Input
               {...field}
               id="user-name"
               aria-invalid={fieldState.invalid}
-              placeholder="Your Full Name"
+              placeholder={t("placeholderFullName")}
               autoComplete="on"
               className={`border-0! ${darkForm ? "bg-black/10 text-black" : "bg-white/10 text-white"} sm:rounded-[8px] rounded-[6px] ring-0! shadow-none! placeholder:text-[#AAACA6]! sm:text-body! text-xsm!  sm:min-h-15.25 min-h-10`}
             />
@@ -107,14 +165,14 @@ export function ContactForm({ darkForm = false }: { darkForm?: boolean }) {
                 className={`${darkForm ? "text-black" : "text-white"} sm:text-body! text-xsm!`}
                 htmlFor="user-number"
               >
-                Phone Number
+                {t("labelPhone")}
               </FieldLabel>
               <Input
                 {...field}
                 type="tel"
                 id="user-number"
                 aria-invalid={fieldState.invalid}
-                placeholder="Your Phone Number"
+                placeholder={t("placeholderPhone")}
                 autoComplete="on"
                 className={`border-0! ${darkForm ? "bg-black/10 text-black" : "bg-white/10 text-white"} sm:rounded-[8px] rounded-[6px] ring-0! shadow-none! placeholder:text-[#AAACA6]! sm:text-body! text-xsm! sm:min-h-15.25 min-h-10`}
               />
@@ -131,14 +189,14 @@ export function ContactForm({ darkForm = false }: { darkForm?: boolean }) {
                 className={`${darkForm ? "text-black" : "text-white"} sm:text-body! text-xsm!`}
                 htmlFor="user-email"
               >
-                Email Address
+                {t("labelEmail")}
               </FieldLabel>
               <Input
                 {...field}
                 type="email"
                 id="user-email"
                 aria-invalid={fieldState.invalid}
-                placeholder="Your Email Address"
+                placeholder={t("placeholderEmail")}
                 autoComplete="on"
                 className={`border-0! ${darkForm ? "bg-black/10 text-black" : "bg-white/10 text-white"} sm:rounded-[8px] rounded-[6px] ring-0! shadow-none! placeholder:text-[#AAACA6]! sm:text-body! text-xsm! sm:min-h-15.25 min-h-10`}
               />
@@ -156,7 +214,7 @@ export function ContactForm({ darkForm = false }: { darkForm?: boolean }) {
               className={`${darkForm ? "text-black" : "text-white"} sm:text-body! text-xsm!`}
               htmlFor="user-message"
             >
-              Message
+              {t("labelMessage")}
             </FieldLabel>
             <InputGroup
               className={`border-0! ${darkForm ? "bg-black/10 text-black" : "bg-white/10 text-white"} sm:rounded-xl ring-0! shadow-none!`}
@@ -164,7 +222,7 @@ export function ContactForm({ darkForm = false }: { darkForm?: boolean }) {
               <InputGroupTextarea
                 {...field}
                 id="user-message"
-                placeholder="Tell us about your project"
+                placeholder={t("placeholderMessage")}
                 rows={6}
                 className={`min-h-24 resize-none placeholder:text-[#AAACA6]! sm:text-body! text-xsm! ${darkForm ? "text-black" : "text-white"} `}
                 aria-invalid={fieldState.invalid}
@@ -173,7 +231,7 @@ export function ContactForm({ darkForm = false }: { darkForm?: boolean }) {
                 <InputGroupText
                   className={`tabular-nums  ${darkForm ? "text-black/50" : "text-white/50"} sm:text-xsm text-[12px]`}
                 >
-                  {field.value.length}/100 characters
+                  {t("charCount", { count: field.value.length })}
                 </InputGroupText>
               </InputGroupAddon>
             </InputGroup>
@@ -199,12 +257,12 @@ export function ContactForm({ darkForm = false }: { darkForm?: boolean }) {
                   htmlFor="agreement-check"
                   className={`xl:text-body! text-[0.75rem]!  ${darkForm ? "text-black" : "text-white"} font-normal! sm:flex! inline!`}
                 >
-                  By contacting us, you agree to our{" "}
+                  {t("agreementBefore")}{" "}
                   <Link
                     href="#"
                     className="underline font-medium underline-offset-8"
                   >
-                    privacy policy.
+                    {t("privacyLink")}
                   </Link>
                 </FieldLabel>
               </Field>
@@ -214,11 +272,13 @@ export function ContactForm({ darkForm = false }: { darkForm?: boolean }) {
         />
 
         <AnimatedButton
+          type="submit"
           variant={darkForm ? "secondary" : "default"}
           size={"icon"}
           trailingContent={<AnimatedArrowIcon />}
+          disabled={!contactAgreement || isSubmitting}
         >
-          Request a Free quote
+          {t("submit")}
         </AnimatedButton>
       </div>
     </form>

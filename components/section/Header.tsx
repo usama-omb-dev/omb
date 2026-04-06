@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect, useLayoutEffect, useRef } from "react";
+import { useState, useEffect, useLayoutEffect, useMemo, useRef } from "react";
 import { gsap } from "gsap";
 import { ChevronDown, ChevronUp, Menu as MenuIcon, X } from "lucide-react";
 import { ArrowRight, HamburgerIcon } from "@/components/ui/icons";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import {
   Dialog,
@@ -21,7 +21,9 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { usePathname } from "next/navigation";
+import { usePathname } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
+import { LocaleSwitcher } from "@/components/LocaleSwitcher";
 import { useServices } from "@/hooks/useServices";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import AnimatedButton from "../ui/button/AnimatedButton";
@@ -88,6 +90,8 @@ function isServiceSubLinkActive(pathName: string, serviceSlug: string): boolean 
 }
 
 const Header = () => {
+  const tNav = useTranslations("Nav");
+  const tHeader = useTranslations("Header");
   const [isWhiteNav, setIsWhiteNav] = useState(true);
   // const [isOpen, setIsOpen] = useState(false);
   // const menuRef = useRef<HTMLDivElement>(null);
@@ -143,17 +147,20 @@ const Header = () => {
     return () => document.removeEventListener("pointerdown", onPointerDown, true);
   }, [servicesMegaTouchExpanded]);
 
-  const menuItems = [
-    { title: "Home", href: "/" },
-    { title: "About", href: "/about" },
-    {
-      title: "Services",
-      href: "",
-      submenu: servicesNavigationData,
-    },
-    { title: "Blogs", href: "/blogs" },
-    { title: "Career", href: "/careers" },
-  ];
+  const menuItems = useMemo(
+    () => [
+      { title: tNav("home"), href: "/" },
+      { title: tNav("about"), href: "/about" },
+      {
+        title: tNav("services"),
+        href: "",
+        submenu: servicesNavigationData,
+      },
+      { title: tNav("blogs"), href: "/blogs" },
+      { title: tNav("career"), href: "/careers" },
+    ],
+    [tNav, servicesNavigationData],
+  );
 
   // const featuredItems = [
   //   { title: "Stobe", href: "/" },
@@ -375,7 +382,8 @@ const Header = () => {
               height={29}
             />
           </Link>
-          <div className="flex items-center">
+          <div className="flex items-center gap-4">
+            <LocaleSwitcher className="hidden lg:flex shrink-0" />
             <ul className="items-center gap-12 lg:!flex !hidden">
               {menuItems.map((item, i) => {
                 const servicesActive =
@@ -529,6 +537,9 @@ const Header = () => {
                   <SheetTitle></SheetTitle>
                   <SheetDescription></SheetDescription>
                 </SheetHeader>
+                <div className="px-6 pt-6 lg:hidden">
+                  <LocaleSwitcher />
+                </div>
                 <ul className="flex flex-col items-start px-6 gap-4 mt-8">
                   {menuItems.map((item, i) => {
                     const servicesActive =
@@ -617,7 +628,7 @@ const Header = () => {
                       </>
                     }
                   >
-                    Contact us
+                    {tHeader("contactUs")}
                   </AnimatedButton>
                 </ul>
               </SheetContent>
@@ -641,7 +652,7 @@ const Header = () => {
               </>
             }
           >
-            Contact us
+            {tHeader("contactUs")}
           </AnimatedButton>
         </div>
       </div>

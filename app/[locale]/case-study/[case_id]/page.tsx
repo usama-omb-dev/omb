@@ -1,17 +1,21 @@
+import { localeToWpLang } from "@/lib/wp-lang";
+import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import CaseStudyDetailLayout from "./CaseStudyDetailLayout";
 
 export default async function CaseStudyPage({
   params,
 }: {
-  params: Promise<{ case_id: string }>;
+  params: Promise<{ locale: string; case_id: string }>;
 }) {
-  const { case_id } = await params;
+  const { locale, case_id } = await params;
+  setRequestLocale(locale);
+  const wpLang = localeToWpLang(locale);
 
   let data = null;
   try {
     const res = await fetch(
-      `https://backend.onlinemarketingbakery.nl/wp-json/wp/v2/case-study?slug=${encodeURIComponent(case_id)}&_embed&lang=en`,
+      `https://backend.onlinemarketingbakery.nl/wp-json/wp/v2/case-study?slug=${encodeURIComponent(case_id)}&_embed&lang=${wpLang}`,
       { next: { revalidate: 60 } },
     );
     if (res.ok) {
@@ -22,8 +26,6 @@ export default async function CaseStudyPage({
       }
     }
   } catch {}
-
-  console.log("data", data);
 
   if (!data && process.env.NODE_ENV === "production") {
     notFound();

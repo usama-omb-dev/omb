@@ -1,0 +1,341 @@
+{
+  "Metadata": {
+    "title": "OMB — Online Marketing Bakery",
+    "description": "Online Marketing Bakery — creatieve B2B-marketing met karakter."
+  },
+  "Nav": {
+    "home": "Home",
+    "about": "Over ons",
+    "services": "Diensten",
+    "blogs": "Blog",
+    "career": "Carrière"
+  },
+  "Header": {
+    "contactUs": "Neem contact op",
+    "localeEn": "EN",
+    "localeNl": "NL",
+    "localeLabel": "Taal"
+  },
+  "Footer": {
+    "taglineLine1": "Creatieve oplossingen. Strategische groei. Echte resultaten.",
+    "taglineLine2": "Laten we jouw merk naar het volgende niveau tillen.",
+    "solutionsTitle": "Onze oplossingen",
+    "helpTitle": "Help",
+    "kvkLabel": "KvK-nummer",
+    "btwLabel": "BTW-nummer",
+    "copyright": "© Copyright {year}, Omb alle rechten voorbehouden",
+    "phone": "Telefoon",
+    "email": "E-mail",
+    "address": "Adres",
+    "socialFacebook": "Facebook",
+    "socialInstagram": "Instagram",
+    "socialLinkedIn": "LinkedIn",
+    "leadinfoAlt": "Leadinfo Certified Partner",
+    "navHome": "Home",
+    "navAbout": "Over ons",
+    "navOutsource": "Outsourcen linkbuilding",
+    "navSeoCopy": "SEO-copywriter",
+    "navAgency": "Online marketingbureau Roermond",
+    "navFaqs": "Veelgestelde vragen",
+    "navHelpCenter": "Helpcentrum",
+    "navSupport": "Support"
+  },
+  "ContactSection": {
+    "eyebrow": "Til je merk",
+    "headline": "Wij leveren de resultaten die jij wilt.",
+    "paragraph1": "Niet iedereen is klaar voor onze aanpak. Wij bakken niet zomaar tientallen producten.",
+    "paragraph2": "— wij maken marketing met karakter voor merken die durven.",
+    "bullet1": "De moed om stelling te nemen",
+    "bullet2": "Klaar om afscheid te nemen van middelmaat",
+    "bullet3": "Snapt dat doen wat iedereen doet niet werkt",
+    "bullet4": "Wil een recept dat werkt, niet alleen goed klinkt"
+  },
+  "Careers": {
+    "contactHeadline": "Je volgende kans begint hier",
+    "heroPill": "Personal branding",
+    "heroTitleLine1": "Word onderdeel van de Bakery",
+    "heroTitleLine2": "die merken bakt"
+  },
+  "Hero": {
+    "pill": "B2B-marketingbureau",
+    "title": "Wij bouwen merken waar mensen voor terugkomen.",
+    "description": "Samen bakken we campagnes die je doelgroep laat watertanden. We helpen je een positie in te nemen die klanten kiezen en concurrenten wakker houdt.",
+    "cta": "Dat smaakt naar meer",
+    "trusted": "Vertrouwd door 1000+ bedrijven",
+    "testimonial": "Rubin en zijn team zijn allemaal toppers in hun vak. We werken nu twee jaar samen en zijn nog steeds verbaasd over hun flexibiliteit, snelheid en kwaliteit, elke dag opnieuw.",
+    "testimonialName": "Vincent De Geyndt",
+    "testimonialCompany": "SalesUp",
+    "statProjects": "Succesvol project",
+    "statYears": "Jaar ervaring",
+    "statProducts": "Product gelanceerd",
+    "statStartup": "Startup funding"
+  },
+  "Insights": {
+    "headlineAccent": "68 procent stijging",
+    "headlineRest": "in conversiepercentages met het nieuwe ontwerp.",
+    "body": "Als alles perfect liep, zat je hier nu niet. Onze klanten snappen dat. Ze huren ons in om expertise en accepteren het gesprek dat daarbij hoort. Want beleefd doorgaan met wat niet werkt, kost je uiteindelijk meer.",
+    "cta": "Bekijk onze resultaten",
+    "slideSalonora": "schaalbare boekingssoftware voor de beautysector gebouwd, inclusief professionele website",
+    "slideBeeldster": "LinkedIn-leadgenerationcampagnes met een ROI van ruim 400% (!)",
+    "slideStobe": "nieuw merkgericht ontwerp en B2B-landingspagina’s. Resultaat: 68 procent meer conversie",
+    "slideSlimkiezen": "een leadgenerationplatform voor de Belgische consumentenmarkt; in de eerste maand al een stroom aan leads",
+    "slideKarakter": "een content- en leadgenerationstrategie die vanaf dag één resultaat opleverde",
+    "logoAlt": "Klantlogo"
+  },
+  "HomeServices": {
+    "pill": "We snappen je frustratie",
+    "title": "Je marketing werkt niet, en",
+    "titleAccent": "je weet niet waarom.",
+    "description": "Je concurrent groeit terwijl jij blijft hangen. Je weet dat er iets moet veranderen. Maar wat? En hoe?",
+    "cta": "Ontdek alle diensten",
+    "heroImageAlt": "Hero-afbeelding diensten"
+  },
+  "Qualities": {
+    "storyTitle": "Zo maken we van jouw verhaal resultaat",
+    "stepPrefix": "Stap",
+    "step1Title": "We vinden de blokkade",
+    "step1Body": "Je zit ergens vast. Wij zoeken uit waar. We duiken in je markt en stellen de lastige vragen. Daar zit groei.",
+    "step2Title": "We maken keuzes",
+    "step2Body": "Marketing voor iedereen is marketing voor niemand. We helpen je kiezen wie je wél en niet wilt. Dat is eng, maar nodig.",
+    "step3Title": "We maken het schaalbaar",
+    "step3Body": "Content, campagnes, social media, websites. Alles draait om jouw verhaal. Websites die converteren. Campagnes die presteren.",
+    "step4Title": "We duwen door",
+    "step4Body": "Wat werkt, doen we vaker. Wat niet werkt, snijden we weg. We blijven testen en bijsturen tot het raakt.",
+    "ctaFire": "Zet het vuur aan!",
+    "recipeTitle": "Ons recept voor winstgevende marketing",
+    "ctaCurious": "Benieuwd hoe we werken?",
+    "svcSeoTitle": "SEO & GEO",
+    "svcSeoDesc": "We maken je zichtbaar waar klanten zoeken: Google, ChatGPT en alle plekken die ertoe doen.",
+    "svcSeaTitle": "SEA",
+    "svcSeaDesc": "We voeren en beheren campagnes op Google en Meta, met focus op rendement en meetbaarheid.",
+    "svcSocialTitle": "Socialmedia-advertenties",
+    "svcSocialDesc": "We zetten gerichte campagnes op Meta en andere platforms op. Doelgroep, boodschap en budget op één lijn.",
+    "svcContentTitle": "Contentmarketing",
+    "svcContentDesc": "We interviewen jou en vertalen dat naar blogs, posts en pagina’s. Jouw expertise, onze woorden.",
+    "svcWebTitle": "Webdesign",
+    "svcWebDesc": "We ontwerpen en bouwen websites die converteren. Van strategie tot oplevering in 4 tot 8 weken.",
+    "svcStrategyTitle": "Strategie",
+    "svcStrategyDesc": "Elk project start met een marketingstrategie. Waar wil je naartoe en hoe kom je daar?"
+  },
+  "OurTeam": {
+    "pill": "Maak kennis met het team",
+    "title": "Je eigen team van wereldklasse B2B-",
+    "titleAccent": "marketingexperts.",
+    "description": "Kwaliteit heeft geen postcode. We bouwen teams met de beste specialisten, waar ze ook zitten. Remote werken laat ons toptalent inzetten, met Rubin, eigenaar van OMB, als jouw vaste projectmanager.",
+    "cardDesign": "Design",
+    "cardDevelopment": "Development",
+    "cardBranding": "Branding",
+    "cardMarketing": "Marketing",
+    "cardUiUx": "UI/UX",
+    "cardSeo": "SEO",
+    "cardContent": "Content",
+    "cardStrategy": "Strategie",
+    "marquee": "online marketing bakery",
+    "imageJasminAlt": "Jasmin",
+    "imageJohnAlt": "John",
+    "imageRubinAlt": "Rubin",
+    "cta": "Maak kennis met het team!"
+  },
+  "Reviews": {
+    "pill": "Resultaten",
+    "title": "Gedreven door een prestatiegerichte",
+    "titleAccent": "mentaliteit",
+    "cta": "Alle succesverhalen"
+  },
+  "ServicesDifference": {
+    "pill": "Diensten",
+    "title": "Traditioneel vs OMB-effect",
+    "description": "Traditionele bureaus werken zoals je gewend bent. Beleefd, voorspelbaar, veilig. En zonder resultaat. Wij kiezen een andere aanpak. Een die wrijving geeft, maar ook glans.",
+    "tabTraditional": "Traditioneel",
+    "tabEffect": "OMB-effect",
+    "effect1": "Online in 4 tot 8 weken. Samenwerken moet voelen als een feestje.",
+    "effect2": "We challengen je briefing, debatteren vooraf, vieren achteraf.",
+    "effect3": "Jouw verhaal gebakken zodat klanten blijven watertanden.",
+    "effect4": "Een merk met een mening waar je ’s nachts van ligt te piekeren.",
+    "effect5": "Te veel ruis online. Saai is niet ons ding.",
+    "effect6": "Resultaten waar je meer van wilt.",
+    "traditional1": "Online in zes maanden. Eindeloze vergaderingen, geen vooruitgang.",
+    "traditional2": "We voeren je briefing uit. Geen vragen.",
+    "traditional3": "Een website vol tekst. Niemand leest het.",
+    "traditional4": "Een merk dat er leuk uitziet. Veilig, vergeten, grijs.",
+    "traditional5": "We posten 3× per week. Betrokkenheid? Niet ons probleem.",
+    "traditional6": "Een mooi rapport. Met KPI’s waar niemand op zit te wachten.",
+    "iconAlt": "Pictogram"
+  },
+  "BakeResult": {
+    "title": "We bakken resultaten die",
+    "titleItalic": "naar meer smaken",
+    "cta": "Laten we praten!",
+    "footerImageAlt": "OMB-familie"
+  },
+  "BlogHero": {
+    "pill": "Maak kennis met de expert",
+    "title": "Hoi, ik ben Rubin Koot.",
+    "intro": "Een gemotiveerde professional met oog voor detail, groei, kwaliteit en innovatie. Ik werk graag aan effectieve oplossingen en breid mijn kennis continu uit op technisch én creatief vlak.",
+    "statExperience": "Jaar ervaring",
+    "statArticles": "Artikelen totaal",
+    "followLabel": "Volg me op",
+    "heroImageAlt": "Rubin Koot"
+  },
+  "BlogsList": {
+    "pill": "De meest recente artikelen van Rubin",
+    "title": "Laatste blogs van de",
+    "titleAccent": "online marketingbakker!",
+    "loadMore": "Meer laden"
+  },
+  "LatestBlogs": {
+    "title": "Laatste",
+    "titleAccent": "blogs"
+  },
+  "BlogCard": {
+    "authorName": "Rubin Koot"
+  },
+  "ContactPage": {
+    "pill": "Neem contact op",
+    "intro": "Marketing wordt niet beter door te wachten. Als je klaar bent om aan te pakken wat niet werkt en een eerlijk gesprek over groei wilt, zit je hier goed.",
+    "heading": "Laten we praten",
+    "subheading": "Nieuwe business of een concrete vraag?",
+    "avatarAlt": "Avatar van Rubin"
+  },
+  "AboutPage": {
+    "heroPill": "Over ons",
+    "heroTitleBefore": "We brengen",
+    "heroTitleAccent": "B2B-marketing",
+    "heroTitleAfter": "in beweging sinds 2018",
+    "heroDetails": "Marketing heeft geen ruis meer nodig, maar richting. Sinds 2018 helpen we B2B-merken uit de giswerkmodus en maken we marketing die echt iets oplevert. Geen vage beloftes, geen veilige spelletjes. Alleen duidelijke keuzes en meetbare resultaten."
+  },
+  "OurEmployees": {
+    "title": "Hoor het van onze collega’s",
+    "description": "Echte verhalen van mensen die elke dag meebouwen aan OMB.",
+    "video1Title": "Getuigenis collega — eerste video",
+    "video1Description": "Een collega vertelt over werken bij het bedrijf.",
+    "video1PlayLabel": "Eerste collegavideo afspelen",
+    "video2Title": "Getuigenis collega — tweede video",
+    "video2Description": "Een collega vertelt over werken bij het bedrijf.",
+    "video2PlayLabel": "Tweede collegavideo afspelen"
+  },
+  "WhyOmb": {
+    "title": "Waarom OMB?",
+    "intro": "Werken bij OMB betekent impact maken, leren op hoog niveau en ruimte voor eigen initiatief.",
+    "imageAlt": "Waarom OMB",
+    "card1Title": "Waarom OMB",
+    "card1Body": "Een bureau met karakter: scherp, eerlijk en gericht op resultaat — ook intern.",
+    "card2Title": "Leren & ontwikkelen",
+    "card2Body": "Trainingen, feedback en ruimte om te groeien in je vak.",
+    "card3Title": "Groei en kansen",
+    "card3Body": "Werk aan uitdagende B2B-projecten en bouw mee aan het merk.",
+    "card4Title": "Remote / flexibel werken",
+    "card4Body": "Werken waar het voor jou werkt, met duidelijke afspraken en vertrouwen."
+  },
+  "HiringProcess": {
+    "title": "Zo werven we",
+    "intro": "Een transparant traject van sollicitatie tot aanbod — weten waar je aan toe bent.",
+    "stepLabel": "Stap {n}",
+    "step1Title": "Solliciteren",
+    "step2Title": "Gesprek",
+    "step3Title": "Testopdracht",
+    "step4Title": "Definitief aanbod",
+    "stepBody": "We leggen elke stap uit zodat je weet wat we van je verwachten en wat jij van ons mag verwachten."
+  },
+  "LifeAtOmb": {
+    "title": "Leven bij Online Marketing Bakery",
+    "description": "Sfeer, team en cultuur — ontdek hoe het er bij ons aan toe gaat.",
+    "galleryImageAlt": "Impressie van het leven bij OMB {n}",
+    "cta": "Bekijk vacatures"
+  },
+  "OurGoal": {
+    "pillWho": "Wie we zijn",
+    "missionLead": "Een B2B-marketingbureau",
+    "missionMid": "voor bedrijven die klaar zijn met veilig spelen.",
+    "missionSince": "Sinds 2018",
+    "missionRest": "helpen we merken marketing te veranderen van kostenpost naar groeimotor. Niet door trends na te lopen of concurrenten te kopiëren, maar door",
+    "missionBold": "duidelijke keuzes te maken en ervoor te staan.",
+    "ctaWork": "Werken bij OMB!",
+    "smallFamAlt": "Team OMB",
+    "pillMilestones": "Onze mijlpalen",
+    "milestonesTitle": "Op weg naar ’s werelds #1 B2B-",
+    "milestonesAccent": "marketingbureau",
+    "milestonesBody": "Zo zijn we hier niet gekomen door mee te lopen met de massa. Vanaf dag één geloofden we: marketing moet presteren, of het moet veranderen. Elke mijlpaal is een keuze om de lat hoger te leggen, het vanzelfsprekende uit te dagen en door te zetten.",
+    "dragLabel": "Sleuren",
+    "gridLinesAlt": "Rasterlijnen",
+    "faviconAlt": "OMB-favicon",
+    "milestone2018a": "Rubin startte de Online Marketing Bakery in Roermond.",
+    "milestone2019a": "Het OMB-team groeide naar 4 mensen.",
+    "milestone2019b": "Verhuisd naar ons eerste grote kantoor met het team!",
+    "milestone2019c": "Het begon rond te gaan"
+  },
+  "MarketingTeam": {
+    "pill": "Het OMB-team",
+    "titleBefore": "Ons wereldwijde",
+    "titleItalic": "A-team",
+    "titleMid": "van B2B-marketing",
+    "titleAccent": "experts",
+    "roles": {
+      "owner": "Eigenaar",
+      "digitalMarketer": "Digital marketeer",
+      "uiUxDesigner": "UI/UX-designer",
+      "copywriter": "Tekstschrijver",
+      "purrtner": "Purrtner"
+    },
+    "ctaTitle": "Denk je dat je",
+    "ctaTitleItalic": "past",
+    "ctaTitleAfter": "?",
+    "ctaBody": "Bekijk onze openstaande vacatures en solliciteer om onderdeel te worden van dit team!",
+    "ctaButton": "Carrière"
+  },
+  "Form": {
+    "labelFullName": "Volledige naam",
+    "placeholderFullName": "Jouw volledige naam",
+    "labelPhone": "Telefoonnummer",
+    "placeholderPhone": "Jouw telefoonnummer",
+    "labelEmail": "E-mailadres",
+    "placeholderEmail": "Jouw e-mailadres",
+    "labelMessage": "Bericht",
+    "placeholderMessage": "Vertel ons over je project",
+    "charCount": "{count}/100 tekens",
+    "agreementBefore": "Door contact op te nemen ga je akkoord met onze",
+    "privacyLink": "privacyverklaring.",
+    "submit": "Vraag een gratis offerte aan",
+    "submitSuccess": "Bericht verstuurd",
+    "submitError": "Er ging iets mis. Probeer het opnieuw.",
+    "submitErrorConfig": "Contactformulier is niet geconfigureerd.",
+    "submitErrorFormId": "Dit formulier is niet toegestaan of verkeerd geconfigureerd.",
+    "toastTitle": "Je hebt de volgende gegevens verstuurd:",
+    "validation": {
+      "nameMin": "Naam moet minimaal 5 tekens bevatten.",
+      "nameMax": "Naam mag maximaal 32 tekens bevatten.",
+      "phoneRequired": "Telefoonnummer is verplicht",
+      "phoneInvalid": "Voer een geldig telefoonnummer in",
+      "messageMin": "Bericht moet minimaal 20 tekens bevatten.",
+      "messageMax": "Bericht mag maximaal 100 tekens bevatten.",
+      "emailInvalid": "Voer een geldig e-mailadres in",
+      "privacyRequired": "Je moet akkoord gaan met de privacyverklaring"
+    }
+  },
+  "ScheduleCallForm": {
+    "title": "Plan een gesprek",
+    "placeholderName": "Naam",
+    "placeholderEmail": "E-mail",
+    "placeholderPhone": "Telefoonnummer",
+    "interestPlaceholder": "Ik heb interesse in...",
+    "interestSelected": "{count} geselecteerd",
+    "searchPlaceholder": "Zoek interesse...",
+    "searchEmpty": "Geen interesse gevonden.",
+    "submit": "Laten we praten!",
+    "toastTitle": "Formulier succesvol verstuurd!",
+    "validation": {
+      "nameMin": "Naam moet minimaal 3 tekens bevatten",
+      "nameMax": "Naam mag maximaal 50 tekens bevatten",
+      "emailInvalid": "Voer een geldig e-mailadres in",
+      "phoneRequired": "Telefoonnummer is verplicht",
+      "phoneInvalid": "Voer een geldig telefoonnummer in",
+      "interestMin": "Selecteer minimaal één optie"
+    }
+  },
+  "ServicePage": {
+    "viewCaseStudy": "Bekijk case study"
+  },
+  "BlogPostPage": {
+    "avatarAlt": "Avatar van Rubin"
+  }
+}

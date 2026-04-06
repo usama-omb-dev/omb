@@ -1,5 +1,4 @@
 import Contact from "@/components/section/Contact";
-import { mainPageContactSectionContent } from "@/content/main-page-contact-section";
 import Hero from "@/components/section/Homepage/Hero";
 import Insights from "@/components/section/Homepage/Insights";
 import OurTeam from "@/components/section/Homepage/Our-Team";
@@ -7,8 +6,17 @@ import Qualities from "@/components/section/Homepage/Qualities";
 import Reviews from "@/components/section/Homepage/Reviews";
 import Services from "@/components/section/Homepage/Services";
 import ServicesDifference from "@/components/section/Homepage/ServicesDifference";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
-export default async function Home() {
+export default async function Home({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations("ContactSection");
+
   return (
     <>
       <Hero />
@@ -17,7 +25,18 @@ export default async function Home() {
       <Qualities />
       <OurTeam />
       <Reviews />
-      <Contact {...mainPageContactSectionContent} />
+      <Contact
+        eyebrow={t("eyebrow")}
+        headline={t("headline")}
+        paragraph1={t("paragraph1")}
+        paragraph2={t("paragraph2")}
+        bulletPoints={[
+          t("bullet1"),
+          t("bullet2"),
+          t("bullet3"),
+          t("bullet4"),
+        ]}
+      />
       <ServicesDifference />
     </>
   );

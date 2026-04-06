@@ -1,3 +1,5 @@
+"use client";
+
 import type { ReactNode } from "react";
 import {
   BookIcon,
@@ -6,6 +8,8 @@ import {
   GrafIcon,
 } from "@/components/ui/icons";
 import Image from "next/image";
+import { useMemo } from "react";
+import { useTranslations } from "next-intl";
 
 type WhyOmbItem = {
   title: string;
@@ -14,48 +18,47 @@ type WhyOmbItem = {
 };
 
 const WhyOmb = () => {
-  const whyOmbList: WhyOmbItem[] = [
-    {
-      title: "Why OMB",
-      description:
-        "Sed ut perspiciatis unde omnis iste natus error sit voluptatemaccusantium doloremque.",
-      icon: <CompeteIcon />,
-    },
-    {
-      title: "Learning & Development",
-      description:
-        "Sed ut perspiciatis unde omnis iste natus error sit voluptatemaccusantium doloremque.",
-      icon: <BookIcon />,
-    },
-    {
-      title: "Growth Opportunities",
-      description:
-        "Sed ut perspiciatis unde omnis iste natus error sit voluptatemaccusantium doloremque.",
-      icon: <GrafIcon />,
-    },
-    {
-      title: "Remote / Flexible Work",
-      description:
-        "Sed ut perspiciatis unde omnis iste natus error sit voluptatemaccusantium doloremque.",
-      icon: <FlexiblyIcon />,
-    },
-  ];
+  const t = useTranslations("WhyOmb");
+
+  const whyOmbList: WhyOmbItem[] = useMemo(
+    () => [
+      {
+        title: t("card1Title"),
+        description: t("card1Body"),
+        icon: <CompeteIcon />,
+      },
+      {
+        title: t("card2Title"),
+        description: t("card2Body"),
+        icon: <BookIcon />,
+      },
+      {
+        title: t("card3Title"),
+        description: t("card3Body"),
+        icon: <GrafIcon />,
+      },
+      {
+        title: t("card4Title"),
+        description: t("card4Body"),
+        icon: <FlexiblyIcon />,
+      },
+    ],
+    [t],
+  );
+
   return (
     <section>
       <div className="container">
         <div className="flex flex-col gap-5 max-w-[528px] mx-auto text-center mb-11">
           <h2 className="sm:text-2xl text-xl font-medium leading-none">
-          Why Join OMB!
+            {t("title")}
           </h2>
-          <p className="sm:text-body text-sm">
-          Sed ut perspiciatis unde omnis iste natus error sit voluptatemaccu
-          santium doloremque.
-          </p>
+          <p className="sm:text-body text-sm">{t("intro")}</p>
         </div>
         <div className="grid md:grid-cols-3 sm:grid-cols-2 sm:gap-3.5 gap-2 sm:auto-rows-[1fr]">
           <div className="sm:row-span-2 sm:col-span-1 lg:col-span-1">
             <Image
-              alt="Why OMB"
+              alt={t("imageAlt")}
               width={1440}
               height={613}
               src={"/why-omb.png"}

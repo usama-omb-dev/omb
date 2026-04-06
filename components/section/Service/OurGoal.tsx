@@ -7,9 +7,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Autoplay, Navigation } from "swiper/modules";
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import gsap from "gsap";
 import { ArrowRight } from "@/components/ui/icons";
+import { useTranslations } from "next-intl";
 
 interface Milestone {
   year: number;
@@ -20,37 +21,41 @@ interface Milestone {
 }
 
 const OurGoal = ({showMilestones = true}: {showMilestones?: boolean}) => {
+  const t = useTranslations("OurGoal");
   const swiperWrapperRef = useRef<HTMLDivElement>(null);
   const cursorRef = useRef<HTMLDivElement>(null);
 
-  const milestoneData: Milestone[] = [
-    {
-      year: 2018,
-      title: "Rubin started the Onine Marketing Bakery in Roermond.",
-      imgUrl: "/young-rubin.png",
-      card: true,
-      rotate: "0deg",
-    },
-    {
-      year: 2019,
-      title: "Grew the OMB team to 4 members.",
-      imgUrl: "/grew-team.png",
-      card: false,
-    },
-    {
-      year: 2019,
-      title: "Moved to our first big office with the team!",
-      imgUrl: "/new-office.png",
-      card: true,
-      rotate: "4deg",
-    },
-    {
-      year: 2019,
-      title: "Word started getting around",
-      imgUrl: "/getting-known.png",
-      card: false,
-    },
-  ];
+  const milestoneData: Milestone[] = useMemo(
+    () => [
+      {
+        year: 2018,
+        title: t("milestone2018a"),
+        imgUrl: "/young-rubin.png",
+        card: true,
+        rotate: "0deg",
+      },
+      {
+        year: 2019,
+        title: t("milestone2019a"),
+        imgUrl: "/grew-team.png",
+        card: false,
+      },
+      {
+        year: 2019,
+        title: t("milestone2019b"),
+        imgUrl: "/new-office.png",
+        card: true,
+        rotate: "4deg",
+      },
+      {
+        year: 2019,
+        title: t("milestone2019c"),
+        imgUrl: "/getting-known.png",
+        card: false,
+      },
+    ],
+    [t],
+  );
 
   useEffect(() => {
     const wrapper = swiperWrapperRef.current;
@@ -163,29 +168,26 @@ const OurGoal = ({showMilestones = true}: {showMilestones?: boolean}) => {
       <div className="container">
         <div className="flex md:flex-row flex-col items-start md:gap-5 gap-3">
           <div className="lg:max-w-50 max-w-40 w-full">
-            <Pill iconColor="#3838F9">Who we are</Pill>
+            <Pill iconColor="#3838F9">{t("pillWho")}</Pill>
           </div>
           <div className="flex-1 flex flex-col gap-10">
             <h5 className="lg:text-2xl sm:text-xl text-md font-medium text-black/40 leading-none">
-              <span className="text-black">A B2B marketing agency</span> built
-              for companies that are done playing it safe.{" "}
-              <span className="text-black">Since 2018,</span> we have been
-              helping brands turn marketing from a cost into a growth engine.
-              Not by following trends or copying competitors, but by{" "}
-              <span className="text-black">
-                making clear choices and standing behind them.
-              </span>
+              <span className="text-black">{t("missionLead")}</span>{" "}
+              {t("missionMid")}{" "}
+              <span className="text-black">{t("missionSince")}</span>{" "}
+              {t("missionRest")}{" "}
+              <span className="text-black">{t("missionBold")}</span>
             </h5>
             <div className="relative flex justify-between items-start flex-1 gap-4 sm:flex-row flex-col pb-4 sm:pb-0">
               <AnimatedButton
                 size={"icon"}
                 trailingContent={<AnimatedArrowIcon />}
               >
-                Work at OMB!
+                {t("ctaWork")}
               </AnimatedButton>
               <Image
                 src={"/omb-small-fam.png"}
-                alt="omb-favicon"
+                alt={t("smallFamAlt")}
                 width={206}
                 height={218}
               />
@@ -196,19 +198,14 @@ const OurGoal = ({showMilestones = true}: {showMilestones?: boolean}) => {
           <>
         <div className="flex md:flex-row flex-col items-start md:gap-5 gap-3">
           <div className="lg:max-w-50 max-w-40 w-full">
-            <Pill iconColor="#3838F9">Our milestones</Pill>
+            <Pill iconColor="#3838F9">{t("pillMilestones")}</Pill>
           </div>
           <div className="max-w-136.5 flex flex-col gap-5">
             <h5 className="lg:text-2xl sm:text-xl text-md font-medium  leading-none">
-              On a mission to become the world’s #1 B2B{" "}
-              <span className="text-primary">marketing agency</span>
+              {t("milestonesTitle")}{" "}
+              <span className="text-primary">{t("milestonesAccent")}</span>
             </h5>
-            <p className="sm:text-body text-xsm">
-              We did not get here by following the crowd. From day one, OMB was
-              built around one belief: marketing should perform, or it should
-              change. Every milestone marks a decision to raise the bar,
-              challenge the obvious, and keep pushing forward.
-            </p>
+            <p className="sm:text-body text-xsm">{t("milestonesBody")}</p>
           </div>
         </div>
         <div
@@ -220,7 +217,7 @@ const OurGoal = ({showMilestones = true}: {showMilestones?: boolean}) => {
             className="lg:block hidden fixed top-0 left-0 z-9999 pointer-events-none opacity-0 scale-0"
           >
             <div className=" w-44.25 h-44.25 rounded-full bg-linear-to-t from-[#212193] to-[#3838F9] text-white flex items-center justify-center text-body font-bold gap-2.5 uppercase">
-              Sleuren <ArrowRight />
+              {t("dragLabel")} <ArrowRight />
             </div>
           </div>
 
@@ -254,7 +251,7 @@ const OurGoal = ({showMilestones = true}: {showMilestones?: boolean}) => {
                   {index === milestoneData.length - 1 ? null : (
                     <div className="absolute -z-10 top-2/5 right-0 translate-x-1/2">
                       <Image
-                        alt="Grid Lines"
+                        alt={t("gridLinesAlt")}
                         src={"/grid-lines.png"}
                         width={245}
                         height={196}
@@ -290,7 +287,7 @@ const OurGoal = ({showMilestones = true}: {showMilestones?: boolean}) => {
       </div>
       <Image
         src={"/omb-favicon.svg"}
-        alt="omb-favicon"
+        alt={t("faviconAlt")}
         width={360}
         height={509}
         className="absolute top-0 right-0 opacity-5 -z-10"

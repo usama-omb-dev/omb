@@ -1,16 +1,24 @@
 import LatestBlogs from "@/components/section/Blogs/Latest-Blogs";
 import { ScheduleCallForm } from "@/components/ui/schedule-call-form";
+import { localeToWpLang } from "@/lib/wp-lang";
 import Image from "next/image";
-import Link from "next/link";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { envSocialUrls, socialHref } from "@/lib/social-links";
 import { notFound } from "next/navigation";
 import { FaLinkedin } from "react-icons/fa6";
 
-const page = async ({ params }: { params: Promise<{ blog_slug: string }> }) => {
-  const { blog_slug } = await params;
+const page = async ({
+  params,
+}: {
+  params: Promise<{ locale: string; blog_slug: string }>;
+}) => {
+  const { locale, blog_slug } = await params;
+  setRequestLocale(locale);
+  const wpLang = localeToWpLang(locale);
 
   const getData = async () => {
     const res = await fetch(
-      `https://backend.onlinemarketingbakery.nl/wp-json/wp/v2/posts?slug=${blog_slug}&_embed`,
+      `https://backend.onlinemarketingbakery.nl/wp-json/wp/v2/posts?slug=${encodeURIComponent(blog_slug)}&_embed&lang=${wpLang}`,
     );
     const data = await res.json();
     if (res.status === 200) {
@@ -21,7 +29,10 @@ const page = async ({ params }: { params: Promise<{ blog_slug: string }> }) => {
   };
 
   const data = await getData();
+  const tBlog = await getTranslations("BlogPostPage");
+  const rubinLinkedIn = socialHref(envSocialUrls.linkedinRubin);
   const date = new Date(data.date);
+  const dateLocale = locale === "nl" ? "nl-NL" : "en-GB";
   const featuredMedia = data._embedded?.["wp:featuredmedia"]?.[0];
   const categories = data._embedded?.["wp:term"]?.[0] || [];
 
@@ -36,7 +47,7 @@ const page = async ({ params }: { params: Promise<{ blog_slug: string }> }) => {
     blogUrl: data.slug || "",
 
     blogDate:
-      date.toLocaleDateString("en-GB", {
+      date.toLocaleDateString(dateLocale, {
         day: "2-digit",
         month: "long",
         year: "numeric",
@@ -93,27 +104,28 @@ const page = async ({ params }: { params: Promise<{ blog_slug: string }> }) => {
               <div className="flex flex-col gap-5 sm:pb-5 pb-3 sm:mb-5 mb-3 border-b border-black/20">
                 <Image
                   src={"/rubin-koot-avatar.png"}
-                  alt={"Rubin's Avatar"}
+                  alt={tBlog("avatarAlt")}
                   width={88}
                   height={88}
                 />
                 <div>
-                  <Link
+                  <a
                     className="flex gap-2.5 items-center leading-none sm:text-md text-sm"
-                    href={"https://www.linkedin.com/in/rubinkoot"}
-                    target="_blank"
+                    href={rubinLinkedIn.href}
+                    target={rubinLinkedIn.target}
+                    rel={rubinLinkedIn.rel}
                   >
                     Rubin Koot{" "}
                     <span className="text-primary">
                       <FaLinkedin />
                     </span>
-                  </Link>
-                  <Link
+                  </a>
+                  <a
                     className="text-black/40 sm:text-body text-xsm"
-                    href={"mailto:rubin@onlinemarketingbakery.nl"}
+                    href="mailto:rubin@onlinemarketingbakery.nl"
                   >
                     rubin@onlinemarketingbakery.nl
-                  </Link>
+                  </a>
                 </div>
               </div>
               <ScheduleCallForm />

@@ -1,19 +1,21 @@
 import MarketingTeam from "@/components/section/Service/MarketingTeam";
 import OurGoal from "@/components/section/Service/OurGoal";
 import ServicesHero from "@/components/section/Service/ServicesHero";
+import { getTranslations } from "next-intl/server";
 
-const page = () => {
+export default async function AboutPage() {
+  const t = await getTranslations("AboutPage");
   const heroData = {
-    pillTitle: "About",
+    pillTitle: t("heroPill"),
     mainTitle: (
       <>
-        Revolutionizing <span className="text-primary">B2B</span> Marketing
-        since 2018
+        {t("heroTitleBefore")}{" "}
+        <span className="text-primary">{t("heroTitleAccent")}</span>{" "}
+        {t("heroTitleAfter")}
       </>
     ),
     heroImage: "/omb-family.png",
-    details:
-      "Marketing does not need more noise. It needs direction. Since 2018, we have been helping B2B brands escape guesswork and turn marketing into something that actually delivers. No vague promises, no safe play. Just clear choices and measurable results.",
+    details: t("heroDetails"),
     leftSmallImage: "/about-left-hero.png",
     rightSmallImage: "/about-right-hero.png",
   };
@@ -25,6 +27,4 @@ const page = () => {
       <MarketingTeam />
     </>
   );
-};
-
-export default page;
+}

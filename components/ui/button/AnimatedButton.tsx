@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import AnimatedSplit, {
   AnimatedSplitHandle,
 } from "@/components/ui/button/AnimatedSplit";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { forwardRef, ReactNode, useRef } from "react";
 
 type AnimatedButtonProps = React.ComponentProps<typeof Button> & {

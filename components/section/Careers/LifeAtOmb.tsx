@@ -6,6 +6,7 @@ import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import AnimatedButton from "@/components/ui/button/AnimatedButton";
 import AnimatedArrowIcon from "@/components/ui/button/AnimatedArrowIcon";
+import { useTranslations } from "next-intl";
 
 type LifeSlide = {
   imgUrl: string;
@@ -24,6 +25,7 @@ const BASE_SLIDES: LifeSlide[] = [
 const MARQUEE_COPIES = 3;
 
 const LifeAtOmb = () => {
+  const t = useTranslations("LifeAtOmb");
   const lifeAtOmbData: LifeSlide[] = Array.from(
     { length: MARQUEE_COPIES },
     () => BASE_SLIDES,
@@ -34,12 +36,9 @@ const LifeAtOmb = () => {
       <div className="container flex flex-col">
         <div className="flex flex-col gap-5 mx-auto text-center mb-11">
           <h2 className="sm:text-2xl text-xl font-medium leading-none">
-            Life at Online Marketing Bakery
+            {t("title")}
           </h2>
-          <p className="sm:text-body text-sm">
-            Sed ut perspiciatis unde omnis iste natus error sit
-            voluptatemaccusantium doloremque.
-          </p>
+          <p className="sm:text-body text-sm">{t("description")}</p>
         </div>
         <div>
           <Swiper
@@ -80,7 +79,7 @@ const LifeAtOmb = () => {
                 <div className="rounded-[10px] overflow-hidden translateCard">
                   <Image
                     src={item.imgUrl}
-                    alt={`Life at OMB gallery ${index + 1}`}
+                    alt={t("galleryImageAlt", { n: index + 1 })}
                     width={316}
                     height={414}
                     className="w-full h-full object-cover aspect-316/414"
@@ -95,7 +94,7 @@ const LifeAtOmb = () => {
                 size={"icon"}
                 trailingContent={<AnimatedArrowIcon />}
               >
-    Browse Opportunities
+    {t("cta")}
               </AnimatedButton>
       </div>
     </section>

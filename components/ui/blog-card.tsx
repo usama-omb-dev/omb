@@ -4,8 +4,10 @@ import AnimatedButton from "./button/AnimatedButton";
 import AnimatedArrowIcon from "./button/AnimatedArrowIcon";
 import Pill from "./pill";
 import { BlogSummaryData } from "../section/Blogs/Blogs-List";
+import { useTranslations } from "next-intl";
 
 const BlogCard = ({ blogData }: { blogData: BlogSummaryData }) => {
+  const t = useTranslations("BlogCard");
   const {
     title,
     featuredImage,
@@ -52,7 +54,7 @@ const BlogCard = ({ blogData }: { blogData: BlogSummaryData }) => {
             <span className="text-xsm text-black/20 font-normal">
               {blogDate}
             </span>
-            <p className="text-xsm font-medium">Rubin Koot</p>
+            <p className="text-xsm font-medium">{t("authorName")}</p>
           </div>
         </AnimatedButton>
       </div>

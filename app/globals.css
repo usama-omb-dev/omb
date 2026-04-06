@@ -4,6 +4,13 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/**
+ * Locale-aware utilities (stack with breakpoints), e.g. `lg:nl:text-sm`.
+ * Relies on `<html lang="en" | "nl">` from `app/[locale]/layout.tsx`.
+ */
+@custom-variant nl (&:lang(nl));
+@custom-variant en (&:lang(en));
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

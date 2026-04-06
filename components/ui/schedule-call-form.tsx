@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
 import {
   Popover,
@@ -24,23 +25,33 @@ import { Input } from "@/components/ui/input";
 import AnimatedButton from "./button/AnimatedButton";
 import { ArrowRight } from "./icons";
 import { useServices } from "@/hooks/useServices";
-
-const formSchema = z.object({
-  name: z
-    .string()
-    .min(3, "Name must be at least 3 characters")
-    .max(50, "Name must be at most 50 characters"),
-  email: z.string().email("Enter a valid email address"),
-  phone: z
-    .string()
-    .min(7, "Phone number is required")
-    .regex(/^[0-9+()\-\s]{7,20}$/, "Enter a valid phone number"),
-  interest: z.array(z.string()).min(1, "Please select at least one option"),
-});
+import { useTranslations } from "next-intl";
 
 export function ScheduleCallForm() {
+  const t = useTranslations("ScheduleCallForm");
+  const tVal = useTranslations("ScheduleCallForm.validation");
+
+  const formSchema = React.useMemo(
+    () =>
+      z.object({
+        name: z
+          .string()
+          .min(3, tVal("nameMin"))
+          .max(50, tVal("nameMax")),
+        email: z.string().email(tVal("emailInvalid")),
+        phone: z
+          .string()
+          .min(7, tVal("phoneRequired"))
+          .regex(/^[0-9+()\-\s]{7,20}$/, tVal("phoneInvalid")),
+        interest: z.array(z.string()).min(1, tVal("interestMin")),
+      }),
+    [tVal],
+  );
+
+  type FormValues = z.infer<typeof formSchema>;
+
   const { data: services, isLoading } = useServices();
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
@@ -50,8 +61,8 @@ export function ScheduleCallForm() {
     },
   });
 
-  function onSubmit(data: z.infer<typeof formSchema>) {
-    toast("Form submitted successfully!", {
+  function onSubmit(data: FormValues) {
+    toast(t("toastTitle"), {
       description: (
         <pre className="mt-2 w-[300px] overflow-x-auto rounded-md bg-black/80 p-4 text-white text-xs">
           {JSON.stringify(data, null, 2)}
@@ -65,7 +76,7 @@ export function ScheduleCallForm() {
 
   const interests = isLoading
     ? []
-    : services.map((item: any) => {
+    : services.map((item: { title: { rendered: string }; slug: string }) => {
         return {
           label: item.title.rendered,
           value: item.slug,
@@ -78,7 +89,7 @@ export function ScheduleCallForm() {
       className="flex flex-col gap-5"
     >
       <h5 className="text-md font-semibold text-black leading-none">
-        Schedule a call
+        {t("title")}
       </h5>
       <div className="flex flex-col gap-2.5">
         <Controller
@@ -88,7 +99,7 @@ export function ScheduleCallForm() {
             <Field className="gap-0! " data-invalid={fieldState.invalid}>
               <Input
                 {...field}
-                placeholder="Name"
+                placeholder={t("placeholderName")}
                 aria-invalid={fieldState.invalid}
                 className="h-12.75 bg-background border-0 shadow-none rounded-[0.3125rem]"
               />
@@ -104,7 +115,7 @@ export function ScheduleCallForm() {
               <Input
                 {...field}
                 type="email"
-                placeholder="Email"
+                placeholder={t("placeholderEmail")}
                 aria-invalid={fieldState.invalid}
                 className="h-12.75 bg-background border-0 shadow-none rounded-[0.3125rem]"
               />
@@ -120,7 +131,7 @@ export function ScheduleCallForm() {
               <Input
                 {...field}
                 type="tel"
-                placeholder="Phone number"
+                placeholder={t("placeholderPhone")}
                 aria-invalid={fieldState.invalid}
                 className="h-12.75 bg-background border-0 shadow-none rounded-[0.3125rem]"
               />
@@ -144,51 +155,55 @@ export function ScheduleCallForm() {
                       className="h-12.75 w-full justify-between rounded-[0.3125rem]"
                     >
                       {selectedValues.length > 0
-                        ? `${selectedValues.length} selected`
-                        : "I am interested in..."}
+                        ? t("interestSelected", {
+                            count: selectedValues.length,
+                          })
+                        : t("interestPlaceholder")}
                       <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                     </Button>
                   </PopoverTrigger>
 
                   <PopoverContent className="w-full p-0">
                     <Command>
-                      <CommandInput placeholder="Search interest..." />
-                      <CommandEmpty>No interest found.</CommandEmpty>
+                      <CommandInput placeholder={t("searchPlaceholder")} />
+                      <CommandEmpty>{t("searchEmpty")}</CommandEmpty>
 
                       <CommandGroup>
-                        {interests.map((item: any) => {
-                          const isSelected = selectedValues.includes(
-                            item.value,
-                          );
+                        {interests.map(
+                          (item: { label: string; value: string }) => {
+                            const isSelected = selectedValues.includes(
+                              item.value,
+                            );
 
-                          return (
-                            <CommandItem
-                              key={item.value}
-                              onSelect={() => {
-                                if (isSelected) {
-                                  field.onChange(
-                                    selectedValues.filter(
-                                      (v) => v !== item.value,
-                                    ),
-                                  );
-                                } else {
-                                  field.onChange([
-                                    ...selectedValues,
-                                    item.value,
-                                  ]);
-                                }
-                              }}
-                            >
-                              <Check
-                                className={cn(
-                                  "mr-2 h-4 w-4",
-                                  isSelected ? "opacity-100" : "opacity-0",
-                                )}
-                              />
-                              {item.label}
-                            </CommandItem>
-                          );
-                        })}
+                            return (
+                              <CommandItem
+                                key={item.value}
+                                onSelect={() => {
+                                  if (isSelected) {
+                                    field.onChange(
+                                      selectedValues.filter(
+                                        (v) => v !== item.value,
+                                      ),
+                                    );
+                                  } else {
+                                    field.onChange([
+                                      ...selectedValues,
+                                      item.value,
+                                    ]);
+                                  }
+                                }}
+                              >
+                                <Check
+                                  className={cn(
+                                    "mr-2 h-4 w-4",
+                                    isSelected ? "opacity-100" : "opacity-0",
+                                  )}
+                                />
+                                {item.label}
+                              </CommandItem>
+                            );
+                          },
+                        )}
                       </CommandGroup>
                     </Command>
                   </PopoverContent>
@@ -216,7 +231,7 @@ export function ScheduleCallForm() {
           </span>
         }
       >
-        Let’s talk!
+        {t("submit")}
       </AnimatedButton>
     </form>
   );

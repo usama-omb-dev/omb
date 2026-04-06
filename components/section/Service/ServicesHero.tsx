@@ -53,12 +53,12 @@ const ServicesHero = ({ data }: { data: HeroData }) => {
   return (
     <section
       // ref={mainSection}
-      className="sm:min-h-screen overflow-hidden sm:pt-50 pt-30 pb-7 relative"
+      className="overflow-hidden sm:pt-50 pt-30 pb-7 relative"
     >
-      <div className="max-w-260 mx-auto lg:px-0 px-4 flex flex-col justify-center items-center xl:gap-[444px] sm:gap-15 gap-6">
+      <div className="max-w-260 mx-auto lg:px-0 px-4 flex flex-col justify-center items-center sm:gap-15 gap-6">
         <div className="flex flex-col justify-center items-center sm:gap-5 gap-2">
           {!!pillTitle && <Pill iconColor="#3838F9">{pillTitle}</Pill>}
-          <h1 className="leading-none lg:text-5xl md:text-4xl sm:text-3xl text-xl text-center">
+          <h1 className="leading-none lg:text-5xl lg:nl:text-4xl md:nl:text-3xl md:text-4xl sm:text-3xl text-xl text-center">
             {mainTitle}
           </h1>
         </div>
@@ -70,7 +70,7 @@ const ServicesHero = ({ data }: { data: HeroData }) => {
             alt=""
             width={646}
             height={324}
-            className="rounded-[0.625rem] object-cover origin-center xl:absolute top-[475px]"
+            className="rounded-[0.625rem] object-cover origin-center top-[475px]"
           />
         )}
         <div className={`${!!details && !!leftSmallImage && !!rightSmallImage ? "relative sm:flex-row flex-col w-full isolate -z-50 flex justify-center items-center" : ""}`}>

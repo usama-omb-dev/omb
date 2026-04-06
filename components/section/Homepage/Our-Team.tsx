@@ -6,25 +6,30 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import Image from "next/image";
-import { useRef } from "react";
+import { useRef, useMemo } from "react";
+import { useTranslations } from "next-intl";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const OurTeam = () => {
+  const t = useTranslations("OurTeam");
   const cardsRef = useRef<HTMLDivElement[]>([]);
   const containerRef = useRef<null | HTMLDivElement>(null);
   const titleRef = useRef<null | HTMLDivElement>(null);
 
-  const cards = [
-    { title: "Design" },
-    { title: "Development" },
-    { title: "Branding" },
-    { title: "Marketing" },
-    { title: "UI/UX" },
-    { title: "SEO" },
-    { title: "Content" },
-    { title: "Strategy" },
-  ];
+  const cards = useMemo(
+    () => [
+      { title: t("cardDesign") },
+      { title: t("cardDevelopment") },
+      { title: t("cardBranding") },
+      { title: t("cardMarketing") },
+      { title: t("cardUiUx") },
+      { title: t("cardSeo") },
+      { title: t("cardContent") },
+      { title: t("cardStrategy") },
+    ],
+    [t],
+  );
 
   const setCardRef = (el: HTMLDivElement | null) => {
     if (el && !cardsRef.current.includes(el)) {
@@ -109,18 +114,14 @@ const OurTeam = () => {
           <div className="flex lg:items-center items-stretch lg:flex-row flex-col xl:gap-27.5 lg:gap-20 gap-6">
             <div className="lg:max-w-110">
               <Pill iconColor="#3838F9" className="text-primary">
-                Meet the team
+                {t("pill")}
               </Pill>
               <h3 className="sm:text-2xl text-xl font-medium leading-none">
-                Your own team of world class B2B{" "}
-                <span className="text-primary">marketing experts.</span>
+                {t("title")}{" "}
+                <span className="text-primary">{t("titleAccent")}</span>
               </h3>
             </div>
-            <p className="sm:text-body text-sm md:max-w-134">
-              Quality has no postcode. We build teams with the best specialists,
-              no matter where they are. Remote work allows us to use top talent,
-              with Rubin, owner of OMB, as your dedicated project manager.
-            </p>
+            <p className="sm:text-body text-sm md:max-w-134">{t("description")}</p>
           </div>
           <div className="lg:hidden flex flex-wrap justify-center items-center gap-2 mt-6">
             {cards.map((card, index) => {
@@ -186,27 +187,27 @@ const OurTeam = () => {
                     key={index + 1}
                     className="font-nexa font-bold lg:text-[8.375rem] text-8xl"
                   >
-                    online marketing bakery
+                    {t("marquee")}
                   </h3>
                 ))}
               </div>
             </div>
             <Image
-              alt="Jasmin"
+              alt={t("imageJasminAlt")}
               width={395}
               height={485}
               src={"/jasmin.png"}
               className="col-start-1 row-start-1 xl:translate-x-0 lg:translate-x-[47%] translate-x-[0%] xl:group-hover:translate-x-[47%] xl:rotate-0 lg:rotate-6 xl:group-hover:rotate-6 -z-10 transition-transform duration-700 lg:inline-block hidden"
             />
             <Image
-              alt="John"
+              alt={t("imageJohnAlt")}
               width={395}
               height={485}
               src={"/john.png"}
               className="col-start-1 row-start-1 xl:translate-x-0 -translate-x-[47%] xl:group-hover:-translate-x-[47%] xl:rotate-0 -rotate-6 xl:group-hover:-rotate-6 -z-10 transition-transform duration-700 lg:inline-block hidden"
             />
             <Image
-              alt="Rubin"
+              alt={t("imageRubinAlt")}
               width={426}
               height={524}
               src={"/rubin.png"}
@@ -217,7 +218,7 @@ const OurTeam = () => {
               className="xl:opacity-0 xl:group-hover:opacity-100 xl:group-hover:translate-y-1/2 xl:translate-y-0 translate-y-1/2 duration-700 col-start-1 row-start-1 self-end"
               trailingContent={<AnimatedArrowIcon />}
             >
-              Meet the team!
+              {t("cta")}
             </AnimatedButton>
           </div>
         </div>

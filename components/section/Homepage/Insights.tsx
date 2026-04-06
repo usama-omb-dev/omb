@@ -8,10 +8,11 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Autoplay, Navigation } from "swiper/modules";
 
-import { useRef } from "react";
+import { useRef, useMemo } from "react";
 import Image from "next/image";
 import Counter from "@/components/ui/counter";
 import AnimatedArrowIcon from "@/components/ui/button/AnimatedArrowIcon";
+import { useTranslations } from "next-intl";
 
 export type InsightStat = {
   label: string;
@@ -26,131 +27,36 @@ export type InsightSlide = {
 };
 
 const Insights = () => {
+  const t = useTranslations("Insights");
   const prevRef = useRef<HTMLButtonElement | null>(null);
   const nextRef = useRef<HTMLButtonElement | null>(null);
 
-  const slidesData: InsightSlide[] = [
-    {
-      logo: "/salonora.png",
-      description:
-        "created a scalable booking software for the beauty industry with a professional website included",
-      // stats: [
-      //   { label: "Site Traffic", value: 300, suffix: "%" },
-      //   { label: "Conversion Rate", value: 20, suffix: "%" },
-      // ],
-    },
-    {
-      logo: "/beeldster.png",
-      description:
-        "LinkedIn leadgeneration campaigns with an ROI of more than 400% (!)",
-      // stats: [
-      //   { label: "Site Traffic", value: 300, suffix: "%" },
-      //   { label: "ROI", value: 400, suffix: "%" },
-      // ],
-    },
-    {
-      logo: "/stobe-logo.png",
-      description:
-        "new on-brand design and B2B targeting landing pages. Result: 68 percent increase in conversion",
-      // stats: [
-      //   { label: "Site Traffic", value: 300, suffix: "%" },
-      //   { label: "Conversion Rate", value: 20, suffix: "%" },
-      // ],
-    },
-    {
-      logo: "/slimkiezen.png",
-      description:
-        "created a leadgeneration platform for the Belgium consumer market which resulted in a ton of leads in the first month",
-      // stats: [
-      //   { label: "Site Traffic", value: 300, suffix: "%" },
-      //   { label: "Conversion Rate", value: 20, suffix: "%" },
-      // ],
-    },
-    {
-      logo: "/karakterfaculteit.png",
-      description:
-        "created a content and leadgeneration strategy which resulted in results from the very first beginning",
-      // stats: [
-      //   { label: "Site Traffic", value: 300, suffix: "%" },
-      //   { label: "Conversion Rate", value: 20, suffix: "%" },
-      // ],
-    },
-    // {
-    //   logo: "/stobe-logo.png",
-    //   description:
-    //     "Custom Shopify store, SEO strategy and Meta ads framework. The result? 300 percent growth in traffic and 20 percent higher conversion. This is how you turn a store into a sales machine.",
-    //   stats: [
-    //     { label: "Site Traffic", value: 300, suffix: "%" },
-    //     { label: "Conversion Rate", value: 20, suffix: "%" },
-    //   ],
-    // },
-    // {
-    //   logo: "/stobe-logo.png",
-    //   description:
-    //     "Custom Shopify store, SEO strategy and Meta ads framework. The result? 300 percent growth in traffic and 20 percent higher conversion. This is how you turn a store into a sales machine.",
-    //   stats: [
-    //     { label: "Site Traffic", value: 300, suffix: "%" },
-    //     { label: "Conversion Rate", value: 20, suffix: "%" },
-    //   ],
-    // },
-    // {
-    //   logo: "/stobe-logo.png",
-    //   description:
-    //     "Custom Shopify store, SEO strategy and Meta ads framework. The result? 300 percent growth in traffic and 20 percent higher conversion. This is how you turn a store into a sales machine.",
-    //   stats: [
-    //     { label: "Site Traffic", value: 300, suffix: "%" },
-    //     { label: "Conversion Rate", value: 20, suffix: "%" },
-    //   ],
-    // },
-    // {
-    //   logo: "/stobe-logo.png",
-    //   description:
-    //     "Custom Shopify store, SEO strategy and Meta ads framework. The result? 300 percent growth in traffic and 20 percent higher conversion. This is how you turn a store into a sales machine.",
-    //   stats: [
-    //     { label: "Site Traffic", value: 300, suffix: "%" },
-    //     { label: "Conversion Rate", value: 20, suffix: "%" },
-    //   ],
-    // },
-    // {
-    //   logo: "/stobe-logo.png",
-    //   description:
-    //     "Custom Shopify store, SEO strategy and Meta ads framework. The result? 300 percent growth in traffic and 20 percent higher conversion. This is how you turn a store into a sales machine.",
-    //   stats: [
-    //     { label: "Site Traffic", value: 300, suffix: "%" },
-    //     { label: "Conversion Rate", value: 20, suffix: "%" },
-    //   ],
-    // },
-    // {
-    //   logo: "/stobe-logo.png",
-    //   description:
-    //     "Custom Shopify store, SEO strategy and Meta ads framework. The result? 300 percent growth in traffic and 20 percent higher conversion. This is how you turn a store into a sales machine.",
-    //   // stats: [
-    //   //   { label: "Site Traffic", value: 300, suffix: "%" },
-    //   //   { label: "Conversion Rate", value: 20, suffix: "%" },
-    //   // ],
-    // },
-  ];
+  const slidesData: InsightSlide[] = useMemo(
+    () => [
+      { logo: "/salonora.png", description: t("slideSalonora") },
+      { logo: "/beeldster.png", description: t("slideBeeldster") },
+      { logo: "/stobe-logo.png", description: t("slideStobe") },
+      { logo: "/slimkiezen.png", description: t("slideSlimkiezen") },
+      { logo: "/karakterfaculteit.png", description: t("slideKarakter") },
+    ],
+    [t],
+  );
 
   return (
     <section className="xl:pt-36.5 sm:pt-20 pt-10 overflow-hidden">
       <div className="container flex flex-col lg:gap-20 gap-10">
         <div className="flex lg:flex-row flex-col justify-between xl:gap-34 sm:gap-10 gap-5">
           <h3 className="sm:text-2xl text-lg font-medium leading-none lg:max-w-152.25">
-            <span className="text-primary">68 percent increase</span> in
-            conversion rates with the new design.
+            <span className="text-primary">{t("headlineAccent")}</span>{" "}
+            {t("headlineRest")}
           </h3>
           <div className="lg:max-w-79 flex flex-col items-start sm:gap-7.5 gap-4">
-            <p className="sm:text-body text-sm">
-              If everything was going great, you would not be here right now.
-              Our clients understand that. They hire us for expertise and accept
-              the discussion that comes with it. Because politely continuing
-              what does not work will cost you dearly.
-            </p>
+            <p className="sm:text-body text-sm">{t("body")}</p>
             <AnimatedButton
               size={"icon"}
               trailingContent={<AnimatedArrowIcon />}
             >
-              View our results
+              {t("cta")}
             </AnimatedButton>
           </div>
           <div className="flex gap-3.5">
@@ -185,10 +91,6 @@ const Insights = () => {
               nav.prevEl = prevRef.current;
               nav.nextEl = nextRef.current;
             }}
-            // onSlideChange={(swiper) => {
-            //   prevRef.current!.disabled = swiper.isBeginning;
-            //   nextRef.current!.disabled = swiper.isEnd;
-            // }}
             navigation={{
               prevEl: prevRef.current,
               nextEl: nextRef.current,
@@ -208,9 +110,8 @@ const Insights = () => {
             {slidesData.map((slide, index) => (
               <SwiperSlide className="h-auto!" key={index}>
                 <div className="bg-white lg:p-7.5 p-4 lg:pb-5 rounded-[0.3125rem] h-full lg:gap-8 gap-4 flex flex-col justify-between items-start">
-                {/* <div className="bg-white lg:p-7.5 p-4 lg:pb-5 rounded-[0.3125rem] xl:min-h-115.75 lg:gap-8 gap-4 flex flex-col justify-between items-start"> */}
                   <Image
-                    alt="Stobe Logo"
+                    alt={t("logoAlt")}
                     width={138}
                     height={34}
                     src={slide.logo}

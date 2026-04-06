@@ -1,4 +1,5 @@
 "use client";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import AnimatedArrowIcon from "@/components/ui/button/AnimatedArrowIcon";
 import AnimatedButton from "@/components/ui/button/AnimatedButton";
@@ -15,6 +16,7 @@ import { useRef } from "react";
 gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
+  const t = useTranslations("Hero");
   const imgRef = useRef<null | HTMLImageElement>(null);
   const mainRef = useRef<null | HTMLDivElement>(null);
   // useGSAP(
@@ -111,17 +113,13 @@ const Hero = () => {
           <div className="flex lg:flex-row flex-col 2xl:gap-42 lg:gap-3 gap-5 ">
             <div className=" flex flex-col xl:gap-5 gap-3 items-start">
               <Pill iconColor="#3838F9" className="text-primary">
-                B2B Marketing Agency
+                {t("pill")}
               </Pill>
               <h1 className="xl:text-4xl sm:text-[3.25rem] text-2xl font-medium text-black">
-                <TextReveal>
-                  We build Brands People keep Coming Back For.
-                </TextReveal>
+                <TextReveal>{t("title")}</TextReveal>
               </h1>
               <p className="sm:text-body text-xsm text-black mt-2.5">
-                {`Together we bake campaigns that make your audience hungry. We help
-               you take a position customers choose and competitors lose sleep
-               over.`}
+                {t("description")}
               </p>
 
               <AnimatedButton
@@ -129,7 +127,7 @@ const Hero = () => {
                 size={"icon"}
                 trailingContent={<AnimatedArrowIcon />}
               >
-                Dat smaakt naar meer
+                {t("cta")}
               </AnimatedButton>
               <div className="flex sm:flex-row sm:gap-0 gap-2 flex-col items-center md:mt-7.5">
                 <div className="flex">
@@ -195,9 +193,7 @@ const Hero = () => {
                     />
                     <h6 className="font-bold text-base ml-1.5">4.8/5</h6>
                   </div>
-                  <span className="text-body text-black">
-                    Trusted 1000+ Businesses
-                  </span>
+                  <span className="text-body text-black">{t("trusted")}</span>
                 </div>
               </div>
             </div>
@@ -210,11 +206,7 @@ const Hero = () => {
                 className="md:min-h-auto min-h-[450px] w-full object-cover rounded-[10px] overflow-hidden"
               />
               <div className="bg-white rounded-[5px] sm:p-6 p-4 flex flex-col xl:gap-8 gap-4 md:max-w-[368px] absolute md:bottom-[30px] md:left-unset left-5 md:right-unset right-5 bottom-5 xl:-translate-x-1/2 lg:-translate-x-1/3 md:translate-x-[98%]">
-                <p className="text-xsm text-black">
-                  Rubin and his team are all top performers in their field. We
-                  have been working together for two years now and are still
-                  amazed by their daily flexibility, speed and quality.
-                </p>
+                <p className="text-xsm text-black">{t("testimonial")}</p>
                 <div className="flex items-center gap-2">
                   <Image
                     src="/vincent.png"
@@ -224,10 +216,10 @@ const Hero = () => {
                   />
                   <div className="flex flex-col">
                     <h6 className="font-medium leading-tight text-base">
-                      Vincent De Geyndt
+                      {t("testimonialName")}
                     </h6>
                     <span className="text-[12px] text-primary leading-tight">
-                      SalesUp
+                      {t("testimonialCompany")}
                     </span>
                   </div>
                 </div>
@@ -239,25 +231,25 @@ const Hero = () => {
           <div className="grid lg:grid-cols-4 sm:grid-cols-2 lg:gap-0 gap-6 py-[70px] px-[20px] bg-linear-to-t from-[#212193] to-[#3838F9] rounded-[10px]">
             <div className="flex flex-col items-center justify-center relative isolate">
               <Counter className="text-white md:!text-3xl !text-2xl font-medium" suffix={"+"}>{723}</Counter>
-              <span className="text-white text-[20px]">Success Project</span>
+              <span className="text-white text-[20px]">{t("statProjects")}</span>
               <span className="absolute top-0  sm:block hidden right-0 w-[2px] h-full bg-gradient-to-b from-[transparent] via-white/30 to-[transparent]" />
               <span className="absolute -bottom-[16px] lg:hidden block right-0 w-full h-[2px] bg-gradient-to-l from-[transparent] via-white/30 to-[transparent]" />
             </div>
             <div className="flex flex-col items-center justify-center relative isolate">
               <Counter className="text-white md:!text-3xl !text-2xl font-medium" suffix={"+"}>{10}</Counter>
-              <span className="text-white text-[20px]">Years Experience</span>
+              <span className="text-white text-[20px]">{t("statYears")}</span>
               <span className="absolute -bottom-[16px] lg:hidden block right-0 w-full h-[2px] bg-gradient-to-l from-[transparent] via-white/30 to-[transparent]" />
               <span className="absolute lg:block hidden top-0  right-0 w-[2px] h-full bg-gradient-to-b from-[transparent] via-white/30 to-[transparent]" />
             </div>
             <div className="flex flex-col items-center justify-center relative isolate">
               <Counter className="text-white md:!text-3xl !text-2xl font-medium" suffix={"+"}>{500}</Counter>
-              <span className="text-white text-[20px]">Product Launched</span>
+              <span className="text-white text-[20px]">{t("statProducts")}</span>
               <span className="absolute top-0 right-0 w-[2px] sm:block hidden h-full bg-gradient-to-b from-[transparent] via-white/30 to-[transparent]" />
               <span className="absolute -bottom-[16px] sm:hidden block right-0 w-full h-[2px] bg-gradient-to-l from-[transparent] via-white/30 to-[transparent]" />
             </div>
             <div className="flex flex-col items-center justify-center relative isolate">
               <Counter className="text-white md:!text-3xl !text-2xl font-medium" suffix={"+"}>{100}</Counter>
-              <span className="text-white text-[20px]">Startup Raised</span>
+              <span className="text-white text-[20px]">{t("statStartup")}</span>
             </div>
           </div>
         </div>

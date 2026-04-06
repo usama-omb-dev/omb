@@ -3,8 +3,11 @@ import { useBlogs } from "@/hooks/useBlogs";
 import { BlogSummaryData } from "./Blogs-List";
 import React from "react";
 import BlogCard from "@/components/ui/blog-card";
+import { useLocale, useTranslations } from "next-intl";
 
 const LatestBlogs = () => {
+  const t = useTranslations("LatestBlogs");
+  const locale = useLocale();
   const { data: blogs, isLoading } = useBlogs();
 
   const transformPostToBlogSummary = (post: any): BlogSummaryData => {
@@ -24,7 +27,7 @@ const LatestBlogs = () => {
       blogUrl: post.slug || "",
 
       blogDate:
-        date.toLocaleDateString("en-GB", {
+        date.toLocaleDateString(locale === "nl" ? "nl-NL" : "en-GB", {
           day: "2-digit",
           month: "long",
           year: "numeric",
@@ -46,7 +49,7 @@ const LatestBlogs = () => {
     <section className="bg-white sm:rounded-tl-[3.75rem] rounded-tl-[1.875rem] sm:rounded-tr-[3.75rem] rounded-tr-[1.875rem] lg:pt-20 pt-10">
       <div className="container flex flex-col sm:gap-15 gap-4">
         <h3 className="text-center sm:text-2xl text-xl font-medium">
-          Latest <span className="text-primary">blogs</span>
+          {t("title")} <span className="text-primary">{t("titleAccent")}</span>
         </h3>
         <div className="grid lg:grid-cols-3 gap-3.5">
           {formattedBlogs.splice(0, 3).map((item, index) => (

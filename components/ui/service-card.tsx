@@ -4,7 +4,7 @@ import Image from "next/image";
 import { ArrowRight } from "./icons";
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 
 interface CardDetails {
   title: string;

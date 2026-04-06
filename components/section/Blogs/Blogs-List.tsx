@@ -5,6 +5,7 @@ import AnimatedButton from "@/components/ui/button/AnimatedButton";
 import Pill from "@/components/ui/pill";
 import { useBlogs } from "@/hooks/useBlogs";
 import React, { useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
 
 export interface BlogSummaryData {
   title: string;
@@ -20,6 +21,8 @@ export interface BlogSummaryData {
 }
 
 const BlogsList = () => {
+  const t = useTranslations("BlogsList");
+  const locale = useLocale();
   const { data: blogs, isLoading } = useBlogs();
   const [visibleCount, setVisibleCount] = useState(4);
 
@@ -45,7 +48,7 @@ const BlogsList = () => {
       blogUrl: post.slug || "",
 
       blogDate:
-        date.toLocaleDateString("en-GB", {
+        date.toLocaleDateString(locale === "nl" ? "nl-NL" : "en-GB", {
           day: "2-digit",
           month: "long",
           year: "numeric",
@@ -66,13 +69,13 @@ const BlogsList = () => {
   return (
     <section className="sm:pt-37.5 pt-10">
       <div className="container">
-        <div className="flex flex-col items-center justify-center max-w-118.5 sm:mb-14.75 mb-10 sm:gap-7.5 gap-2 mx-auto">
+        <div className="flex flex-col items-center justify-center nl:max-w-200 max-w-118.5 sm:mb-14.75 mb-10 sm:gap-7.5 gap-2 mx-auto">
           <Pill iconColor="#3838F9" className="leading-none">
-            List of the most recent write-up from Rubin
+            {t("pill")}
           </Pill>
           <h3 className="sm:text-2xl text-xl font-medium leading-none text-center">
-            Latest blogs from the{" "}
-            <span className="text-primary">online marketing baker!</span>
+            {t("title")}{" "}
+            <span className="text-primary">{t("titleAccent")}</span>
           </h3>
         </div>
         <div className="flex flex-col sm:gap-14.75 gap-5">
@@ -91,7 +94,7 @@ const BlogsList = () => {
               href={""}
               onClick={() => setVisibleCount((prev) => prev + 4)}
             >
-              Load more
+              {t("loadMore")}
             </AnimatedButton>
           )}
         </div>

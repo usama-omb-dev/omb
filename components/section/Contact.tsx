@@ -14,6 +14,8 @@ export type ContactSectionProps = {
   overlayAlt?: string;
   tickSrc?: string;
   tickAlt?: string;
+  /** Numeric CF7 form ID when this block should not use the server default. */
+  cf7FormId?: string;
 };
 
 const Contact = ({
@@ -28,6 +30,7 @@ const Contact = ({
   overlayAlt = "Overlay",
   tickSrc = "/gr-tick.png",
   tickAlt = "",
+  cf7FormId,
 }: ContactSectionProps) => {
   return (
     <section className="lg:py-37.5 py-10">
@@ -43,20 +46,28 @@ const Contact = ({
           <div className="flex flex-col lg:gap-7.5 gap-4">
             <Image src={logoSrc} alt={logoAlt} width={65} height={92} />
             <div>
-              <h5 className="text-white sm:text-md text-body font-medium">
-                <TextReveal>{eyebrow}</TextReveal>
-              </h5>
-              <h2 className="text-white xl:text-3xl sm:text-2xl text-lg leading-none xl:pr-24 pr-10">
-                <TextReveal>{headline}</TextReveal>
-              </h2>
+              {eyebrow ? (
+                <h5 className="text-white sm:text-md text-body font-medium">
+                  <TextReveal>{eyebrow}</TextReveal>
+                </h5>
+              ) : null}
+              {headline ? (
+                <h2 className="text-white xl:text-3xl sm:text-2xl text-lg leading-none xl:pr-24 pr-10">
+                  <TextReveal>{headline}</TextReveal>
+                </h2>
+              ) : null}
             </div>
             <div className="xl:pt-7.5 xl:pr-0 pr-5 flex flex-col lg:gap-7.5 sm:gap-4 gap-2">
-              <p className="xl:text-body sm:text-sm text-xsm font-medium text-white">
-                {paragraph1}
-              </p>
-              <p className="xl:text-body sm:text-sm text-xsm font-medium text-white">
-                {paragraph2}
-              </p>
+              {paragraph1 ? (
+                <p className="xl:text-body sm:text-sm text-xsm font-medium text-white">
+                  {paragraph1}
+                </p>
+              ) : null}
+              {paragraph2 ? (
+                <p className="xl:text-body sm:text-sm text-xsm font-medium text-white">
+                  {paragraph2}
+                </p>
+              ) : null}
               {bulletPoints?.length && (
 
               <ul className="flex flex-col gap-2.5">
@@ -74,7 +85,7 @@ const Contact = ({
             </div>
           </div>
           <div className="bg-white/4 backdrop-blur-3xl border border-white/26 rounded-[0.625rem] xl:p-11.5 sm:p-6 p-4 xl:pr-6.5">
-            <ContactForm />
+            <ContactForm cf7FormId={cf7FormId} />
           </div>
         </div>
       </div>

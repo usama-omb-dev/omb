@@ -5,14 +5,16 @@ import Pill from "@/components/ui/pill";
 import ServiceCard from "@/components/ui/service-card";
 import { useServices } from "@/hooks/useServices";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
-interface ServiceCard {
+interface ServiceCardItem {
   title: string;
   href: string;
   imgUrl: string;
 }
 
 const Services = () => {
+  const t = useTranslations("HomeServices");
   const { data: service, isLoading } = useServices();
 
   const servicesList = isLoading
@@ -30,33 +32,30 @@ const Services = () => {
       <div className="container flex flex-col lg:gap-28 gap-8">
         <div className="flex lg:flex-row flex-col gap-6 items-start justify-between">
           <Pill iconColor="#3838F9" className="text-primary">
-            We understand your frustration
+            {t("pill")}
           </Pill>
           <div className="lg:max-w-132 flex flex-col gap-5">
             <h3 className="sm:text-2xl text-xl font-medium leading-none">
-              Your marketing is not working, and{" "}
-              <span className="text-primary">you don’t know why.</span>
+              {t("title")}{" "}
+              <span className="text-primary">{t("titleAccent")}</span>
             </h3>
-            <p className="sm:text-body text-sm">
-              Your competitor is growing while you stay stuck. You know
-              something has to change. But what? And how?
-            </p>
+            <p className="sm:text-body text-sm">{t("description")}</p>
           </div>
           <AnimatedButton size={"icon"} trailingContent={<AnimatedArrowIcon />}>
-            Explore all services
+            {t("cta")}
           </AnimatedButton>
         </div>
         <div className="grid md:grid-cols-3 grid-cols-2 sm:gap-3.5 gap-2 sm:auto-rows-[1fr]">
           <div className="lg:row-span-3 sm:row-span-2 sm:col-span-1 col-span-2 lg:col-span-1">
             <Image
-              alt="Hero Image"
+              alt={t("heroImageAlt")}
               width={1440}
               height={613}
               src={"/service-hero_img.png"}
               className=""
             />
           </div>
-          {servicesList.map((item: ServiceCard, index: number) => (
+          {servicesList.map((item: ServiceCardItem, index: number) => (
             <ServiceCard key={index + 1} cardDetails={item} />
           ))}
         </div>

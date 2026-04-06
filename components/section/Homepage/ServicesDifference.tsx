@@ -1,7 +1,11 @@
+"use client";
+
 import Pill from "@/components/ui/pill";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import TextReveal from "@/components/ui/TextReveal";
 import Image from "next/image";
+import { useMemo } from "react";
+import { useTranslations } from "next-intl";
 
 export type ServicesDifferenceEffectItem = {
   icon: string;
@@ -14,7 +18,6 @@ export type ServicesDifferenceTraditionalItem = {
   icon: string;
   text: string;
   span?: string;
-  /** Hover GIF; omitted for “Traditional” cards when not used */
   gif?: string;
 };
 
@@ -22,77 +25,79 @@ const TAB_EFFECT = "effect" as const;
 const TAB_TRADITIONAL = "traditional" as const;
 
 const ServicesDifference = () => {
-  const data: ServicesDifferenceEffectItem[] = [
-    {
-      icon: "/white-globe-icon.svg",
-      text: "Online in 4 to 8 weeks Working together should feel like a celebration",
-      span: "lg:row-span-2",
-      gif: "/gif-1.gif",
-    },
-    {
-      icon: "/breifing-icon.svg",
-      text: "We challenge your briefing, debate up front, celebration at the end.",
-      gif: "/gif-2.gif",
-    },
-    {
-      icon: "/stock-icon.svg",
-      text: "Your story baked in a way that keeps customers hungry.",
-      span: "lg:row-span-2",
-      gif: "/gif-3.gif",
-    },
-    {
-      icon: "/bolt-icon.svg",
-      text: "A brand with an opinion that keeps you up at night.",
-      gif: "/gif-4.gif",
-    },
-    {
-      icon: "/github-icon.svg",
-      text: "Too much noise online. Boring is not our thing.",
-      span: "lg:row-span-2",
-      gif: "/gif-5.gif",
-    },
-    {
-      icon: "/slack-icon.svg",
-      text: "Results that leave you wanting more.",
-      gif: "/gif-6.gif",
-    },
-  ];
+  const t = useTranslations("ServicesDifference");
 
-  const oldData: ServicesDifferenceTraditionalItem[] = [
-    {
-      icon: "/white-globe-icon.svg",
-      text: "Online in 6 months. Endless meetings, no progress.",
-      span: "lg:row-span-2",
-      // gif: "/gif-1.gif",
-    },
-    {
-      icon: "/breifing-icon.svg",
-      text: "We execute your briefing. No questions asked.",
-      // gif: "/gif-2.gif",
-    },
-    {
-      icon: "/stock-icon.svg",
-      text: "A website with a lot of text. Nobody reads it.",
-      span: "lg:row-span-2",
-      // gif: "/gif-3.gif",
-    },
-    {
-      icon: "/bolt-icon.svg",
-      text: "A brand that looks nice. Safe, forgettable, grey.",
-      // gif: "/gif-4.gif",
-    },
-    {
-      icon: "/github-icon.svg",
-      text: "We post 3x a week. Engagement? Not our problem.",
-      span: "lg:row-span-2",
-      // gif: "/gif-5.gif",
-    },
-    {
-      icon: "/slack-icon.svg",
-      text: "A nice report. With KPIs nobody cares about.",
-      // gif: "/gif-6.gif",
-    },
-  ];
+  const data: ServicesDifferenceEffectItem[] = useMemo(
+    () => [
+      {
+        icon: "/white-globe-icon.svg",
+        text: t("effect1"),
+        span: "lg:row-span-2",
+        gif: "/gif-1.gif",
+      },
+      {
+        icon: "/breifing-icon.svg",
+        text: t("effect2"),
+        gif: "/gif-2.gif",
+      },
+      {
+        icon: "/stock-icon.svg",
+        text: t("effect3"),
+        span: "lg:row-span-2",
+        gif: "/gif-3.gif",
+      },
+      {
+        icon: "/bolt-icon.svg",
+        text: t("effect4"),
+        gif: "/gif-4.gif",
+      },
+      {
+        icon: "/github-icon.svg",
+        text: t("effect5"),
+        span: "lg:row-span-2",
+        gif: "/gif-5.gif",
+      },
+      {
+        icon: "/slack-icon.svg",
+        text: t("effect6"),
+        gif: "/gif-6.gif",
+      },
+    ],
+    [t],
+  );
+
+  const oldData: ServicesDifferenceTraditionalItem[] = useMemo(
+    () => [
+      {
+        icon: "/white-globe-icon.svg",
+        text: t("traditional1"),
+        span: "lg:row-span-2",
+      },
+      {
+        icon: "/breifing-icon.svg",
+        text: t("traditional2"),
+      },
+      {
+        icon: "/stock-icon.svg",
+        text: t("traditional3"),
+        span: "lg:row-span-2",
+      },
+      {
+        icon: "/bolt-icon.svg",
+        text: t("traditional4"),
+      },
+      {
+        icon: "/github-icon.svg",
+        text: t("traditional5"),
+        span: "lg:row-span-2",
+      },
+      {
+        icon: "/slack-icon.svg",
+        text: t("traditional6"),
+      },
+    ],
+    [t],
+  );
 
   return (
     <section>
@@ -100,16 +105,12 @@ const ServicesDifference = () => {
         <div className="lg:py-[3.5938rem] lg:px-11.25 p-4 bg-white lg:rounded-4xl rounded-[3.5rem] flex flex-col justify-center items-center gap-5 ">
           <div className="max-w-134 flex justify-center items-center flex-col gap-5 mx-auto">
             <Pill iconColor="#3838F9" className="text-primary">
-              Services
+              {t("pill")}
             </Pill>
             <h2 className="text-center sm:text-2xl text-lg font-medium leading-none">
-              <TextReveal>Traditional vs OMB Effect</TextReveal>
+              <TextReveal>{t("title")}</TextReveal>
             </h2>
-            <p className="text-center sm:text-sm text-xsm ">
-              Traditional agencies work the way you are used to. Polite,
-              predictable, safe. And without results. We choose a different
-              approach. One that creates friction but also shine.
-            </p>
+            <p className="text-center sm:text-sm text-xsm ">{t("description")}</p>
           </div>
           <Tabs
             className="w-full justify-center items-center gap-7.5"
@@ -120,13 +121,13 @@ const ServicesDifference = () => {
                 className="text-[#0E0F0C] sm:text-body! text-xsm font-medium! data-[state=active]:text-white! cursor-pointer rounded-full data-[state=active]:bg-primary relative lg:py-4.5 py-3 lg:px-7 px-2.5 [anchor-name:--tab] data-[state=active]:[anchor-name:--active-tab]"
                 value={TAB_TRADITIONAL}
               >
-                Traditional
+                {t("tabTraditional")}
               </TabsTrigger>
               <TabsTrigger
                 className="text-[#0E0F0C] sm:text-body! text-xsm font-medium! data-[state=active]:text-white! cursor-pointer rounded-full data-[state=active]:bg-primary relative lg:py-4.5 py-3 lg:px-7 px-2.5 [anchor-name:--tab] data-[state=active]:[anchor-name:--active-tab]"
                 value={TAB_EFFECT}
               >
-                OMB Effect
+                {t("tabEffect")}
               </TabsTrigger>
             </TabsList>
             <TabsContent
@@ -155,7 +156,7 @@ const ServicesDifference = () => {
                             ) : null}
                             <div className="sm:min-w-16 max-w-10 sm:w-16 w-10 sm:min-h-16 min-h-10 p-2.5 rounded-full bg-primary flex items-center justify-center">
                               <Image
-                                alt="Icon"
+                                alt={t("iconAlt")}
                                 width={30}
                                 height={30}
                                 src={bottomItem.icon}
@@ -185,7 +186,7 @@ const ServicesDifference = () => {
                       ) : null}
                       <div className="sm:min-w-16 max-w-10 sm:w-16 w-10 sm:min-h-16 min-h-10 p-2.5 rounded-full bg-primary flex items-center justify-center">
                         <Image
-                          alt="Icon"
+                          alt={t("iconAlt")}
                           width={30}
                           height={30}
                           src={item.icon}
@@ -223,7 +224,7 @@ const ServicesDifference = () => {
                             />
                             <div className="sm:min-w-16 max-w-10 sm:w-16 w-10 sm:min-h-16 min-h-10 p-2.5 rounded-full bg-primary flex items-center justify-center">
                               <Image
-                                alt="Icon"
+                                alt={t("iconAlt")}
                                 width={30}
                                 height={30}
                                 src={bottomItem.icon}
@@ -251,7 +252,7 @@ const ServicesDifference = () => {
                       />
                       <div className="sm:min-w-16 max-w-10 sm:w-16 w-10 sm:min-h-16 min-h-10 p-2.5 rounded-full bg-primary flex items-center justify-center">
                         <Image
-                          alt="Icon"
+                          alt={t("iconAlt")}
                           width={30}
                           height={30}
                           src={item.icon}
