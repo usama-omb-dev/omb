@@ -115,7 +115,16 @@ const Header = () => {
   const [servicesMegaTouchExpanded, setServicesMegaTouchExpanded] =
     useState(false);
   const [supportsRealHover, setSupportsRealHover] = useState(true);
+  const [headerScrolled, setHeaderScrolled] = useState(false);
   const servicesMegaRef = useRef<HTMLLIElement>(null);
+
+  useEffect(() => {
+    const threshold = 24;
+    const onScroll = () => setHeaderScrolled(window.scrollY > threshold);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useLayoutEffect(() => {
     const mq = window.matchMedia("(hover: hover) and (pointer: fine)");
@@ -226,7 +235,12 @@ const Header = () => {
   // }, []);
 
   return (
-    <header className="absolute sm:top-10 top-6 left-0 z-50 w-full px-5">
+    <header
+      className={cn(
+        "fixed left-0 z-50 w-full px-5 transition-[top] duration-300 ease-out",
+        headerScrolled ? "top-2" : "top-6 sm:top-10",
+      )}
+    >
       {/* <div className="container">
         <div className="flex justify-between items-center relative">
           <Link href="/">
