@@ -117,6 +117,7 @@ const MarketingTeam = () => {
               </h6>
               <p className="text-white">{t("ctaBody")}</p>
               <AnimatedButton
+              href="/careers"
                 size={"icon"}
                 className=""
                 trailingContent={<AnimatedArrowIcon />}

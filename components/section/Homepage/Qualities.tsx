@@ -127,6 +127,7 @@ const Qualities = () => {
               ))}
 
               <AnimatedButton
+              href="/contact"
                 size={"icon"}
                 variant={"secondary"}
                 trailingContent={<AnimatedArrowIcon />}

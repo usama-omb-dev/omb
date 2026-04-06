@@ -123,6 +123,7 @@ const Hero = () => {
               </p>
 
               <AnimatedButton
+              href="/contact"
                 className="mt-2.5"
                 size={"icon"}
                 trailingContent={<AnimatedArrowIcon />}

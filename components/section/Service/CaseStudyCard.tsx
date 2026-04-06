@@ -18,7 +18,7 @@ const CaseStudyCard = ({ data }: { data: CaseStudiesSection }) => {
         alt={""}
         width={400}
         height={413}
-        className="w-full max-w-100"
+        className="w-full max-w-100 object-cover rounded-[10px]"
       />
       <div className="flex flex-col justify-between xl:gap-11.75 gap-5">
         <div className="flex flex-col md:gap-7.5 gap-4">

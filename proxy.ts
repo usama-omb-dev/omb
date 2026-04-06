@@ -13,26 +13,6 @@ function pathnameHasLocalePrefix(pathname: string): boolean {
   );
 }
 
-/** First language in Accept-Language (e.g. nl-NL;q=0.9 → nl). */
-function acceptLanguagePrimary(request: NextRequest): string | null {
-  const raw = request.headers.get("accept-language");
-  if (!raw) return null;
-  const first = raw.split(",")[0]?.trim().split(";")[0]?.trim().toLowerCase();
-  if (!first) return null;
-  return first.split("-")[0] ?? null;
-}
-
-/**
- * NL/BE by IP (Vercel), or — when IP country is missing (e.g. `next dev`) —
- * browser primary language `nl` so local / non-Vercel tests can still get Dutch.
- */
-function shouldDefaultToDutch(request: NextRequest): boolean {
-  const country = request.headers.get("x-vercel-ip-country");
-  if (isNlRegionCountry(country)) return true;
-  if (country) return false;
-  return acceptLanguagePrimary(request) === "nl";
-}
-
 function nlRedirectPath(pathname: string): string | null {
   if (!pathnameHasLocalePrefix(pathname)) {
     if (pathname === "/") return "/nl";
@@ -41,6 +21,18 @@ function nlRedirectPath(pathname: string): string | null {
   if (pathname === "/en" || pathname.startsWith("/en/")) {
     const suffix = pathname === "/en" ? "" : pathname.slice("/en".length);
     return suffix ? `/nl${suffix}` : "/nl";
+  }
+  return null;
+}
+
+function enRedirectPath(pathname: string): string | null {
+  if (!pathnameHasLocalePrefix(pathname)) {
+    if (pathname === "/") return "/en";
+    return `/en${pathname}`;
+  }
+  if (pathname === "/nl" || pathname.startsWith("/nl/")) {
+    const suffix = pathname === "/nl" ? "" : pathname.slice("/nl".length);
+    return suffix ? `/en${suffix}` : "/en";
   }
   return null;
 }
@@ -63,15 +55,20 @@ export function proxy(request: NextRequest) {
   const cookieLocale = request.cookies.get(LOCALE_COOKIE)?.value;
 
   /**
-   * NL/BE (or Dutch Accept-Language when IP geo is unavailable) without a
-   * locale cookie → prefer `/nl/...`.
+   * No explicit locale cookie: pick locale from Vercel geo only.
+   * - Netherlands & Belgium → `/nl/...`
+   * - Any other country, or unknown IP country (e.g. local dev) → `/en/...`
    *
-   * With `localePrefix: "always"`, the default locale is `/en/...`, so we also
-   * rewrite `/en` and `/en/...` → Dutch. Choosing EN in the header sets
-   * NEXT_LOCALE and skips this block.
+   * Header switcher sets NEXT_LOCALE and skips this block.
    */
-  if (shouldDefaultToDutch(request) && !cookieLocale) {
-    const targetPath = nlRedirectPath(pathname);
+  if (!cookieLocale) {
+    const country = request.headers.get("x-vercel-ip-country");
+    const benelux = isNlRegionCountry(country);
+
+    const targetPath = benelux
+      ? nlRedirectPath(pathname)
+      : enRedirectPath(pathname);
+
     if (targetPath && targetPath !== pathname) {
       return NextResponse.redirect(new URL(targetPath, request.url));
     }

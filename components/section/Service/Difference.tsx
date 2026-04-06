@@ -91,7 +91,8 @@ const Difference = ({ data }: { data: DifferenceSection }) => {
             variant={"secondary"}
             className=" mx-auto"
             trailingContent={<AnimatedArrowIcon />}
-            href={differenceButton.btnUrl}
+            // href={differenceButton.btnUrl}
+            href="/contact"
           >
             {differenceButton.btnLabel}
           </AnimatedButton>

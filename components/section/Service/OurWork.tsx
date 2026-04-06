@@ -75,7 +75,7 @@ const OurWork = ({
                 size={"icon"}
                 className=""
                 trailingContent={<AnimatedArrowIcon />}
-                href={workBookingButton.btnUrl}
+                href={workBookingButton.btnUrl || "/contact"}
               >
                 {workBookingButton.btnLabel}
               </AnimatedButton>

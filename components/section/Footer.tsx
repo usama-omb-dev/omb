@@ -160,7 +160,7 @@ const Footer = () => {
         <div className="flex flex-col items-start justify-between xl:gap-8 gap-4 pt-2.5 pb-4.25 xl:flex-row md:items-center border-b border-white/20">
           <div className="flex flex-wrap items-center sm:gap-4 gap-2">
             <Image
-              src="/logo-icon.svg"
+              src="/omb-favicon.svg"
               alt="Omb"
               width={46.6}
               height={66.09}

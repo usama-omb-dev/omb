@@ -11,6 +11,7 @@ import { useEffect, useMemo, useRef } from "react";
 import gsap from "gsap";
 import { ArrowRight } from "@/components/ui/icons";
 import { useTranslations } from "next-intl";
+import { usePathname } from "next/navigation";
 
 interface Milestone {
   year: number;
@@ -24,6 +25,7 @@ const OurGoal = ({showMilestones = true}: {showMilestones?: boolean}) => {
   const t = useTranslations("OurGoal");
   const swiperWrapperRef = useRef<HTMLDivElement>(null);
   const cursorRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
 
   const milestoneData: Milestone[] = useMemo(
     () => [
@@ -178,8 +180,11 @@ const OurGoal = ({showMilestones = true}: {showMilestones?: boolean}) => {
               {t("missionRest")}{" "}
               <span className="text-black">{t("missionBold")}</span>
             </h5>
+            {!pathname.includes('/careers') && (
+
             <div className="relative flex justify-between items-start flex-1 gap-4 sm:flex-row flex-col pb-4 sm:pb-0">
               <AnimatedButton
+              href="/careers"
                 size={"icon"}
                 trailingContent={<AnimatedArrowIcon />}
               >
@@ -192,6 +197,7 @@ const OurGoal = ({showMilestones = true}: {showMilestones?: boolean}) => {
                 height={218}
               />
             </div>
+            )}
           </div>
         </div>
         {showMilestones && (
