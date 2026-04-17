@@ -379,7 +379,7 @@ const Header = () => {
           </Link>
         </div>
       </div> */}
-      <div className="container border border-white/22 rounded-full p-1">
+      <div className="container border border-white/22 rounded-full p-1 shadow-[0px_9px_29.2px_0px_#53538012]">
         <div className="flex justify-between items-center bg-white rounded-full p-2 pl-4">
           <Link href="/">
             <Image
@@ -391,7 +391,6 @@ const Header = () => {
             />
           </Link>
           <div className="flex items-center gap-4">
-            <LocaleSwitcher className="hidden lg:flex shrink-0" />
             <ul className="items-center gap-12 lg:!flex !hidden">
               {menuItems.map((item, i) => {
                 const servicesActive =
@@ -616,7 +615,7 @@ const Header = () => {
                   <AnimatedButton
                     size={"icon"}
                     variant={"secondary"}
-                    className="md:!p-[6.5px] md:!pl-2.5 bg-primary hover:bg-primary text-base! text-white w-full! justify-between"
+                    className="md:!p-[6.5px] md:!pl-2.5 bg-zinc-900 hover:bg-zinc-800 text-base! text-white w-full! justify-between"
                     href="/contact"
                     trailingContent={
                       <AnimatedArrowIcon
@@ -632,17 +631,20 @@ const Header = () => {
               </SheetContent>
             </Sheet>
           </div>
-          <AnimatedButton
-            size={"icon"}
-            variant={"secondary"}
-            className="md:!p-[6.5px] md:!pl-2.5 lg:!flex !hidden bg-primary hover:bg-primary text-base! text-white"
-            href="/contact"
-            trailingContent={
-              <AnimatedArrowIcon tone="on-dark" compact className="!size-7" />
-            }
-          >
-            {tHeader("contactUs")}
-          </AnimatedButton>
+          <div className="hidden lg:flex items-center gap-3 shrink-0">
+            <LocaleSwitcher />
+            <AnimatedButton
+              size={"icon"}
+              variant={"secondary"}
+              className="md:!p-[6.5px] md:!pl-2.5 bg-zinc-900 hover:bg-zinc-800 text-base! text-white"
+              href="/contact"
+              trailingContent={
+                <AnimatedArrowIcon tone="on-dark" compact className="!size-7" />
+              }
+            >
+              {tHeader("contactUs")}
+            </AnimatedButton>
+          </div>
         </div>
       </div>
     </header>
