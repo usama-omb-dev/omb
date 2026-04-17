@@ -70,7 +70,7 @@ const WhyOmb = () => {
               key={item.title}
               className="bg-white h-full xl:p-7.5 sm:p-5 p-3 rounded-[0.625rem] flex flex-col gap-4 justify-between relative isolate perspective-[1000]"
             >
-              <span className="rounded-[0.3125rem] max-w-10 sm:w-10 w-8 sm:h-10 h-8 bg-primary self-start flex justify-center items-center">
+              <span className="rounded-full max-w-10 sm:w-10 w-8 sm:h-10 h-8 bg-primary self-start flex justify-center items-center">
                 {item.icon}
               </span>
               <div className="flex flex-col gap-2.5">

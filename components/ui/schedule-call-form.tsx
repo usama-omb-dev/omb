@@ -23,7 +23,7 @@ import { toast } from "sonner";
 import { Field, FieldError } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import AnimatedButton from "./button/AnimatedButton";
-import { ArrowRight } from "./icons";
+import AnimatedArrowIcon from "./button/AnimatedArrowIcon";
 import { useServices } from "@/hooks/useServices";
 import { useTranslations } from "next-intl";
 
@@ -101,7 +101,7 @@ export function ScheduleCallForm() {
                 {...field}
                 placeholder={t("placeholderName")}
                 aria-invalid={fieldState.invalid}
-                className="h-12.75 bg-background border-0 shadow-none rounded-[0.3125rem]"
+                className="h-12.75 bg-background border-0 shadow-none rounded-full"
               />
               {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>
@@ -117,7 +117,7 @@ export function ScheduleCallForm() {
                 type="email"
                 placeholder={t("placeholderEmail")}
                 aria-invalid={fieldState.invalid}
-                className="h-12.75 bg-background border-0 shadow-none rounded-[0.3125rem]"
+                className="h-12.75 bg-background border-0 shadow-none rounded-full"
               />
               {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>
@@ -133,7 +133,7 @@ export function ScheduleCallForm() {
                 type="tel"
                 placeholder={t("placeholderPhone")}
                 aria-invalid={fieldState.invalid}
-                className="h-12.75 bg-background border-0 shadow-none rounded-[0.3125rem]"
+                className="h-12.75 bg-background border-0 shadow-none rounded-full"
               />
               {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>
@@ -152,7 +152,7 @@ export function ScheduleCallForm() {
                     <Button
                       variant="outline"
                       role="combobox"
-                      className="h-12.75 w-full justify-between rounded-[0.3125rem]"
+                      className="h-12.75 w-full justify-between rounded-full"
                     >
                       {selectedValues.length > 0
                         ? t("interestSelected", {
@@ -220,16 +220,7 @@ export function ScheduleCallForm() {
       <AnimatedButton
         className="bg-primary text-white justify-between w-full p-2.5! pl-5!"
         type="submit"
-        trailingContent={
-          <span
-            className={`bg-white sm:size-12.75 size-10 overflow-hidden flex items-center rounded-[0.3125rem]`}
-          >
-            <div className="flex justify-around sm:min-w-25.5 min-w-20 -translate-x-1/2 transition-all group-hover:translate-x-0">
-              <ArrowRight color="#3838F9" />
-              <ArrowRight color="#3838F9" />
-            </div>
-          </span>
-        }
+        trailingContent={<AnimatedArrowIcon tone="on-dark" />}
       >
         {t("submit")}
       </AnimatedButton>

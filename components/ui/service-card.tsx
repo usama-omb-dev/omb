@@ -95,7 +95,7 @@ const ServiceCard = ({ cardDetails }: { cardDetails: CardDetails }) => {
       )}
       <Link
         href={href}
-        className="rounded-[0.3125rem] max-w-10 sm:w-10 w-8 sm:h-10 h-8 bg-primary self-end [&>svg]:-rotate-45 flex justify-center items-center"
+        className="rounded-full max-w-10 sm:w-10 w-8 sm:h-10 h-8 bg-primary self-end [&>svg]:-rotate-45 flex justify-center items-center"
       >
         <ArrowRight color="white" />
       </Link>

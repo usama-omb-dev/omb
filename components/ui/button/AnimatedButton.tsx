@@ -37,7 +37,7 @@ const AnimatedButton = forwardRef<
   );
 
   const sharedProps = {
-    className: `group relative inline-flex items-center justify-center ${
+    className: `group relative inline-flex items-center justify-between ${
       className ?? ""
     }`,
     onMouseEnter: mergeEvent(rest.onMouseEnter, () => textRef.current?.play()),

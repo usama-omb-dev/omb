@@ -3,7 +3,7 @@
 import { useState, useEffect, useLayoutEffect, useMemo, useRef } from "react";
 import { gsap } from "gsap";
 import { ChevronDown, ChevronUp, Menu as MenuIcon, X } from "lucide-react";
-import { ArrowRight, HamburgerIcon } from "@/components/ui/icons";
+import { HamburgerIcon } from "@/components/ui/icons";
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import {
@@ -482,16 +482,11 @@ const Header = () => {
                                   setActiveServiceMenuIndex(idx)
                                 }
                                 trailingContent={
-                                  <>
-                                    <span
-                                      className={`bg-white size-9 overflow-hidden flex items-center rounded-[0.3125rem]`}
-                                    >
-                                      <div className="flex justify-around [&_svg]:w-3! min-w-[72px] -translate-x-1/2 transition-all group-hover:translate-x-0">
-                                        <ArrowRight color="#3838F9" />
-                                        <ArrowRight color="#3838F9" />
-                                      </div>
-                                    </span>
-                                  </>
+                                  <AnimatedArrowIcon
+                                    tone="on-dark"
+                                    compact
+                                    className="!size-9 max-sm:!size-9"
+                                  />
                                 }
                               >
                                 {sub.navLabel}
@@ -624,16 +619,11 @@ const Header = () => {
                     className="md:!p-[6.5px] md:!pl-2.5 bg-primary hover:bg-primary text-base! text-white w-full! justify-between"
                     href="/contact"
                     trailingContent={
-                      <>
-                        <span
-                          className={`bg-white size-7 overflow-hidden flex items-center rounded-[0.3125rem]`}
-                        >
-                          <div className="flex justify-around [&_svg]:w-3! min-w-14 -translate-x-1/2 transition-all group-hover:translate-x-0">
-                            <ArrowRight color="#3838F9" />
-                            <ArrowRight color="#3838F9" />
-                          </div>
-                        </span>
-                      </>
+                      <AnimatedArrowIcon
+                        tone="on-dark"
+                        compact
+                        className="!size-7"
+                      />
                     }
                   >
                     {tHeader("contactUs")}
@@ -648,16 +638,7 @@ const Header = () => {
             className="md:!p-[6.5px] md:!pl-2.5 lg:!flex !hidden bg-primary hover:bg-primary text-base! text-white"
             href="/contact"
             trailingContent={
-              <>
-                <span
-                  className={`bg-white size-7 overflow-hidden flex items-center rounded-[0.3125rem]`}
-                >
-                  <div className="flex justify-around [&_svg]:w-3! min-w-14 -translate-x-1/2 transition-all group-hover:translate-x-0">
-                    <ArrowRight color="#3838F9" />
-                    <ArrowRight color="#3838F9" />
-                  </div>
-                </span>
-              </>
+              <AnimatedArrowIcon tone="on-dark" compact className="!size-7" />
             }
           >
             {tHeader("contactUs")}

@@ -126,7 +126,7 @@ const Hero = () => {
               href="/contact"
                 className="mt-2.5"
                 size={"icon"}
-                trailingContent={<AnimatedArrowIcon />}
+                trailingContent={<AnimatedArrowIcon tone="hero" />}
               >
                 {t("cta")}
               </AnimatedButton>

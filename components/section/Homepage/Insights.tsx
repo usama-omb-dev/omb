@@ -62,13 +62,13 @@ const Insights = () => {
           <div className="flex gap-3.5">
             <Button
               ref={prevRef}
-              className="rounded-[0.3125rem] max-w-12.75 w-12.75 h-12.75 bg-foreground disabled:bg-foreground/20 [&>svg]:rotate-180"
+              className="justify-center rounded-full max-w-12.75 w-12.75 h-12.75 bg-foreground disabled:bg-foreground/20 [&>svg]:rotate-180"
             >
               <ArrowRight color="white" />
             </Button>
             <Button
               ref={nextRef}
-              className="rounded-[0.3125rem] max-w-12.75 w-12.75 h-12.75 bg-foreground disabled:bg-foreground/20"
+              className="justify-center rounded-full max-w-12.75 w-12.75 h-12.75 bg-foreground disabled:bg-foreground/20"
             >
               <ArrowRight color="white" />
             </Button>

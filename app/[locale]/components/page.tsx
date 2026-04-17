@@ -33,7 +33,7 @@ export default function page() {
           <AnimatedButton
             size={"icon"}
             trailingContent={
-              <span className="bg-primary size-12.75 overflow-hidden flex items-center rounded-[0.3125rem]">
+              <span className="bg-primary size-12.75 overflow-hidden flex items-center rounded-full">
                 <div className="flex justify-around min-w-25.5 -translate-x-1/2 transition-all group-hover:translate-x-0">
                   <ArrowRight color="white" />
                   <ArrowRight color="white" />
@@ -56,7 +56,7 @@ export default function page() {
       >
         <AnimatedSplit ref={textRef2}>Dat smaakt naar meer</AnimatedSplit>
 
-        <span className="bg-primary size-12.75 overflow-hidden flex items-center rounded-[0.3125rem]">
+        <span className="bg-primary size-12.75 overflow-hidden flex items-center rounded-full">
           <div className="flex justify-around min-w-25.5 -translate-x-1/2 transition-all group-hover:translate-x-0">
             <ArrowRight color="white" />
             <ArrowRight color="white" />
@@ -66,7 +66,7 @@ export default function page() {
       <AnimatedButton
         size={"icon"}
         trailingContent={
-          <span className="bg-primary size-12.75 overflow-hidden flex items-center rounded-[0.3125rem]">
+          <span className="bg-primary size-12.75 overflow-hidden flex items-center rounded-full">
             <div className="flex justify-around min-w-25.5 -translate-x-1/2 transition-all group-hover:translate-x-0">
               <ArrowRight color="white" />
               <ArrowRight color="white" />

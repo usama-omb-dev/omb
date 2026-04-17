@@ -44,7 +44,7 @@ const BlogCard = ({ blogData }: { blogData: BlogSummaryData }) => {
           className="md:p-2.5! w-full justify-between sm:shadow-none shadow-[0px_0px_10px_rgba(0,0,0,0.25)]"
           size={"icon"}
           trailingContent={
-            <span className="[&_span]:-rotate-45 rounded-[0.3125rem] flex bg-primary">
+            <span className="[&_span]:-rotate-45 rounded-full flex bg-primary">
               <AnimatedArrowIcon bgColor="bg-transparent" />
             </span>
           }
