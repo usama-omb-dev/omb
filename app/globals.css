@@ -276,3 +276,19 @@
   background: var(--primary);
   border: none;
 }
+
+@keyframes page-hero-ring-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.page-hero-ring-spin {
+  animation: page-hero-ring-spin 50s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-hero-ring-spin {
+    animation: none;
+  }
+}

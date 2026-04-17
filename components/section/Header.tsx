@@ -232,7 +232,7 @@ const Header = () => {
     <header
       className={cn(
         "fixed left-0 z-50 w-full px-5 transition-[top] duration-300 ease-out",
-        headerScrolled ? "top-2" : "top-6 sm:top-10",
+        headerScrolled ? "top-2" : "top-6",
       )}
     >
       {/* <div className="container">

@@ -75,6 +75,16 @@
     "statProducts": "Product Launched",
     "statStartup": "Startup Raised"
   },
+  "PageHero": {
+    "titleLine1": "We ",
+    "titleHighlight": "build brands that",
+    "titleLine2": " taste like more...",
+    "description": "Together we bake campaigns that make your audience hungry. We help you take a position customers choose and competitors lose sleep over.",
+    "cta": "Leave you hungry for more",
+    "imageLeftAlt": "Team member with pastries",
+    "imageCenterAlt": "Rubin with a pastry",
+    "imageRightAlt": "Team member with a pastry"
+  },
   "Insights": {
     "headlineAccent": "68 percent increase",
     "headlineRest": "in conversion rates with the new design.",

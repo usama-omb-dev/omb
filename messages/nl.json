@@ -75,6 +75,16 @@
     "statProducts": "Product gelanceerd",
     "statStartup": "Startup funding"
   },
+  "PageHero": {
+    "titleLine1": "Wij ",
+    "titleHighlight": "bouwen merken die",
+    "titleLine2": " naar meer smaken...",
+    "description": "Samen bakken we campagnes die je doelgroep laat watertanden. We helpen je een positie in te nemen die klanten kiezen en concurrenten wakker houdt.",
+    "cta": "Dat smaakt naar meer",
+    "imageLeftAlt": "Teamlid met lekkernijen",
+    "imageCenterAlt": "Rubin met een lekkernij",
+    "imageRightAlt": "Teamlid met een lekkernij"
+  },
   "Insights": {
     "headlineAccent": "68 procent stijging",
     "headlineRest": "in conversiepercentages met het nieuwe ontwerp.",
