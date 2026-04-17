@@ -1,5 +1,6 @@
 import { loadMessagesJson } from "@/lib/load-messages";
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 
 export async function generateMetadata({
   params,
@@ -8,9 +9,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const messages = await loadMessagesJson(locale);
-  return { title: messages.Nav?.services ?? "Services" };
+  return { title: messages.PageTitles?.components ?? "UI playground" };
 }
 
-export default function ServicesIndexPage() {
-  return <></>;
+export default function ComponentsLayout({
+  children,
+}: {
+  children: ReactNode;
+}) {
+  return children;
 }

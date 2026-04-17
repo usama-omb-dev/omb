@@ -1,7 +1,12 @@
 {
   "Metadata": {
-    "title": "OMB — Online Marketing Bakery",
+    "title": "Online Marketing Bakery",
     "description": "Online Marketing Bakery — creative B2B marketing with character."
+  },
+  "PageTitles": {
+    "contact": "Contact",
+    "components": "UI playground",
+    "caseStudy": "Case study"
   },
   "Nav": {
     "home": "Home",

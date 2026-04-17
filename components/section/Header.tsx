@@ -39,7 +39,6 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
-import { ServiceData } from "@/app/ServicesData";
 
 interface ServiceNavMenu {
   navLabel: string;
@@ -53,11 +52,6 @@ function resolveServiceMenuImage(item: {
 }): string {
   const fromWp = item._embedded?.["wp:featuredmedia"]?.[0]?.source_url;
   if (fromWp) return fromWp;
-  const slug = item.slug;
-  const entry = ServiceData.find(
-    (s) => s.url === slug || s.url === slug.replace(/-/g, "_"),
-  );
-  if (entry?.heroData?.heroImage) return entry.heroData.heroImage;
   return "/service-hero_img.png";
 }
 
@@ -385,8 +379,8 @@ const Header = () => {
           </Link>
         </div>
       </div> */}
-      <div className="container border border-white/22 rounded-[5px] p-1">
-        <div className="flex justify-between items-center bg-white rounded-[5px] p-2 pl-4">
+      <div className="container border border-white/22 rounded-full p-1">
+        <div className="flex justify-between items-center bg-white rounded-full p-2 pl-4">
           <Link href="/">
             <Image
               className={`${isWhiteNav ? "" : ""} sm:max-w-full max-w-4/5`}

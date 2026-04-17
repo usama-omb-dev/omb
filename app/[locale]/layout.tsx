@@ -58,8 +58,12 @@ export async function generateMetadata({
   const messages = (await import(`../../messages/${locale}.json`)).default as {
     Metadata?: { title?: string; description?: string };
   };
+  const siteTitle = messages.Metadata?.title ?? "OMB";
   return {
-    title: messages.Metadata?.title ?? "OMB",
+    title: {
+      default: siteTitle,
+      template: `%s | ${siteTitle}`,
+    },
     description: messages.Metadata?.description,
   };
 }

@@ -6,7 +6,19 @@ import LifeAtOmb from "@/components/section/Careers/LifeAtOmb";
 import HiringProcess from "@/components/section/Careers/HiringProcess";
 import OurEmployees from "@/components/section/Careers/OurEmployees";
 import Contact from "@/components/section/Contact";
+import { loadMessagesJson } from "@/lib/load-messages";
+import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const messages = await loadMessagesJson(locale);
+  return { title: messages.Nav?.career ?? "Careers" };
+}
 
 export default async function CareersPage({
   params,

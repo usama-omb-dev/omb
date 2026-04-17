@@ -6,7 +6,20 @@ import Qualities from "@/components/section/Homepage/Qualities";
 import Reviews from "@/components/section/Homepage/Reviews";
 import Services from "@/components/section/Homepage/Services";
 import ServicesDifference from "@/components/section/Homepage/ServicesDifference";
+import { loadMessagesJson } from "@/lib/load-messages";
+import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const messages = await loadMessagesJson(locale);
+  const siteTitle = messages.Metadata?.title ?? "OMB";
+  return { title: { absolute: siteTitle } };
+}
 
 export default async function Home({
   params,

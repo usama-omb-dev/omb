@@ -1,11 +1,33 @@
 import LatestBlogs from "@/components/section/Blogs/Latest-Blogs";
 import { ScheduleCallForm } from "@/components/ui/schedule-call-form";
+import { stripHtmlForTitle } from "@/lib/strip-html-for-title";
 import { localeToWpLang } from "@/lib/wp-lang";
 import Image from "next/image";
+import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { envSocialUrls, socialHref } from "@/lib/social-links";
 import { notFound } from "next/navigation";
 import { FaLinkedin } from "react-icons/fa6";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; blog_slug: string }>;
+}): Promise<Metadata> {
+  const { locale, blog_slug } = await params;
+  const wpLang = localeToWpLang(locale);
+  const res = await fetch(
+    `https://backend.onlinemarketingbakery.nl/wp-json/wp/v2/posts?slug=${encodeURIComponent(blog_slug)}&_embed&lang=${wpLang}`,
+    { next: { revalidate: 60 } },
+  );
+  if (!res.ok) notFound();
+  const data = await res.json();
+  const post = Array.isArray(data) ? data[0] : null;
+  if (!post) notFound();
+  const title = stripHtmlForTitle(post.title?.rendered);
+  if (!title) notFound();
+  return { title };
+}
 
 const page = async ({
   params,

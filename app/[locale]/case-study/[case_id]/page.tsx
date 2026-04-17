@@ -1,7 +1,48 @@
+import { loadMessagesJson } from "@/lib/load-messages";
+import { stripHtmlForTitle } from "@/lib/strip-html-for-title";
 import { localeToWpLang } from "@/lib/wp-lang";
+import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import CaseStudyDetailLayout from "./CaseStudyDetailLayout";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; case_id: string }>;
+}): Promise<Metadata> {
+  const { locale, case_id } = await params;
+  const wpLang = localeToWpLang(locale);
+  const messages = await loadMessagesJson(locale);
+  const fallback = messages.PageTitles?.caseStudy ?? "Case study";
+
+  try {
+    const res = await fetch(
+      `https://backend.onlinemarketingbakery.nl/wp-json/wp/v2/case-study?slug=${encodeURIComponent(case_id)}&_embed&lang=${wpLang}`,
+      { next: { revalidate: 60 } },
+    );
+    if (!res.ok) {
+      if (process.env.NODE_ENV === "production") notFound();
+      return { title: fallback };
+    }
+    const json = await res.json();
+    const raw = Array.isArray(json) ? json[0] : json;
+    if (!raw || typeof raw !== "object") {
+      if (process.env.NODE_ENV === "production") notFound();
+      return { title: fallback };
+    }
+    const title = stripHtmlForTitle(
+      (raw as { title?: { rendered?: string } }).title?.rendered,
+    );
+    if (title) return { title };
+  } catch {
+    if (process.env.NODE_ENV === "production") notFound();
+    return { title: fallback };
+  }
+
+  if (process.env.NODE_ENV === "production") notFound();
+  return { title: fallback };
+}
 
 export default async function CaseStudyPage({
   params,

@@ -7,13 +7,39 @@ import {
 } from "@/app/ServicesDataInterfaces";
 import Contact from "@/components/section/Contact";
 import { fetchAPI } from "@/lib/api";
+import { stripHtmlForTitle } from "@/lib/strip-html-for-title";
 import { localeToWpLang } from "@/lib/wp-lang";
-import { getTranslations, setRequestLocale } from "next-intl/server";
 import Difference from "@/components/section/Service/Difference";
 import OurWork from "@/components/section/Service/OurWork";
 import ServicesHero from "@/components/section/Service/ServicesHero";
 import WhatWeDo from "@/components/section/Service/WhatWeDo";
+import type { Metadata } from "next";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; service_id: string }>;
+}): Promise<Metadata> {
+  const { locale, service_id } = await params;
+  const wpLang = localeToWpLang(locale);
+  try {
+    const data = await fetchAPI(
+      `/services?slug=${encodeURIComponent(service_id)}&_embed`,
+      wpLang,
+    );
+    if (Array.isArray(data) && data[0]) {
+      const title = stripHtmlForTitle(
+        (data[0] as { title?: { rendered?: string } }).title?.rendered,
+      );
+      if (title) return { title };
+    }
+  } catch {
+    // fall through to notFound
+  }
+  notFound();
+}
 
 function asArray<T>(value: unknown): T[] {
   return Array.isArray(value) ? (value as T[]) : [];

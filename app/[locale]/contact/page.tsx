@@ -2,8 +2,20 @@ import { ContactForm } from "@/components/section/Form";
 import Pill from "@/components/ui/pill";
 import Image from "next/image";
 import { FaLinkedin } from "react-icons/fa6";
+import { loadMessagesJson } from "@/lib/load-messages";
+import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { envSocialUrls, socialHref } from "@/lib/social-links";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const messages = await loadMessagesJson(locale);
+  return { title: messages.PageTitles?.contact ?? "Contact" };
+}
 
 export default async function ContactPage() {
   const t = await getTranslations("ContactPage");
