@@ -28,7 +28,7 @@ const OurEmployees = () => {
     <section className="sm:pb-10 relative isolate overflow-hidden">
       <div className="container">
         <div className="max-w-166 mx-auto flex flex-col justify-center items-center gap-5 mb-8.75">
-          <h2 className="md:text-2xl text-xl font-medium text-center leading-none">
+          <h2 className="md:text-2xl text-xl font-semibold text-center leading-none">
             {t("title")}
           </h2>
           <p className="md:text-body text-xsm text-center max-w-134">

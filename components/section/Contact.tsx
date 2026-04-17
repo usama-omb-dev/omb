@@ -47,7 +47,7 @@ const Contact = ({
             <Image src={logoSrc} alt={logoAlt} width={65} height={92} />
             <div>
               {eyebrow ? (
-                <h5 className="text-white sm:text-md text-body font-medium">
+                <h5 className="text-white sm:text-md text-body font-semibold">
                   <TextReveal>{eyebrow}</TextReveal>
                 </h5>
               ) : null}

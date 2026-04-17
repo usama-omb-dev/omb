@@ -81,7 +81,7 @@ const Qualities = () => {
           </div>
           <div className="flex-1 flex flex-col gap-7.5">
             <div className="xl:py-15.75 xl:pl-15 sm:p-10 sm:pr-40.75 p-4 bg-white rounded-[0.625rem] flex flex-col sm:gap-10 gap-4">
-              <h3 className="sm:text-2xl text-xl leading-none font-medium 2xl:max-w-[65%]">
+              <h3 className="sm:text-2xl text-xl leading-none font-semibold 2xl:max-w-[65%]">
                 <TextReveal>{t("storyTitle")}</TextReveal>
               </h3>
               {steps.map((step) => (
@@ -109,7 +109,7 @@ const Qualities = () => {
               </AnimatedButton>
             </div>
             <div className="xl:py-15.75 xl:pl-15 sm:p-10 sm:pr-40.75 p-4 bg-white rounded-[0.625rem] flex flex-col sm:gap-10 gap-4">
-              <h3 className="sm:text-2xl text-xl leading-none font-medium 2xl:max-w-[65%]">
+              <h3 className="sm:text-2xl text-xl leading-none font-semibold 2xl:max-w-[65%]">
                 <TextReveal>{t("recipeTitle")}</TextReveal>
               </h3>
               {services.map((service, index) => (

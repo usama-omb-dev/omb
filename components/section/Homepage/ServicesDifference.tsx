@@ -107,7 +107,7 @@ const ServicesDifference = () => {
             <Pill iconColor="#3838F9" className="text-primary">
               {t("pill")}
             </Pill>
-            <h2 className="text-center sm:text-2xl text-lg font-medium leading-none">
+            <h2 className="text-center sm:text-2xl text-lg font-semibold leading-none">
               <TextReveal>{t("title")}</TextReveal>
             </h2>
             <p className="text-center sm:text-sm text-xsm ">{t("description")}</p>

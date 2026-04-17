@@ -50,7 +50,7 @@ const WhyOmb = () => {
     <section>
       <div className="container">
         <div className="flex flex-col gap-5 max-w-[528px] mx-auto text-center mb-11">
-          <h2 className="sm:text-2xl text-xl font-medium leading-none">
+          <h2 className="sm:text-2xl text-xl font-semibold leading-none">
             {t("title")}
           </h2>
           <p className="sm:text-body text-sm">{t("intro")}</p>
@@ -74,7 +74,7 @@ const WhyOmb = () => {
                 {item.icon}
               </span>
               <div className="flex flex-col gap-2.5">
-                <h6 className="sm:text-md text-body font-medium leading-none">
+                <h6 className="sm:text-md text-body font-semibold leading-none">
                   {item.title}
                 </h6>
                 <p className="xl:text-body text-sm">{item.description}</p>

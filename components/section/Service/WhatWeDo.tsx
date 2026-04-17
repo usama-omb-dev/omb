@@ -34,7 +34,7 @@ const WhatWeDo = ({ data }: { data: WhatWeDo }) => {
             </div>
             <div className="max-w-136.5 flex flex-col gap-5">
               {!!workTitle && (
-                <h5 className="lg:text-2xl sm:text-xl text-md font-medium  leading-none">
+                <h5 className="lg:text-2xl sm:text-xl text-md font-semibold  leading-none">
                   {workTitle}
                 </h5>
               )}
@@ -64,7 +64,7 @@ const WhatWeDo = ({ data }: { data: WhatWeDo }) => {
                       value={`item-${index}`}
                       className="bg-white rounded-xl p-5 pb-16 relative xl:flex flex-col gap-5 hidden"
                     >
-                      <h4 className="text-md font-medium leading-none">
+                      <h4 className="text-md font-semibold leading-none">
                         {item.collapseTitle}
                       </h4>
 
@@ -96,7 +96,7 @@ const WhatWeDo = ({ data }: { data: WhatWeDo }) => {
                               value={`item-${actualIndex}`}
                               className="bg-white rounded-xl p-5 pb-16 relative xl:flex flex-col gap-5 hidden"
                             >
-                              <h4 className="text-md font-medium leading-none">
+                              <h4 className="text-md font-semibold leading-none">
                                 {nestedItem.collapseTitle}
                               </h4>
 
@@ -123,7 +123,7 @@ const WhatWeDo = ({ data }: { data: WhatWeDo }) => {
                     value={`item-${index}`}
                     className="bg-white rounded-xl p-5 pb-16 relative xl:flex flex-col gap-5 hidden"
                   >
-                    <h4 className="text-md font-medium leading-none">
+                    <h4 className="text-md font-semibold leading-none">
                       {item.collapseTitle}
                     </h4>
 
@@ -144,7 +144,7 @@ const WhatWeDo = ({ data }: { data: WhatWeDo }) => {
                     value={`item-${index}`}
                     className="bg-white rounded-xl p-5 pb-16 relative xl:hidden flex flex-col gap-5"
                   >
-                    <h4 className="sm:text-md text-body font-medium leading-none">
+                    <h4 className="sm:text-md text-body font-semibold leading-none">
                       {item.collapseTitle}
                     </h4>
 

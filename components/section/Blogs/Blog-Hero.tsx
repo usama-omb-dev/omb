@@ -46,7 +46,7 @@ const BlogHero = () => {
                     {t("statExperience")}
                   </p>
                   <Counter
-                    className="text-white text-2xl font-normal"
+                    className="text-white text-2xl font-medium"
                     suffix={"+"}
                   >
                     {6}
@@ -57,7 +57,7 @@ const BlogHero = () => {
                     {t("statArticles")}
                   </p>
                   <Counter
-                    className="text-white text-2xl font-normal"
+                    className="text-white text-2xl font-medium"
                     suffix={"+"}
                   >
                     {200}

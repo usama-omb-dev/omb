@@ -17,7 +17,7 @@ const HiringProcess = () => {
       <div className="container">
         <div className="bg-white rounded-[1.25rem] lg:py-10 py-4 lg:px-11.25 px-4 flex flex-col gap-7.5 ">
           <div className="max-w-166 mx-auto flex flex-col justify-center items-center gap-5">
-            <h2 className="md:text-2xl text-xl font-medium text-center leading-none">
+            <h2 className="md:text-2xl text-xl font-semibold text-center leading-none">
               {t("title")}
             </h2>
             <p className="md:text-body text-xsm text-center max-w-134">
@@ -39,7 +39,7 @@ const HiringProcess = () => {
                     <span className="text-white font-medium text-[20px] leading-none bg-primary rounded-[8px] px-4 py-3">
                       {t("stepLabel", { n: step.n })}
                     </span>
-                    <h3 className="text-md font-medium leading-none">
+                    <h3 className="text-md font-semibold leading-none">
                       {step.title}
                     </h3>
                   </div>

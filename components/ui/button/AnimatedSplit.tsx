@@ -70,12 +70,12 @@ const AnimatedSplit = forwardRef<AnimatedSplitHandle, AnimatedSplitProps>(
     return (
       <span
         ref={scopeRef}
-        className={`split-text relative inline-flex ${className ?? ""}`}
+        className={`split-text relative inline-flex font-semibold ${className ?? ""}`}
       >
-        <span className="split-front inline-block whitespace-nowrap">
+        <span className="split-front inline-block whitespace-nowrap font-semibold">
           {children}
         </span>
-        <span className="split-back absolute left-0 top-0 inline-block whitespace-nowrap">
+        <span className="split-back absolute left-0 top-0 inline-block whitespace-nowrap font-semibold">
           {children}
         </span>
       </span>

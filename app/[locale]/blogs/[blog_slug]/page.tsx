@@ -83,14 +83,14 @@ const page = async ({
   };
 
   const textStyling =
-    "xl:[&_h1]:text-5xl [&_h1]:text-2xl xl:[&_h2]:text-3xl [&_h2]:text-xl xl:[&_h3]:text-2xl [&_h3]:text-xl xl:[&_h4]:text-xl [&_h4]:text-lg xl:[&_h5]:text-lg [&_h5]:text-md xl:[&_h6]:text-md [&_h6]:text-sm xl:[&_li]:text-sm [&_li]:text-xsm xl:[&_p]:text-body [&_p]:text-xsm [&_h1]:font-medium [&_h2]:font-medium [&_h3]:font-medium **:leading-none [&_p]:leading-tight lg:[&_p]:mb-4 [&_p]:mb-2 [&_p]:mt-2";
+    "xl:[&_h1]:text-5xl [&_h1]:text-2xl xl:[&_h2]:text-3xl [&_h2]:text-xl xl:[&_h3]:text-2xl [&_h3]:text-xl xl:[&_h4]:text-xl [&_h4]:text-lg xl:[&_h5]:text-lg [&_h5]:text-md xl:[&_h6]:text-md [&_h6]:text-sm xl:[&_li]:text-sm [&_li]:text-xsm xl:[&_p]:text-body [&_p]:text-xsm [&_h1]:font-bold [&_h2]:font-semibold [&_h3]:font-semibold **:leading-none [&_p]:leading-tight lg:[&_p]:mb-4 [&_p]:mb-2 [&_p]:mt-2";
 
   return (
     <>
       <section className="sm:pt-52.5 pt-28">
         <div className="container">
           <div className="flex lg:flex-row flex-col-reverse justify-between items-start border-b border-black/20 sm:mb-15 mb-7 sm:pb-15 pb-7">
-            <h1 className="xl:text-5xl sm:text-3xl text-xl font-normal leading-none">
+            <h1 className="xl:text-5xl sm:text-3xl text-xl font-bold leading-none">
               {transformPostToBlogSummary.title}
             </h1>
             <p className="max-w-82.5 w-full sm:text-body text-xsm mb-2 sm:mb-0 font-medium leading-none text-left">

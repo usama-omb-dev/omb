@@ -78,7 +78,7 @@ const MarketingTeam = () => {
         <div className="bg-white xl:py-20 xl:px-27.5 lg:py-16 sm:py-8 lg:px-16 sm:px-8 p-4 rounded-4xl flex flex-col lg:gap-20 gap-10">
           <div className="flex flex-col items-center justify-center self-center lg:gap-7.5 gap-5 max-w-118.5">
             <Pill iconColor="#3838F9">{t("pill")}</Pill>
-            <h3 className="text-center font-medium sm:text-2xl text-lg leading-none">
+            <h3 className="text-center font-semibold sm:text-2xl text-lg leading-none">
               {t("titleBefore")} <span className="italic">{t("titleItalic")}</span>{" "}
               {t("titleMid")}{" "}
               <span className="text-primary">{t("titleAccent")}</span>
@@ -96,7 +96,7 @@ const MarketingTeam = () => {
                   unoptimized
                 />
                 <div className="flex flex-col gap-2.5">
-                  <h6 className="font-medium text-md leading-none">
+                  <h6 className="font-semibold text-md leading-none">
                     {item.title.split(" ").map((titleName, i) => (
                       <span key={`${titleName}-${i}`} className="block">
                         {titleName}
@@ -111,7 +111,7 @@ const MarketingTeam = () => {
               </div>
             ))}
             <div className="bg-primary p-5 rounded-[0.625rem] flex flex-col gap-6 h-fit">
-              <h6 className="text-white font-medium text-md 2xl:pr-20 pr-10 leading-none">
+              <h6 className="text-white font-semibold text-md 2xl:pr-20 pr-10 leading-none">
                 {t("ctaTitle")} <span className="italic">{t("ctaTitleItalic")}</span>{" "}
                 {t("ctaTitleAfter")}
               </h6>

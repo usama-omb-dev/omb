@@ -173,7 +173,7 @@ const OurGoal = ({showMilestones = true}: {showMilestones?: boolean}) => {
             <Pill iconColor="#3838F9">{t("pillWho")}</Pill>
           </div>
           <div className="flex-1 flex flex-col gap-10">
-            <h5 className="lg:text-2xl sm:text-xl text-md font-medium text-black/40 leading-none">
+            <h5 className="lg:text-2xl sm:text-xl text-md font-semibold text-black/40 leading-none">
               <span className="text-black">{t("missionLead")}</span>{" "}
               {t("missionMid")}{" "}
               <span className="text-black">{t("missionSince")}</span>{" "}
@@ -207,7 +207,7 @@ const OurGoal = ({showMilestones = true}: {showMilestones?: boolean}) => {
             <Pill iconColor="#3838F9">{t("pillMilestones")}</Pill>
           </div>
           <div className="max-w-136.5 flex flex-col gap-5">
-            <h5 className="lg:text-2xl sm:text-xl text-md font-medium  leading-none">
+            <h5 className="lg:text-2xl sm:text-xl text-md font-semibold  leading-none">
               {t("milestonesTitle")}{" "}
               <span className="text-primary">{t("milestonesAccent")}</span>
             </h5>

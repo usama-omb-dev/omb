@@ -1,48 +1,17 @@
 import type { Metadata } from "next";
 import "../globals.css";
-import localFont from "next/font/local";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
+import { Quicksand } from "next/font/google";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import ReactQueryProvider from "@/providers/ReactQueryProvider";
 
-const aeonik = localFont({
-  src: [
-    {
-      path: "../fonts/Aeonik-Regular.ttf",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../fonts/Aeonik-Medium.ttf",
-      weight: "500",
-      style: "normal",
-    },
-    {
-      path: "../fonts/Aeonik-MediumItalic.ttf",
-      weight: "500",
-      style: "italic",
-    },
-    {
-      path: "../fonts/Aeonik-Bold.ttf",
-      weight: "700",
-      style: "normal",
-    },
-  ],
+const quicksand = Quicksand({
+  subsets: ["latin", "latin-ext"],
   display: "swap",
-  variable: "--font-aeonik",
-});
-
-const nexa = localFont({
-  src: [
-    {
-      path: "../fonts/NexaBold.otf",
-      weight: "700",
-      style: "normal",
-    },
-  ],
-  variable: "--font-nexa",
+  variable: "--font-quicksand",
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 export function generateStaticParams() {
@@ -84,11 +53,8 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
-      <body
-        className={`${aeonik.className} ${nexa.variable} antialiased`}
-        suppressHydrationWarning
-      >
+    <html lang={locale} className={quicksand.variable}>
+      <body className="antialiased" suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
           <ReactQueryProvider>{children}</ReactQueryProvider>
         </NextIntlClientProvider>

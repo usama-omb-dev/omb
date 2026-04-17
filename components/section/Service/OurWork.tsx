@@ -61,7 +61,7 @@ const OurWork = ({
                   height={92}
                 />
                 <div>
-                  <h5 className="text-white sm:text-md text-body font-medium">
+                  <h5 className="text-white sm:text-md text-body font-semibold">
                     <TextReveal>{pillTitle}</TextReveal>
                   </h5>
                   <h2 className="text-white xl:text-5xl lg:text-3xl sm:text-2xl text-xl leading-none">

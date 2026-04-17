@@ -35,7 +35,7 @@ const LifeAtOmb = () => {
     <section className="sm:py-35 py-10 relative isolate overflow-hidden">
       <div className="container flex flex-col">
         <div className="flex flex-col gap-5 mx-auto text-center mb-11">
-          <h2 className="sm:text-2xl text-xl font-medium leading-none">
+          <h2 className="sm:text-2xl text-xl font-semibold leading-none">
             {t("title")}
           </h2>
           <p className="sm:text-body text-sm">{t("description")}</p>

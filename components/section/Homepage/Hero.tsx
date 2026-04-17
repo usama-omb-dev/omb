@@ -115,7 +115,7 @@ const Hero = () => {
               <Pill iconColor="#3838F9" className="text-primary">
                 {t("pill")}
               </Pill>
-              <h1 className="xl:text-4xl sm:text-[3.25rem] text-2xl font-medium text-black">
+              <h1 className="xl:text-4xl sm:text-[3.25rem] text-2xl font-bold text-black">
                 <TextReveal>{t("title")}</TextReveal>
               </h1>
               <p className="sm:text-body text-xsm text-black mt-2.5">
@@ -216,7 +216,7 @@ const Hero = () => {
                     height={34}
                   />
                   <div className="flex flex-col">
-                    <h6 className="font-medium leading-tight text-base">
+                    <h6 className="font-semibold leading-tight text-base">
                       {t("testimonialName")}
                     </h6>
                     <span className="text-[12px] text-primary leading-tight">

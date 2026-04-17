@@ -108,7 +108,7 @@ const Footer = () => {
           <div className="flex flex-col gap-6 xl:pb-20.75 sm:pb-10 pb-6 2xl:pl-24 xl:pl-12 lg:pl-12 pl-0 sm:pt-4.5">
             <div className="grid sm:grid-cols-2 2xl:gap-8 gap-4">
               <div>
-                <h2 className="text-md font-medium text-white">
+                <h2 className="text-md font-semibold text-white">
                   {t("solutionsTitle")}
                 </h2>
                 <ul className="mt-4 flex list-inside list-disc flex-col gap-3 xl:text-sm text-xsm text-white/85 marker:text-white">
@@ -125,7 +125,7 @@ const Footer = () => {
                 </ul>
               </div>
               <div>
-                <h2 className="text-md font-medium text-white">
+                <h2 className="text-md font-semibold text-white">
                   {t("helpTitle")}
                 </h2>
                 <ul className="mt-4 flex list-inside list-disc flex-col gap-3 xl:text-sm text-xsm text-white/85 marker:text-white">

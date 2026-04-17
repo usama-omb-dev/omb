@@ -208,7 +208,7 @@ export default function CaseStudyDetailLayout({
   }, [processedContent]);
 
   const textStyling =
-    "xl:[&_h1]:text-5xl [&_h1]:text-2xl xl:[&_h2]:text-3xl [&_h2]:text-xl xl:[&_h3]:text-2xl [&_h3]:text-xl xl:[&_h4]:text-xl [&_h4]:text-lg xl:[&_h5]:text-lg [&_h5]:text-md xl:[&_h6]:text-md [&_h6]:text-sm xl:[&_li]:text-sm [&_li]:text-xsm xl:[&_p]:text-body [&_p]:text-xsm [&_h1]:font-medium [&_h2]:font-medium [&_h3]:font-medium [&_h4]:font-medium [&_h5]:font-medium [&_h6]:font-medium **:leading-none sm:[&_h1]:mb-10 sm:[&_h2]:mb-10 sm:[&_h3]:mb-10 sm:[&_h4]:mb-10 sm:[&_h5]:mb-10 sm:[&_h6]:mb-10 [&_h1]:mb-5 [&_h2]:mb-5 [&_h3]:mb-5 [&_h4]:mb-5 [&_h5]:mb-5 [&_h6]:mb-5 [&_h1]:scroll-mt-10 [&_h2]:scroll-mt-10 [&_h3]:scroll-mt-10 [&_h4]:scroll-mt-10 [&_h5]:scroll-mt-10 [&_h6]:scroll-mt-10 [&_li>h5]:my-5 [&_p]:leading-tight lg:[&_p]:mb-4 [&_p]:mb-2 [&_p]:mt-2";
+    "xl:[&_h1]:text-5xl [&_h1]:text-2xl xl:[&_h2]:text-3xl [&_h2]:text-xl xl:[&_h3]:text-2xl [&_h3]:text-xl xl:[&_h4]:text-xl [&_h4]:text-lg xl:[&_h5]:text-lg [&_h5]:text-md xl:[&_h6]:text-md [&_h6]:text-sm xl:[&_li]:text-sm [&_li]:text-xsm xl:[&_p]:text-body [&_p]:text-xsm [&_h1]:font-bold [&_h2]:font-semibold [&_h3]:font-semibold [&_h4]:font-semibold [&_h5]:font-semibold [&_h6]:font-semibold **:leading-none sm:[&_h1]:mb-10 sm:[&_h2]:mb-10 sm:[&_h3]:mb-10 sm:[&_h4]:mb-10 sm:[&_h5]:mb-10 sm:[&_h6]:mb-10 [&_h1]:mb-5 [&_h2]:mb-5 [&_h3]:mb-5 [&_h4]:mb-5 [&_h5]:mb-5 [&_h6]:mb-5 [&_h1]:scroll-mt-10 [&_h2]:scroll-mt-10 [&_h3]:scroll-mt-10 [&_h4]:scroll-mt-10 [&_h5]:scroll-mt-10 [&_h6]:scroll-mt-10 [&_li>h5]:my-5 [&_p]:leading-tight lg:[&_p]:mb-4 [&_p]:mb-2 [&_p]:mt-2";
   return (
     <article className="min-h-screen sm:pt-60 pt-32 bg-background scroll-smooth">
       <div className="container">
@@ -255,7 +255,7 @@ export default function CaseStudyDetailLayout({
           <div className="flex lg:flex-row flex-col xl:gap-31 gap-10">
             <aside className="lg:sticky top-20 left-0 flex flex-col xl:gap-22.5 gap-10 h-fit bg-white lg:w-fit w-full xl:min-w-106.5 lg:min-w-80 sm:p-7.5 p-5 pb-5 self-start">
               <div className="flex flex-col gap-5.25">
-                <h2 className="text-md font-medium leading-none text-black pb-5.5 border-b">
+                <h2 className="text-md font-semibold leading-none text-black pb-5.5 border-b">
                   Index
                 </h2>
                 <ul className="space-y-5">
@@ -354,7 +354,7 @@ export default function CaseStudyDetailLayout({
                 (keyMatrics?.keys && keyMatrics?.keys.length > 0)) && (
                 <div className="bg-white sm:p-7.5 p-5 rounded-[0.3125rem] flex flex-col sm:gap-7.5 gap-3">
                   {keyMatrics?.heading && (
-                    <h6 className="text-md font-medium scroll-mt-10">
+                    <h6 className="text-md font-semibold scroll-mt-10">
                       {keyMatrics?.heading}
                     </h6>
                   )}
@@ -387,7 +387,7 @@ export default function CaseStudyDetailLayout({
                   <div>
                     <ul>
                       <li>
-                        <h4 className="text-md font-medium sm:my-10 my-5 scroll-mt-10">
+                        <h4 className="text-md font-semibold sm:my-10 my-5 scroll-mt-10">
                           Client review
                         </h4>
                       </li>

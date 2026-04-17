@@ -116,7 +116,7 @@ const OurTeam = () => {
               <Pill iconColor="#3838F9" className="text-primary">
                 {t("pill")}
               </Pill>
-              <h3 className="sm:text-2xl text-xl font-medium leading-none">
+              <h3 className="sm:text-2xl text-xl font-semibold leading-none">
                 {t("title")}{" "}
                 <span className="text-primary">{t("titleAccent")}</span>
               </h3>
@@ -130,7 +130,7 @@ const OurTeam = () => {
                   key={index}
                   className="bg-primary flex justify-center items-center rounded-4xl py-2 px-5 pt-3"
                 >
-                  <h6 className="xl:text-md sm:text-body text-xsm leading-none text-white font-semibold font-nexa">
+                  <h6 className="xl:text-md sm:text-body text-xsm leading-none text-white font-semibold font-sans">
                     {card.title}
                   </h6>
                 </div>
@@ -152,7 +152,7 @@ const OurTeam = () => {
                       ref={setCardRef}
                       className="bg-primary flex justify-center items-center 2xl:w-50.5 xl:w-48 w-44 xl:h-48 h-44 2xl:h-50.5 rounded-[0.3125rem]"
                     >
-                      <h6 className="xl:text-md text-body text-white font-semibold font-nexa">
+                      <h6 className="xl:text-md text-body text-white font-semibold font-sans">
                         {card.title}
                       </h6>
                     </div>
@@ -168,7 +168,7 @@ const OurTeam = () => {
                       ref={setCardRef}
                       className="bg-primary flex justify-center items-center 2xl:w-50.5 xl:w-48 w-44 xl:h-48 h-44 2xl:h-50.5 rounded-[0.3125rem]"
                     >
-                      <h6 className="xl:text-md text-body text-white font-semibold font-nexa">
+                      <h6 className="xl:text-md text-body text-white font-semibold font-sans">
                         {card.title}
                       </h6>
                     </div>
@@ -185,7 +185,7 @@ const OurTeam = () => {
                 {[...Array(15)].map((_item, index) => (
                   <h3
                     key={index + 1}
-                    className="font-nexa font-bold lg:text-[8.375rem] text-8xl"
+                    className="font-sans font-bold lg:text-[8.375rem] text-8xl"
                   >
                     {t("marquee")}
                   </h3>

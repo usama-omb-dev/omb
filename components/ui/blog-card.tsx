@@ -68,7 +68,7 @@ const BlogCard = ({ blogData }: { blogData: BlogSummaryData }) => {
             </li>
           ))}
         </ul>
-        <h6 className=" font-medium sm:text-md text-body leading-none">
+        <h6 className=" font-semibold sm:text-md text-body leading-none">
           {limitTo211Characters(title, 56)}
         </h6>
       </div>

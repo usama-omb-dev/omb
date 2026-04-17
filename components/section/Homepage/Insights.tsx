@@ -46,7 +46,7 @@ const Insights = () => {
     <section className="xl:pt-36.5 sm:pt-20 pt-10 overflow-hidden">
       <div className="container flex flex-col lg:gap-20 gap-10">
         <div className="flex lg:flex-row flex-col justify-between xl:gap-34 sm:gap-10 gap-5">
-          <h3 className="sm:text-2xl text-lg font-medium leading-none lg:max-w-152.25">
+          <h3 className="sm:text-2xl text-lg font-semibold leading-none lg:max-w-152.25">
             <span className="text-primary">{t("headlineAccent")}</span>{" "}
             {t("headlineRest")}
           </h3>

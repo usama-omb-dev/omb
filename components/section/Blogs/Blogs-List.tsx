@@ -73,7 +73,7 @@ const BlogsList = () => {
           <Pill iconColor="#3838F9" className="leading-none">
             {t("pill")}
           </Pill>
-          <h3 className="sm:text-2xl text-xl font-medium leading-none text-center">
+          <h3 className="sm:text-2xl text-xl font-semibold leading-none text-center">
             {t("title")}{" "}
             <span className="text-primary">{t("titleAccent")}</span>
           </h3>

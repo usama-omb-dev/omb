@@ -48,7 +48,7 @@ const LatestBlogs = () => {
   return (
     <section className="bg-white sm:rounded-tl-[3.75rem] rounded-tl-[1.875rem] sm:rounded-tr-[3.75rem] rounded-tr-[1.875rem] lg:pt-20 pt-10">
       <div className="container flex flex-col sm:gap-15 gap-4">
-        <h3 className="text-center sm:text-2xl text-xl font-medium">
+        <h3 className="text-center sm:text-2xl text-xl font-semibold">
           {t("title")} <span className="text-primary">{t("titleAccent")}</span>
         </h3>
         <div className="grid lg:grid-cols-3 gap-3.5">

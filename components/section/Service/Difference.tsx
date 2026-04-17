@@ -23,7 +23,7 @@ const Difference = ({ data }: { data: DifferenceSection }) => {
                 {pillTitle}
               </Pill>
             )}
-            <h2 className="md:text-2xl text-xl font-medium text-center leading-none">
+            <h2 className="md:text-2xl text-xl font-semibold text-center leading-none">
               {differenceTitle}
             </h2>
             <p className="md:text-body text-xsm text-center max-w-134">
@@ -37,7 +37,7 @@ const Difference = ({ data }: { data: DifferenceSection }) => {
               }}
               className="bg-white sm:p-10 p-4 sm:rounded-[1.25rem] rounded-[0.625rem] overflow-hidden flex flex-col sm:gap-15 gap-6 bg-cover bg-center bg-no-repeat sm:min-h-100 min-h-[15.625rem]"
             >
-              <h5 className="text-xl font-medium leading-none ">
+              <h5 className="text-xl font-semibold leading-none ">
                 {differenceDetails.summary1.summaryHeading}
               </h5>
               {differenceDetails?.summary1?.summaryPoints.length > 0 && (
@@ -64,7 +64,7 @@ const Difference = ({ data }: { data: DifferenceSection }) => {
               }}
               className="bg-white sm:p-10 p-4 sm:rounded-[1.25rem] rounded-[0.625rem] overflow-hidden flex flex-col sm:gap-15 gap-6 bg-cover bg-center bg-no-repeat sm:min-h-100 min-h-[15.625rem]"
             >
-              <h5 className="text-xl font-medium leading-none ">
+              <h5 className="text-xl font-semibold leading-none ">
                 {differenceDetails.summary2.summaryHeading}
               </h5>
               {differenceDetails?.summary2?.summaryPoints.length > 0 && (

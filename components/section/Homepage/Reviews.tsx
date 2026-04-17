@@ -14,7 +14,7 @@ const Reviews = async () => {
               {t("pill")}
             </Pill>
           </div>
-          <h3 className="sm:text-2xl text-xl font-medium leading-none lg:max-w-106.5">
+          <h3 className="sm:text-2xl text-xl font-semibold leading-none lg:max-w-106.5">
             {t("title")}{" "}
             <span className="text-primary">{t("titleAccent")}</span>
           </h3>

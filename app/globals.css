@@ -14,8 +14,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-aeonik: var(--font-aeonik);
-  --font-nexa: var(--font-nexa);
+  --font-sans: var(--font-quicksand);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -138,7 +137,52 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground font-aeonik;
+    @apply bg-background text-foreground font-sans font-medium;
+  }
+
+  /**
+   * Ensure copy blocks are at least 500 — inheritance alone often misses
+   * GSAP SplitText wrappers, Radix inner nodes, and some UI primitives.
+   */
+  p,
+  li,
+  blockquote,
+  figcaption,
+  dt,
+  dd {
+    @apply font-medium;
+  }
+
+  /** GSAP SplitText / AnimatedSplit (used inside buttons) */
+  .split-text,
+  .split-text .split-front,
+  .split-text .split-back {
+    @apply font-semibold;
+  }
+
+  /**
+   * Do not target `a[data-slot=button]` — those are shadcn `Button asChild` links and
+   * already carry `font-semibold` from `buttonVariants`; a global `font-medium` on all
+   * anchors was overriding that and kept animated split text at 500.
+   */
+  a:not([data-slot="button"]) {
+    @apply font-medium;
+  }
+
+  button {
+    @apply font-semibold;
+  }
+
+  h1 {
+    @apply font-bold;
+  }
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-semibold;
   }
 }
 

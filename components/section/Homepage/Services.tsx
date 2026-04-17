@@ -35,7 +35,7 @@ const Services = () => {
             {t("pill")}
           </Pill>
           <div className="lg:max-w-132 flex flex-col gap-5">
-            <h3 className="sm:text-2xl text-xl font-medium leading-none">
+            <h3 className="sm:text-2xl text-xl font-semibold leading-none">
               {t("title")}{" "}
               <span className="text-primary">{t("titleAccent")}</span>
             </h3>

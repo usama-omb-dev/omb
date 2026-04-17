@@ -18,7 +18,7 @@ const BakeResult = () => {
       <div className="  relative isolate">
         <div className="container flex flex-col justify-center items-center ">
           <div className="flex flex-col items-center justify-center gap-7 sm:translate-y-16">
-            <h3 className="sm:text-2xl text-lg text-black leading-none font-medium text-center">
+            <h3 className="sm:text-2xl text-lg text-black leading-none font-semibold text-center">
               {t("title")}{" "}
               <span className="block italic">{t("titleItalic")}</span>
             </h3>

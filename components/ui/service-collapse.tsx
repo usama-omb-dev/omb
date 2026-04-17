@@ -11,7 +11,7 @@ const ServiceCollapse = ({ collapseData }: { collapseData: WhatWeDoItem }) => {
   return (
     <div className="bg-white h-full xl:p-7.5 sm:p-5 p-3 rounded-[0.625rem] flex flex-col gap-4 sm:gap-0 justify-between relative isolate perspective-[1000]">
       {!!collapseTitle && (
-        <h6 className="sm:text-md text-body font-medium sm:max-w-52.5 leading-none">
+        <h6 className="sm:text-md text-body font-semibold sm:max-w-52.5 leading-none">
           {collapseTitle}
         </h6>
       )}
