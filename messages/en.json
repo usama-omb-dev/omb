@@ -240,40 +240,40 @@
   },
   "OurEmployees": {
     "title": "Hear From Our Employees",
-    "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatemaccu",
+    "description": "Real stories from people who help build OMB every day.",
     "video1Title": "Employee testimonial — first video",
-    "video1Description": "Video of an employee speaking about working at the company.",
+    "video1Description": "A teammate talks about what it is like to work here.",
     "video1PlayLabel": "Play first employee video",
     "video2Title": "Employee testimonial — second video",
-    "video2Description": "Video of an employee speaking about working at the company.",
+    "video2Description": "A teammate talks about what it is like to work here.",
     "video2PlayLabel": "Play second employee video"
   },
   "WhyOmb": {
-    "title": "Why Join OMB!",
-    "intro": "Sed ut perspiciatis unde omnis iste natus error sit voluptatemaccu santium doloremque.",
+    "title": "Why OMB?",
+    "intro": "Working at OMB means making an impact, learning at a high level, and having room to take initiative.",
     "imageAlt": "Why OMB",
     "card1Title": "Why OMB",
-    "card1Body": "Sed ut perspiciatis unde omnis iste natus error sit voluptatemaccusantium doloremque.",
+    "card1Body": "An agency with character: sharp, honest, and focused on results—internally too.",
     "card2Title": "Learning & Development",
-    "card2Body": "Sed ut perspiciatis unde omnis iste natus error sit voluptatemaccusantium doloremque.",
+    "card2Body": "Training, feedback, and space to grow in your craft.",
     "card3Title": "Growth Opportunities",
-    "card3Body": "Sed ut perspiciatis unde omnis iste natus error sit voluptatemaccusantium doloremque.",
+    "card3Body": "Work on challenging B2B projects and help shape the brand.",
     "card4Title": "Remote / Flexible Work",
-    "card4Body": "Sed ut perspiciatis unde omnis iste natus error sit voluptatemaccusantium doloremque."
+    "card4Body": "Work where it works for you, with clear agreements and trust."
   },
   "HiringProcess": {
     "title": "How we Hire",
-    "intro": "Sed ut perspiciatis unde omnis iste natus error sit voluptatemaccu",
+    "intro": "A transparent journey from application to offer—so you always know what to expect.",
     "stepLabel": "Step {n}",
     "step1Title": "Apply",
     "step2Title": "Interview",
     "step3Title": "Test Task",
     "step4Title": "Final Offer",
-    "stepBody": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque."
+    "stepBody": "We walk you through each step so you know what we expect from you and what you can expect from us."
   },
   "LifeAtOmb": {
     "title": "Life at Online Marketing Bakery",
-    "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatemaccusantium doloremque.",
+    "description": "Culture, team, and day-to-day vibe—see what life at OMB is really like.",
     "galleryImageAlt": "Life at OMB gallery {n}",
     "cta": "Browse Opportunities"
   },
@@ -290,10 +290,10 @@
     "milestonesTitle": "On a mission to become the world’s #1 B2B",
     "milestonesAccent": "marketing agency",
     "milestonesBody": "We did not get here by following the crowd. From day one, OMB was built around one belief: marketing should perform, or it should change. Every milestone marks a decision to raise the bar, challenge the obvious, and keep pushing forward.",
-    "dragLabel": "Sleuren",
+    "dragLabel": "Drag",
     "gridLinesAlt": "Grid lines",
     "faviconAlt": "OMB favicon",
-    "milestone2018a": "Rubin started the Onine Marketing Bakery in Roermond.",
+    "milestone2018a": "Rubin started the Online Marketing Bakery in Roermond.",
     "milestone2019a": "Grew the OMB team to 4 members.",
     "milestone2019b": "Moved to our first big office with the team!",
     "milestone2019c": "Word started getting around"
