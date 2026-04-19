@@ -78,6 +78,7 @@
   "PageHero": {
     "titleLine1": "Wij ",
     "titleHighlight": "bouwen merken die",
+    "titlePrimarySuffix": "",
     "titleLine2": " naar meer smaken...",
     "description": "Samen bakken we campagnes die je doelgroep laat watertanden. We helpen je een positie in te nemen die klanten kiezen en concurrenten wakker houdt.",
     "cta": "Dat smaakt naar meer",
@@ -218,6 +219,16 @@
     "heroTitleAccent": "B2B-marketing",
     "heroTitleAfter": "in beweging sinds 2018",
     "heroDetails": "Marketing heeft geen ruis meer nodig, maar richting. Sinds 2018 helpen we B2B-merken uit de giswerkmodus en maken we marketing die echt iets oplevert. Geen vage beloftes, geen veilige spelletjes. Alleen duidelijke keuzes en meetbare resultaten."
+  },
+  "AboutPageHero": {
+    "eyebrow": "Over ons",
+    "titleHighlight": "We brengen",
+    "titlePrimarySuffix": " B2B-marketing",
+    "titleLine2": "in beweging sinds 2018",
+    "description": "Marketing heeft geen ruis meer nodig, maar richting. Sinds 2018 helpen we B2B-merken uit de giswerkmodus en maken we marketing die echt iets oplevert. Geen vage beloftes, geen veilige spelletjes. Alleen duidelijke keuzes en meetbare resultaten.",
+    "imageLeftAlt": "Teamlid met lekkernijen",
+    "imageCenterAlt": "Rubin met een lekkernij",
+    "imageRightAlt": "Teamlid met een lekkernij"
   },
   "OurEmployees": {
     "title": "Hoor het van onze collega’s",

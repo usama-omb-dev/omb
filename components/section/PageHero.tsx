@@ -55,18 +55,38 @@ export type PageHeroProps = {
   translationNamespace?: string;
   ctaHref?: string;
   className?: string;
+  /** Dot + label above the title. Use a namespace with an `eyebrow` key. */
+  showEyebrow?: boolean;
+  /**
+   * When omitted: CTA shows except when `showEyebrow` is true (inner pages).
+   * Set true to force CTA with eyebrow.
+   */
+  showCta?: boolean;
+  /**
+   * Less padding below the people row (smaller gap before the next section).
+   * Use on inner pages; keep default on home when a block overlaps (e.g. stats strip).
+   */
+  tightBottom?: boolean;
 };
+
+const titleClassName =
+  "text-center text-balance text-xl font-bold leading-none sm:text-3xl md:text-4xl md:nl:text-3xl lg:text-[64px] lg:leading-[1.06] lg:nl:text-4xl lg:nl:leading-tight";
 
 /**
  * Centered marketing hero: gradient, headline with highlighted underline,
- * description, CTA, optional floating badge, and bottom character cutouts.
+ * description, optional CTA, optional floating badge, and bottom character cutouts.
  */
 export default function PageHero({
   translationNamespace = "PageHero",
   ctaHref = "/contact",
   className,
+  showEyebrow = false,
+  showCta,
+  tightBottom = false,
 }: PageHeroProps) {
   const t = useTranslations(translationNamespace);
+  const showCtaButton = showCta ?? !showEyebrow;
+  const titlePrimarySuffixText = showEyebrow ? t("titlePrimarySuffix") : "";
   const sectionRef = useRef<HTMLElement>(null);
   const copyColRef = useRef<HTMLDivElement>(null);
   const desktopBadgeRef = useRef<HTMLDivElement>(null);
@@ -146,7 +166,8 @@ export default function PageHero({
     <section
       ref={sectionRef}
       className={cn(
-        "relative isolate overflow-hidden pb-10 sm:pb-24",
+        "relative isolate overflow-hidden",
+        tightBottom ? "pb-0" : "pb-10 sm:pb-24",
         className,
       )}
       style={{ background: GRADIENT }}
@@ -155,6 +176,17 @@ export default function PageHero({
         ref={copyColRef}
         className="container relative mx-auto flex flex-col items-center justify-center gap-4 px-4 pt-30 sm:pt-40 lg:px-0"
       >
+        {showEyebrow ? (
+          <p className="flex items-center justify-center gap-2 sm:gap-2.5">
+            <span
+              className="size-2 shrink-0 rounded-full bg-primary sm:size-2.5"
+              aria-hidden
+            />
+            <span className="text-sm font-semibold tracking-tight text-black sm:text-base">
+              {t("eyebrow")}
+            </span>
+          </p>
+        ) : null}
         <div
           ref={desktopBadgeRef}
           className="pointer-events-none absolute right-0 top-28 z-10 hidden lg:block xl:top-60"
@@ -162,44 +194,71 @@ export default function PageHero({
           <HeroBadgePlaceholder />
         </div>
         <div className="flex max-w-260 flex-col items-center gap-2 sm:gap-5">
-          <h1 className="text-center text-balance text-xl font-bold leading-none text-black sm:text-3xl md:text-4xl md:nl:text-3xl lg:text-[64px] lg:leading-[1.06] lg:nl:text-4xl lg:nl:leading-tight">
-            <span>{t("titleLine1")}</span>
-            <span className="relative inline-block pb-1.5 text-primary sm:pb-2">
-              <span className="relative z-10">{t("titleHighlight")}</span>
-              <span
-                className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-1 rounded-sm bg-[#3838F9] sm:h-[5px]"
-                aria-hidden
-              />
-            </span>
-            <span>{t("titleLine2")}</span>
-          </h1>
+          {showEyebrow ? (
+            <h1
+              className={cn(
+                titleClassName,
+                "flex flex-col items-center gap-1.5 text-black sm:gap-2",
+              )}
+            >
+              <span className="flex flex-wrap items-baseline justify-center leading-none">
+                <span className="relative inline-block pb-1.5 text-primary sm:pb-2">
+                  <span className="relative z-10">{t("titleHighlight")}</span>
+                  <span
+                    className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-1 rounded-sm bg-[#3838F9] sm:h-[5px]"
+                    aria-hidden
+                  />
+                </span>
+                {titlePrimarySuffixText ? (
+                  <span className="text-primary">{titlePrimarySuffixText}</span>
+                ) : null}
+              </span>
+              <span className="text-black">{t("titleLine2")}</span>
+            </h1>
+          ) : (
+            <h1 className={cn(titleClassName, "text-black")}>
+              <span>{t("titleLine1")}</span>
+              <span className="relative inline-block pb-1.5 text-primary sm:pb-2">
+                <span className="relative z-10">{t("titleHighlight")}</span>
+                <span
+                  className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-1 rounded-sm bg-[#3838F9] sm:h-[5px]"
+                  aria-hidden
+                />
+              </span>
+              <span>{t("titleLine2")}</span>
+            </h1>
+          )}
         </div>
 
         <p className="max-w-161.5 text-center text-xsm text-black/80 sm:text-body">
           {t("description")}
         </p>
 
-        <div className="flex w-full justify-center">
-          <AnimatedButton
-            href={ctaHref}
-            size="sm"
-            className="border border-black/10 !h-auto !min-h-0 !gap-1.5 !px-3.5 !py-1.5 !shadow-[0px_10px_24px_0px_#7373AC29] text-xs sm:!px-4 sm:!py-2 sm:text-sm"
-            trailingContent={
-              <AnimatedArrowIcon tone="hero" className="[&_svg]:-rotate-45" />
-            }
-          >
-            {t("cta")}
-          </AnimatedButton>
-        </div>
+        {showCtaButton ? (
+          <div className="flex w-full justify-center">
+            <AnimatedButton
+              href={ctaHref}
+              size="sm"
+              className="border border-black/10 !h-auto !min-h-0 !gap-1.5 !px-3.5 !py-1.5 !shadow-[0px_10px_24px_0px_#7373AC29] text-xs sm:!px-2 sm:!pl-4 sm:!py-2 sm:text-sm"
+              trailingContent={
+                <AnimatedArrowIcon tone="hero" className="[&_svg]:-rotate-45" />
+              }
+            >
+              {t("cta")}
+            </AnimatedButton>
+          </div>
+        ) : null}
       </div>
 
       <div
         ref={peopleRef}
-        className="container relative mt-4 flex min-w-0 items-end justify-center gap-0 px-2 sm:px-3 md:px-4 lg:mt-8"
+        className={cn(
+          "container relative flex min-w-0 items-end justify-center gap-0 px-2 sm:px-3 md:px-4",
+          tightBottom ? "mt-2 sm:mt-3 lg:mt-5" : "mt-4 lg:mt-8",
+        )}
       >
         {/* Below lg: wider % + higher max-h so the trio reads larger; lg+ unchanged (380 / 500 / 380). */}
         <div className="relative z-10 w-[32%] max-w-[12.5rem] shrink-0 -mr-7 sm:max-w-[14.5rem] sm:-mr-9 md:w-[32%] md:max-w-[13.5rem] md:-mr-11 md:min-w-0 md:shrink lg:w-[380px] lg:max-w-[380px] lg:shrink-0 lg:-mr-44">
-          <div className="translate-y-2 sm:translate-y-3 md:translate-y-3 lg:translate-y-4">
             <Image
               src="/person-left-hero.png"
               alt={t("imageLeftAlt")}
@@ -207,11 +266,10 @@ export default function PageHero({
               height={494}
               className="mx-auto h-auto w-full max-h-64 object-contain object-bottom sm:max-h-72 md:max-h-80 lg:max-h-none"
               sizes="(max-width: 767px) 40vw, 380px"
-              priority
-            />
-          </div>
+            priority
+          />
         </div>
-        <div className="relative z-30 w-[36%] max-w-[14rem] shrink-0 -translate-y-2 sm:max-w-[17rem] sm:-translate-y-4 md:w-[36%] md:max-w-[18rem] md:-translate-y-5 md:min-w-0 md:shrink lg:w-[500px] lg:max-w-[500px] lg:shrink-0 lg:-translate-y-8">
+        <div className="relative z-30 w-[36%] max-w-[14rem] shrink-0 sm:max-w-[17rem] md:w-[36%] md:max-w-[18rem] md:min-w-0 md:shrink lg:w-[500px] lg:max-w-[500px] lg:shrink-0">
           <Image
             src="/rubin-hero.png"
             alt={t("imageCenterAlt")}
@@ -223,7 +281,6 @@ export default function PageHero({
           />
         </div>
         <div className="relative z-10 w-[32%] max-w-[12.5rem] shrink-0 -ml-7 sm:max-w-[14.5rem] sm:-ml-9 md:w-[32%] md:max-w-[13.5rem] md:-ml-11 md:min-w-0 md:shrink lg:w-[380px] lg:max-w-[380px] lg:shrink-0 lg:-ml-44">
-          <div className="translate-y-2 sm:translate-y-3 md:translate-y-3 lg:translate-y-4">
             <Image
               src="/person-right-hero.png"
               alt={t("imageRightAlt")}
@@ -231,9 +288,8 @@ export default function PageHero({
               height={494}
               className="mx-auto h-auto w-full max-h-64 object-contain object-bottom sm:max-h-72 md:max-h-80 lg:max-h-none"
               sizes="(max-width: 767px) 40vw, 380px"
-              priority
-            />
-          </div>
+            priority
+          />
         </div>
       </div>
     </section>

@@ -78,6 +78,7 @@
   "PageHero": {
     "titleLine1": "We ",
     "titleHighlight": "build brands that",
+    "titlePrimarySuffix": "",
     "titleLine2": " taste like more...",
     "description": "Together we bake campaigns that make your audience hungry. We help you take a position customers choose and competitors lose sleep over.",
     "cta": "Leave you hungry for more",
@@ -218,6 +219,16 @@
     "heroTitleAccent": "B2B",
     "heroTitleAfter": "Marketing since 2018",
     "heroDetails": "Marketing does not need more noise. It needs direction. Since 2018, we have been helping B2B brands escape guesswork and turn marketing into something that actually delivers. No vague promises, no safe play. Just clear choices and measurable results."
+  },
+  "AboutPageHero": {
+    "eyebrow": "About",
+    "titleHighlight": "Revolutionizing",
+    "titlePrimarySuffix": " B2B",
+    "titleLine2": "Marketing since 2018",
+    "description": "Marketing does not need more noise. It needs direction. Since 2018, we have been helping B2B brands escape guesswork and turn marketing into something that actually delivers. No vague promises, no safe play. Just clear choices and measurable results.",
+    "imageLeftAlt": "Team member with pastries",
+    "imageCenterAlt": "Rubin with a pastry",
+    "imageRightAlt": "Team member with a pastry"
   },
   "OurEmployees": {
     "title": "Hear From Our Employees",

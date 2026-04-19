@@ -21,11 +21,12 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
-        default: "p-8 py-2 has-[>svg]:px-3",
+        default: "px-5 py-2 has-[>svg]:px-2.5 sm:px-6",
         xs: "h-6 gap-1 rounded-full px-2 text-xs has-[>svg]:px-1.5 [&_svg:not([class*='size-'])]:size-3",
-        sm: "h-8 rounded-full gap-1.5 px-3 has-[>svg]:px-2.5",
-        lg: "h-10 rounded-full px-6 has-[>svg]:px-4",
-        icon: "md:text-body text-xsm font-semibold md:p-3.75! p-2! gap-2 rounded-full!",
+        sm: "h-8 rounded-full gap-1.5 px-2.5 has-[>svg]:px-2 sm:px-3",
+        lg: "h-10 rounded-full px-5 has-[>svg]:px-3.5 sm:px-6",
+        /** Pill CTAs with trailing arrow (Insights, Services, header, etc.) */
+        icon: "md:text-body text-xsm font-semibold gap-1.5 rounded-full! px-2.5 py-1.5 md:gap-2 md:px-3 md:py-2",
       },
     },
     defaultVariants: {

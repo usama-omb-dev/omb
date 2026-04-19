@@ -16,6 +16,10 @@ const nextConfig: NextConfig = {
       "https://www.linkedin.com/in/rubinkoot",
   },
   images: {
+    /** In dev, avoid long-lived `/_next/image` cache so replaced files in `/public` show up after refresh. */
+    ...(process.env.NODE_ENV === "development"
+      ? { minimumCacheTTL: 0 }
+      : {}),
     remotePatterns: [
       {
         protocol: "https",

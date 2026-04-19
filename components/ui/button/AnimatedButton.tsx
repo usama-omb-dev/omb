@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import AnimatedSplit, {
   AnimatedSplitHandle,
 } from "@/components/ui/button/AnimatedSplit";
+import { cn } from "@/lib/utils";
 import { Link } from "@/i18n/navigation";
 import { forwardRef, ReactNode, useRef } from "react";
 
@@ -37,9 +38,11 @@ const AnimatedButton = forwardRef<
   );
 
   const sharedProps = {
-    className: `group relative inline-flex items-center justify-between ${
-      className ?? ""
-    }`,
+    /** `justify-start` keeps label + arrow tight; pass `justify-between w-full` where the bar should span (e.g. blog cards, mobile menu). */
+    className: cn(
+      "group relative inline-flex items-center justify-start",
+      className,
+    ),
     onMouseEnter: mergeEvent(rest.onMouseEnter, () => textRef.current?.play()),
     onMouseLeave: mergeEvent(rest.onMouseLeave, () =>
       textRef.current?.reverse(),
