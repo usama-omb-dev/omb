@@ -59,7 +59,8 @@
     "contactHeadline": "Your Next Opportunity Starts Here",
     "heroPill": "Personal Brand",
     "heroTitleLine1": "Join the Bakery",
-    "heroTitleLine2": "That Bakes Brands"
+    "heroTitleLine2": "That Bakes Brands",
+    "heroDescription": "Work with sharp people on real B2B brands. No vague decks — clear direction, measurable work, and room to grow your craft."
   },
   "Hero": {
     "pill": "B2B Marketing Agency",
@@ -362,6 +363,11 @@
     "viewCaseStudy": "View Case Study"
   },
   "ServicePageHero": {
+    "imageLeftAlt": "Team member with pastries",
+    "imageCenterAlt": "Rubin with a pastry",
+    "imageRightAlt": "Team member with a pastry"
+  },
+  "CareerPageHero": {
     "imageLeftAlt": "Team member with pastries",
     "imageCenterAlt": "Rubin with a pastry",
     "imageRightAlt": "Team member with a pastry"

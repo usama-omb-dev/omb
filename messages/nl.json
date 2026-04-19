@@ -59,7 +59,8 @@
     "contactHeadline": "Je volgende kans begint hier",
     "heroPill": "Personal branding",
     "heroTitleLine1": "Word onderdeel van de Bakery",
-    "heroTitleLine2": "die merken bakt"
+    "heroTitleLine2": "die merken bakt",
+    "heroDescription": "Werk met scherpe mensen aan echte B2B-merken. Geen vage decks — duidelijke richting, meetbaar werk en ruimte om je vak te laten groeien."
   },
   "Hero": {
     "pill": "B2B-marketingbureau",
@@ -362,6 +363,11 @@
     "viewCaseStudy": "Bekijk case study"
   },
   "ServicePageHero": {
+    "imageLeftAlt": "Teamlid met lekkernijen",
+    "imageCenterAlt": "Rubin met een lekkernij",
+    "imageRightAlt": "Teamlid met een lekkernij"
+  },
+  "CareerPageHero": {
     "imageLeftAlt": "Teamlid met lekkernijen",
     "imageCenterAlt": "Rubin met een lekkernij",
     "imageRightAlt": "Teamlid met een lekkernij"

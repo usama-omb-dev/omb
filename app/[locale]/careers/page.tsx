@@ -1,5 +1,4 @@
-import ServicesHero from "@/components/section/Service/ServicesHero";
-import { HeroDataSection } from "@/app/ServicesDataInterfaces";
+import PageHero from "@/components/section/PageHero";
 import OurGoal from "@/components/section/Service/OurGoal";
 import WhyOmb from "@/components/section/Careers/WhyOmb";
 import LifeAtOmb from "@/components/section/Careers/LifeAtOmb";
@@ -29,20 +28,19 @@ export default async function CareersPage({
   setRequestLocale(locale);
   const t = await getTranslations("Careers");
 
-  const heroData: HeroDataSection = {
-    pillTitle: t("heroPill"),
-    mainTitle: (
-      <>
-        {t("heroTitleLine1")}{" "}
-        <span className="text-primary block">{t("heroTitleLine2")}</span>
-      </>
-    ),
-    heroImage: "/career-page-hero.png",
-  };
+  const titleHtml = `${t("heroTitleLine1")} <span class="text-primary block">${t("heroTitleLine2")}</span>`;
 
   return (
     <main>
-      <ServicesHero data={heroData} />
+      <PageHero
+        translationNamespace="CareerPageHero"
+        contentFromCms={{
+          eyebrow: t("heroPill"),
+          titleHtml,
+          descriptionHtml: `<p>${t("heroDescription")}</p>`,
+        }}
+        tightBottom
+      />
       <OurGoal showMilestones={false} />
       <WhyOmb />
       <LifeAtOmb />
