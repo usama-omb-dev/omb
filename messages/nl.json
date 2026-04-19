@@ -218,7 +218,8 @@
     "intro": "Marketing wordt niet beter door te wachten. Als je klaar bent om aan te pakken wat niet werkt en een eerlijk gesprek over groei wilt, zit je hier goed.",
     "heading": "Laten we praten",
     "subheading": "Nieuwe business of een concrete vraag?",
-    "avatarAlt": "Avatar van Rubin"
+    "avatarAlt": "Avatar van Rubin",
+    "formCardTitle": "Stuur ons een bericht"
   },
   "AboutPage": {
     "heroPill": "Over ons",
@@ -324,7 +325,7 @@
     "labelEmail": "E-mailadres",
     "placeholderEmail": "Jouw e-mailadres",
     "labelMessage": "Bericht",
-    "placeholderMessage": "Vertel ons over je project",
+    "placeholderMessage": "Schrijf je bericht.....",
     "charCount": "{count}/100 tekens",
     "agreementBefore": "Door contact op te nemen ga je akkoord met onze",
     "privacyLink": "privacyverklaring.",

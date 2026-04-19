@@ -17,6 +17,7 @@ import AnimatedButton from "../ui/button/AnimatedButton";
 import { Checkbox } from "../ui/checkbox";
 import { Link } from "@/i18n/navigation";
 import AnimatedArrowIcon from "../ui/button/AnimatedArrowIcon";
+import { cn } from "@/lib/utils";
 import { useLocale, useTranslations } from "next-intl";
 
 export function ContactForm({
@@ -147,20 +148,32 @@ export function ContactForm({
               aria-invalid={fieldState.invalid}
               placeholder={t("placeholderFullName")}
               autoComplete="on"
-              className={`border-0! ${darkForm ? "bg-black/10 text-black" : "bg-white/10 text-white"} sm:rounded-[8px] rounded-[6px] ring-0! shadow-none! placeholder:text-[#AAACA6]! sm:text-body! text-xsm!  sm:min-h-15.25 min-h-10`}
+              className={cn(
+                "rounded-[6px] text-xsm! ring-0! sm:min-h-15.25 sm:rounded-[8px] sm:text-body!",
+                "placeholder:text-zinc-500!",
+                darkForm
+                  ? "border border-zinc-200 bg-zinc-100 text-black shadow-none"
+                  : "border-0! bg-white/10 text-white shadow-none placeholder:text-[#AAACA6]!",
+              )}
             />
             {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
           </Field>
         )}
       />
       <div
-        className={`flex  ${darkForm ? "flex-col" : "xl:flex-row flex-col"} xl:gap-7.5 sm:gap-4 gap-2`}
+        className={cn(
+          "flex gap-2 sm:gap-4",
+          darkForm ? "flex-col sm:flex-row" : "flex-col xl:flex-row xl:gap-7.5",
+        )}
       >
         <Controller
           name="userPhone"
           control={form.control}
           render={({ field, fieldState }) => (
-            <Field data-invalid={fieldState.invalid}>
+            <Field
+              data-invalid={fieldState.invalid}
+              className={darkForm ? "min-w-0 w-full sm:flex-1" : undefined}
+            >
               <FieldLabel
                 className={`${darkForm ? "text-black" : "text-white"} sm:text-body! text-xsm!`}
                 htmlFor="user-number"
@@ -174,7 +187,13 @@ export function ContactForm({
                 aria-invalid={fieldState.invalid}
                 placeholder={t("placeholderPhone")}
                 autoComplete="on"
-                className={`border-0! ${darkForm ? "bg-black/10 text-black" : "bg-white/10 text-white"} sm:rounded-[8px] rounded-[6px] ring-0! shadow-none! placeholder:text-[#AAACA6]! sm:text-body! text-xsm! sm:min-h-15.25 min-h-10`}
+                className={cn(
+                  "min-h-10 w-full rounded-[6px] text-xsm! ring-0! sm:min-h-15.25 sm:rounded-[8px] sm:text-body!",
+                  "placeholder:text-zinc-500!",
+                  darkForm
+                    ? "border border-zinc-200 bg-zinc-100 text-black shadow-none"
+                    : "border-0! bg-white/10 text-white shadow-none placeholder:text-[#AAACA6]!",
+                )}
               />
               {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>
@@ -184,7 +203,10 @@ export function ContactForm({
           name="userEmail"
           control={form.control}
           render={({ field, fieldState }) => (
-            <Field data-invalid={fieldState.invalid}>
+            <Field
+              data-invalid={fieldState.invalid}
+              className={darkForm ? "min-w-0 w-full sm:flex-1" : undefined}
+            >
               <FieldLabel
                 className={`${darkForm ? "text-black" : "text-white"} sm:text-body! text-xsm!`}
                 htmlFor="user-email"
@@ -198,7 +220,13 @@ export function ContactForm({
                 aria-invalid={fieldState.invalid}
                 placeholder={t("placeholderEmail")}
                 autoComplete="on"
-                className={`border-0! ${darkForm ? "bg-black/10 text-black" : "bg-white/10 text-white"} sm:rounded-[8px] rounded-[6px] ring-0! shadow-none! placeholder:text-[#AAACA6]! sm:text-body! text-xsm! sm:min-h-15.25 min-h-10`}
+                className={cn(
+                  "min-h-10 w-full rounded-[6px] text-xsm! ring-0! sm:min-h-15.25 sm:rounded-[8px] sm:text-body!",
+                  "placeholder:text-zinc-500!",
+                  darkForm
+                    ? "border border-zinc-200 bg-zinc-100 text-black shadow-none"
+                    : "border-0! bg-white/10 text-white shadow-none placeholder:text-[#AAACA6]!",
+                )}
               />
               {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>
@@ -217,14 +245,24 @@ export function ContactForm({
               {t("labelMessage")}
             </FieldLabel>
             <InputGroup
-              className={`border-0! ${darkForm ? "bg-black/10 text-black" : "bg-white/10 text-white"} sm:rounded-xl ring-0! shadow-none!`}
+              className={cn(
+                "sm:rounded-xl ring-0!",
+                darkForm
+                  ? "border border-zinc-200 bg-zinc-100 text-black shadow-none"
+                  : "border-0! bg-white/10 text-white shadow-none",
+              )}
             >
               <InputGroupTextarea
                 {...field}
                 id="user-message"
                 placeholder={t("placeholderMessage")}
                 rows={6}
-                className={`min-h-24 resize-none placeholder:text-[#AAACA6]! sm:text-body! text-xsm! ${darkForm ? "text-black" : "text-white"} `}
+                className={cn(
+                  "min-h-24 resize-none text-xsm! sm:text-body!",
+                  darkForm
+                    ? "text-black placeholder:text-zinc-500!"
+                    : "text-white placeholder:text-[#AAACA6]!",
+                )}
                 aria-invalid={fieldState.invalid}
               />
               <InputGroupAddon align="block-end">

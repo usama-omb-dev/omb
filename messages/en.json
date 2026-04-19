@@ -218,7 +218,8 @@
     "intro": "Marketing does not get better by waiting. If you are ready to challenge what is not working and want an honest conversation about growth, you are in the right place.",
     "heading": "Let’s talk",
     "subheading": "New business or a concrete question?",
-    "avatarAlt": "Rubin's avatar"
+    "avatarAlt": "Rubin's avatar",
+    "formCardTitle": "Send us a message"
   },
   "AboutPage": {
     "heroPill": "About",
@@ -324,7 +325,7 @@
     "labelEmail": "Email Address",
     "placeholderEmail": "Your Email Address",
     "labelMessage": "Message",
-    "placeholderMessage": "Tell us about your project",
+    "placeholderMessage": "Write your message.....",
     "charCount": "{count}/100 characters",
     "agreementBefore": "By contacting us, you agree to our",
     "privacyLink": "privacy policy.",

@@ -1,11 +1,8 @@
 import { ContactForm } from "@/components/section/Form";
-import Pill from "@/components/ui/pill";
-import Image from "next/image";
-import { FaLinkedin } from "react-icons/fa6";
+import { MARKETING_HERO_GRADIENT } from "@/components/section/marketing-hero-shared";
 import { loadMessagesJson } from "@/lib/load-messages";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { envSocialUrls, socialHref } from "@/lib/social-links";
 
 export async function generateMetadata({
   params,
@@ -19,56 +16,45 @@ export async function generateMetadata({
 
 export default async function ContactPage() {
   const t = await getTranslations("ContactPage");
-  const rubinLinkedIn = socialHref(envSocialUrls.linkedinRubin);
+
   return (
-    <section className="p-3">
+    <main className="bg-background pb-16 sm:pb-20">
       <div
-        style={{ backgroundImage: "url(/gradient-bg-hero.png)" }}
-        className="relative isolate lg:pt-60.5 pt-36 pb-10 overflow-hidden bg-cover bg-no-repeat bg-center flex flex-col gap-16.75"
+        className="relative isolate overflow-x-hidden pb-16 sm:pb-20 lg:pb-24"
+        style={{ background: MARKETING_HERO_GRADIENT }}
       >
-        <div className="container flex flex-col items-center justify-center">
-          <div className="flex flex-col justify-center items-center gap-2 max-w-165.25 mx-auto">
-            <Pill iconColor="#3838F9" className="text-primary">
-              {t("pill")}
-            </Pill>
-            <p className="text-black text-body text-center">{t("intro")}</p>
-            <h2 className="text-black sm:text-5xl text-3xl">{t("heading")}</h2>
-            <p className="text-black text-body text-center sm:py-7.5 py-3">
+        <div className="container relative mx-auto px-4 lg:px-0">
+          <div className="mx-auto flex max-w-260 flex-col items-center gap-4 pt-28 text-center sm:gap-5 sm:pt-40 lg:pt-44">
+            <p className="flex items-center justify-center gap-2 sm:gap-2.5">
+              <span
+                className="size-2 shrink-0 rounded-full bg-primary sm:size-2.5"
+                aria-hidden
+              />
+              <span className="text-sm font-semibold tracking-tight text-primary sm:text-base">
+                {t("pill")}
+              </span>
+            </p>
+            <p className="max-w-161.5 text-pretty text-xsm leading-relaxed text-black/80 sm:text-body">
+              {t("intro")}
+            </p>
+            <h1 className="text-balance text-3xl font-bold leading-[1.1] tracking-tight text-black sm:text-5xl sm:leading-[1.06] lg:text-[56px] lg:leading-[1.06]">
+              {t("heading")}
+            </h1>
+            <p className="max-w-lg text-pretty text-xsm leading-relaxed text-black/70 sm:text-body">
               {t("subheading")}
             </p>
-            <div className="flex flex-col items-center gap-5 sm:pb-5 pb-3 sm:mb-5 mb-3">
-              <Image
-                src={"/rubin-koot-avatar.png"}
-                alt={t("avatarAlt")}
-                width={88}
-                height={88}
-              />
-              <div className="flex flex-col items-center">
-                <a
-                  className="flex gap-2.5 items-center leading-none text-primary sm:text-md text-sm"
-                  href={rubinLinkedIn.href}
-                  target={rubinLinkedIn.target}
-                  rel={rubinLinkedIn.rel}
-                >
-                  Rubin Koot{" "}
-                  <span className="text-primary">
-                    <FaLinkedin />
-                  </span>
-                </a>
-                <a
-                  className="text-black sm:text-body text-xsm"
-                  href="mailto:rubin@onlinemarketingbakery.nl"
-                >
-                  rubin@onlinemarketingbakery.nl
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className="bg-white py-8.25 sm:px-8 px-4 rounded-[0.625rem] max-w-165.25 mx-auto w-full">
-            <ContactForm darkForm={true} />
           </div>
         </div>
       </div>
-    </section>
+
+      <div className="container relative z-10 mx-auto -mt-12 px-4 sm:-mt-16 lg:-mt-20 lg:px-0">
+        <div className="mx-auto w-full max-w-165.25 rounded-[0.625rem] border border-black/10 bg-white px-4 py-8 shadow-[0px_20px_48px_rgba(56,56,249,0.12)] sm:px-8 sm:py-10">
+          <h2 className="mb-6 text-left text-lg font-semibold leading-none text-black sm:mb-8 sm:text-xl">
+            {t("formCardTitle")}
+          </h2>
+          <ContactForm darkForm={true} />
+        </div>
+      </div>
+    </main>
   );
 }
