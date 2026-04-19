@@ -374,5 +374,10 @@
   },
   "BlogPostPage": {
     "avatarAlt": "Avatar van Rubin"
+  },
+  "CaseStudyPage": {
+    "caseStudyLabel": "Casestudy:",
+    "fallbackTitle": "Casestudy",
+    "featuredImageFallbackAlt": "Voorbeeld casestudy"
   }
 }

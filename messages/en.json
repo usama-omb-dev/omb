@@ -374,5 +374,10 @@
   },
   "BlogPostPage": {
     "avatarAlt": "Rubin's avatar"
+  },
+  "CaseStudyPage": {
+    "caseStudyLabel": "Case study:",
+    "fallbackTitle": "Case study",
+    "featuredImageFallbackAlt": "Case study preview"
   }
 }

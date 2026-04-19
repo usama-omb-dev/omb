@@ -1,16 +1,22 @@
 "use client";
-import AnimatedButton from "@/components/ui/button/AnimatedButton";
-import AnimatedArrowIcon from "@/components/ui/button/AnimatedArrowIcon";
+import CaseStudyHero from "@/components/section/case-study/CaseStudyHero";
+import { cn } from "@/lib/utils";
+import { ScheduleCallForm } from "@/components/ui/schedule-call-form";
+import { envSocialUrls, socialHref } from "@/lib/social-links";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { Draggable, ScrollTrigger } from "gsap/all";
-import { FaChevronRight } from "react-icons/fa6";
-import { FaChevronLeft } from "react-icons/fa6";
+import {
+  FaChevronLeft,
+  FaChevronRight,
+  FaLinkedin,
+  FaPause,
+} from "react-icons/fa6";
 import { useGSAP } from "@gsap/react";
 import { FaPlay } from "react-icons/fa";
-import { FaPause } from "react-icons/fa6";
+import { useTranslations } from "next-intl";
 
 interface CaseStudyStructured {
   companyLogo: {
@@ -60,6 +66,9 @@ export default function CaseStudyDetailLayout({
   caseStudyData: CaseStudyStructured;
 }) {
   gsap.registerPlugin(Draggable, ScrollTrigger);
+
+  const tBlog = useTranslations("BlogPostPage");
+  const rubinLinkedIn = socialHref(envSocialUrls.linkedinRubin);
 
   const {
     companyLogo,
@@ -188,8 +197,6 @@ export default function CaseStudyDetailLayout({
       "h1, h2, h3, h4, h5, h6",
     );
 
-    console.log("headings", headings);
-
     headings.forEach((heading) => {
       const id = heading.id;
 
@@ -210,52 +217,59 @@ export default function CaseStudyDetailLayout({
   const textStyling =
     "xl:[&_h1]:text-5xl [&_h1]:text-2xl xl:[&_h2]:text-3xl [&_h2]:text-xl xl:[&_h3]:text-2xl [&_h3]:text-xl xl:[&_h4]:text-xl [&_h4]:text-lg xl:[&_h5]:text-lg [&_h5]:text-md xl:[&_h6]:text-md [&_h6]:text-sm xl:[&_li]:text-sm [&_li]:text-xsm xl:[&_p]:text-body [&_p]:text-xsm [&_h1]:font-bold [&_h2]:font-semibold [&_h3]:font-semibold [&_h4]:font-semibold [&_h5]:font-semibold [&_h6]:font-semibold **:leading-none sm:[&_h1]:mb-10 sm:[&_h2]:mb-10 sm:[&_h3]:mb-10 sm:[&_h4]:mb-10 sm:[&_h5]:mb-10 sm:[&_h6]:mb-10 [&_h1]:mb-5 [&_h2]:mb-5 [&_h3]:mb-5 [&_h4]:mb-5 [&_h5]:mb-5 [&_h6]:mb-5 [&_h1]:scroll-mt-10 [&_h2]:scroll-mt-10 [&_h3]:scroll-mt-10 [&_h4]:scroll-mt-10 [&_h5]:scroll-mt-10 [&_h6]:scroll-mt-10 [&_li>h5]:my-5 [&_p]:leading-tight lg:[&_p]:mb-4 [&_p]:mb-2 [&_p]:mt-2";
   return (
-    <article className="min-h-screen sm:pt-60 pt-32 bg-background scroll-smooth">
-      <div className="container">
-        <div className="border-b xl:pb-15 pb-8 xl:mb-15 mb-8">
-          <div className="xl:mb-4 mb-2 flex flex-wrap items-center sm:gap-5 gap-3 xl:py-3.75 py-2 px-5 bg-white rounded-[0.625rem] w-fit">
-            <span className="sm:text-md text-sm font-medium">Case Study:</span>
-            {companyLogo?.imageUrl ? (
-              <Image
-                src={companyLogo?.imageUrl}
-                alt={
-                  companyLogo.imageAlt ? companyLogo.imageAlt : "Company Logo"
-                }
-                unoptimized
-                width={241}
-                height={50}
-                className="h-auto w-auto object-contain"
-              />
-            ) : null}
-          </div>
-          <h1 className="max-w-271.5 lg:text-5xl sm:text-3xl text-2xl leading-none text-black">
-            {title}
-          </h1>
-        </div>
-
-        {featuredImage?.imageUrl ? (
-          <div className="relative w-full">
-            <Image
-              width={1306}
-              height={578}
-              src={featuredImage?.imageUrl}
-              alt={
-                featuredImage?.imageAlt
-                  ? featuredImage?.imageAlt
-                  : "Featured Image"
-              }
-              className="object-cover w-full max-h-160 rounded-[0.625rem]"
-              priority
-            />
-          </div>
-        ) : null}
-      </div>
-      <section className="lg:pt-37.5 sm:pt-20 pt-5">
+    <article className="min-h-screen scroll-smooth bg-background">
+      <CaseStudyHero
+        companyLogo={companyLogo}
+        titleHtml={title ?? ""}
+        featuredImage={featuredImage}
+      />
+      <section
+        className={cn(
+          "pt-8 sm:pt-14 lg:pt-24 xl:pt-28",
+          featuredImage?.imageUrl &&
+            "mt-[min(22vh,200px)] sm:mt-[min(26vh,240px)] md:mt-[min(28vh,260px)] lg:mt-[min(30vh,280px)]",
+        )}
+      >
         <div className="container">
-          <div className="flex lg:flex-row flex-col xl:gap-31 gap-10">
-            <aside className="lg:sticky top-20 left-0 flex flex-col xl:gap-22.5 gap-10 h-fit bg-white lg:w-fit w-full xl:min-w-106.5 lg:min-w-80 sm:p-7.5 p-5 pb-5 self-start">
-              <div className="flex flex-col gap-5.25">
-                <h2 className="text-md font-semibold leading-none text-black pb-5.5 border-b">
+          <div className="flex flex-col gap-10 lg:flex-row lg:items-stretch xl:gap-31">
+            {/**
+             * Sidebar must stretch to the main column height (no `h-fit` on the column) or
+             * `position: sticky` on the TOC has no scroll range and never pins.
+             */}
+            <aside className="flex w-full min-h-0 shrink-0 flex-col gap-6 lg:w-fit xl:min-w-106.5 lg:min-w-80 xl:gap-8">
+              <div className="w-full shrink-0 rounded-[0.625rem] bg-white px-4 py-4 shadow-[0px_0px_14px_rgba(0,0,0,5%)] sm:min-w-105 sm:px-8 sm:py-9">
+                <div className="mb-3 flex flex-col gap-5 border-b border-black/20 pb-3 sm:mb-5 sm:pb-5">
+                  <Image
+                    src="/rubin-koot-avatar.png"
+                    alt={tBlog("avatarAlt")}
+                    width={88}
+                    height={88}
+                  />
+                  <div>
+                    <a
+                      className="flex items-center gap-2.5 text-sm leading-none sm:text-md"
+                      href={rubinLinkedIn.href}
+                      target={rubinLinkedIn.target}
+                      rel={rubinLinkedIn.rel}
+                    >
+                      Rubin Koot{" "}
+                      <span className="text-primary">
+                        <FaLinkedin />
+                      </span>
+                    </a>
+                    <a
+                      className="text-xsm text-black/40 sm:text-body"
+                      href="mailto:rubin@onlinemarketingbakery.nl"
+                    >
+                      rubin@onlinemarketingbakery.nl
+                    </a>
+                  </div>
+                </div>
+                <ScheduleCallForm />
+              </div>
+
+              <div className="flex w-full flex-col gap-5.25 rounded-[0.625rem] bg-white p-5 pb-5 shadow-[0px_0px_14px_rgba(0,0,0,5%)] sm:p-7.5 lg:sticky lg:top-28 lg:max-h-[calc(100dvh-7.5rem)] lg:overflow-y-auto lg:self-start">
+                <h2 className="border-b pb-5.5 text-md font-semibold leading-none text-black">
                   Index
                 </h2>
                 <ul className="space-y-5">
@@ -275,20 +289,10 @@ export default function CaseStudyDetailLayout({
                   ))}
                 </ul>
               </div>
-              <div className="flex flex-col gap-5">
-                <p className=" text-md font-medium  ">Want similar results?</p>
-                <AnimatedButton
-                  className="bg-primary text-white justify-between w-full p-2.5! pl-5!"
-                  type="submit"
-                  trailingContent={<AnimatedArrowIcon tone="on-dark" />}
-                >
-                  Let’s talk!
-                </AnimatedButton>
-              </div>
             </aside>
 
             <div
-              className="  [&_li]:relative [&_li]:pl-7 [&_li]:flex [&_li]:items-center [&_li]:gap-2.5 [&_li]:before:content-[''] [&_li]:before:absolute [&_li]:before:left-0 [&_li]:before:top-1/2 [&_li]:before:-translate-y-1/2 [&_li]:before:w-4.5 [&_li]:before:h-5.25 [&_li]:before:bg-[url('/li-dot.svg')] [&_li]:before:bg-no-repeat [&_li]:before:bg-contain"
+              className="min-w-0 flex-1 [&_li]:relative [&_li]:pl-7 [&_li]:flex [&_li]:items-center [&_li]:gap-2.5 [&_li]:before:content-[''] [&_li]:before:absolute [&_li]:before:left-0 [&_li]:before:top-1/2 [&_li]:before:-translate-y-1/2 [&_li]:before:w-4.5 [&_li]:before:h-5.25 [&_li]:before:bg-[url('/li-dot.svg')] [&_li]:before:bg-no-repeat [&_li]:before:bg-contain"
               ref={contentContainerRef}
             >
               <div
