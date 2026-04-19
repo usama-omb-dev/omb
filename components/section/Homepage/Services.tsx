@@ -41,7 +41,11 @@ const Services = () => {
             </h3>
             <p className="sm:text-body text-sm">{t("description")}</p>
           </div>
-          <AnimatedButton size={"icon"} trailingContent={<AnimatedArrowIcon />}>
+          <AnimatedButton
+            href="/services"
+            size={"icon"}
+            trailingContent={<AnimatedArrowIcon />}
+          >
             {t("cta")}
           </AnimatedButton>
         </div>

@@ -101,10 +101,10 @@ const BlogsList = () => {
               </div>
               {visibleCount < posts.length && (
                 <AnimatedButton
+                  type="button"
                   className="mx-auto"
                   size={"icon"}
                   trailingContent={<AnimatedArrowIcon />}
-                  href={""}
                   onClick={() => setVisibleCount((prev) => prev + 4)}
                 >
                   {t("loadMore")}

@@ -297,7 +297,7 @@ export function ContactForm({
                 >
                   {t("agreementBefore")}{" "}
                   <Link
-                    href="#"
+                    href="/privacy"
                     className="underline font-medium underline-offset-8"
                   >
                     {t("privacyLink")}

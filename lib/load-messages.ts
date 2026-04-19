@@ -13,6 +13,7 @@ export type MessagesJson = {
     contact?: string;
     components?: string;
     caseStudy?: string;
+    privacy?: string;
   };
 };
 

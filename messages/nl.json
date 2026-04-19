@@ -6,7 +6,8 @@
   "PageTitles": {
     "contact": "Contact",
     "components": "UI-speeltuin",
-    "caseStudy": "Casestudy"
+    "caseStudy": "Casestudy",
+    "privacy": "Privacyverklaring"
   },
   "Nav": {
     "home": "Home",
@@ -220,6 +221,11 @@
     "subheading": "Nieuwe business of een concrete vraag?",
     "avatarAlt": "Avatar van Rubin",
     "formCardTitle": "Stuur ons een bericht"
+  },
+  "PrivacyPage": {
+    "heading": "Privacyverklaring",
+    "intro": "Op deze pagina lees je in het kort hoe we omgaan met persoonsgegevens wanneer je onze website gebruikt of contact opneemt met Online Marketing Bakery.",
+    "body": "Vragen over jouw gegevens of deze verklaring? Mail ons op hello@onlinemarketingbakery.nl. Op verzoek geven we meer toelichting of een volledige privacyverklaring."
   },
   "AboutPage": {
     "heroPill": "Over ons",

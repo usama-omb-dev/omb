@@ -90,8 +90,10 @@ const Footer = () => {
                   </li>
                 ))}
               </ul>
-              <Link
-                href="#"
+              <a
+                href="https://www.leadinfo.com/en/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex shrink-0 opacity-90 transition-opacity hover:opacity-100"
               >
                 <Image
@@ -101,7 +103,7 @@ const Footer = () => {
                   height={54}
                   className="h-auto"
                 />
-              </Link>
+              </a>
             </div>
           </div>
 

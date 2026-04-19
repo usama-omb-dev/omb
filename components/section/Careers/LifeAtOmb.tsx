@@ -90,12 +90,13 @@ const LifeAtOmb = () => {
           </Swiper>
         </div>
           <AnimatedButton
-           className="mt-20 self-center"
-                size={"icon"}
-                trailingContent={<AnimatedArrowIcon />}
-              >
-    {t("cta")}
-              </AnimatedButton>
+            href="/careers"
+            className="mt-20 self-center"
+            size={"icon"}
+            trailingContent={<AnimatedArrowIcon />}
+          >
+            {t("cta")}
+          </AnimatedButton>
       </div>
     </section>
   );

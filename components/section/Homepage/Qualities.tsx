@@ -17,23 +17,35 @@ const Qualities = () => {
 
   const services = useMemo(
     () => [
-      { title: t("svcSeoTitle"), description: t("svcSeoDesc"), link: "" },
-      { title: t("svcSeaTitle"), description: t("svcSeaDesc"), link: "" },
+      {
+        title: t("svcSeoTitle"),
+        description: t("svcSeoDesc"),
+        link: "/services",
+      },
+      {
+        title: t("svcSeaTitle"),
+        description: t("svcSeaDesc"),
+        link: "/services",
+      },
       {
         title: t("svcSocialTitle"),
         description: t("svcSocialDesc"),
-        link: "",
+        link: "/services",
       },
       {
         title: t("svcContentTitle"),
         description: t("svcContentDesc"),
-        link: "",
+        link: "/services",
       },
-      { title: t("svcWebTitle"), description: t("svcWebDesc"), link: "" },
+      {
+        title: t("svcWebTitle"),
+        description: t("svcWebDesc"),
+        link: "/services",
+      },
       {
         title: t("svcStrategyTitle"),
         description: t("svcStrategyDesc"),
-        link: "",
+        link: "/services",
       },
     ],
     [t],
@@ -100,6 +112,7 @@ const Qualities = () => {
               ))}
 
               <AnimatedButton
+                href="/contact"
                 size={"icon"}
                 variant={"secondary"}
                 className="lg:mt-17"
@@ -127,7 +140,7 @@ const Qualities = () => {
               ))}
 
               <AnimatedButton
-              href="/contact"
+                href="/contact"
                 size={"icon"}
                 variant={"secondary"}
                 trailingContent={<AnimatedArrowIcon />}

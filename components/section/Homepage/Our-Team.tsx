@@ -214,6 +214,7 @@ const OurTeam = () => {
               className="col-start-1 row-start-1"
             />
             <AnimatedButton
+              href="/about"
               size={"icon"}
               className="xl:opacity-0 xl:group-hover:opacity-100 xl:group-hover:translate-y-1/2 xl:translate-y-0 translate-y-1/2 duration-700 col-start-1 row-start-1 self-end"
               trailingContent={<AnimatedArrowIcon />}

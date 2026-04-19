@@ -6,7 +6,8 @@
   "PageTitles": {
     "contact": "Contact",
     "components": "UI playground",
-    "caseStudy": "Case study"
+    "caseStudy": "Case study",
+    "privacy": "Privacy policy"
   },
   "Nav": {
     "home": "Home",
@@ -220,6 +221,11 @@
     "subheading": "New business or a concrete question?",
     "avatarAlt": "Rubin's avatar",
     "formCardTitle": "Send us a message"
+  },
+  "PrivacyPage": {
+    "heading": "Privacy policy",
+    "intro": "This page explains, in brief, how we treat personal data when you use our website or get in touch with Online Marketing Bakery.",
+    "body": "If you have questions about your data or this policy, email us at hello@onlinemarketingbakery.nl. We can provide more detail or a full policy document on request."
   },
   "AboutPage": {
     "heroPill": "About",
