@@ -23,9 +23,9 @@ const BakeResult = () => {
               <span className="block italic">{t("titleItalic")}</span>
             </h3>
             <AnimatedButton
-            href="/contact"
+              href="/contact"
               size={"icon"}
-              className="  duration-700 "
+              className="duration-700 shadow-[0px_4px_15.4px_0px_#34345830]"
               trailingContent={<AnimatedArrowIcon />}
             >
               {t("cta")}
