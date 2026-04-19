@@ -373,7 +373,8 @@
     "imageRightAlt": "Teamlid met een lekkernij"
   },
   "BlogPostPage": {
-    "avatarAlt": "Avatar van Rubin"
+    "avatarAlt": "Avatar van Rubin",
+    "readingTime": "{count, plural, one {# minuut lezen} other {# minuten lezen}}"
   },
   "CaseStudyPage": {
     "caseStudyLabel": "Casestudy:",

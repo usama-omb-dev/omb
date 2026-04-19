@@ -373,7 +373,8 @@
     "imageRightAlt": "Team member with a pastry"
   },
   "BlogPostPage": {
-    "avatarAlt": "Rubin's avatar"
+    "avatarAlt": "Rubin's avatar",
+    "readingTime": "{count, plural, one {# minute read} other {# minutes read}}"
   },
   "CaseStudyPage": {
     "caseStudyLabel": "Case study:",
