@@ -188,6 +188,8 @@
   "BlogHero": {
     "pill": "Meet the expert",
     "title": "Hi, I am Rubin Koot.",
+    "titlePrefix": "Hi, I am ",
+    "titleName": "Rubin Koot.",
     "intro": "A motivated and detail-oriented professional with a strong focus on growth, quality, and innovation. I am passionate about developing effective solutions and continuously expanding my knowledge across technical and creative disciplines.",
     "statExperience": "Years of Experience",
     "statArticles": "Total Articles",
@@ -198,7 +200,11 @@
     "pill": "List of the most recent write-up from Rubin",
     "title": "Latest blogs from the",
     "titleAccent": "online marketing baker!",
-    "loadMore": "Load more"
+    "loadMore": "Load more",
+    "emptyHeading": "Nothing in the display case",
+    "emptyHeadingAccent": "yet",
+    "emptyDescription": "We’re kneading fresh posts in the kitchen. Check back soon, or get in touch if you’d like to talk strategy, SEO, or anything digital.",
+    "emptyCta": "Let’s talk"
   },
   "LatestBlogs": {
     "title": "Latest",

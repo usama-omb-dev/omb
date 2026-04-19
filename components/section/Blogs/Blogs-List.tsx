@@ -25,6 +25,7 @@ const BlogsList = () => {
   const locale = useLocale();
   const { data: blogs, isLoading } = useBlogs();
   const [visibleCount, setVisibleCount] = useState(4);
+  const posts = Array.isArray(blogs) ? blogs : [];
 
   if (isLoading)
     return (
@@ -64,10 +65,10 @@ const BlogsList = () => {
 
   const formattedBlogs: BlogSummaryData[] = isLoading
     ? []
-    : blogs.map((post: any) => transformPostToBlogSummary(post));
+    : posts.map((post: any) => transformPostToBlogSummary(post));
 
   return (
-    <section className="sm:pt-37.5 pt-10">
+    <section className="scroll-mt-24 bg-background pt-20 sm:scroll-mt-28 sm:pt-37.5">
       <div className="container">
         <div className="flex flex-col items-center justify-center nl:max-w-200 max-w-118.5 sm:mb-14.75 mb-10 sm:gap-7.5 gap-2 mx-auto">
           <Pill iconColor="#3838F9" className="leading-none">
@@ -79,23 +80,37 @@ const BlogsList = () => {
           </h3>
         </div>
         <div className="flex flex-col sm:gap-14.75 gap-5">
-          <div className="grid lg:grid-cols-2 gap-x-3.5 sm:gap-y-14.75 gap-y-8">
-            {formattedBlogs.slice(0, visibleCount).map((blog, index) => (
-              <React.Fragment key={index + 1}>
-                <BlogCard blogData={blog} />
-              </React.Fragment>
-            ))}
-          </div>
-          {visibleCount < blogs.length && (
-            <AnimatedButton
-              className="mx-auto"
-              size={"icon"}
-              trailingContent={<AnimatedArrowIcon />}
-              href={""}
-              onClick={() => setVisibleCount((prev) => prev + 4)}
-            >
-              {t("loadMore")}
-            </AnimatedButton>
+          {formattedBlogs.length === 0 ? (
+            <div className="mx-auto max-w-118.5 rounded-[0.625rem] border border-black/10 bg-white px-6 py-10 text-center shadow-[0px_0px_14px_rgba(0,0,0,5%)] sm:px-10 sm:py-12">
+              <h4 className="text-pretty text-xl font-semibold leading-none text-black sm:text-2xl">
+                {t("emptyHeading")}{" "}
+                <span className="text-primary">{t("emptyHeadingAccent")}</span>
+              </h4>
+              <p className="mx-auto mt-4 max-w-161.5 text-pretty text-xsm leading-relaxed text-black/75 sm:mt-5 sm:text-sm">
+                {t("emptyDescription")}
+              </p>
+            </div>
+          ) : (
+            <>
+              <div className="grid lg:grid-cols-2 gap-x-3.5 sm:gap-y-14.75 gap-y-8">
+                {formattedBlogs.slice(0, visibleCount).map((blog, index) => (
+                  <React.Fragment key={index + 1}>
+                    <BlogCard blogData={blog} />
+                  </React.Fragment>
+                ))}
+              </div>
+              {visibleCount < posts.length && (
+                <AnimatedButton
+                  className="mx-auto"
+                  size={"icon"}
+                  trailingContent={<AnimatedArrowIcon />}
+                  href={""}
+                  onClick={() => setVisibleCount((prev) => prev + 4)}
+                >
+                  {t("loadMore")}
+                </AnimatedButton>
+              )}
+            </>
           )}
         </div>
       </div>

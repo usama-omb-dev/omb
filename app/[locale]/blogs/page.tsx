@@ -1,4 +1,4 @@
-import BlogHero from "@/components/section/Blogs/Blog-Hero";
+import BlogsListingHero from "@/components/section/Blogs/BlogsListingHero";
 import BlogsList from "@/components/section/Blogs/Blogs-List";
 import { loadMessagesJson } from "@/lib/load-messages";
 import type { Metadata } from "next";
@@ -16,7 +16,7 @@ export async function generateMetadata({
 const page = () => {
   return (
     <>
-      <BlogHero />
+      <BlogsListingHero />
       <BlogsList />
     </>
   );

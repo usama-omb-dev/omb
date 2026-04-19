@@ -188,6 +188,8 @@
   "BlogHero": {
     "pill": "Maak kennis met de expert",
     "title": "Hoi, ik ben Rubin Koot.",
+    "titlePrefix": "Hoi, ik ben ",
+    "titleName": "Rubin Koot.",
     "intro": "Een gemotiveerde professional met oog voor detail, groei, kwaliteit en innovatie. Ik werk graag aan effectieve oplossingen en breid mijn kennis continu uit op technisch én creatief vlak.",
     "statExperience": "Jaar ervaring",
     "statArticles": "Artikelen totaal",
@@ -198,7 +200,11 @@
     "pill": "De meest recente artikelen van Rubin",
     "title": "Laatste blogs van de",
     "titleAccent": "online marketingbakker!",
-    "loadMore": "Meer laden"
+    "loadMore": "Meer laden",
+    "emptyHeading": "De vitrine is even",
+    "emptyHeadingAccent": "leeg",
+    "emptyDescription": "We zijn druk bezig met nieuwe artikelen. Kom snel terug, of neem contact op als je wilt sparren over strategie, SEO of digital marketing.",
+    "emptyCta": "Laten we praten"
   },
   "LatestBlogs": {
     "title": "Laatste",
