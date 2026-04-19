@@ -1,17 +1,16 @@
 import {
   CaseStudiesSection,
   DifferenceSection,
-  HeroDataSection,
   OurWorkSection,
   WhatWeDoSection,
 } from "@/app/ServicesDataInterfaces";
 import Contact from "@/components/section/Contact";
+import PageHero from "@/components/section/PageHero";
 import { fetchAPI } from "@/lib/api";
 import { stripHtmlForTitle } from "@/lib/strip-html-for-title";
 import { localeToWpLang } from "@/lib/wp-lang";
 import Difference from "@/components/section/Service/Difference";
 import OurWork from "@/components/section/Service/OurWork";
-import ServicesHero from "@/components/section/Service/ServicesHero";
 import WhatWeDo from "@/components/section/Service/WhatWeDo";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -83,23 +82,14 @@ export default async function Page({
   const differenceAcf = acf.difference ?? {};
   const ourWorkAcf = acf["our-work"] ?? {};
 
-  const heroData: HeroDataSection = {
-    pillTitle: heroAcf["pill-title"] as string | undefined,
-    mainTitle: (
-      <div
-        dangerouslySetInnerHTML={{
-          __html: String(heroAcf["main-title"] ?? ""),
-        }}
-      />
-    ),
-    heroImage: (heroAcf["hero-image"] as { url?: string } | undefined)?.url,
-    details: heroAcf["details"] as string | undefined,
-    leftSmallImage: (heroAcf["left-small-image"] as { url?: string } | undefined)
-      ?.url,
-    rightSmallImage: (
-      heroAcf["right-small-image"] as { url?: string } | undefined
-    )?.url,
-  };
+  const pill = stripHtmlForTitle(String(heroAcf["pill-title"] ?? ""), 160);
+  const titleHtml = String(heroAcf["main-title"] ?? "").trim();
+  const descriptionHtml = String(heroAcf["details"] ?? "");
+  const titleFallback =
+    stripHtmlForTitle(
+      (data as { title?: { rendered?: string } }).title?.rendered,
+      220,
+    ) || "";
 
   const whatWeDoData: WhatWeDoSection = {
     showSection: Boolean(whatWeDoAcf["show-section"]),
@@ -288,7 +278,17 @@ export default async function Page({
 
   return (
     <>
-      <ServicesHero data={heroData} />
+      <PageHero
+        translationNamespace="ServicePageHero"
+        contentFromCms={{
+          eyebrow: pill || undefined,
+          titleHtml:
+            titleHtml ||
+            `<span>${titleFallback || "Service"}</span>`,
+          descriptionHtml,
+        }}
+        tightBottom
+      />
       {whatWeDoData.showSection && <WhatWeDo data={whatWeDoData} />}
       {differenceData.showSection && <Difference data={differenceData} />}
       {ourWorkData.showSection && (

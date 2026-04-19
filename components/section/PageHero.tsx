@@ -50,6 +50,16 @@ function HeroBadgePlaceholder({ className }: { className?: string }) {
   );
 }
 
+/** WordPress / CMS strings for single-service (and similar) pages. */
+export type PageHeroCmsContent = {
+  /** Plain text above the title (HTML stripped server-side). Omit or empty to hide. */
+  eyebrow?: string;
+  /** HTML for the main headline (from CMS). */
+  titleHtml: string;
+  /** HTML for the intro under the title (from CMS). */
+  descriptionHtml: string;
+};
+
 export type PageHeroProps = {
   /** next-intl namespace for copy (default `PageHero`). */
   translationNamespace?: string;
@@ -67,10 +77,20 @@ export type PageHeroProps = {
    * Use on inner pages; keep default on home when a block overlaps (e.g. stats strip).
    */
   tightBottom?: boolean;
+  /**
+   * When set, eyebrow / title / description come from CMS HTML instead of next-intl
+   * (no CTA unless `showCta` is true). Use `translationNamespace` for image alts only
+   * (e.g. `ServicePageHero`).
+   */
+  contentFromCms?: PageHeroCmsContent;
 };
 
 const titleClassName =
   "text-center text-balance text-xl font-bold leading-none sm:text-3xl md:text-4xl md:nl:text-3xl lg:text-[64px] lg:leading-[1.06] lg:nl:text-4xl lg:nl:leading-tight";
+
+/** CMS titles often include `<p>` / `<a>` from WordPress; `@layer base` sets those to `font-medium`, so we reset descendants to match the marketing hero. */
+const cmsTitleDescendantWeight =
+  "[&_p]:font-bold [&_div]:font-bold [&_span]:font-bold [&_strong]:font-bold [&_em]:font-bold [&_a]:font-bold [&_a]:underline";
 
 /**
  * Centered marketing hero: gradient, headline with highlighted underline,
@@ -83,10 +103,17 @@ export default function PageHero({
   showEyebrow = false,
   showCta,
   tightBottom = false,
+  contentFromCms,
 }: PageHeroProps) {
   const t = useTranslations(translationNamespace);
-  const showCtaButton = showCta ?? !showEyebrow;
-  const titlePrimarySuffixText = showEyebrow ? t("titlePrimarySuffix") : "";
+  const isCms = Boolean(contentFromCms);
+  const showCtaButton = showCta ?? (!showEyebrow && !isCms);
+  const titlePrimarySuffixText =
+    showEyebrow && !isCms ? t("titlePrimarySuffix") : "";
+  const showEyebrowRow =
+    isCms && contentFromCms
+      ? Boolean(contentFromCms.eyebrow?.trim())
+      : showEyebrow;
   const sectionRef = useRef<HTMLElement>(null);
   const copyColRef = useRef<HTMLDivElement>(null);
   const desktopBadgeRef = useRef<HTMLDivElement>(null);
@@ -176,14 +203,16 @@ export default function PageHero({
         ref={copyColRef}
         className="container relative mx-auto flex flex-col items-center justify-center gap-4 px-4 pt-30 sm:pt-40 lg:px-0"
       >
-        {showEyebrow ? (
+        {showEyebrowRow ? (
           <p className="flex items-center justify-center gap-2 sm:gap-2.5">
             <span
               className="size-2 shrink-0 rounded-full bg-primary sm:size-2.5"
               aria-hidden
             />
             <span className="text-sm font-semibold tracking-tight text-black sm:text-base">
-              {t("eyebrow")}
+              {isCms && contentFromCms?.eyebrow
+                ? contentFromCms.eyebrow
+                : t("eyebrow")}
             </span>
           </p>
         ) : null}
@@ -194,7 +223,16 @@ export default function PageHero({
           <HeroBadgePlaceholder />
         </div>
         <div className="flex max-w-260 flex-col items-center gap-2 sm:gap-5">
-          {showEyebrow ? (
+          {isCms && contentFromCms ? (
+            <h1
+              className={cn(
+                titleClassName,
+                "text-black [&_em]:italic",
+                cmsTitleDescendantWeight,
+              )}
+              dangerouslySetInnerHTML={{ __html: contentFromCms.titleHtml }}
+            />
+          ) : showEyebrow ? (
             <h1
               className={cn(
                 titleClassName,
@@ -230,9 +268,18 @@ export default function PageHero({
           )}
         </div>
 
-        <p className="max-w-161.5 text-center text-xsm text-black/80 sm:text-body">
-          {t("description")}
-        </p>
+        {isCms && contentFromCms ? (
+          <div
+            className="max-w-161.5 text-center text-xsm text-black/80 sm:text-body [&_a]:text-primary [&_p]:mb-0 [&_p+p]:mt-3"
+            dangerouslySetInnerHTML={{
+              __html: contentFromCms.descriptionHtml || "",
+            }}
+          />
+        ) : (
+          <p className="max-w-161.5 text-center text-xsm text-black/80 sm:text-body">
+            {t("description")}
+          </p>
+        )}
 
         {showCtaButton ? (
           <div className="flex w-full justify-center">

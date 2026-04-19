@@ -361,6 +361,11 @@
   "ServicePage": {
     "viewCaseStudy": "View Case Study"
   },
+  "ServicePageHero": {
+    "imageLeftAlt": "Team member with pastries",
+    "imageCenterAlt": "Rubin with a pastry",
+    "imageRightAlt": "Team member with a pastry"
+  },
   "BlogPostPage": {
     "avatarAlt": "Rubin's avatar"
   }

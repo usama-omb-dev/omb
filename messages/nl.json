@@ -361,6 +361,11 @@
   "ServicePage": {
     "viewCaseStudy": "Bekijk case study"
   },
+  "ServicePageHero": {
+    "imageLeftAlt": "Teamlid met lekkernijen",
+    "imageCenterAlt": "Rubin met een lekkernij",
+    "imageRightAlt": "Teamlid met een lekkernij"
+  },
   "BlogPostPage": {
     "avatarAlt": "Avatar van Rubin"
   }
