@@ -30,7 +30,7 @@ const OurGoal = ({showMilestones = true}: {showMilestones?: boolean}) => {
   const milestoneData: Milestone[] = useMemo(
     () => [
       {
-        year: 2018,
+        year: 2020,
         title: t("milestone2018a"),
         imgUrl: "/young-rubin.png",
         card: true,
@@ -173,12 +173,10 @@ const OurGoal = ({showMilestones = true}: {showMilestones?: boolean}) => {
             <Pill iconColor="#3838F9">{t("pillWho")}</Pill>
           </div>
           <div className="flex-1 flex flex-col gap-10">
-            <h5 className="lg:text-2xl sm:text-xl text-md font-semibold text-black/40 leading-none">
-              <span className="text-black">{t("missionLead")}</span>{" "}
-              {t("missionMid")}{" "}
-              <span className="text-black">{t("missionSince")}</span>{" "}
+            <h5 className="lg:text-2xl sm:text-xl text-md font-semibold leading-none text-black">
+              {t("missionLead")} {t("missionMid")} {t("missionSince")}{" "}
               {t("missionRest")}{" "}
-              <span className="text-black">{t("missionBold")}</span>
+              <span className="font-semibold">{t("missionBold")}</span>
             </h5>
             {!pathname.includes('/careers') && (
 

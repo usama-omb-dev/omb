@@ -34,21 +34,23 @@ function CaseStudyHeroSeal({ className }: { className?: string }) {
           "page-hero-ring-spin pointer-events-none absolute inset-1 z-0 flex origin-center items-center justify-center sm:inset-1.5 md:inset-2",
         )}
       >
-        <Image
-          src="/circle-text.svg"
-          alt=""
-          width={131}
-          height={132}
-          className="size-full max-h-full max-w-full object-contain object-center"
-        />
+        <div className="flex size-full max-h-full max-w-full rotate-180 items-center justify-center">
+          <Image
+            src="/circle-text.svg"
+            alt=""
+            width={131}
+            height={132}
+            className="size-full max-h-full max-w-full object-contain object-center"
+          />
+        </div>
       </div>
       <div className="relative z-10 flex size-16 items-center justify-center rounded-full bg-primary sm:size-[4.25rem] md:size-20 lg:size-[5.5rem]">
         <Image
           src="/omb-favicon.svg"
           alt=""
-          width={299}
-          height={502}
-          className="h-7 w-auto max-h-[82%] object-contain brightness-0 invert sm:h-9 md:h-10 lg:h-11"
+          width={111}
+          height={45}
+          className="h-7 w-auto max-h-[82%] max-w-[85%] object-contain brightness-0 invert sm:h-9 md:h-10 lg:h-11"
         />
       </div>
     </div>

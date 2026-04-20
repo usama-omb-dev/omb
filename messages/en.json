@@ -231,15 +231,15 @@
     "heroPill": "About",
     "heroTitleBefore": "Revolutionizing",
     "heroTitleAccent": "B2B",
-    "heroTitleAfter": "Marketing since 2018",
-    "heroDetails": "Marketing does not need more noise. It needs direction. Since 2018, we have been helping B2B brands escape guesswork and turn marketing into something that actually delivers. No vague promises, no safe play. Just clear choices and measurable results."
+    "heroTitleAfter": "Marketing since 2020",
+    "heroDetails": "Marketing does not need more noise. It needs direction. Since 2020, we have been helping B2B brands escape guesswork and turn marketing into something that actually delivers. No vague promises, no safe play. Just clear choices and measurable results."
   },
   "AboutPageHero": {
     "eyebrow": "About",
     "titleHighlight": "Revolutionizing",
     "titlePrimarySuffix": " B2B",
-    "titleLine2": "Marketing since 2018",
-    "description": "Marketing does not need more noise. It needs direction. Since 2018, we have been helping B2B brands escape guesswork and turn marketing into something that actually delivers. No vague promises, no safe play. Just clear choices and measurable results.",
+    "titleLine2": "Marketing since 2020",
+    "description": "Marketing does not need more noise. It needs direction. Since 2020, we have been helping B2B brands escape guesswork and turn marketing into something that actually delivers. No vague promises, no safe play. Just clear choices and measurable results.",
     "imageLeftAlt": "Team member with pastries",
     "imageCenterAlt": "Rubin with a pastry",
     "imageRightAlt": "Team member with a pastry"
@@ -287,7 +287,7 @@
     "pillWho": "Who we are",
     "missionLead": "A B2B marketing agency",
     "missionMid": "built for companies that are done playing it safe.",
-    "missionSince": "Since 2018,",
+    "missionSince": "Since 2020,",
     "missionRest": "we have been helping brands turn marketing from a cost into a growth engine. Not by following trends or copying competitors, but by",
     "missionBold": "making clear choices and standing behind them.",
     "ctaWork": "Work at OMB!",
@@ -314,8 +314,8 @@
       "owner": "Owner",
       "digitalMarketer": "Digital Marketer",
       "uiUxDesigner": "UI/UX Designer",
-      "copywriter": "Copywriter",
-      "purrtner": "Purrtner"
+      "contentMarketer": "Content Marketeer",
+      "copywriter": "Copywriter"
     },
     "ctaTitle": "You think you",
     "ctaTitleItalic": "fit",

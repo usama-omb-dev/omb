@@ -22,7 +22,7 @@ export default async function AboutPage() {
         showEyebrow
         tightBottom
       />
-      <OurGoal />
+      <OurGoal showMilestones={false} />
       <MarketingTeam />
     </>
   );

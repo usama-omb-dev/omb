@@ -231,15 +231,15 @@
     "heroPill": "Over ons",
     "heroTitleBefore": "We brengen",
     "heroTitleAccent": "B2B-marketing",
-    "heroTitleAfter": "in beweging sinds 2018",
-    "heroDetails": "Marketing heeft geen ruis meer nodig, maar richting. Sinds 2018 helpen we B2B-merken uit de giswerkmodus en maken we marketing die echt iets oplevert. Geen vage beloftes, geen veilige spelletjes. Alleen duidelijke keuzes en meetbare resultaten."
+    "heroTitleAfter": "in beweging sinds 2020",
+    "heroDetails": "Marketing heeft geen ruis meer nodig, maar richting. Sinds 2020 helpen we B2B-merken uit de giswerkmodus en maken we marketing die echt iets oplevert. Geen vage beloftes, geen veilige spelletjes. Alleen duidelijke keuzes en meetbare resultaten."
   },
   "AboutPageHero": {
     "eyebrow": "Over ons",
     "titleHighlight": "We brengen",
     "titlePrimarySuffix": " B2B-marketing",
-    "titleLine2": "in beweging sinds 2018",
-    "description": "Marketing heeft geen ruis meer nodig, maar richting. Sinds 2018 helpen we B2B-merken uit de giswerkmodus en maken we marketing die echt iets oplevert. Geen vage beloftes, geen veilige spelletjes. Alleen duidelijke keuzes en meetbare resultaten.",
+    "titleLine2": "in beweging sinds 2020",
+    "description": "Marketing heeft geen ruis meer nodig, maar richting. Sinds 2020 helpen we B2B-merken uit de giswerkmodus en maken we marketing die echt iets oplevert. Geen vage beloftes, geen veilige spelletjes. Alleen duidelijke keuzes en meetbare resultaten.",
     "imageLeftAlt": "Teamlid met lekkernijen",
     "imageCenterAlt": "Rubin met een lekkernij",
     "imageRightAlt": "Teamlid met een lekkernij"
@@ -287,7 +287,7 @@
     "pillWho": "Wie we zijn",
     "missionLead": "Een B2B-marketingbureau",
     "missionMid": "voor bedrijven die klaar zijn met veilig spelen.",
-    "missionSince": "Sinds 2018",
+    "missionSince": "Sinds 2020",
     "missionRest": "helpen we merken marketing te veranderen van kostenpost naar groeimotor. Niet door trends na te lopen of concurrenten te kopiëren, maar door",
     "missionBold": "duidelijke keuzes te maken en ervoor te staan.",
     "ctaWork": "Werken bij OMB!",
@@ -314,8 +314,8 @@
       "owner": "Eigenaar",
       "digitalMarketer": "Digital marketeer",
       "uiUxDesigner": "UI/UX-designer",
-      "copywriter": "Tekstschrijver",
-      "purrtner": "Purrtner"
+      "contentMarketer": "Content marketeer",
+      "copywriter": "Tekstschrijver"
     },
     "ctaTitle": "Denk je dat je",
     "ctaTitleItalic": "past",

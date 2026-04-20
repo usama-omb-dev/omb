@@ -6,13 +6,16 @@ import Pill from "@/components/ui/pill";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 
-const ROLE_MAP: Record<string, "owner" | "digitalMarketer" | "uiUxDesigner" | "copywriter" | "purrtner"> = {
+const ROLE_MAP: Record<
+  string,
+  "owner" | "digitalMarketer" | "uiUxDesigner" | "contentMarketer" | "copywriter"
+> = {
   Owner: "owner",
   "Digital Marketer": "digitalMarketer",
   "Ui/UX Designer": "uiUxDesigner",
   "UI/UX Designer": "uiUxDesigner",
+  "Content Marketeer": "contentMarketer",
   Copywriter: "copywriter",
-  Purrtner: "purrtner",
 };
 
 const MarketingTeam = () => {
@@ -26,44 +29,14 @@ const MarketingTeam = () => {
       designation: "Owner",
     },
     {
-      title: "John Smith",
-      profileImage: "/john-smith.png",
+      title: "Zhou Yi",
+      profileImage: "/zhou-yi.png",
       designation: "Digital Marketer",
     },
     {
-      title: "Jasmin Hachmane",
-      profileImage: "/jasmin-hachmane.png",
-      designation: "Ui/UX Designer",
-    },
-    {
-      title: "Julia Roth",
-      profileImage: "/julia-roth.png",
-      designation: "Copywriter",
-    },
-    {
-      title: "John Smith",
-      profileImage: "/john-smith.png",
-      designation: "Digital Marketer",
-    },
-    {
-      title: "Rubin Koot",
-      profileImage: "/rubin-koot.png",
-      designation: "Owner",
-    },
-    {
-      title: "John Smith",
-      profileImage: "/john-smith.png",
-      designation: "Digital Marketer",
-    },
-    {
-      title: "Jasmin Hachmane",
-      profileImage: "/jasmin-hachmane.png",
-      designation: "Ui/UX Designer",
-    },
-    {
-      title: "Micky Meowsers",
-      profileImage: "/micky-meowsers.png",
-      designation: "Purrtner",
+      title: "Didi Houben",
+      profileImage: "/didi-houben.png",
+      designation: "Content Marketeer",
     },
   ];
 
@@ -86,7 +59,7 @@ const MarketingTeam = () => {
           </div>
           <div className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 sm:gap-x-3.5 sm:gap-y-10 gap-4">
             {marketingTeam.map((item, index) => (
-              <div key={index + 1} className="flex flex-col gap-5 ">
+              <div key={`${item.title}-${index}`} className="flex flex-col gap-5 ">
                 <Image
                   src={item.profileImage}
                   alt={item.title}
@@ -97,11 +70,7 @@ const MarketingTeam = () => {
                 />
                 <div className="flex flex-col gap-2.5">
                   <h6 className="font-semibold text-md leading-none">
-                    {item.title.split(" ").map((titleName, i) => (
-                      <span key={`${titleName}-${i}`} className="block">
-                        {titleName}
-                      </span>
-                    ))}
+                    {item.title}
                   </h6>
 
                   <span className="text-black/40 sm:text-body text-sm leading-none">

@@ -34,6 +34,12 @@ export async function generateMetadata({
       template: `%s | ${siteTitle}`,
     },
     description: messages.Metadata?.description,
+    icons: {
+      icon: [
+        { url: "/icon", type: "image/png" },
+        { url: "/omb-favicon.svg", type: "image/svg+xml" },
+      ],
+    },
   };
 }
 
