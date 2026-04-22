@@ -1,6 +1,7 @@
 import createMiddleware from "next-intl/middleware";
 import { type NextRequest, NextResponse } from "next/server";
 import { routing } from "./i18n/routing";
+import { getIsoCountryFromRequest } from "./lib/request-country";
 import { isNlRegionCountry } from "./lib/wp-lang";
 
 const intlMiddleware = createMiddleware(routing);
@@ -55,19 +56,24 @@ export function proxy(request: NextRequest) {
   const cookieLocale = request.cookies.get(LOCALE_COOKIE)?.value;
 
   /**
-   * No explicit locale cookie: pick locale from Vercel geo only.
+   * No explicit locale cookie: pick locale from edge geo (see `getIsoCountryFromRequest`).
    * - Netherlands & Belgium → `/nl/...`
-   * - Any other country, or unknown IP country (e.g. local dev) → `/en/...`
+   * - Known other country → `/en/...`
+   * - Unknown country (no header, e.g. local dev) → `/nl/...` (default)
+   *
+   * On self-hosted Ploi, set a country header at Nginx (GeoIP2) or use Cloudflare (`CF-IPCountry`).
+   * Optional env: `NL_REDIRECT_COUNTRY_HEADER` = single header name your proxy sends.
    *
    * Header switcher sets NEXT_LOCALE and skips this block.
    */
   if (!cookieLocale) {
-    const country = request.headers.get("x-vercel-ip-country");
-    const benelux = isNlRegionCountry(country);
+    const country = getIsoCountryFromRequest(request);
+    const preferEn =
+      country !== null && !isNlRegionCountry(country);
 
-    const targetPath = benelux
-      ? nlRedirectPath(pathname)
-      : enRedirectPath(pathname);
+    const targetPath = preferEn
+      ? enRedirectPath(pathname)
+      : nlRedirectPath(pathname);
 
     if (targetPath && targetPath !== pathname) {
       return NextResponse.redirect(new URL(targetPath, request.url));
