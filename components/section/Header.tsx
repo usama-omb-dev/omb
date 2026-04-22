@@ -615,7 +615,7 @@ const Header = () => {
                   <AnimatedButton
                     size={"icon"}
                     variant={"secondary"}
-                    className="md:!p-[6.5px] md:!pl-2.5 bg-zinc-900 hover:bg-zinc-800 text-base! text-white w-full! justify-between"
+                    className="md:!p-[6.5px] md:!pl-2.5 bg-zinc-900 hover:bg-primary text-base! text-white w-full! justify-between transition-colors duration-200"
                     href="/contact"
                     trailingContent={
                       <AnimatedArrowIcon
@@ -636,7 +636,7 @@ const Header = () => {
             <AnimatedButton
               size={"icon"}
               variant={"secondary"}
-              className="md:!p-[6.5px] md:!pl-2.5 bg-zinc-900 hover:bg-zinc-800 text-base! text-white"
+              className="md:!p-[6.5px] md:!pl-2.5 bg-zinc-900 hover:bg-primary text-base! text-white transition-colors duration-200"
               href="/contact"
               trailingContent={
                 <AnimatedArrowIcon tone="on-dark" compact className="!size-7" />

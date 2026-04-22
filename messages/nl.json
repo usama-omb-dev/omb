@@ -14,7 +14,8 @@
     "about": "Over ons",
     "services": "Diensten",
     "blogs": "Blog",
-    "career": "Carrière"
+    "career": "Carrière",
+    "contact": "Contact"
   },
   "Header": {
     "contactUs": "Neem contact op",
@@ -25,8 +26,7 @@
   "Footer": {
     "taglineLine1": "Creatieve oplossingen. Strategische groei. Echte resultaten.",
     "taglineLine2": "Laten we jouw merk naar het volgende niveau tillen.",
-    "solutionsTitle": "Onze oplossingen",
-    "helpTitle": "Help",
+    "quickLinksTitle": "Snelle links",
     "kvkLabel": "KvK-nummer",
     "btwLabel": "BTW-nummer",
     "copyright": "© Copyright {year}, Omb alle rechten voorbehouden",
@@ -36,15 +36,7 @@
     "socialFacebook": "Facebook",
     "socialInstagram": "Instagram",
     "socialLinkedIn": "LinkedIn",
-    "leadinfoAlt": "Leadinfo Certified Partner",
-    "navHome": "Home",
-    "navAbout": "Over ons",
-    "navOutsource": "Outsourcen linkbuilding",
-    "navSeoCopy": "SEO-copywriter",
-    "navAgency": "Online marketingbureau Roermond",
-    "navFaqs": "Veelgestelde vragen",
-    "navHelpCenter": "Helpcentrum",
-    "navSupport": "Support"
+    "leadinfoAlt": "Leadinfo Certified Partner"
   },
   "ContactSection": {
     "eyebrow": "Til je merk",

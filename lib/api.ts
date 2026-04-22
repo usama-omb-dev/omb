@@ -22,3 +22,26 @@ export async function fetchAPI(endpoint: string, lang: WpLang = "en") {
 
   return res.json();
 }
+
+/**
+ * Total published posts for a Polylang `lang` (from `X-WP-Total`, `per_page=1` only to read headers).
+ */
+export async function fetchPostCount(
+  lang: WpLang,
+  revalidateSeconds = 300,
+): Promise<number> {
+  const path = withWpLang("/posts?per_page=1&status=publish", lang);
+  const url = `${BASE_URL}${path}`;
+  const res = await fetch(url, { next: { revalidate: revalidateSeconds } });
+
+  if (!res.ok) {
+    throw new Error("API Error");
+  }
+
+  const total = res.headers.get("x-wp-total");
+  if (total == null || total === "") {
+    return 0;
+  }
+  const n = parseInt(total, 10);
+  return Number.isFinite(n) ? n : 0;
+}

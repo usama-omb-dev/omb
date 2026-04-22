@@ -1,12 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { Link as LocalizedLink } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import { useMemo } from "react";
 import { FaFacebookF, FaInstagram, FaLinkedin } from "react-icons/fa6";
 import { envSocialUrls, socialHref } from "@/lib/social-links";
+import { useServices } from "@/hooks/useServices";
 
 const kvkNumber = "78033616";
 const btwNumber = "NL003276206B85";
@@ -17,9 +17,39 @@ const footerContact = {
   address: "Noordhoven 176042 NW Roermond",
 };
 
+function stripWpTitle(html: string): string {
+  return html
+    .replace(/<[^>]+>/g, "")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .trim();
+}
+
 const Footer = () => {
   const t = useTranslations("Footer");
+  const tNav = useTranslations("Nav");
   const year = new Date().getFullYear();
+  const { data: services } = useServices();
+
+  const quickLinks = useMemo(
+    () => [
+      { href: "/" as const, label: tNav("home") },
+      { href: "/about" as const, label: tNav("about") },
+      { href: "/services" as const, label: tNav("services") },
+      { href: "/blogs" as const, label: tNav("blogs") },
+      { href: "/careers" as const, label: tNav("career") },
+      { href: "/contact" as const, label: tNav("contact") },
+    ],
+    [tNav],
+  );
+
+  const serviceLinks = useMemo(() => {
+    if (!Array.isArray(services) || services.length === 0) return [];
+    return services.map((item: { slug: string; title: { rendered: string } }) => ({
+      href: `/services/${item.slug}` as const,
+      label: stripWpTitle(item.title.rendered),
+    }));
+  }, [services]);
 
   const socialLinks = useMemo(
     () => [
@@ -38,26 +68,6 @@ const Footer = () => {
         label: t("socialLinkedIn"),
         ...socialHref(envSocialUrls.linkedin),
       },
-    ],
-    [t],
-  );
-
-  const mainNavLinks = useMemo(
-    () => [
-      { href: "/", label: t("navHome") },
-      { href: "/about", label: t("navAbout") },
-      { href: "/", label: t("navOutsource") },
-      { href: "/", label: t("navSeoCopy") },
-      { href: "/", label: t("navAgency") },
-    ],
-    [t],
-  );
-
-  const helpNavLinks = useMemo(
-    () => [
-      { href: "/", label: t("navFaqs") },
-      { href: "/", label: t("navHelpCenter") },
-      { href: "/", label: t("navSupport") },
     ],
     [t],
   );
@@ -111,16 +121,16 @@ const Footer = () => {
             <div className="grid sm:grid-cols-2 2xl:gap-8 gap-4">
               <div>
                 <h2 className="text-md font-semibold text-white">
-                  {t("solutionsTitle")}
+                  {t("quickLinksTitle")}
                 </h2>
                 <ul className="mt-4 flex list-inside list-disc flex-col gap-3 xl:text-sm text-xsm text-white/85 marker:text-white">
-                  {mainNavLinks.map((item, index) => (
-                    <li key={index} className="pl-0.5">
+                  {quickLinks.map((item) => (
+                    <li key={item.href} className="pl-0.5">
                       <LocalizedLink
                         href={item.href}
                         className="-ml-1 hover:text-white"
                       >
-                        {item.label.trim()}
+                        {item.label}
                       </LocalizedLink>
                     </li>
                   ))}
@@ -128,11 +138,11 @@ const Footer = () => {
               </div>
               <div>
                 <h2 className="text-md font-semibold text-white">
-                  {t("helpTitle")}
+                  {tNav("services")}
                 </h2>
                 <ul className="mt-4 flex list-inside list-disc flex-col gap-3 xl:text-sm text-xsm text-white/85 marker:text-white">
-                  {helpNavLinks.map((item, index) => (
-                    <li key={index} className="pl-0.5">
+                  {serviceLinks.map((item) => (
+                    <li key={item.href} className="pl-0.5">
                       <LocalizedLink
                         href={item.href}
                         className="-ml-1 hover:text-white"

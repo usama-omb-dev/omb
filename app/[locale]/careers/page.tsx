@@ -3,7 +3,6 @@ import OurGoal from "@/components/section/Service/OurGoal";
 import WhyOmb from "@/components/section/Careers/WhyOmb";
 import LifeAtOmb from "@/components/section/Careers/LifeAtOmb";
 import HiringProcess from "@/components/section/Careers/HiringProcess";
-import OurEmployees from "@/components/section/Careers/OurEmployees";
 import Contact from "@/components/section/Contact";
 import { loadMessagesJson } from "@/lib/load-messages";
 import type { Metadata } from "next";
@@ -45,7 +44,6 @@ export default async function CareersPage({
       <WhyOmb />
       <LifeAtOmb />
       <HiringProcess />
-      <OurEmployees />
       <Contact headline={t("contactHeadline")} />
     </main>
   );

@@ -17,7 +17,16 @@ import { useTranslations } from "next-intl";
 const titleClassName =
   "text-center text-balance text-2xl font-bold leading-none text-black sm:text-3xl md:text-4xl lg:text-[56px] lg:leading-[1.06]";
 
-export default function BlogsListingHero({ className }: { className?: string }) {
+type BlogsListingHeroProps = {
+  className?: string;
+  /** Published posts in the current language (WordPress + Polylang). */
+  publishedPostCount: number;
+};
+
+export default function BlogsListingHero({
+  className,
+  publishedPostCount,
+}: BlogsListingHeroProps) {
   const t = useTranslations("BlogHero");
   const sectionRef = useRef<HTMLElement>(null);
   const copyColRef = useRef<HTMLDivElement>(null);
@@ -154,7 +163,7 @@ export default function BlogsListingHero({ className }: { className?: string }) 
                   className="text-xl font-bold leading-none text-primary sm:text-2xl"
                   suffix="+"
                 >
-                  {6}
+                  {10}
                 </Counter>
                 <p className="mt-1 text-xsm font-medium leading-snug text-black sm:mt-1.5 sm:text-sm">
                   {t("statExperience")}
@@ -163,9 +172,8 @@ export default function BlogsListingHero({ className }: { className?: string }) 
               <div className="min-w-0 flex-1 rounded-xl border border-black/5 bg-white px-3 py-2.5 shadow-[0px_10px_24px_0px_rgba(115,115,172,0.16)] sm:min-w-[8rem] sm:flex-none sm:px-5 sm:py-4">
                 <Counter
                   className="text-xl font-bold leading-none text-primary sm:text-2xl"
-                  suffix="+"
                 >
-                  {200}
+                  {publishedPostCount}
                 </Counter>
                 <p className="mt-1 text-xsm font-medium leading-snug text-black sm:mt-1.5 sm:text-sm">
                   {t("statArticles")}

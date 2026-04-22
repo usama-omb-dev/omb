@@ -13,7 +13,7 @@ const HiringProcess = () => {
   ];
 
   return (
-    <section className="md:pb-37.5 pb-7.5">
+    <section className="pb-7.5">
       <div className="container">
         <div className="bg-white rounded-[1.25rem] lg:py-10 py-4 lg:px-11.25 px-4 flex flex-col gap-7.5 ">
           <div className="max-w-166 mx-auto flex flex-col justify-center items-center gap-5">

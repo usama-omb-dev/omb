@@ -14,7 +14,8 @@
     "about": "About",
     "services": "Services",
     "blogs": "Blogs",
-    "career": "Career"
+    "career": "Career",
+    "contact": "Contact"
   },
   "Header": {
     "contactUs": "Contact us",
@@ -25,8 +26,7 @@
   "Footer": {
     "taglineLine1": "Creative solutions. Strategic growth. Real results.",
     "taglineLine2": "Let's take your brand to the next level.",
-    "solutionsTitle": "Our Solutions",
-    "helpTitle": "Help",
+    "quickLinksTitle": "Quick links",
     "kvkLabel": "KvK number",
     "btwLabel": "VAT number",
     "copyright": "© Copyright {year}, Omb all rights reserved",
@@ -36,15 +36,7 @@
     "socialFacebook": "Facebook",
     "socialInstagram": "Instagram",
     "socialLinkedIn": "LinkedIn",
-    "leadinfoAlt": "Leadinfo Certified Partner",
-    "navHome": "Home",
-    "navAbout": "About us",
-    "navOutsource": "Outsource link building",
-    "navSeoCopy": "SEO copywriter",
-    "navAgency": "Online marketing agency Roermond",
-    "navFaqs": "FAQs",
-    "navHelpCenter": "Help Center",
-    "navSupport": "Support"
+    "leadinfoAlt": "Leadinfo Certified Partner"
   },
   "ContactSection": {
     "eyebrow": "Elevate your brand",

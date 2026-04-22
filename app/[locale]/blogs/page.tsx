@@ -1,6 +1,8 @@
 import BlogsListingHero from "@/components/section/Blogs/BlogsListingHero";
 import BlogsList from "@/components/section/Blogs/Blogs-List";
+import { fetchPostCount } from "@/lib/api";
 import { loadMessagesJson } from "@/lib/load-messages";
+import { localeToWpLang } from "@/lib/wp-lang";
 import type { Metadata } from "next";
 
 export async function generateMetadata({
@@ -13,13 +15,18 @@ export async function generateMetadata({
   return { title: messages.Nav?.blogs ?? "Blog" };
 }
 
-const page = () => {
+export default async function page({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const publishedPostCount = await fetchPostCount(localeToWpLang(locale));
+
   return (
     <>
-      <BlogsListingHero />
+      <BlogsListingHero publishedPostCount={publishedPostCount} />
       <BlogsList />
     </>
   );
-};
-
-export default page;
+}
