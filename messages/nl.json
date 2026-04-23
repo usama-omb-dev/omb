@@ -7,6 +7,7 @@
     "contact": "Contact",
     "components": "UI-speeltuin",
     "caseStudy": "Casestudy",
+    "caseStudiesListing": "Casestudies",
     "privacy": "Privacyverklaring"
   },
   "Nav": {
@@ -14,6 +15,7 @@
     "about": "Over ons",
     "services": "Diensten",
     "blogs": "Blog",
+    "caseStudies": "Casestudies",
     "career": "Carrière",
     "contact": "Contact"
   },
@@ -205,6 +207,31 @@
   },
   "BlogCard": {
     "authorName": "Rubin Koot"
+  },
+  "CaseStudiesHero": {
+    "pill": "Echte resultaten bij klanten",
+    "title": "Hoi, ik ben Rubin Koot.",
+    "titlePrefix": "Hoi, ik ben ",
+    "titleName": "Rubin Koot.",
+    "intro": "Hier zie je hoe we strategie omzetten in meetbare groei voor B2B-merken. Lees de cases en neem contact op als jij iets vergelijkbaars wilt.",
+    "statExperience": "Jaar ervaring",
+    "statCaseStudies": "Casestudies",
+    "followLabel": "Volg me op",
+    "heroImageAlt": "Rubin Koot"
+  },
+  "CaseStudiesList": {
+    "pill": "Een selectie uit onze bakkerij",
+    "title": "Casestudies van de",
+    "titleAccent": "online marketingbakker!",
+    "loadMore": "Meer laden",
+    "emptyHeading": "Nieuwe cases staan in de",
+    "emptyHeadingAccent": "oven",
+    "emptyDescription": "We werken aan nieuwe verhalen om te delen. Kom snel terug, of neem contact op als je over een project wilt sparren.",
+    "emptyCta": "Laten we praten"
+  },
+  "CaseStudyCard": {
+    "cardLabel": "Casestudy",
+    "imageFallbackAlt": "Voorbeeld casestudy"
   },
   "ContactPage": {
     "pill": "Neem contact op",

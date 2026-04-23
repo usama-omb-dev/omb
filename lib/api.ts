@@ -1,4 +1,5 @@
 import type { WpLang } from "@/lib/wp-lang";
+import { filterRestItemsByPolylangPermalink } from "@/lib/wp-lang";
 
 const BASE_URL = "https://backend.onlinemarketingbakery.nl/wp-json/wp/v2";
 
@@ -44,4 +45,28 @@ export async function fetchPostCount(
   }
   const n = parseInt(total, 10);
   return Number.isFinite(n) ? n : 0;
+}
+
+/**
+ * Total published case studies for a Polylang `lang` (from `X-WP-Total`).
+ */
+export async function fetchCaseStudyCount(
+  lang: WpLang,
+  revalidateSeconds = 300,
+): Promise<number> {
+  /** `lang` is not applied reliably on this CPT; count after permalink filter. */
+  const path = withWpLang("/case-study?per_page=100&status=publish", lang);
+  const url = `${BASE_URL}${path}`;
+  const res = await fetch(url, { next: { revalidate: revalidateSeconds } });
+
+  if (!res.ok) {
+    throw new Error("API Error");
+  }
+
+  const items: unknown = await res.json();
+  if (!Array.isArray(items)) return 0;
+  return filterRestItemsByPolylangPermalink(
+    items as { link?: string }[],
+    lang,
+  ).length;
 }

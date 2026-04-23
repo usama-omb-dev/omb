@@ -7,12 +7,14 @@ export type MessagesJson = {
     about?: string;
     services?: string;
     blogs?: string;
+    caseStudies?: string;
     career?: string;
   };
   PageTitles?: {
     contact?: string;
     components?: string;
     caseStudy?: string;
+    caseStudiesListing?: string;
     privacy?: string;
   };
 };

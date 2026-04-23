@@ -7,6 +7,7 @@
     "contact": "Contact",
     "components": "UI playground",
     "caseStudy": "Case study",
+    "caseStudiesListing": "Case studies",
     "privacy": "Privacy policy"
   },
   "Nav": {
@@ -14,6 +15,7 @@
     "about": "About",
     "services": "Services",
     "blogs": "Blogs",
+    "caseStudies": "Case studies",
     "career": "Career",
     "contact": "Contact"
   },
@@ -205,6 +207,31 @@
   },
   "BlogCard": {
     "authorName": "Rubin Koot"
+  },
+  "CaseStudiesHero": {
+    "pill": "Real client outcomes",
+    "title": "Hi, I am Rubin Koot.",
+    "titlePrefix": "Hi, I am ",
+    "titleName": "Rubin Koot.",
+    "intro": "These case studies show how we turn strategy into measurable growth for B2B brands. Explore the work, then get in touch if you want something similar in your market.",
+    "statExperience": "Years of Experience",
+    "statCaseStudies": "Case studies",
+    "followLabel": "Follow me on",
+    "heroImageAlt": "Rubin Koot"
+  },
+  "CaseStudiesList": {
+    "pill": "Selected work from the bakery",
+    "title": "Case studies from the",
+    "titleAccent": "online marketing baker!",
+    "loadMore": "Load more",
+    "emptyHeading": "Fresh cases are in the",
+    "emptyHeadingAccent": "oven",
+    "emptyDescription": "We are preparing new stories to share. Check back soon, or contact us if you would like to talk about a project.",
+    "emptyCta": "Let’s talk"
+  },
+  "CaseStudyCard": {
+    "cardLabel": "Case study",
+    "imageFallbackAlt": "Case study preview"
   },
   "ContactPage": {
     "pill": "Contact us",

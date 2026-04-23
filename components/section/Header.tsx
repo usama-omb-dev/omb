@@ -160,6 +160,7 @@ const Header = () => {
         submenu: servicesNavigationData,
       },
       { title: tNav("blogs"), href: "/blogs" },
+      { title: tNav("caseStudies"), href: "/case-study" },
       { title: tNav("career"), href: "/careers" },
     ],
     [tNav, servicesNavigationData],
@@ -179,7 +180,8 @@ const Header = () => {
     if (
       pathName.split("/")[1].length === 0 ||
       pathName.split("/")[1] === "contact" ||
-      pathName.split("/")[pathName.split("/").length - 1] === "blogs"
+      pathName.split("/")[pathName.split("/").length - 1] === "blogs" ||
+      pathName.split("/")[pathName.split("/").length - 1] === "case-study"
     ) {
       setIsWhiteNav(true);
     } else {
