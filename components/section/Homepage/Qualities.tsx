@@ -8,48 +8,60 @@ import Model from "./Model";
 import { OrbitControls } from "@react-three/drei";
 import { useRef, useMemo } from "react";
 import { useIsDesktop } from "@/hooks/isDesktop";
+import { useServices } from "@/hooks/useServices";
+import { stripHtmlToText } from "@/lib/strip-html-for-title";
 import { useTranslations } from "next-intl";
+
+type WpServiceRow = {
+  slug: string;
+  menu_order?: number;
+  title?: { rendered?: string };
+  excerpt?: { rendered?: string };
+  content?: { rendered?: string };
+  acf?: {
+    "hero-data"?: {
+      details?: string;
+    };
+  };
+};
+
+function serviceRecipeDescription(item: WpServiceRow): string {
+  const fromExcerpt = stripHtmlToText(item.excerpt?.rendered);
+  if (fromExcerpt) return fromExcerpt;
+  const fromHero = stripHtmlToText(item.acf?.["hero-data"]?.details);
+  if (fromHero) return fromHero;
+  const fromContent = stripHtmlToText(item.content?.rendered);
+  if (!fromContent) return "";
+  return fromContent.length > 280
+    ? `${fromContent.slice(0, 277)}…`
+    : fromContent;
+}
 
 const Qualities = () => {
   const t = useTranslations("Qualities");
   const mainContainerRef = useRef<HTMLDivElement>(null);
   const isDesktop = useIsDesktop();
+  const { data: servicesRaw, isLoading } = useServices();
 
-  const services = useMemo(
-    () => [
-      {
-        title: t("svcSeoTitle"),
-        description: t("svcSeoDesc"),
-        link: "/services",
-      },
-      {
-        title: t("svcSeaTitle"),
-        description: t("svcSeaDesc"),
-        link: "/services",
-      },
-      {
-        title: t("svcSocialTitle"),
-        description: t("svcSocialDesc"),
-        link: "/services",
-      },
-      {
-        title: t("svcContentTitle"),
-        description: t("svcContentDesc"),
-        link: "/services",
-      },
-      {
-        title: t("svcWebTitle"),
-        description: t("svcWebDesc"),
-        link: "/services",
-      },
-      {
-        title: t("svcStrategyTitle"),
-        description: t("svcStrategyDesc"),
-        link: "/services",
-      },
-    ],
-    [t],
-  );
+  const recipeServices = useMemo(() => {
+    if (!Array.isArray(servicesRaw)) return [];
+    const rows = [...(servicesRaw as WpServiceRow[])].sort((a, b) => {
+      const ao = typeof a.menu_order === "number" ? a.menu_order : 0;
+      const bo = typeof b.menu_order === "number" ? b.menu_order : 0;
+      if (ao !== bo) return ao - bo;
+      return stripHtmlToText(a.title?.rendered).localeCompare(
+        stripHtmlToText(b.title?.rendered),
+      );
+    });
+    return rows.map((item) => {
+      const title = stripHtmlToText(item.title?.rendered);
+      return {
+        title: title || item.slug,
+        description: serviceRecipeDescription(item),
+        href: `/services/${item.slug}` as const,
+      };
+    });
+  }, [servicesRaw]);
 
   const steps = useMemo(
     () => [
@@ -125,19 +137,24 @@ const Qualities = () => {
               <h3 className="sm:text-2xl text-xl leading-none font-semibold 2xl:max-w-[65%]">
                 <TextReveal>{t("recipeTitle")}</TextReveal>
               </h3>
-              {services.map((service, index) => (
-                <div
-                  key={index}
-                  className="flex flex-col sm:gap-3.75 gap-2 max-w-154"
-                >
-                  <h5 className="font-bold sm:text-lg text-md leading-none">
-                    <Link href={service.link} className="text-primary">
-                      {service.title}
-                    </Link>
-                  </h5>
-                  <p className="sm:text-body text-xsm">{service.description}</p>
-                </div>
-              ))}
+              {!isLoading &&
+                recipeServices.map((service) => (
+                  <div
+                    key={service.href}
+                    className="flex flex-col sm:gap-3.75 gap-2 max-w-154"
+                  >
+                    <h5 className="font-bold sm:text-lg text-md leading-none">
+                      <Link href={service.href} className="text-primary">
+                        {service.title}
+                      </Link>
+                    </h5>
+                    {service.description ? (
+                      <p className="sm:text-body text-xsm">
+                        {service.description}
+                      </p>
+                    ) : null}
+                  </div>
+                ))}
 
               <AnimatedButton
                 href="/contact"
