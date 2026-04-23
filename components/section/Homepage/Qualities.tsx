@@ -6,8 +6,12 @@ import { Link } from "@/i18n/navigation";
 import { Canvas } from "@react-three/fiber";
 import Model from "./Model";
 import { OrbitControls } from "@react-three/drei";
-import { useRef, useMemo } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useRef, useMemo, useEffect } from "react";
 import { useIsDesktop } from "@/hooks/isDesktop";
+
+gsap.registerPlugin(ScrollTrigger);
 import { useServices } from "@/hooks/useServices";
 import { stripHtmlToText } from "@/lib/strip-html-for-title";
 import { useTranslations } from "next-intl";
@@ -63,6 +67,31 @@ const Qualities = () => {
     });
   }, [servicesRaw]);
 
+  const recipeLayoutKey = useMemo(() => {
+    if (isLoading) return "loading";
+    if (!Array.isArray(servicesRaw)) return "empty";
+    return (servicesRaw as WpServiceRow[])
+      .map((s) => s.slug)
+      .sort()
+      .join(",");
+  }, [isLoading, servicesRaw]);
+
+  useEffect(() => {
+    if (isLoading) return;
+    let cancelled = false;
+    let inner = 0;
+    const outer = requestAnimationFrame(() => {
+      inner = requestAnimationFrame(() => {
+        if (!cancelled) ScrollTrigger.refresh();
+      });
+    });
+    return () => {
+      cancelled = true;
+      cancelAnimationFrame(outer);
+      cancelAnimationFrame(inner);
+    };
+  }, [isLoading, recipeLayoutKey]);
+
   const steps = useMemo(
     () => [
       {
@@ -98,7 +127,10 @@ const Qualities = () => {
               <Canvas camera={{ position: [1.5, 0, 1], fov: 70 }}>
                 <ambientLight intensity={1} />
                 <directionalLight position={[2, 2, 5]} />
-                <Model mainContainer={mainContainerRef} />
+                <Model
+                  mainContainer={mainContainerRef}
+                  layoutRevision={recipeLayoutKey}
+                />
                 {isDesktop && <OrbitControls enableZoom={false} />}
               </Canvas>
             </div>
