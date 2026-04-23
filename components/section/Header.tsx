@@ -95,13 +95,14 @@ const Header = () => {
 
   const { data: services, isLoading } = useServices();
 
-  const servicesNavigationData: ServiceNavMenu[] = isLoading
-    ? []
-    : services.map((item: any) => ({
-        navLabel: item.title.rendered,
-        navLink: item.slug,
-        imageUrl: resolveServiceMenuImage(item),
-      }));
+  const servicesNavigationData: ServiceNavMenu[] =
+    isLoading || !Array.isArray(services)
+      ? []
+      : services.map((item: any) => ({
+          navLabel: item.title.rendered,
+          navLink: item.slug,
+          imageUrl: resolveServiceMenuImage(item),
+        }));
 
   const [activeServiceMenuIndex, setActiveServiceMenuIndex] = useState(0);
   const [servicesMegaPointerInside, setServicesMegaPointerInside] =

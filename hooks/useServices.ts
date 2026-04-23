@@ -1,14 +1,27 @@
 import { useLocale } from "next-intl";
 import { useQuery } from "@tanstack/react-query";
 import { fetchAPI } from "@/lib/api";
-import { localeToWpLang } from "@/lib/wp-lang";
+import {
+  filterRestItemsByPolylangPermalink,
+  localeToWpLang,
+} from "@/lib/wp-lang";
 
 export function useServices() {
   const locale = useLocale();
   const lang = localeToWpLang(locale);
   return useQuery({
     queryKey: ["services", lang],
-    queryFn: () => fetchAPI("/services?_embed", lang),
+    queryFn: async () => {
+      try {
+        const data = await fetchAPI("/services?_embed&per_page=100", lang);
+        if (!Array.isArray(data)) return [];
+        const filtered = filterRestItemsByPolylangPermalink(data, lang);
+        /** If every item is filtered out (REST `lang` + `link` mismatch), show unfiltered list. */
+        return filtered.length > 0 ? filtered : data;
+      } catch {
+        return [];
+      }
+    },
   });
 }
 

@@ -6,26 +6,30 @@ import ServiceCard from "@/components/ui/service-card";
 import { useServices } from "@/hooks/useServices";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { useMemo } from "react";
 
 interface ServiceCardItem {
   title: string;
   href: string;
-  imgUrl: string;
+  imgUrl?: string;
 }
 
 const Services = () => {
   const t = useTranslations("HomeServices");
   const { data: service, isLoading } = useServices();
 
-  const servicesList = isLoading
-    ? []
-    : service.map((item: any) => {
-        return {
-          title: item.title.rendered,
-          href: `/services/${item.slug}`,
-          imgUrl: item["_embedded"]["wp:featuredmedia"][0].source_url,
-        };
-      });
+  const servicesList = useMemo((): ServiceCardItem[] => {
+    if (isLoading || !Array.isArray(service)) return [];
+    return service.map((item: {
+      slug: string;
+      title?: { rendered?: string };
+      _embedded?: { "wp:featuredmedia"?: Array<{ source_url?: string }> };
+    }) => ({
+      title: item.title?.rendered ?? item.slug,
+      href: `/services/${item.slug}`,
+      imgUrl: item._embedded?.["wp:featuredmedia"]?.[0]?.source_url,
+    }));
+  }, [service, isLoading]);
 
   return (
     <section

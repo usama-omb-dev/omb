@@ -18,6 +18,7 @@ const ServiceCard = ({ cardDetails }: { cardDetails: CardDetails }) => {
   const image = useRef<null | HTMLImageElement>(null);
 
   const mouseLeaveHandler = () => {
+    if (!image.current) return;
     gsap.to(image.current, {
       opacity: 0,
       scale: 0.5,
@@ -31,6 +32,7 @@ const ServiceCard = ({ cardDetails }: { cardDetails: CardDetails }) => {
   };
 
   const mouseEnterHandler = () => {
+    if (!image.current) return;
     gsap.to(image.current, {
       opacity: 1,
       scale: 1.05,
@@ -57,6 +59,7 @@ const ServiceCard = ({ cardDetails }: { cardDetails: CardDetails }) => {
     const moveX = (deltaX / centerX) * 50;
     const moveY = (deltaY / centerY) * 50;
 
+    if (!image.current) return;
     gsap.to(image.current, {
       rotationZ: rotateY,
       rotationX: rotateX,
@@ -68,9 +71,9 @@ const ServiceCard = ({ cardDetails }: { cardDetails: CardDetails }) => {
   };
 
   useLayoutEffect(() => {
-    if (containers == null || image == null) return;
+    if (!imgUrl) return;
     mouseLeaveHandler();
-  }, [image]);
+  }, [imgUrl]);
 
   return (
     <div

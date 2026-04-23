@@ -74,14 +74,15 @@ export function ScheduleCallForm() {
     form.reset();
   }
 
-  const interests = isLoading
-    ? []
-    : services.map((item: { title: { rendered: string }; slug: string }) => {
-        return {
-          label: item.title.rendered,
-          value: item.slug,
-        };
-      });
+  const interests =
+    isLoading || !Array.isArray(services)
+      ? []
+      : services.map((item: { title: { rendered: string }; slug: string }) => {
+          return {
+            label: item.title.rendered,
+            value: item.slug,
+          };
+        });
 
   return (
     <form
