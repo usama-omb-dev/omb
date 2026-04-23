@@ -20,7 +20,7 @@ const Reviews = async () => {
           </h3>
           <div className="max-w-79 flex flex-col items-start gap-7.5">
             <AnimatedButton
-              href="/blogs"
+              href="/case-study"
               size={"icon"}
               trailingContent={<AnimatedArrowIcon />}
             >

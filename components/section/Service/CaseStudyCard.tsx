@@ -41,7 +41,7 @@ const CaseStudyCard = ({ data }: { data: CaseStudiesSection }) => {
           size={"icon"}
           variant={"secondary"}
           trailingContent={<AnimatedArrowIcon />}
-          href={caseStudyButton.btnUrl || "/services"}
+          href={caseStudyButton.btnUrl || "/case-study"}
         >
           {caseStudyButton.btnLabel}
         </AnimatedButton>

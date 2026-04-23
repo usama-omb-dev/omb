@@ -53,7 +53,7 @@ const Insights = () => {
           <div className="lg:max-w-79 flex flex-col items-start sm:gap-7.5 gap-4">
             <p className="sm:text-body text-sm">{t("body")}</p>
             <AnimatedButton
-              href="/blogs"
+              href="/case-study"
               size={"icon"}
               trailingContent={<AnimatedArrowIcon />}
             >

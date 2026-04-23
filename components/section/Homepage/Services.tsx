@@ -28,7 +28,10 @@ const Services = () => {
       });
 
   return (
-    <section className="lg:py-37.5 sm:py-20 py-10">
+    <section
+      id="home-services"
+      className="lg:py-37.5 sm:py-20 py-10 scroll-mt-24"
+    >
       <div className="container flex flex-col lg:gap-28 gap-8">
         <div className="flex lg:flex-row flex-col gap-6 items-start justify-between">
           <Pill iconColor="#3838F9" className="text-primary">
@@ -42,7 +45,7 @@ const Services = () => {
             <p className="sm:text-body text-sm">{t("description")}</p>
           </div>
           <AnimatedButton
-            href="/services"
+            href="/#home-services"
             size={"icon"}
             trailingContent={<AnimatedArrowIcon />}
           >

@@ -35,7 +35,6 @@ const Footer = () => {
     () => [
       { href: "/" as const, label: tNav("home") },
       { href: "/about" as const, label: tNav("about") },
-      { href: "/services" as const, label: tNav("services") },
       { href: "/blogs" as const, label: tNav("blogs") },
       { href: "/case-study" as const, label: tNav("caseStudies") },
       { href: "/careers" as const, label: tNav("career") },
