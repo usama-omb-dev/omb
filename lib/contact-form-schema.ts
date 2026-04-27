@@ -50,12 +50,24 @@ export function resolveContactForm7FormId(requested?: string): string | null {
   return getDefaultCf7FormId(allowed);
 }
 
+/** Max length for the message field (client + server + CF7). */
+export const CONTACT_FORM_MESSAGE_MAX = 2000;
+
+/** Free-text marketing budget (client + server + CF7). */
+export const CONTACT_FORM_BUDGET_TEXT_MAX = 500;
+
 /** Server-side validation (mirrors `Form.tsx` rules). */
 export const contactFormPayloadSchema = z.object({
   userName: z.string().min(5).max(32),
   userPhone: z.string().min(1).regex(/^[0-9]{7,15}$/),
-  userMessage: z.string().min(20).max(100),
+  userMessage: z.string().min(20).max(CONTACT_FORM_MESSAGE_MAX),
   userEmail: z.string().email(),
+  userCompany: z.string().min(1).max(200),
+  userMarketingBudget: z
+    .string()
+    .trim()
+    .min(1)
+    .max(CONTACT_FORM_BUDGET_TEXT_MAX),
   contactAgreement: z.literal(true),
   locale: z.enum(["en", "nl"]).optional(),
   /** Numeric WordPress CF7 post ID; must appear in `CONTACT_FORM_7_ALLOWED_IDS`. */
@@ -78,6 +90,7 @@ export function getContactForm7FeedbackUrl(formId: string): string | null {
   return `${origin}/wp-json/contact-form-7/v1/contact-forms/${formId}/feedback`;
 }
 
+/** `userName`, `userMessage` (and new `userCompany`, `userMarketingBudget`) must exist as field names in the WordPress CF7 form template. */
 export function buildContactForm7FormData(
   data: ContactFormPayload,
   formId: string,
@@ -103,6 +116,8 @@ export function buildContactForm7FormData(
   fd.append("userPhone", data.userPhone);
   fd.append("userMessage", data.userMessage);
   fd.append("userEmail", data.userEmail);
+  fd.append("userCompany", data.userCompany);
+  fd.append("userMarketingBudget", data.userMarketingBudget);
   fd.append("contactAgreement", "1");
 
   return fd;
