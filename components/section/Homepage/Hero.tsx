@@ -2,10 +2,12 @@
 
 import PageHero from "@/components/section/PageHero";
 import Counter from "@/components/ui/counter";
+import { rubinYearsOfExperience } from "@/lib/career-years";
 import { useTranslations } from "next-intl";
 
 const Hero = () => {
   const t = useTranslations("Hero");
+  const yearsOfExperience = rubinYearsOfExperience();
 
   return (
     <>
@@ -31,7 +33,7 @@ const Hero = () => {
                 className="text-white md:!text-3xl !text-2xl font-medium"
                 suffix={"+"}
               >
-                {10}
+                {yearsOfExperience}
               </Counter>
               <span className="text-white text-[20px]">{t("statYears")}</span>
               <span className="absolute -bottom-[16px] lg:hidden block right-0 w-full h-[2px] bg-gradient-to-l from-[transparent] via-white/30 to-[transparent]" />

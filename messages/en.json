@@ -376,19 +376,18 @@
     "placeholderName": "Name",
     "placeholderEmail": "Email",
     "placeholderPhone": "Phone number",
-    "interestPlaceholder": "I am interested in...",
-    "interestSelected": "{count} selected",
-    "searchPlaceholder": "Search interest...",
-    "searchEmpty": "No interest found.",
+    "placeholderCompany": "Company name",
     "submit": "Let’s talk!",
-    "toastTitle": "Form submitted successfully!",
+    "submitSuccess": "Message sent",
+    "submitError": "Something went wrong. Please try again.",
+    "submitErrorConfig": "Scheduling form is not configured on the server.",
     "validation": {
-      "nameMin": "Name must be at least 3 characters",
-      "nameMax": "Name must be at most 50 characters",
+      "nameMin": "Name is required",
+      "nameMax": "Name is too long",
       "emailInvalid": "Enter a valid email address",
-      "phoneRequired": "Phone number is required",
       "phoneInvalid": "Enter a valid phone number",
-      "interestMin": "Please select at least one option"
+      "phoneMin": "Enter a valid phone number (at least 7 digits)",
+      "companyMax": "Company name is too long"
     }
   },
   "ServicePage": {

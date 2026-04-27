@@ -376,19 +376,18 @@
     "placeholderName": "Naam",
     "placeholderEmail": "E-mail",
     "placeholderPhone": "Telefoonnummer",
-    "interestPlaceholder": "Ik heb interesse in...",
-    "interestSelected": "{count} geselecteerd",
-    "searchPlaceholder": "Zoek interesse...",
-    "searchEmpty": "Geen interesse gevonden.",
+    "placeholderCompany": "Bedrijfsnaam",
     "submit": "Laten we praten!",
-    "toastTitle": "Formulier succesvol verstuurd!",
+    "submitSuccess": "Bericht verzonden",
+    "submitError": "Er ging iets mis. Probeer het opnieuw.",
+    "submitErrorConfig": "Het plan-een-gesprek-formulier is op de server niet geconfigureerd.",
     "validation": {
-      "nameMin": "Naam moet minimaal 3 tekens bevatten",
-      "nameMax": "Naam mag maximaal 50 tekens bevatten",
+      "nameMin": "Vul je naam in",
+      "nameMax": "Naam is te lang",
       "emailInvalid": "Voer een geldig e-mailadres in",
-      "phoneRequired": "Telefoonnummer is verplicht",
       "phoneInvalid": "Voer een geldig telefoonnummer in",
-      "interestMin": "Selecteer minimaal één optie"
+      "phoneMin": "Voer een geldig nummer in (minimaal 7 cijfers)",
+      "companyMax": "Bedrijfsnaam is te lang"
     }
   },
   "ServicePage": {

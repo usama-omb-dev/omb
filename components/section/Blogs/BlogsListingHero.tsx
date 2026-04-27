@@ -5,6 +5,7 @@ import {
   MarketingHeroFloatingBadge,
 } from "@/components/section/marketing-hero-shared";
 import Counter from "@/components/ui/counter";
+import { rubinYearsOfExperience } from "@/lib/career-years";
 import { cn } from "@/lib/utils";
 import { envSocialUrls, socialHref } from "@/lib/social-links";
 import { useGSAP } from "@gsap/react";
@@ -31,6 +32,8 @@ export default function BlogsListingHero({
   const sectionRef = useRef<HTMLElement>(null);
   const copyColRef = useRef<HTMLDivElement>(null);
   const badgeRef = useRef<HTMLDivElement>(null);
+
+  const yearsOfExperience = useMemo(() => rubinYearsOfExperience(), []);
 
   const socialMediaLinks = useMemo(
     () => [
@@ -163,7 +166,7 @@ export default function BlogsListingHero({
                   className="text-xl font-bold leading-none text-primary sm:text-2xl"
                   suffix="+"
                 >
-                  {10}
+                  {yearsOfExperience}
                 </Counter>
                 <p className="mt-1 text-xsm font-medium leading-snug text-black sm:mt-1.5 sm:text-sm">
                   {t("statExperience")}

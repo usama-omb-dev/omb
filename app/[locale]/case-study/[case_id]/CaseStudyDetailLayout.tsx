@@ -231,7 +231,7 @@ export default function CaseStudyDetailLayout({
         )}
       >
         <div className="container">
-          <div className="flex flex-col gap-10 lg:flex-row lg:items-stretch xl:gap-31">
+          <div className="flex flex-col gap-10 lg:flex-row-reverse lg:items-stretch xl:gap-31">
             {/**
              * Sidebar must stretch to the main column height (no `h-fit` on the column) or
              * `position: sticky` on the TOC has no scroll range and never pins.

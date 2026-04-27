@@ -112,3 +112,66 @@ export function parseCf7Response(json: unknown): Cf7JsonResponse {
   if (!json || typeof json !== "object") return {};
   return json as Cf7JsonResponse;
 }
+
+/**
+ * Schedule call CF7 form — field names must match the CF7 template tags, e.g.
+ * `[text* your-name]`, `[email* your-email]`, `[tel your-phone]`, `[text your-company]`.
+ */
+export const scheduleCallFormPayloadSchema = z.object({
+  yourName: z.string().min(1).max(100),
+  yourEmail: z.string().email(),
+  /** Optional in CF7 unless you add `*` to the tel field in WordPress. */
+  yourPhone: z
+    .string()
+    .refine(
+      (s) => s.length === 0 || /^[0-9+()\-\s]{7,25}$/.test(s),
+    )
+    .refine((s) => s.length === 0 || s.trim().length >= 7),
+  yourCompany: z.string().max(200).optional().default(""),
+  locale: z.enum(["en", "nl"]).optional(),
+});
+
+export type ScheduleCallFormPayload = z.infer<typeof scheduleCallFormPayloadSchema>;
+
+/**
+ * Resolves the numeric CF7 post ID for the “Schedule call” form.
+ * Set `CONTACT_FORM_7_SCHEDULE_ID` to that number (and include it in `CONTACT_FORM_7_ALLOWED_IDS`).
+ * The value in the shortcode (`id="7b57eae"`) is not the REST id — use the `post=` number from the
+ * WordPress edit-URL (e.g. `post.php?post=42&action=edit` → 42).
+ */
+export function getScheduleCallCf7FormId(): string | null {
+  const raw = process.env.CONTACT_FORM_7_SCHEDULE_ID?.trim();
+  if (!raw || !/^\d+$/.test(raw)) return null;
+  const allowed = new Set(getAllowedCf7FormIds());
+  if (allowed.size === 0) return null;
+  return allowed.has(raw) ? raw : null;
+}
+
+export function buildScheduleCallForm7FormData(
+  data: ScheduleCallFormPayload,
+  formId: string,
+): FormData {
+  const version = process.env.CONTACT_FORM_7_VERSION ?? "6.0";
+  const unitTag = process.env.CONTACT_FORM_7_SCHEDULE_UNIT_TAG
+    ? process.env.CONTACT_FORM_7_SCHEDULE_UNIT_TAG.replace(/\{id\}/g, formId)
+    : `wpcf7-f${formId}-o1`;
+  const locale =
+    data.locale === "nl"
+      ? (process.env.CONTACT_FORM_7_LOCALE_NL ?? "nl_NL")
+      : (process.env.CONTACT_FORM_7_LOCALE_EN ?? "en_US");
+
+  const fd = new FormData();
+  fd.append("_wpcf7", formId);
+  fd.append("_wpcf7_version", version);
+  fd.append("_wpcf7_locale", locale);
+  fd.append("_wpcf7_unit_tag", unitTag);
+  fd.append("_wpcf7_container_post", "0");
+  fd.append("_wpcf7_status", "init");
+
+  fd.append("your-name", data.yourName);
+  fd.append("your-email", data.yourEmail);
+  fd.append("your-phone", data.yourPhone ?? "");
+  fd.append("your-company", data.yourCompany ?? "");
+
+  return fd;
+}

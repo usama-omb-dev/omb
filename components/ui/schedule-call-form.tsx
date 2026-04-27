@@ -1,20 +1,6 @@
 "use client";
 
 import * as React from "react";
-import { Check, ChevronsUpDown } from "lucide-react";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-} from "@/components/ui/command";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -24,65 +10,97 @@ import { Field, FieldError } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import AnimatedButton from "./button/AnimatedButton";
 import AnimatedArrowIcon from "./button/AnimatedArrowIcon";
-import { useServices } from "@/hooks/useServices";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 export function ScheduleCallForm() {
   const t = useTranslations("ScheduleCallForm");
   const tVal = useTranslations("ScheduleCallForm.validation");
+  const locale = useLocale();
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
 
   const formSchema = React.useMemo(
     () =>
       z.object({
-        name: z
+        yourName: z
           .string()
-          .min(3, tVal("nameMin"))
-          .max(50, tVal("nameMax")),
-        email: z.string().email(tVal("emailInvalid")),
-        phone: z
+          .min(1, tVal("nameMin"))
+          .max(100, tVal("nameMax")),
+        yourEmail: z.string().email(tVal("emailInvalid")),
+        yourPhone: z
           .string()
-          .min(7, tVal("phoneRequired"))
-          .regex(/^[0-9+()\-\s]{7,20}$/, tVal("phoneInvalid")),
-        interest: z.array(z.string()).min(1, tVal("interestMin")),
+          .refine(
+            (s) =>
+              s.length === 0 || /^[0-9+()\-\s]{7,25}$/.test(s),
+            tVal("phoneInvalid"),
+          )
+          .refine((s) => s.length === 0 || s.trim().length >= 7, tVal("phoneMin")),
+        yourCompany: z.string().max(200, tVal("companyMax")),
       }),
     [tVal],
   );
 
   type FormValues = z.infer<typeof formSchema>;
 
-  const { data: services, isLoading } = useServices();
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
-      email: "",
-      phone: "",
-      interest: [],
+      yourName: "",
+      yourEmail: "",
+      yourPhone: "",
+      yourCompany: "",
     },
   });
 
-  function onSubmit(data: FormValues) {
-    toast(t("toastTitle"), {
-      description: (
-        <pre className="mt-2 w-[300px] overflow-x-auto rounded-md bg-black/80 p-4 text-white text-xs">
-          {JSON.stringify(data, null, 2)}
-        </pre>
-      ),
-      position: "bottom-right",
-    });
+  async function onSubmit(data: FormValues) {
+    setIsSubmitting(true);
+    try {
+      const res = await fetch("/api/schedule-call", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          yourName: data.yourName,
+          yourEmail: data.yourEmail,
+          yourPhone: data.yourPhone,
+          yourCompany: data.yourCompany ?? "",
+          locale: locale === "nl" ? "nl" : "en",
+        }),
+      });
 
-    form.reset();
-  }
+      const payload = (await res.json()) as {
+        ok?: boolean;
+        message?: string;
+        error?: string;
+      };
 
-  const interests =
-    isLoading || !Array.isArray(services)
-      ? []
-      : services.map((item: { title: { rendered: string }; slug: string }) => {
-          return {
-            label: item.title.rendered,
-            value: item.slug,
-          };
+      if (res.status === 503 && payload.error === "contact_not_configured") {
+        toast.error(t("submitErrorConfig"), { position: "bottom-right" });
+        return;
+      }
+
+      if (res.ok && payload.ok) {
+        toast.success(t("submitSuccess"), {
+          description: payload.message || undefined,
+          position: "bottom-right",
         });
+        form.reset({
+          yourName: "",
+          yourEmail: "",
+          yourPhone: "",
+          yourCompany: "",
+        });
+        return;
+      }
+
+      toast.error(t("submitError"), {
+        description: payload.message || undefined,
+        position: "bottom-right",
+      });
+    } catch {
+      toast.error(t("submitError"), { position: "bottom-right" });
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
 
   return (
     <form
@@ -94,12 +112,13 @@ export function ScheduleCallForm() {
       </h5>
       <div className="flex flex-col gap-2.5">
         <Controller
-          name="name"
+          name="yourName"
           control={form.control}
           render={({ field, fieldState }) => (
             <Field className="gap-0! " data-invalid={fieldState.invalid}>
               <Input
                 {...field}
+                autoComplete="name"
                 placeholder={t("placeholderName")}
                 aria-invalid={fieldState.invalid}
                 className="h-12.75 bg-background border-0 shadow-none rounded-full"
@@ -109,13 +128,14 @@ export function ScheduleCallForm() {
           )}
         />
         <Controller
-          name="email"
+          name="yourEmail"
           control={form.control}
           render={({ field, fieldState }) => (
             <Field className="gap-0!" data-invalid={fieldState.invalid}>
               <Input
                 {...field}
                 type="email"
+                autoComplete="email"
                 placeholder={t("placeholderEmail")}
                 aria-invalid={fieldState.invalid}
                 className="h-12.75 bg-background border-0 shadow-none rounded-full"
@@ -125,13 +145,14 @@ export function ScheduleCallForm() {
           )}
         />
         <Controller
-          name="phone"
+          name="yourPhone"
           control={form.control}
           render={({ field, fieldState }) => (
             <Field className="gap-0!" data-invalid={fieldState.invalid}>
               <Input
                 {...field}
                 type="tel"
+                autoComplete="tel"
                 placeholder={t("placeholderPhone")}
                 aria-invalid={fieldState.invalid}
                 className="h-12.75 bg-background border-0 shadow-none rounded-full"
@@ -141,86 +162,29 @@ export function ScheduleCallForm() {
           )}
         />
         <Controller
-          name="interest"
+          name="yourCompany"
           control={form.control}
-          render={({ field, fieldState }) => {
-            const selectedValues: string[] = field.value || [];
-
-            return (
-              <Field className="gap-0!" data-invalid={fieldState.invalid}>
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <Button
-                      variant="outline"
-                      role="combobox"
-                      className="h-12.75 w-full justify-between rounded-full"
-                    >
-                      {selectedValues.length > 0
-                        ? t("interestSelected", {
-                            count: selectedValues.length,
-                          })
-                        : t("interestPlaceholder")}
-                      <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                    </Button>
-                  </PopoverTrigger>
-
-                  <PopoverContent className="w-full p-0">
-                    <Command>
-                      <CommandInput placeholder={t("searchPlaceholder")} />
-                      <CommandEmpty>{t("searchEmpty")}</CommandEmpty>
-
-                      <CommandGroup>
-                        {interests.map(
-                          (item: { label: string; value: string }) => {
-                            const isSelected = selectedValues.includes(
-                              item.value,
-                            );
-
-                            return (
-                              <CommandItem
-                                key={item.value}
-                                onSelect={() => {
-                                  if (isSelected) {
-                                    field.onChange(
-                                      selectedValues.filter(
-                                        (v) => v !== item.value,
-                                      ),
-                                    );
-                                  } else {
-                                    field.onChange([
-                                      ...selectedValues,
-                                      item.value,
-                                    ]);
-                                  }
-                                }}
-                              >
-                                <Check
-                                  className={cn(
-                                    "mr-2 h-4 w-4",
-                                    isSelected ? "opacity-100" : "opacity-0",
-                                  )}
-                                />
-                                {item.label}
-                              </CommandItem>
-                            );
-                          },
-                        )}
-                      </CommandGroup>
-                    </Command>
-                  </PopoverContent>
-                </Popover>
-
-                {fieldState.invalid && (
-                  <FieldError errors={[fieldState.error]} />
-                )}
-              </Field>
-            );
-          }}
+          render={({ field, fieldState }) => (
+            <Field className="gap-0!" data-invalid={fieldState.invalid}>
+              <Input
+                {...field}
+                autoComplete="organization"
+                placeholder={t("placeholderCompany")}
+                aria-invalid={fieldState.invalid}
+                className="h-12.75 bg-background border-0 shadow-none rounded-full"
+              />
+              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+            </Field>
+          )}
         />
       </div>
       <AnimatedButton
-        className="bg-primary text-white justify-between w-full p-2.5! pl-5!"
+        className={cn(
+          "bg-primary text-white justify-between w-full p-2.5! pl-5!",
+          isSubmitting && "pointer-events-none opacity-70",
+        )}
         type="submit"
+        disabled={isSubmitting}
         trailingContent={<AnimatedArrowIcon tone="on-dark" />}
       >
         {t("submit")}
