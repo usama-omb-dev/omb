@@ -205,7 +205,7 @@ export default function PageHero({
                 "flex flex-col items-center gap-1.5 text-black sm:gap-2",
               )}
             >
-              <span className="flex flex-wrap items-baseline justify-center leading-none">
+              <span className="flex flex-wrap items-baseline justify-center gap-x-5 leading-none">
                 <span className="relative inline-block pb-1.5 text-primary sm:pb-2">
                   <span className="relative z-10">{t("titleHighlight")}</span>
                   <span

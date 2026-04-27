@@ -73,9 +73,9 @@
   },
   "PageHero": {
     "titleLine1": "Wij ",
-    "titleHighlight": "bouwen merken die",
+    "titleHighlight": "bakken merken die",
     "titlePrimarySuffix": "",
-    "titleLine2": " naar meer smaken...",
+    "titleLine2": " smaken naar meer...",
     "description": "Samen bakken we campagnes die je doelgroep laat watertanden. We helpen je een positie in te nemen die klanten kiezen en concurrenten wakker houdt.",
     "cta": "Dat smaakt naar meer",
     "imageLeftAlt": "Teamlid met lekkernijen",
@@ -248,15 +248,15 @@
   },
   "AboutPage": {
     "heroPill": "Over ons",
-    "heroTitleBefore": "We brengen",
-    "heroTitleAccent": "B2B-marketing",
-    "heroTitleAfter": "in beweging sinds 2020",
+    "heroTitleBefore": "We brengen ",
+    "heroTitleAccent": "B2B marketing",
+    "heroTitleAfter": " in beweging sinds 2020",
     "heroDetails": "Marketing heeft geen ruis meer nodig, maar richting. Sinds 2020 helpen we B2B-merken uit de giswerkmodus en maken we marketing die echt iets oplevert. Geen vage beloftes, geen veilige spelletjes. Alleen duidelijke keuzes en meetbare resultaten."
   },
   "AboutPageHero": {
     "eyebrow": "Over ons",
     "titleHighlight": "We brengen",
-    "titlePrimarySuffix": " B2B-marketing",
+    "titlePrimarySuffix": "B2B marketing",
     "titleLine2": "in beweging sinds 2020",
     "description": "Marketing heeft geen ruis meer nodig, maar richting. Sinds 2020 helpen we B2B-merken uit de giswerkmodus en maken we marketing die echt iets oplevert. Geen vage beloftes, geen veilige spelletjes. Alleen duidelijke keuzes en meetbare resultaten.",
     "imageLeftAlt": "Teamlid met lekkernijen",
@@ -304,7 +304,7 @@
   },
   "OurGoal": {
     "pillWho": "Wie we zijn",
-    "missionLead": "Een B2B-marketingbureau",
+    "missionLead": "Een B2B marketingbureau",
     "missionMid": "voor bedrijven die klaar zijn met veilig spelen.",
     "missionSince": "Sinds 2020",
     "missionRest": "helpen we merken marketing te veranderen van kostenpost naar groeimotor. Niet door trends na te lopen of concurrenten te kopiëren, maar door",
@@ -312,7 +312,7 @@
     "ctaWork": "Werken bij OMB!",
     "smallFamAlt": "Team OMB",
     "pillMilestones": "Onze mijlpalen",
-    "milestonesTitle": "Op weg naar ’s werelds #1 B2B-",
+    "milestonesTitle": "Op weg naar ’s werelds #1 B2B marketingbureau",
     "milestonesAccent": "marketingbureau",
     "milestonesBody": "Zo zijn we hier niet gekomen door mee te lopen met de massa. Vanaf dag één geloofden we: marketing moet presteren, of het moet veranderen. Elke mijlpaal is een keuze om de lat hoger te leggen, het vanzelfsprekende uit te dagen en door te zetten.",
     "dragLabel": "Sleuren",
@@ -327,7 +327,7 @@
     "pill": "Het OMB-team",
     "titleBefore": "Ons wereldwijde",
     "titleItalic": "A-team",
-    "titleMid": "van B2B-marketing",
+    "titleMid": "van B2B marketing",
     "titleAccent": "experts",
     "roles": {
       "owner": "Eigenaar",

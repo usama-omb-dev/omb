@@ -80,7 +80,7 @@ const MarketingTeam = () => {
               </div>
             ))}
             <div className="bg-primary p-5 rounded-[0.625rem] flex flex-col gap-6 h-fit">
-              <h6 className="text-white font-semibold text-md 2xl:pr-20 pr-10 leading-none">
+              <h6 className="text-white font-semibold text-md pr-14 leading-none">
                 {t("ctaTitle")} <span className="italic">{t("ctaTitleItalic")}</span>{" "}
                 {t("ctaTitleAfter")}
               </h6>
