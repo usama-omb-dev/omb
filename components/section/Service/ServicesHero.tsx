@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
-import Pill from "@/components/ui/pill";
+import { BulletPoint } from "@/components/ui/icons";
 
 interface HeroData {
   pillTitle?: string;
@@ -57,10 +57,17 @@ const ServicesHero = ({ data }: { data: HeroData }) => {
     >
       <div className="max-w-260 mx-auto lg:px-0 px-4 flex flex-col justify-center items-center sm:gap-15 gap-6">
         <div className="flex flex-col justify-center items-center sm:gap-5 gap-2">
-          {!!pillTitle && <Pill iconColor="#3838F9">{pillTitle}</Pill>}
-          <h1 className="leading-none lg:text-5xl lg:nl:text-4xl md:nl:text-3xl md:text-4xl sm:text-3xl text-xl text-center">
+          {!!pillTitle && (
+            <div className="flex items-center justify-center gap-2.5 w-fit max-w-full mx-auto text-center">
+              <BulletPoint color="#3838F9" />
+              <h1 className="m-0 font-medium sm:text-body text-xsm">
+                {pillTitle}
+              </h1>
+            </div>
+          )}
+          <h2 className="leading-none lg:text-5xl lg:nl:text-4xl md:nl:text-3xl md:text-4xl sm:text-3xl text-xl text-center">
             {mainTitle}
-          </h1>
+          </h2>
         </div>
         {!!heroImage && (
           <Image

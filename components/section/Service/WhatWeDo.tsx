@@ -1,13 +1,5 @@
 import Pill from "@/components/ui/pill";
 import Image from "next/image";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import { FiPlus } from "react-icons/fi";
-import { FiMinus } from "react-icons/fi";
 
 interface WhatWeDoItem {
   collapseTitle?: string;
@@ -21,6 +13,28 @@ interface WhatWeDo {
   workImage?: string;
   allWorks?: WhatWeDoItem[];
 }
+
+const workCardClassNameXl =
+  "bg-white rounded-xl p-5 relative xl:flex flex-col gap-3 hidden";
+const workCardClassNameSm =
+  "bg-white rounded-xl p-5 relative xl:hidden flex flex-col gap-3";
+
+const WorkCardContent = ({
+  item,
+  titleClassName,
+}: {
+  item: WhatWeDoItem;
+  titleClassName: string;
+}) => (
+  <>
+    {!!item.collapseTitle && (
+      <h4 className={titleClassName}>{item.collapseTitle}</h4>
+    )}
+    {!!item.collapseDetails && (
+      <p className="text-xsm">{item.collapseDetails}</p>
+    )}
+  </>
+);
 
 const WhatWeDo = ({ data }: { data: WhatWeDo }) => {
   const { pillTitle, workTitle, workDetails, workImage, allWorks } = data;
@@ -43,8 +57,7 @@ const WhatWeDo = ({ data }: { data: WhatWeDo }) => {
               )}
             </div>
           </div>
-          <Accordion type="single" collapsible defaultValue="item-0">
-            <div className="grid md:grid-cols-3 sm:grid-cols-2 sm:gap-3.5 gap-2 md:auto-rows-[1fr]">
+          <div className="grid md:grid-cols-3 sm:grid-cols-2 sm:gap-3.5 gap-2">
               {!!workImage && (
                 <div className="lg:row-span-3 sm:row-span-2 md:col-span-1 sm:col-span-2 lg:col-span-1">
                   <Image
@@ -59,23 +72,15 @@ const WhatWeDo = ({ data }: { data: WhatWeDo }) => {
               {allWorks?.map((item, index) => {
                 if (index === 0) {
                   return (
-                    <AccordionItem
-                      key={index}
-                      value={`item-${index}`}
-                      className="bg-white rounded-xl p-5 pb-16 relative xl:flex flex-col gap-5 hidden"
+                    <div
+                      key={`work-xl-${index}`}
+                      className={workCardClassNameXl}
                     >
-                      <h4 className="text-md font-semibold leading-none">
-                        {item.collapseTitle}
-                      </h4>
-
-                      <AccordionContent className="2xl:min-h-22 min-h-12.5 2xl:max-h-22 max-h-12.5 overflow-y-scroll text-xsm pb-0!">
-                        {item.collapseDetails}
-                      </AccordionContent>
-                      <AccordionTrigger className="cursor-pointer self-end absolute right-5 bottom-5 ml-auto max-w-10 w-10 h-10 rounded-[5px] bg-primary flex justify-center items-center text-white text-[22px] data-[state=open]:bg-secondary data-[state=open]:text-black [&_.icon-minus]:hidden data-[state=open]:[&_.icon-minus]:block [&_.icon-plus]:block data-[state=open]:[&_.icon-plus]:hidden">
-                        <FiPlus className="icon-plus" />
-                        <FiMinus className="icon-minus" />
-                      </AccordionTrigger>
-                    </AccordionItem>
+                      <WorkCardContent
+                        item={item}
+                        titleClassName="text-md font-semibold leading-none"
+                      />
+                    </div>
                   );
                 }
                 if (index === 1) {
@@ -91,23 +96,15 @@ const WhatWeDo = ({ data }: { data: WhatWeDo }) => {
                           const actualIndex = index + nestedIndex;
 
                           return (
-                            <AccordionItem
-                              key={actualIndex}
-                              value={`item-${actualIndex}`}
-                              className="bg-white rounded-xl p-5 pb-16 relative xl:flex flex-col gap-5 hidden"
+                            <div
+                              key={`work-xl-nested-${actualIndex}`}
+                              className={workCardClassNameXl}
                             >
-                              <h4 className="text-md font-semibold leading-none">
-                                {nestedItem.collapseTitle}
-                              </h4>
-
-                              <AccordionContent className="2xl:min-h-22 min-h-12.5 2xl:max-h-22 max-h-12.5 overflow-y-scroll text-xsm pb-0!">
-                                {nestedItem.collapseDetails}
-                              </AccordionContent>
-                              <AccordionTrigger className="cursor-pointer self-end absolute right-5 bottom-5 ml-auto max-w-10 w-10 h-10 rounded-[5px] bg-primary flex justify-center items-center text-white text-[22px] data-[state=open]:bg-secondary data-[state=open]:text-black [&_.icon-minus]:hidden data-[state=open]:[&_.icon-minus]:block [&_.icon-plus]:block data-[state=open]:[&_.icon-plus]:hidden">
-                                <FiPlus className="icon-plus" />
-                                <FiMinus className="icon-minus" />
-                              </AccordionTrigger>
-                            </AccordionItem>
+                              <WorkCardContent
+                                item={nestedItem}
+                                titleClassName="text-md font-semibold leading-none"
+                              />
+                            </div>
                           );
                         },
                       )}
@@ -118,48 +115,31 @@ const WhatWeDo = ({ data }: { data: WhatWeDo }) => {
                 if (index === 2) return null;
 
                 return (
-                  <AccordionItem
-                    key={index}
-                    value={`item-${index}`}
-                    className="bg-white rounded-xl p-5 pb-16 relative xl:flex flex-col gap-5 hidden"
+                  <div
+                    key={`work-xl-${index}`}
+                    className={workCardClassNameXl}
                   >
-                    <h4 className="text-md font-semibold leading-none">
-                      {item.collapseTitle}
-                    </h4>
-
-                    <AccordionContent className="2xl:min-h-22 min-h-12.5 2xl:max-h-22 max-h-12.5 overflow-y-scroll text-xsm pb-0!">
-                      {item.collapseDetails}
-                    </AccordionContent>
-                    <AccordionTrigger className="cursor-pointer self-end absolute right-5 bottom-5 ml-auto max-w-10 w-10 h-10 rounded-[5px] bg-primary flex justify-center items-center text-white text-[22px] data-[state=open]:bg-secondary data-[state=open]:text-black [&_.icon-minus]:hidden data-[state=open]:[&_.icon-minus]:block [&_.icon-plus]:block data-[state=open]:[&_.icon-plus]:hidden">
-                      <FiPlus className="icon-plus" />
-                      <FiMinus className="icon-minus" />
-                    </AccordionTrigger>
-                  </AccordionItem>
+                    <WorkCardContent
+                      item={item}
+                      titleClassName="text-md font-semibold leading-none"
+                    />
+                  </div>
                 );
               })}
               {allWorks?.map((item, index) => {
                 return (
-                  <AccordionItem
-                    key={index}
-                    value={`item-${index}`}
-                    className="bg-white rounded-xl p-5 pb-16 relative xl:hidden flex flex-col gap-5"
+                  <div
+                    key={`work-sm-${index}`}
+                    className={workCardClassNameSm}
                   >
-                    <h4 className="sm:text-md text-body font-semibold leading-none">
-                      {item.collapseTitle}
-                    </h4>
-
-                    <AccordionContent className="2xl:min-h-22 2xl:max-h-22 md:min-h-12.5 md:max-h-12.5 sm:min-h-14 sm:max-h-14 overflow-y-scroll text-xsm pb-0!">
-                      {item.collapseDetails}
-                    </AccordionContent>
-                    <AccordionTrigger className="cursor-pointer self-end absolute right-5 bottom-5 ml-auto max-w-10 w-10 h-10 rounded-[5px] bg-primary flex justify-center items-center text-white text-[22px] data-[state=open]:bg-secondary data-[state=open]:text-black [&_.icon-minus]:hidden data-[state=open]:[&_.icon-minus]:block [&_.icon-plus]:block data-[state=open]:[&_.icon-plus]:hidden">
-                      <FiPlus className="icon-plus" />
-                      <FiMinus className="icon-minus" />
-                    </AccordionTrigger>
-                  </AccordionItem>
+                    <WorkCardContent
+                      item={item}
+                      titleClassName="sm:text-md text-body font-semibold leading-none"
+                    />
+                  </div>
                 );
               })}
-            </div>
-          </Accordion>
+          </div>
         </div>
       </div>
     </section>

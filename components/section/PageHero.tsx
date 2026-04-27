@@ -80,6 +80,10 @@ export default function PageHero({
     isCms && contentFromCms
       ? Boolean(contentFromCms.eyebrow?.trim())
       : showEyebrow;
+  /** Service (CMS) pages: one h1 — the eyebrow label; main headline is h2. */
+  const cmsEyebrowIsPageH1 = Boolean(
+    isCms && contentFromCms && contentFromCms.eyebrow?.trim(),
+  );
   const sectionRef = useRef<HTMLElement>(null);
   const copyColRef = useRef<HTMLDivElement>(null);
   const desktopBadgeRef = useRef<HTMLDivElement>(null);
@@ -170,17 +174,27 @@ export default function PageHero({
         className="container relative mx-auto flex flex-col items-center justify-center gap-4 px-4 pt-30 sm:pt-40 lg:px-0"
       >
         {showEyebrowRow ? (
-          <p className="flex items-center justify-center gap-2 sm:gap-2.5">
-            <span
-              className="size-2 shrink-0 rounded-full bg-primary sm:size-2.5"
-              aria-hidden
-            />
-            <span className="text-sm font-semibold tracking-tight text-black sm:text-base">
-              {isCms && contentFromCms?.eyebrow
-                ? contentFromCms.eyebrow
-                : t("eyebrow")}
-            </span>
-          </p>
+          cmsEyebrowIsPageH1 ? (
+            <div className="flex items-center justify-center gap-2 sm:gap-2.5 text-center">
+              <span
+                className="size-2 shrink-0 rounded-full bg-primary sm:size-2.5"
+                aria-hidden
+              />
+              <h1 className="m-0 text-sm font-semibold tracking-tight text-black sm:text-base">
+                {contentFromCms?.eyebrow}
+              </h1>
+            </div>
+          ) : (
+            <p className="flex items-center justify-center gap-2 sm:gap-2.5">
+              <span
+                className="size-2 shrink-0 rounded-full bg-primary sm:size-2.5"
+                aria-hidden
+              />
+              <span className="text-sm font-semibold tracking-tight text-black sm:text-base">
+                {t("eyebrow")}
+              </span>
+            </p>
+          )
         ) : null}
         <div
           ref={desktopBadgeRef}
@@ -190,14 +204,25 @@ export default function PageHero({
         </div>
         <div className="flex max-w-260 flex-col items-center gap-2 sm:gap-5">
           {isCms && contentFromCms ? (
-            <h1
-              className={cn(
-                titleClassName,
-                "text-black [&_em]:italic",
-                cmsTitleDescendantWeight,
-              )}
-              dangerouslySetInnerHTML={{ __html: contentFromCms.titleHtml }}
-            />
+            cmsEyebrowIsPageH1 ? (
+              <h2
+                className={cn(
+                  titleClassName,
+                  "text-black [&_em]:italic",
+                  cmsTitleDescendantWeight,
+                )}
+                dangerouslySetInnerHTML={{ __html: contentFromCms.titleHtml }}
+              />
+            ) : (
+              <h1
+                className={cn(
+                  titleClassName,
+                  "text-black [&_em]:italic",
+                  cmsTitleDescendantWeight,
+                )}
+                dangerouslySetInnerHTML={{ __html: contentFromCms.titleHtml }}
+              />
+            )
           ) : showEyebrow ? (
             <h1
               className={cn(
