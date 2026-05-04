@@ -1,7 +1,7 @@
 "use client";
 import CaseStudyHero from "@/components/section/case-study/CaseStudyHero";
 import { cn } from "@/lib/utils";
-import { ScheduleCallForm } from "@/components/ui/schedule-call-form";
+import { SidebarLeadForm } from "@/components/sidebar-lead-form";
 import { envSocialUrls, socialHref } from "@/lib/social-links";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
@@ -62,8 +62,12 @@ interface CaseStudyStructured {
 
 export default function CaseStudyDetailLayout({
   caseStudyData,
+  sidebarOmbFormId,
+  sidebarOmbFormSlug,
 }: {
   caseStudyData: CaseStudyStructured;
+  sidebarOmbFormId?: string | null;
+  sidebarOmbFormSlug?: string | null;
 }) {
   gsap.registerPlugin(Draggable, ScrollTrigger);
 
@@ -265,7 +269,10 @@ export default function CaseStudyDetailLayout({
                     </a>
                   </div>
                 </div>
-                <ScheduleCallForm />
+                <SidebarLeadForm
+                  ombFormId={sidebarOmbFormId}
+                  ombFormSlug={sidebarOmbFormSlug}
+                />
               </div>
 
               <div className="flex w-full flex-col gap-5.25 rounded-[0.625rem] bg-white p-5 pb-5 shadow-[0px_0px_14px_rgba(0,0,0,5%)] sm:p-7.5 lg:sticky lg:top-28 lg:max-h-[calc(100dvh-7.5rem)] lg:overflow-y-auto lg:self-start">

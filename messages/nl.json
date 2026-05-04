@@ -364,6 +364,10 @@
     "submitErrorConfig": "Contactformulier is niet geconfigureerd.",
     "submitErrorFormId": "Dit formulier is niet toegestaan of verkeerd geconfigureerd.",
     "toastTitle": "Je hebt de volgende gegevens verstuurd:",
+    "ariaUnlabeledField": "Formulierveld",
+    "ariaDateFrom": "van",
+    "ariaDateTo": "tot",
+    "fileUploadHeadlessNote": "Bestand uploaden is alleen mogelijk in de WordPress-versie van dit formulier.",
     "validation": {
       "nameMin": "Naam moet minimaal 5 tekens bevatten.",
       "nameMax": "Naam mag maximaal 32 tekens bevatten.",
@@ -376,7 +380,10 @@
       "budgetRequired": "Vul je marketingbudget in of hoe je het wilt bespreken",
       "budgetMax": "Maximaal {max} tekens",
       "emailInvalid": "Voer een geldig e-mailadres in",
-      "privacyRequired": "Je moet akkoord gaan met de privacyverklaring"
+      "privacyRequired": "Je moet akkoord gaan met de privacyverklaring",
+      "fillRequired": "Vul dit in: {field}",
+      "completeRequired": "Vul alle verplichte velden in.",
+      "required": "Dit veld is verplicht."
     }
   },
   "ScheduleCallForm": {

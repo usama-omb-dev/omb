@@ -1,3 +1,4 @@
+import { OmbFormBuilderForm } from "@/components/omb-form-builder/OmbFormBuilderForm";
 import { ContactForm } from "@/components/section/Form";
 import { MARKETING_HERO_GRADIENT } from "@/components/section/marketing-hero-shared";
 import { loadMessagesJson } from "@/lib/load-messages";
@@ -16,6 +17,10 @@ export async function generateMetadata({
 
 export default async function ContactPage() {
   const t = await getTranslations("ContactPage");
+  const ombFormId = process.env.OMB_FORM_BUILDER_CONTACT_FORM_ID?.trim();
+  const ombFormSlug = process.env.OMB_FORM_BUILDER_CONTACT_FORM_SLUG?.trim();
+  const useOmbForm =
+    (ombFormId && /^\d+$/.test(ombFormId)) || Boolean(ombFormSlug?.length);
 
   return (
     <main className="bg-background pb-16 sm:pb-20">
@@ -52,7 +57,16 @@ export default async function ContactPage() {
           <h2 className="mb-6 text-left text-lg font-semibold leading-none text-black sm:mb-8 sm:text-xl">
             {t("formCardTitle")}
           </h2>
-          <ContactForm darkForm={true} />
+          {useOmbForm ? (
+            <OmbFormBuilderForm
+              darkForm
+              {...(ombFormId && /^\d+$/.test(ombFormId)
+                ? { formId: ombFormId }
+                : { formSlug: ombFormSlug! })}
+            />
+          ) : (
+            <ContactForm darkForm={true} />
+          )}
         </div>
       </div>
     </main>

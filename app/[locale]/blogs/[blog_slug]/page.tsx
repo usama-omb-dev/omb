@@ -1,6 +1,7 @@
 import LatestBlogs from "@/components/section/Blogs/Latest-Blogs";
 import BlogPostHero from "@/components/section/Blogs/BlogPostHero";
-import { ScheduleCallForm } from "@/components/ui/schedule-call-form";
+import { SidebarLeadForm } from "@/components/sidebar-lead-form";
+import { getSidebarOmbFormProps } from "@/lib/omb-form-builder";
 import { estimateReadingTimeMinutes } from "@/lib/blog-reading-time";
 import { stripHtmlForTitle } from "@/lib/strip-html-for-title";
 import { localeToWpLang } from "@/lib/wp-lang";
@@ -55,6 +56,7 @@ const page = async ({
   const data = await getData();
   const tBlog = await getTranslations("BlogPostPage");
   const rubinLinkedIn = socialHref(envSocialUrls.linkedinRubin);
+  const sidebarOmb = getSidebarOmbFormProps("blog");
   const date = new Date(data.date);
   const dateLocale = locale === "nl" ? "nl-NL" : "en-GB";
   const featuredMedia = data._embedded?.["wp:featuredmedia"]?.[0];
@@ -148,7 +150,18 @@ const page = async ({
                   </a>
                 </div>
               </div>
-              <ScheduleCallForm />
+              <SidebarLeadForm
+                ombFormId={
+                  sidebarOmb && "formId" in sidebarOmb
+                    ? sidebarOmb.formId
+                    : undefined
+                }
+                ombFormSlug={
+                  sidebarOmb && "formSlug" in sidebarOmb
+                    ? sidebarOmb.formSlug
+                    : undefined
+                }
+              />
             </div>
           </div>
         </div>

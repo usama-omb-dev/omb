@@ -364,6 +364,10 @@
     "submitErrorConfig": "Contact form is not configured.",
     "submitErrorFormId": "This form is not allowed or misconfigured.",
     "toastTitle": "You submitted the following values:",
+    "ariaUnlabeledField": "Form field",
+    "ariaDateFrom": "from",
+    "ariaDateTo": "to",
+    "fileUploadHeadlessNote": "File upload is only available on the WordPress version of this form.",
     "validation": {
       "nameMin": "Name must be at least 5 characters.",
       "nameMax": "Name must be at most 32 characters.",
@@ -376,7 +380,10 @@
       "budgetRequired": "Add your marketing budget or how you would like to discuss it",
       "budgetMax": "Budget text must be at most {max} characters",
       "emailInvalid": "Enter a valid email address",
-      "privacyRequired": "You must accept the privacy policy"
+      "privacyRequired": "You must accept the privacy policy",
+      "fillRequired": "Please fill in: {field}",
+      "completeRequired": "Please complete all required fields.",
+      "required": "This field is required."
     }
   },
   "ScheduleCallForm": {

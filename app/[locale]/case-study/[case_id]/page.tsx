@@ -4,6 +4,7 @@ import { localeToWpLang } from "@/lib/wp-lang";
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+import { getSidebarOmbFormProps } from "@/lib/omb-form-builder";
 import CaseStudyDetailLayout from "./CaseStudyDetailLayout";
 
 export async function generateMetadata({
@@ -154,5 +155,19 @@ export default async function CaseStudyPage({
     },
   };
 
-  return <CaseStudyDetailLayout caseStudyData={caseStudyDatStructured} />;
+  const sidebarOmb = getSidebarOmbFormProps("case-study");
+
+  return (
+    <CaseStudyDetailLayout
+      caseStudyData={caseStudyDatStructured}
+      sidebarOmbFormId={
+        sidebarOmb && "formId" in sidebarOmb ? sidebarOmb.formId : undefined
+      }
+      sidebarOmbFormSlug={
+        sidebarOmb && "formSlug" in sidebarOmb
+          ? sidebarOmb.formSlug
+          : undefined
+      }
+    />
+  );
 }

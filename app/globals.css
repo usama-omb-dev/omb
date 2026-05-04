@@ -292,3 +292,16 @@
     animation: none;
   }
 }
+
+/* OMB Form Builder (headless): mirrors WP `cfb-form-row` / `cfb-form-cols-N` layout */
+.omb-form-layout-row {
+  display: grid;
+  gap: 1rem;
+  align-items: flex-start;
+  grid-template-columns: repeat(var(--omb-layout-cols, 1), minmax(0, 1fr));
+}
+@media (max-width: 639px) {
+  .omb-form-layout-row[data-layout-cols]:not([data-layout-cols="1"]) {
+    grid-template-columns: 1fr;
+  }
+}
