@@ -65,7 +65,7 @@ const ServicesHero = ({ data }: { data: HeroData }) => {
               </h1>
             </div>
           )}
-          <h2 className="leading-none lg:text-5xl lg:nl:text-4xl md:nl:text-3xl md:text-4xl sm:text-3xl text-xl text-center">
+          <h2 className="text-center text-xl leading-none sm:text-3xl md:text-4xl lg:text-5xl">
             {mainTitle}
           </h2>
         </div>

@@ -52,7 +52,7 @@ export type PageHeroProps = {
 };
 
 const titleClassName =
-  "text-center text-balance text-xl font-bold leading-none sm:text-3xl md:text-4xl md:nl:text-3xl lg:text-[64px] lg:leading-[1.06] lg:nl:text-4xl lg:nl:leading-tight";
+  "text-center text-balance text-xl font-bold leading-none sm:text-3xl md:text-4xl lg:text-[64px] lg:leading-[1.06]";
 
 /** CMS titles often include `<p>` / `<a>` from WordPress; `@layer base` sets those to `font-medium`, so we reset descendants to match the marketing hero. */
 const cmsTitleDescendantWeight =

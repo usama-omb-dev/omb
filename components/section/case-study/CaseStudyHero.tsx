@@ -14,7 +14,7 @@ const GRADIENT =
   "linear-gradient(0deg, rgba(56, 56, 249, 0.44) 0%, rgba(255, 255, 255, 0) 80%)";
 
 const titleClassName =
-  "text-center text-balance text-xl font-bold leading-none sm:text-3xl md:text-4xl md:nl:text-3xl lg:text-[64px] lg:leading-[1.06] lg:nl:text-4xl lg:nl:leading-tight";
+  "text-center text-balance text-xl font-bold leading-none sm:text-3xl md:text-4xl lg:text-[64px] lg:leading-[1.06]";
 
 /** Match PageHero CMS title so global `p` / `a` rules do not thin WordPress markup. */
 const cmsTitleDescendantWeight =
