@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { routing } from "@/i18n/routing";
 
 const DEFAULT_SITE_URL = "https://www.onlinemarketingbakery.com";
 
@@ -21,9 +22,19 @@ export function withCanonical(
   locale: string,
   segments: string[] = [],
 ): Pick<Metadata, "alternates"> {
+  const canonical = localeCanonicalPath(locale, segments);
+  const languages: Record<string, string> = Object.fromEntries(
+    routing.locales.map((loc) => [loc, localeCanonicalPath(loc, segments)]),
+  );
+  languages["x-default"] = localeCanonicalPath(
+    routing.defaultLocale,
+    segments,
+  );
+
   return {
     alternates: {
-      canonical: localeCanonicalPath(locale, segments),
+      canonical,
+      languages,
     },
   };
 }
