@@ -6,6 +6,10 @@ import { useTranslations } from "next-intl";
 import { useCallback, useState } from "react";
 import { cn } from "@/lib/utils";
 import {
+  getTranslatedBlogSlug,
+  parseBlogDetailSlug,
+} from "@/lib/blog-translated-slug";
+import {
   getTranslatedServiceSlug,
   parseServiceDetailSlug,
 } from "@/lib/service-translated-slug";
@@ -24,6 +28,7 @@ export function LocaleSwitcher({ className }: { className?: string }) {
       try {
         let targetPath = pathname;
         const serviceSlug = parseServiceDetailSlug(pathname);
+        const blogSlug = parseBlogDetailSlug(pathname);
         if (serviceSlug) {
           const translated = await getTranslatedServiceSlug(
             serviceSlug,
@@ -32,6 +37,15 @@ export function LocaleSwitcher({ className }: { className?: string }) {
           );
           if (translated) {
             targetPath = `/services/${translated}`;
+          }
+        } else if (blogSlug) {
+          const translated = await getTranslatedBlogSlug(
+            blogSlug,
+            locale,
+            next,
+          );
+          if (translated) {
+            targetPath = `/blogs/${translated}`;
           }
         }
         router.replace(targetPath, { locale: next });
