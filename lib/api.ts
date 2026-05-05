@@ -1,7 +1,8 @@
 import type { WpLang } from "@/lib/wp-lang";
 import { filterRestItemsByPolylangPermalink } from "@/lib/wp-lang";
 
-const BASE_URL = "https://backend.onlinemarketingbakery.nl/wp-json/wp/v2";
+export const WP_JSON_BASE_URL =
+  "https://backend.onlinemarketingbakery.nl/wp-json/wp/v2";
 
 /** Ensures Polylang `lang` is set on REST query strings. */
 export function withWpLang(endpoint: string, lang: WpLang): string {
@@ -14,7 +15,7 @@ export function withWpLang(endpoint: string, lang: WpLang): string {
 }
 
 export async function fetchAPI(endpoint: string, lang: WpLang = "en") {
-  const url = `${BASE_URL}${withWpLang(endpoint, lang)}`;
+  const url = `${WP_JSON_BASE_URL}${withWpLang(endpoint, lang)}`;
   const res = await fetch(url);
 
   if (!res.ok) {
@@ -32,7 +33,7 @@ export async function fetchPostCount(
   revalidateSeconds = 300,
 ): Promise<number> {
   const path = withWpLang("/posts?per_page=1&status=publish", lang);
-  const url = `${BASE_URL}${path}`;
+  const url = `${WP_JSON_BASE_URL}${path}`;
   const res = await fetch(url, { next: { revalidate: revalidateSeconds } });
 
   if (!res.ok) {
@@ -56,7 +57,7 @@ export async function fetchCaseStudyCount(
 ): Promise<number> {
   /** `lang` is not applied reliably on this CPT; count after permalink filter. */
   const path = withWpLang("/case-study?per_page=100&status=publish", lang);
-  const url = `${BASE_URL}${path}`;
+  const url = `${WP_JSON_BASE_URL}${path}`;
   const res = await fetch(url, { next: { revalidate: revalidateSeconds } });
 
   if (!res.ok) {
