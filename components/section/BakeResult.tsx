@@ -37,6 +37,7 @@ const BakeResult = () => {
             alt={t("footerImageAlt")}
             width={1040}
             height={590}
+            quality={40}
           />
         </div>
       </div>

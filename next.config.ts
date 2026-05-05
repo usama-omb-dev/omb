@@ -16,6 +16,13 @@ const nextConfig: NextConfig = {
       "https://www.linkedin.com/in/rubinkoot",
   },
   images: {
+    /**
+     * Next.js 16 only emits `q=` values listed here (max 20 entries). Any `<Image quality={…}>`
+     * must match one of these or it falls back to the default `q=75`.
+     */
+    qualities: [
+      25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100,
+    ],
     /** In dev, avoid long-lived `/_next/image` cache so replaced files in `/public` show up after refresh. */
     ...(process.env.NODE_ENV === "development"
       ? { minimumCacheTTL: 0 }

@@ -43,8 +43,9 @@ const Contact = ({
           <Image
             src={overlaySrc}
             alt={overlayAlt}
-            width={1306}
-            height={822}
+            width={700}
+            height={400}
+            quality={40}
             className="absolute -z-20 top-0 left-0 w-full h-full opacity-80"
           />
           <div className="flex flex-col lg:gap-7.5 gap-4">
