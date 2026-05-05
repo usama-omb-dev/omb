@@ -266,6 +266,20 @@ export function buildFormLayoutRows(
   return rows;
 }
 
+/**
+ * Same headless form as `/contact`: numeric ID wins when both ID and slug env are set.
+ */
+export function getContactOmbFormProps():
+  | { formId: string }
+  | { formSlug: string }
+  | null {
+  const id = process.env.OMB_FORM_BUILDER_CONTACT_FORM_ID?.trim();
+  const slug = process.env.OMB_FORM_BUILDER_CONTACT_FORM_SLUG?.trim();
+  if (id && /^\d+$/.test(id)) return { formId: id };
+  if (slug) return { formSlug: slug };
+  return null;
+}
+
 export type SidebarOmbFormContext = "blog" | "case-study";
 
 /**
@@ -275,6 +289,9 @@ export type SidebarOmbFormContext = "blog" | "case-study";
  * - `OMB_FORM_BUILDER_SIDEBAR_FORM_ID` / `OMB_FORM_BUILDER_SIDEBAR_FORM_SLUG` — default for both blog and case study
  * - `OMB_FORM_BUILDER_BLOG_SIDEBAR_FORM_ID` / `_SLUG` — overrides for blog single only
  * - `OMB_FORM_BUILDER_CASE_STUDY_SIDEBAR_FORM_ID` / `_SLUG` — overrides for case study single only
+ *
+ * When `OMB_FORM_BUILDER_CONTACT_FORM_*` is set, the sidebar uses that same form first.
+ * Otherwise uses the sidebar-specific env vars above (shared / blog / case study).
  *
  * Each used ID must be in `OMB_FORM_BUILDER_ALLOWED_IDS`; each slug in `OMB_FORM_BUILDER_ALLOWED_SLUGS`.
  */
@@ -298,8 +315,14 @@ export function getSidebarOmbFormProps(
     return null;
   }
 
+  const contact = getContactOmbFormProps();
+
   if (context === "blog") {
-    return pick(blogId, blogSlug) ?? pick(sharedId, sharedSlug);
+    return (
+      contact ??
+      pick(blogId, blogSlug) ??
+      pick(sharedId, sharedSlug)
+    );
   }
-  return pick(caseId, caseSlug) ?? pick(sharedId, sharedSlug);
+  return contact ?? pick(caseId, caseSlug) ?? pick(sharedId, sharedSlug);
 }

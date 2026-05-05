@@ -6,7 +6,8 @@ import { ScheduleCallForm } from "@/components/ui/schedule-call-form";
 
 /**
  * Blog / case-study sidebar lead form: OMB Form Builder when server passes
- * `ombFormId` or `ombFormSlug` (from `getSidebarOmbFormProps`); otherwise CF7 schedule form.
+ * `ombFormId` or `ombFormSlug` (from `getSidebarOmbFormProps`: contact OMB form when
+ * configured, else sidebar-specific env); otherwise CF7 schedule form.
  */
 export function SidebarLeadForm({
   ombFormId,

@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { OmbFormBuilderForm } from "@/components/omb-form-builder/OmbFormBuilderForm";
+import { getContactOmbFormProps } from "@/lib/omb-form-builder";
 import { ContactForm } from "./Form";
 import TextReveal from "@/components/ui/TextReveal";
 
@@ -32,6 +34,8 @@ const Contact = ({
   tickAlt = "",
   cf7FormId,
 }: ContactSectionProps) => {
+  const contactOmb = getContactOmbFormProps();
+
   return (
     <section className="lg:py-37.5 py-10">
       <div className="container">
@@ -85,7 +89,15 @@ const Contact = ({
             </div>
           </div>
           <div className="bg-white/4 backdrop-blur-3xl border border-white/26 rounded-[0.625rem] xl:p-11.5 sm:p-6 p-4 xl:pr-6.5">
-            <ContactForm cf7FormId={cf7FormId} />
+            {contactOmb ? (
+              <OmbFormBuilderForm
+                {...("formId" in contactOmb
+                  ? { formId: contactOmb.formId }
+                  : { formSlug: contactOmb.formSlug })}
+              />
+            ) : (
+              <ContactForm cf7FormId={cf7FormId} />
+            )}
           </div>
         </div>
       </div>
