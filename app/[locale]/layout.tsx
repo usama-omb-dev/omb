@@ -5,6 +5,7 @@ import { getMessages, setRequestLocale } from "next-intl/server";
 import { Quicksand } from "next/font/google";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
+import { getSiteUrl } from "@/lib/canonical";
 import ReactQueryProvider from "@/providers/ReactQueryProvider";
 
 const quicksand = Quicksand({
@@ -29,6 +30,7 @@ export async function generateMetadata({
   };
   const siteTitle = messages.Metadata?.title ?? "OMB";
   return {
+    metadataBase: new URL(getSiteUrl()),
     title: {
       default: siteTitle,
       template: `%s | ${siteTitle}`,

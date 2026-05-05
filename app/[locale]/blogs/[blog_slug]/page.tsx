@@ -8,6 +8,7 @@ import { localeToWpLang } from "@/lib/wp-lang";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { withCanonical } from "@/lib/canonical";
 import { envSocialUrls, socialHref } from "@/lib/social-links";
 import { notFound } from "next/navigation";
 import { FaLinkedin } from "react-icons/fa6";
@@ -29,7 +30,10 @@ export async function generateMetadata({
   if (!post) notFound();
   const title = stripHtmlForTitle(post.title?.rendered);
   if (!title) notFound();
-  return { title };
+  return {
+    title,
+    ...withCanonical(locale, ["blogs", blog_slug]),
+  };
 }
 
 const page = async ({

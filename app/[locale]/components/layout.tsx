@@ -1,3 +1,4 @@
+import { withCanonical } from "@/lib/canonical";
 import { loadMessagesJson } from "@/lib/load-messages";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
@@ -9,7 +10,10 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const messages = await loadMessagesJson(locale);
-  return { title: messages.PageTitles?.components ?? "UI playground" };
+  return {
+    title: messages.PageTitles?.components ?? "UI playground",
+    ...withCanonical(locale, ["components"]),
+  };
 }
 
 export default function ComponentsLayout({

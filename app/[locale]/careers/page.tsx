@@ -4,6 +4,7 @@ import WhyOmb from "@/components/section/Careers/WhyOmb";
 import LifeAtOmb from "@/components/section/Careers/LifeAtOmb";
 import HiringProcess from "@/components/section/Careers/HiringProcess";
 import Contact from "@/components/section/Contact";
+import { withCanonical } from "@/lib/canonical";
 import { loadMessagesJson } from "@/lib/load-messages";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -15,7 +16,10 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const messages = await loadMessagesJson(locale);
-  return { title: messages.Nav?.career ?? "Careers" };
+  return {
+    title: messages.Nav?.career ?? "Careers",
+    ...withCanonical(locale, ["careers"]),
+  };
 }
 
 export default async function CareersPage({

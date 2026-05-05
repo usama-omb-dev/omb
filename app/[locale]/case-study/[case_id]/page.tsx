@@ -1,3 +1,4 @@
+import { withCanonical } from "@/lib/canonical";
 import { loadMessagesJson } from "@/lib/load-messages";
 import { stripHtmlForTitle } from "@/lib/strip-html-for-title";
 import { localeToWpLang } from "@/lib/wp-lang";
@@ -16,6 +17,7 @@ export async function generateMetadata({
   const wpLang = localeToWpLang(locale);
   const messages = await loadMessagesJson(locale);
   const fallback = messages.PageTitles?.caseStudy ?? "Case study";
+  const canon = withCanonical(locale, ["case-study", case_id]);
 
   try {
     const res = await fetch(
@@ -24,25 +26,25 @@ export async function generateMetadata({
     );
     if (!res.ok) {
       if (process.env.NODE_ENV === "production") notFound();
-      return { title: fallback };
+      return { title: fallback, ...canon };
     }
     const json = await res.json();
     const raw = Array.isArray(json) ? json[0] : json;
     if (!raw || typeof raw !== "object") {
       if (process.env.NODE_ENV === "production") notFound();
-      return { title: fallback };
+      return { title: fallback, ...canon };
     }
     const title = stripHtmlForTitle(
       (raw as { title?: { rendered?: string } }).title?.rendered,
     );
-    if (title) return { title };
+    if (title) return { title, ...canon };
   } catch {
     if (process.env.NODE_ENV === "production") notFound();
-    return { title: fallback };
+    return { title: fallback, ...canon };
   }
 
   if (process.env.NODE_ENV === "production") notFound();
-  return { title: fallback };
+  return { title: fallback, ...canon };
 }
 
 export default async function CaseStudyPage({

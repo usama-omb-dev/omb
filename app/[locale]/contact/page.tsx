@@ -1,6 +1,7 @@
 import { OmbFormBuilderForm } from "@/components/omb-form-builder/OmbFormBuilderForm";
 import { ContactForm } from "@/components/section/Form";
 import { MARKETING_HERO_GRADIENT } from "@/components/section/marketing-hero-shared";
+import { withCanonical } from "@/lib/canonical";
 import { loadMessagesJson } from "@/lib/load-messages";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
@@ -12,7 +13,10 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const messages = await loadMessagesJson(locale);
-  return { title: messages.PageTitles?.contact ?? "Contact" };
+  return {
+    title: messages.PageTitles?.contact ?? "Contact",
+    ...withCanonical(locale, ["contact"]),
+  };
 }
 
 export default async function ContactPage() {

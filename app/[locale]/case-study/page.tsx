@@ -1,6 +1,7 @@
 import CaseStudiesListingHero from "@/components/section/CaseStudies/CaseStudiesListingHero";
 import CaseStudiesList from "@/components/section/CaseStudies/CaseStudies-List";
 import { fetchCaseStudyCount } from "@/lib/api";
+import { withCanonical } from "@/lib/canonical";
 import { loadMessagesJson } from "@/lib/load-messages";
 import { localeToWpLang } from "@/lib/wp-lang";
 import type { Metadata } from "next";
@@ -17,6 +18,7 @@ export async function generateMetadata({
       messages.PageTitles?.caseStudiesListing ??
       messages.Nav?.caseStudies ??
       "Case studies",
+    ...withCanonical(locale, ["case-study"]),
   };
 }
 

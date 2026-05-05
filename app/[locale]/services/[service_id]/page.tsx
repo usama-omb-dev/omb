@@ -7,6 +7,7 @@ import {
 import Contact from "@/components/section/Contact";
 import PageHero from "@/components/section/PageHero";
 import { fetchAPI } from "@/lib/api";
+import { withCanonical } from "@/lib/canonical";
 import { stripHtmlForTitle } from "@/lib/strip-html-for-title";
 import { localeToWpLang } from "@/lib/wp-lang";
 import Difference from "@/components/section/Service/Difference";
@@ -32,7 +33,11 @@ export async function generateMetadata({
       const title = stripHtmlForTitle(
         (data[0] as { title?: { rendered?: string } }).title?.rendered,
       );
-      if (title) return { title };
+      if (title)
+        return {
+          title,
+          ...withCanonical(locale, ["services", service_id]),
+        };
     }
   } catch {
     // fall through to notFound

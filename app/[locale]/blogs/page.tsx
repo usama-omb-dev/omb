@@ -1,6 +1,7 @@
 import BlogsListingHero from "@/components/section/Blogs/BlogsListingHero";
 import BlogsList from "@/components/section/Blogs/Blogs-List";
 import { fetchPostCount } from "@/lib/api";
+import { withCanonical } from "@/lib/canonical";
 import { loadMessagesJson } from "@/lib/load-messages";
 import { localeToWpLang } from "@/lib/wp-lang";
 import type { Metadata } from "next";
@@ -12,7 +13,10 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const messages = await loadMessagesJson(locale);
-  return { title: messages.Nav?.blogs ?? "Blog" };
+  return {
+    title: messages.Nav?.blogs ?? "Blog",
+    ...withCanonical(locale, ["blogs"]),
+  };
 }
 
 export default async function page({

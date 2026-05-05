@@ -1,6 +1,7 @@
 import MarketingTeam from "@/components/section/Service/MarketingTeam";
 import OurGoal from "@/components/section/Service/OurGoal";
 import PageHero from "@/components/section/PageHero";
+import { withCanonical } from "@/lib/canonical";
 import { loadMessagesJson } from "@/lib/load-messages";
 import type { Metadata } from "next";
 
@@ -11,7 +12,10 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const messages = await loadMessagesJson(locale);
-  return { title: messages.Nav?.about ?? "About" };
+  return {
+    title: messages.Nav?.about ?? "About",
+    ...withCanonical(locale, ["about"]),
+  };
 }
 
 export default async function AboutPage() {

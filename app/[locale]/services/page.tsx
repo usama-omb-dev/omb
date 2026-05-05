@@ -1,3 +1,4 @@
+import { withCanonical } from "@/lib/canonical";
 import { loadMessagesJson } from "@/lib/load-messages";
 import type { Metadata } from "next";
 
@@ -8,7 +9,10 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const messages = await loadMessagesJson(locale);
-  return { title: messages.Nav?.services ?? "Services" };
+  return {
+    title: messages.Nav?.services ?? "Services",
+    ...withCanonical(locale, ["services"]),
+  };
 }
 
 export default function ServicesIndexPage() {

@@ -1,3 +1,4 @@
+import { withCanonical } from "@/lib/canonical";
 import { loadMessagesJson } from "@/lib/load-messages";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -9,7 +10,10 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const messages = await loadMessagesJson(locale);
-  return { title: messages.PageTitles?.privacy ?? "Privacy" };
+  return {
+    title: messages.PageTitles?.privacy ?? "Privacy",
+    ...withCanonical(locale, ["privacy"]),
+  };
 }
 
 export default async function PrivacyPage({

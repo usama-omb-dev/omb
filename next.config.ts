@@ -6,7 +6,7 @@ const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
 const nextConfig: NextConfig = {
   /** Inlined at build time (same as `env` in older Next docs). Adjust CF7 IDs here when you add forms. */
   env: {
-    NEXT_PUBLIC_SITE_URL: "https://omb-psi.vercel.app",
+    NEXT_PUBLIC_SITE_URL: "https://www.onlinemarketingbakery.com",
     CONTACT_FORM_7_ALLOWED_IDS: "177",
     CONTACT_FORM_7_DEFAULT_ID: "177",
     NEXT_PUBLIC_SOCIAL_FACEBOOK: "https://www.facebook.com/Onlinemarketingbakery/",
