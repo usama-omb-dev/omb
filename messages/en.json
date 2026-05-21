@@ -1,7 +1,51 @@
 {
   "Metadata": {
-    "title": "Online Marketing Bakery",
-    "description": "Online Marketing Bakery — creative B2B marketing with character."
+    "title": "Digital Marketing Agency | Online Marketing Bakery",
+    "description": "Online Marketing Bakery is a full-service marketing agency that helps you stand out with sharp positioning, converting websites, and campaigns that perform."
+  },
+  "PageSeo": {
+    "about": {
+      "title": "About Us | Online Marketing Bakery",
+      "description": "Online Marketing Bakery is a results-driven marketing agency built on top talent, sharp thinking, and one dedicated point of contact. Meet the team."
+    },
+    "contact": {
+      "title": "Contact | Get in Touch | Online Marketing Bakery",
+      "description": "Ready to grow? Get in touch with Online Marketing Bakery and find out what sharp positioning and the right campaigns can do for your business."
+    },
+    "careers": {
+      "title": "Careers | Work at Online Marketing Bakery",
+      "description": "Online Marketing Bakery is always looking for sharp, driven specialists. Work remote, work with ambitious clients, and be part of a team that hates boring."
+    },
+    "caseStudyListing": {
+      "title": "Case Studies | Results & Success Stories | Online Marketing Bakery",
+      "description": "See how Online Marketing Bakery helps clients grow with real results. From 400% ROI campaigns to 68% conversion increases, the proof is in the numbers."
+    },
+    "services": {
+      "personal-brand": {
+        "title": "Personal Brand Services | Build Your Brand | Online Marketing Bakery",
+        "description": "Build a personal brand that earns trust and turns followers into clients. Online Marketing Bakery helps you stand out with sharp positioning and content."
+      },
+      "lead-generation": {
+        "title": "Lead Generation Experts | B2B Leads | Online Marketing Bakery",
+        "description": "Online Marketing Bakery delivers lead generation campaigns that bring in qualified prospects. Smart targeting, strong copy & measurable results that scale."
+      },
+      "content-marketing": {
+        "title": "Content Marketing Services | Strategy | Online Marketing Bakery",
+        "description": "Online Marketing Bakery creates content marketing that builds authority, attracts the right audience, and turns readers into loyal customers over time."
+      },
+      "marketing-strategy": {
+        "title": "Marketing Strategy Services | Online Marketing Bakery",
+        "description": "Online Marketing Bakery builds marketing strategies that cut through noise, target the right audience, and turn your budget into measurable growth."
+      },
+      "digital-footprint": {
+        "title": "Digital Footprint Services | Online Marketing Bakery",
+        "description": "Online Marketing Bakery helps you build a digital footprint that gets found, builds trust, and turns your online presence into a source of steady growth."
+      },
+      "profitable-websites": {
+        "title": "Profitable Website Services | Online Marketing Bakery",
+        "description": "Online Marketing Bakery builds websites that do more than look good. Fast, conversion-focused, and built to turn visitors into paying customers."
+      }
+    }
   },
   "PageTitles": {
     "contact": "Contact",

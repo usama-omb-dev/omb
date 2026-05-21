@@ -21,6 +21,7 @@ export async function generateMetadata({
   const siteTitle = messages.Metadata?.title ?? "OMB";
   return {
     title: { absolute: siteTitle },
+    description: messages.Metadata?.description,
     ...withCanonical(locale),
   };
 }

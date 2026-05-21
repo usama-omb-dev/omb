@@ -16,8 +16,10 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const messages = await loadMessagesJson(locale);
+  const seo = messages.PageSeo?.careers;
   return {
-    title: messages.Nav?.career ?? "Careers",
+    title: seo?.title ?? messages.Nav?.career ?? "Careers",
+    description: seo?.description,
     ...withCanonical(locale, ["careers"]),
   };
 }

@@ -1,7 +1,51 @@
 {
   "Metadata": {
-    "title": "Online Marketing Bakery",
-    "description": "Online Marketing Bakery — creatieve B2B-marketing met karakter."
+    "title": "Digitaal marketingbureau | Online marketingbakkerij",
+    "description": "Online Marketing Bakery helpt je opvallen met scherpe positionering, converterende websites en campagnes die écht resultaten opleveren voor jouw bedrijf."
+  },
+  "PageSeo": {
+    "about": {
+      "title": "Over ons | Online marketing bakkerij",
+      "description": "Online Marketing Bakery is een resultaatgericht marketingbureau, gebouwd op toptalent, scherp denken en één vast aanspreekpunt. Maak kennis met het team."
+    },
+    "contact": {
+      "title": "Contact | Neem contact op | Online marketing bakkerij",
+      "description": "Klaar om te groeien? Neem contact op met Online Marketing Bakery en ontdek wat scherpe positionering en de juiste campagnes voor jouw bedrijf betekenen."
+    },
+    "careers": {
+      "title": "Carrières | Werken bij Online Marketing Bakery",
+      "description": "Online Marketing Bakery zoekt scherpe, gedreven specialisten. Werk remote, werk met ambitieuze klanten en word deel van een team dat saai haat."
+    },
+    "caseStudyListing": {
+      "title": "Casestudies | Resultaten & Succesverhalen | Online Marketing Bakkerij",
+      "description": "Ontdek hoe Online Marketing Bakery klanten helpt groeien. Van campagnes met een ROI van 400% tot conversiestijgingen van 68%: de cijfers spreken voor zich."
+    },
+    "services": {
+      "personal-branding": {
+        "title": "Persoonlijke merkdiensten | Bouw je merk op | Online marketingbakkerij",
+        "description": "Bouw een persoonlijk merk dat vertrouwen wekt en volgers omzet in klanten. Online Marketing Bakery helpt je opvallen met positionering en content die werkt."
+      },
+      "lead-generatie": {
+        "title": "Experts in leadgeneratie | B2B-leads | Online marketingbakkerij",
+        "description": "Online Marketing Bakery levert leadgeneratiecampagnes met slimme targeting, sterke teksten en meetbare resultaten die gekwalificeerde prospects opleveren."
+      },
+      "content-strategie": {
+        "title": "Contentmarketingdiensten | Strategie | Online marketingbakkerij",
+        "description": "Online Marketing Bakery creëert contentmarketing die autoriteit opbouwt, de juiste doelgroep aantrekt en lezers stap voor stap omzet in loyale klanten."
+      },
+      "marketing-strategie": {
+        "title": "Marketingstrategiediensten | Online marketing voor bakkerijen",
+        "description": "Online Marketing Bakery ontwikkelt marketingstrategieën die opvallen, de juiste doelgroep bereiken en jouw budget omzetten in meetbare groei."
+      },
+      "online-zichtbaarheid": {
+        "title": "Diensten voor digitale voetafdruk | Online marketing bakkerij",
+        "description": "Online Marketing Bakery helpt je een digitale voetafdruk opbouwen die gevonden wordt, vertrouwen wekt en je online aanwezigheid omzet in gestage groei."
+      },
+      "winstgevende-websites": {
+        "title": "Winstgevende websitediensten | Online marketing bakkerij",
+        "description": "Online Marketing Bakery bouwt websites die meer doen dan er goed uitzien. Snel, conversiegericht en gebouwd om bezoekers om te zetten in betalende klanten."
+      }
+    }
   },
   "PageTitles": {
     "contact": "Contact",

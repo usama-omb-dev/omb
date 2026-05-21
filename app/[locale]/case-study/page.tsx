@@ -13,11 +13,14 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const messages = await loadMessagesJson(locale);
+  const seo = messages.PageSeo?.caseStudyListing;
   return {
     title:
+      seo?.title ??
       messages.PageTitles?.caseStudiesListing ??
       messages.Nav?.caseStudies ??
       "Case studies",
+    description: seo?.description,
     ...withCanonical(locale, ["case-study"]),
   };
 }

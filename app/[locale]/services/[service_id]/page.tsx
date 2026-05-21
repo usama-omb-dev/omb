@@ -8,6 +8,7 @@ import Contact from "@/components/section/Contact";
 import PageHero from "@/components/section/PageHero";
 import { fetchAPI } from "@/lib/api";
 import { withCanonical } from "@/lib/canonical";
+import { loadMessagesJson } from "@/lib/load-messages";
 import { stripHtmlForTitle } from "@/lib/strip-html-for-title";
 import { localeToWpLang } from "@/lib/wp-lang";
 import Difference from "@/components/section/Service/Difference";
@@ -24,18 +25,22 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale, service_id } = await params;
   const wpLang = localeToWpLang(locale);
+  const messages = await loadMessagesJson(locale);
+  const seo = messages.PageSeo?.services?.[service_id];
   try {
     const data = await fetchAPI(
       `/services?slug=${encodeURIComponent(service_id)}&_embed`,
       wpLang,
     );
     if (Array.isArray(data) && data[0]) {
-      const title = stripHtmlForTitle(
+      const wpTitle = stripHtmlForTitle(
         (data[0] as { title?: { rendered?: string } }).title?.rendered,
       );
+      const title = seo?.title ?? wpTitle;
       if (title)
         return {
           title,
+          description: seo?.description,
           ...withCanonical(locale, ["services", service_id]),
         };
     }
