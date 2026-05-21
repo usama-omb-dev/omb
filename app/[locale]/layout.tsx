@@ -42,6 +42,9 @@ export async function generateMetadata({
         { url: "/omb-favicon.svg", type: "image/svg+xml" },
       ],
     },
+    verification: {
+      google: "zt6BRiOKXoFGGx8g6DKMvWV-uxguXBawD_zRJimD1V8",
+    },
   };
 }
 
