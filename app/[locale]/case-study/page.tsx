@@ -2,7 +2,7 @@ import CaseStudiesListingHero from "@/components/section/CaseStudies/CaseStudies
 import CaseStudiesList from "@/components/section/CaseStudies/CaseStudies-List";
 import { fetchCaseStudyCount } from "@/lib/api";
 import { withCanonical } from "@/lib/canonical";
-import { loadMessagesJson } from "@/lib/load-messages";
+import { loadMessagesJson, resolvePageTitle } from "@/lib/load-messages";
 import { localeToWpLang } from "@/lib/wp-lang";
 import type { Metadata } from "next";
 
@@ -15,11 +15,12 @@ export async function generateMetadata({
   const messages = await loadMessagesJson(locale);
   const seo = messages.PageSeo?.caseStudyListing;
   return {
-    title:
-      seo?.title ??
+    title: resolvePageTitle(
+      seo?.title,
       messages.PageTitles?.caseStudiesListing ??
-      messages.Nav?.caseStudies ??
-      "Case studies",
+        messages.Nav?.caseStudies ??
+        "Case studies",
+    ),
     description: seo?.description,
     ...withCanonical(locale, ["case-study"]),
   };

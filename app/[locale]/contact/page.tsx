@@ -3,7 +3,7 @@ import { ContactForm } from "@/components/section/Form";
 import { MARKETING_HERO_GRADIENT } from "@/components/section/marketing-hero-shared";
 import { withCanonical } from "@/lib/canonical";
 import { getContactOmbFormProps } from "@/lib/omb-form-builder";
-import { loadMessagesJson } from "@/lib/load-messages";
+import { loadMessagesJson, resolvePageTitle } from "@/lib/load-messages";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 
@@ -16,7 +16,10 @@ export async function generateMetadata({
   const messages = await loadMessagesJson(locale);
   const seo = messages.PageSeo?.contact;
   return {
-    title: seo?.title ?? messages.PageTitles?.contact ?? "Contact",
+    title: resolvePageTitle(
+      seo?.title,
+      messages.PageTitles?.contact ?? "Contact",
+    ),
     description: seo?.description,
     ...withCanonical(locale, ["contact"]),
   };

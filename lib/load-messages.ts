@@ -1,7 +1,16 @@
+import type { Metadata } from "next";
 import { routing } from "@/i18n/routing";
 
 export type PageSeoEntry = { title?: string; description?: string };
 
+/** Full SEO titles from PageSeo must bypass the layout `title.template`. */
+export function resolvePageTitle(
+  seoTitle: string | undefined,
+  fallback: string,
+): NonNullable<Metadata["title"]> {
+  if (seoTitle) return { absolute: seoTitle };
+  return fallback;
+}
 export type MessagesJson = {
   Metadata?: { title?: string; description?: string };
   PageSeo?: {

@@ -5,7 +5,7 @@ import LifeAtOmb from "@/components/section/Careers/LifeAtOmb";
 import HiringProcess from "@/components/section/Careers/HiringProcess";
 import Contact from "@/components/section/Contact";
 import { withCanonical } from "@/lib/canonical";
-import { loadMessagesJson } from "@/lib/load-messages";
+import { loadMessagesJson, resolvePageTitle } from "@/lib/load-messages";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
@@ -18,7 +18,7 @@ export async function generateMetadata({
   const messages = await loadMessagesJson(locale);
   const seo = messages.PageSeo?.careers;
   return {
-    title: seo?.title ?? messages.Nav?.career ?? "Careers",
+    title: resolvePageTitle(seo?.title, messages.Nav?.career ?? "Careers"),
     description: seo?.description,
     ...withCanonical(locale, ["careers"]),
   };

@@ -8,7 +8,7 @@ import Contact from "@/components/section/Contact";
 import PageHero from "@/components/section/PageHero";
 import { fetchAPI } from "@/lib/api";
 import { withCanonical } from "@/lib/canonical";
-import { loadMessagesJson } from "@/lib/load-messages";
+import { loadMessagesJson, resolvePageTitle } from "@/lib/load-messages";
 import { stripHtmlForTitle } from "@/lib/strip-html-for-title";
 import { localeToWpLang } from "@/lib/wp-lang";
 import Difference from "@/components/section/Service/Difference";
@@ -39,7 +39,7 @@ export async function generateMetadata({
       const title = seo?.title ?? wpTitle;
       if (title)
         return {
-          title,
+          title: resolvePageTitle(seo?.title, wpTitle),
           description: seo?.description,
           ...withCanonical(locale, ["services", service_id]),
         };
